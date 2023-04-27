@@ -98,6 +98,15 @@
     login.u2fAuth = true;
     sudo.u2fAuth = true;
   };
+  security.pam.yubico = {
+     enable = true;
+     debug = true;
+     mode = "challenge-response";
+     # Make sure you yubikey is configured first
+     # next line sets it to require both pwd and yk
+     # need to read more, doesnt work
+     control = "required";
+  };
   # Yubikey ends ...
 
   # Enable touchpad support (enabled default in most desktopManager).
