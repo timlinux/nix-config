@@ -158,6 +158,16 @@
       starship # see https://starship.rs/guide/#%F0%9F%9A%80-installation
       btop
       gnucash
+      maple-mono-NF
+      maple-mono-SC-NF
+      nerdfonts
+      citations
+      emblem
+      eyedropper
+      gaphor
+      lorem
+      solanum
+      zap
     ];
   };
 

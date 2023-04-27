@@ -108,6 +108,7 @@
     isNormalUser = true;
     description = "Tim Sutton";
     extraGroups = [ "networkmanager" "wheel" ];
+
     packages = with pkgs; [
       firefox
       qgis
@@ -144,11 +145,27 @@
       iftop
       blender
       gnome.gnome-terminal
+      aspellDicts.uk 
       starship
       btop
       gnucash
-    #  thunderbird
+      maple-mono-NF
+      maple-mono-SC-NF
+      nerdfonts
+      citations
+      emblem
+      eyedropper
+      gaphor
+      #lorem
+      solanum
+      zap
+      aspell
+      aspellDicts.en
+      aspellDicts.uk 
+      aspellDicts.pt_PT
+
     ];
+
   };
 
   ##
