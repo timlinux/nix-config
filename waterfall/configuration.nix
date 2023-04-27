@@ -20,7 +20,7 @@
     "/crypto_keyfile.bin" = null;
   };
 
-  networking.hostName = "desktop"; # Define your hostname.
+  networking.hostName = "waterfall"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -84,6 +84,22 @@
     #media-session.enable = true;
   };
 
+  ##
+  ## Yubikey PAM support - see https://nixos.wiki/wiki/Yubikey
+  ## 
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+
+  programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+  };
+  # Make sure to first do pam_u2f in above url before enabling this section
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
+  # Yubikey ends ...
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -110,6 +126,7 @@
       gimp
       # After unstalling do
       # systemctl --user enable syncthing
+      # See also https://discourse.nixos.org/t/syncthing-systemd-user-service/11199
       syncthing
       synfigstudio
       kdenlive
@@ -117,6 +134,7 @@
       qtcreator
       slack
       google-chrome
+      nextcloud-client
       tdesktop
       paperwork
       gnome.gnome-software
@@ -158,7 +176,12 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-  neovim
+     neovim
+     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     wget
+     python3
+     libimobiledevice # Iphone support
+     ifuse # optional, to mount using 'ifuse' for iPhone
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -172,7 +195,19 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = false;
+    allowSFTP = false; # Don't set this if you need sftp
+    kbdInteractiveAuthentication = false;
+    extraConfig = ''
+      AllowTcpForwarding yes
+      X11Forwarding no
+      AllowAgentForwarding no
+      AllowStreamLocalForwarding no
+      AuthenticationMethods publickey
+    '';
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -187,5 +222,41 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
+
+  ### 
+  ### Additions by Tim (see also pkgs sections above)
+  ###
+  
+  ### Fingerprint reader support
+  ### See https://discourse.nixos.org/t/how-to-use-fingerprint-unlocking-how-to-set-up-fprintd-english/21901
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  # Works for thinkpad p14s
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090; 
+  # If the vfs0090 Driver does not work, use the following driver
+  #services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+
+  ### Flakes support
+      
+  ### See https://nixos.wiki/wiki/Flakes
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+
+  ### OBS Virtual Camera Support
+  ### See also OBS packages installed further up
+  boot.extraModulePackages = [
+     config.boot.kernelPackages.v4l2loopback
+  ];  
+
+  ###
+  ### Flatpack support
+  ### see https://flatpak.org/setup/NixOS
+  services.flatpak.enable = true;
+
+  ##
+  ## iPhone Support
+  ## 
+  services.usbmuxd.enable = true;
+
 
 }
