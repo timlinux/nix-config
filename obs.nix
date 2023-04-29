@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 {
+  packages = with pkgs; [
+    obs-studio
+  ];
   ### OBS Virtual Camera Support
   ### See also OBS packages installed further up
   boot.extraModulePackages = [

@@ -8,13 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../python.nix
       ../vim.nix
       ../tim.nix
       ../nvidia.nix
       ../locale.nix
       ../yubikey.nix
       ../ssh.nix
-      ../obs.nix
     ];
 
   # Bootloader.
@@ -83,7 +83,6 @@
      neovim
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
-     python3
      libimobiledevice # Iphone support
      ifuse # optional, to mount using 'ifuse' for iPhone
      # task tray for gnome
