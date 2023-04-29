@@ -12,6 +12,9 @@
       ../tim.nix
       ../nvidia.nix
       ../locale.nix
+      ../yubikey.nix
+      ../ssh.nix
+      ../obs.nix
     ];
 
   # Bootloader.
@@ -70,37 +73,6 @@
     #media-session.enable = true;
   };
 
-  ##
-  ## Yubikey PAM support - see https://nixos.wiki/wiki/Yubikey
-  ## 
-  services.udev.packages = [ 
-    pkgs.yubikey-personalization 
-    #gnome.gnome-settings-daemon # app tray
-  ];
-
-  programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-  };
-  # Make sure to first do pam_u2f in above url before enabling this section
-  security.pam.services = {
-    login.u2fAuth = true;
-    sudo.u2fAuth = true;
-  };
-  security.pam.yubico = {
-     enable = true;
-     debug = true;
-     mode = "challenge-response";
-     # Make sure you yubikey is configured first
-     # next line sets it to require both pwd and yk
-     # need to read more, doesnt work
-     control = "required";
-  };
-  # Yubikey ends ...
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -118,32 +90,9 @@
      gnomeExtensions.appindicator
   ];
 
-  ## System tray
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
-    allowSFTP = false; # Don't set this if you need sftp
-    kbdInteractiveAuthentication = false;
-    extraConfig = ''
-      AllowTcpForwarding yes
-      X11Forwarding no
-      AllowAgentForwarding no
-      AllowStreamLocalForwarding no
-      AuthenticationMethods publickey
-    '';
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -163,26 +112,10 @@
   ### Additions by Tim (see also pkgs sections above)
   ###
   
-  ### Fingerprint reader support
-  ### See https://discourse.nixos.org/t/how-to-use-fingerprint-unlocking-how-to-set-up-fprintd-english/21901
-  services.fprintd.enable = true;
-  services.fprintd.tod.enable = true;
-  # Works for thinkpad p14s
-  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090; 
-  # If the vfs0090 Driver does not work, use the following driver
-  #services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
-
   ### Flakes support
       
   ### See https://nixos.wiki/wiki/Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-
-  ### OBS Virtual Camera Support
-  ### See also OBS packages installed further up
-  boot.extraModulePackages = [
-     config.boot.kernelPackages.v4l2loopback
-  ];  
 
   ###
   ### Flatpack support
