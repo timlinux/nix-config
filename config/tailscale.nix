@@ -18,7 +18,8 @@
   # systemctl status tailscale
 
   # Finally, perform an initial authentication for this machine and you’re done.
-  # tailscale up
+  # sudo tailscale login
+  # sudo tailscale up
 
   # Validate:
   # ip link show tailscale0
