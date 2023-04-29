@@ -9,6 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../vim.nix
+      ../tim.nix
+      ../nvidia.nix
     ];
 
   # Bootloader.
@@ -116,93 +118,7 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.timlinux = {
-    isNormalUser = true;
-    description = "Tim Sutton";
-    extraGroups = [ "networkmanager" "wheel" ];
-
-    packages = with pkgs; [
-      firefox
-      qgis
-      git
-      mc
-      ncdu
-      wget
-      deja-dup
-      inkscape
-      drawio
-      libreoffice-fresh
-      flameshot
-      logseq
-      vscode
-      hugo
-      gimp
-      gnome3.gnome-tweaks 
-      # After unstalling do
-      # systemctl --user enable syncthing
-      # See also https://discourse.nixos.org/t/syncthing-systemd-user-service/11199
-      syncthing
-      synfigstudio
-      kdenlive
-      obs-studio
-      qtcreator
-      slack
-      google-chrome
-      nextcloud-client
-      tdesktop
-      paperwork
-      gnome.gnome-software
-      keepassxc
-      gotop
-      nethogs
-      iftop
-      blender
-      gnome.gnome-terminal
-      aspellDicts.uk 
-      starship
-      btop
-      gnucash
-      maple-mono-NF
-      #maple-mono-SC-NF
-      nerdfonts
-      #citations
-      #emblem
-      #eyedropper
-      #gaphor
-      #lorem
-      #solanum
-      #zap
-      aspell
-      aspellDicts.en
-      aspellDicts.uk 
-      aspellDicts.pt_PT
-
-    ];
-
-  };
-  
-  ##
-  ## Nvidia related
-  ##
-
-  # NVIDIA drivers are unfree.
   nixpkgs.config.allowUnfree = true;
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-  # Optionally, you may need to select the appropriate driver version for your specific GPU.
-  # My card is the Geforce 1030
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-  hardware.nvidia.modesetting.enable = true;
-  # Fix dispay issues on suspend resume
-  hardware.nvidia.powerManagement.enable = true;  
-  # Set gnome to run on x11
-  services.xserver.displayManager.gdm.wayland = false; 
-
-  ##
-  ## End of nvidia settings
-  ##
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
