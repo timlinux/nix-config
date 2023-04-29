@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../vim.nix
     ];
 
   # Bootloader.
@@ -87,7 +88,10 @@
   ##
   ## Yubikey PAM support - see https://nixos.wiki/wiki/Yubikey
   ## 
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.udev.packages = [ 
+    pkgs.yubikey-personalization 
+    #gnome.gnome-settings-daemon # app tray
+  ];
 
   programs.gnupg.agent = {
       enable = true;
@@ -134,6 +138,7 @@
       vscode
       hugo
       gimp
+      gnome3.gnome-tweaks 
       # After unstalling do
       # systemctl --user enable syncthing
       # See also https://discourse.nixos.org/t/syncthing-systemd-user-service/11199
@@ -159,15 +164,15 @@
       btop
       gnucash
       maple-mono-NF
-      maple-mono-SC-NF
+      #maple-mono-SC-NF
       nerdfonts
-      citations
-      emblem
-      eyedropper
-      gaphor
+      #citations
+      #emblem
+      #eyedropper
+      #gaphor
       #lorem
-      solanum
-      zap
+      #solanum
+      #zap
       aspell
       aspellDicts.en
       aspellDicts.uk 
@@ -176,7 +181,7 @@
     ];
 
   };
-
+  
   ##
   ## Nvidia related
   ##
@@ -192,6 +197,8 @@
   hardware.nvidia.modesetting.enable = true;
   # Fix dispay issues on suspend resume
   hardware.nvidia.powerManagement.enable = true;  
+  # Set gnome to run on x11
+  services.xserver.displayManager.gdm.wayland = false; 
 
   ##
   ## End of nvidia settings
@@ -208,7 +215,11 @@
      python3
      libimobiledevice # Iphone support
      ifuse # optional, to mount using 'ifuse' for iPhone
+     # task tray for gnome
+     gnomeExtensions.appindicator
   ];
+
+  ## System tray
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
