@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../config/tailscale.nix
       ../../config/python.nix
       ../../config/vim.nix
       ../../config/tim.nix
