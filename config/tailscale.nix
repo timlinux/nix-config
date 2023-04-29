@@ -11,7 +11,8 @@
   # Optional (default: 41641):
   services.tailscale.port = 41641;
 
-  networking.firewall.allowedUDPPorts = [ ${services.tailscale.port} ];
+  networking.firewall.allowedUDPPorts = [ 41641 ];
+  networking.firewall.checkReversePath = "loose";
 
   # Now configure from the command line like this:
   # systemctl status tailscale
