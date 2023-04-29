@@ -8,16 +8,19 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../config/python.nix
+      ../../config/vim.nix
+      ../../config/tim.nix
+      ../../config/biometrics.nix
+      ../../config/locale.nix
+      ../../config/yubikey.nix
+      ../../config/ssh.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  # Bootsplash / silent boot 
-  # See https://discourse.nixos.org/t/how-can-i-set-up-silent-boot/4550/2
-  boot.plymouth.enable = true;
-
 
   # Setup keyfile
   boot.initrd.secrets = {
@@ -28,6 +31,7 @@
   boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".device = "/dev/disk/by-uuid/cda39835-d2a7-42f1-9729-8a84a4a8ae60";
   boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".keyFile = "/crypto_keyfile.bin";
 
+
   networking.hostName = "crest"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -37,24 +41,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Lisbon";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pt_PT.UTF-8";
-    LC_IDENTIFICATION = "pt_PT.UTF-8";
-    LC_MEASUREMENT = "pt_PT.UTF-8";
-    LC_MONETARY = "pt_PT.UTF-8";
-    LC_NAME = "pt_PT.UTF-8";
-    LC_NUMERIC = "pt_PT.UTF-8";
-    LC_PAPER = "pt_PT.UTF-8";
-    LC_TELEPHONE = "pt_PT.UTF-8";
-    LC_TIME = "pt_PT.UTF-8";
-  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -92,125 +78,26 @@
     #media-session.enable = true;
   };
 
-  ##
-  ## Yubikey PAM support - see https://nixos.wiki/wiki/Yubikey
-  ## 
-  services.udev.packages = [ pkgs.yubikey-personalization ];
-
-  programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-  };
-  # Make sure to first do pam_u2f in above url before enabling this section
-  security.pam.services = {
-    login.u2fAuth = true;
-    sudo.u2fAuth = true;
-  };
-  # Yubikey ends ...
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.timlinux = {
-    isNormalUser = true;
-    description = "Tim Sutton";
-    extraGroups = [ "networkmanager" "wheel" ];
-    
-
-
-    packages = with pkgs; [
-      firefox
-      qgis
-      git
-      mc
-      ncdu
-      wget
-      deja-dup
-      inkscape
-      drawio
-      libreoffice-fresh
-      flameshot
-      logseq
-      vscode
-      hugo
-      gimp
-      # After installing do
-      # systemctl --user enable syncthing
-      # See also https://discourse.nixos.org/t/syncthing-systemd-user-service/11199
-      syncthing
-      synfigstudio
-      kdenlive
-      obs-studio 
-      qtcreator
-      slack
-      google-chrome      
-      nextcloud-client
-      tdesktop
-      paperwork
-      gnome.gnome-software
-      keepassxc
-      gotop
-      nethogs
-      iftop
-      blender
-      gnome.gnome-terminal      
-      starship # see https://starship.rs/guide/#%F0%9F%9A%80-installation
-      btop
-      gnucash
-      maple-mono-NF
-      maple-mono-SC-NF
-      nerdfonts
-      citations
-      emblem
-      eyedropper
-      gaphor
-      lorem
-      solanum
-      zap
-    ];
-  };
-
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
+     neovim
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     pkgs.fprintd # Added by Tim for Fingerprint support 
      wget
-     python3
      libimobiledevice # Iphone support
      ifuse # optional, to mount using 'ifuse' for iPhone
+     # task tray for gnome
+     gnomeExtensions.appindicator
   ];
-    
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
-    allowSFTP = false; # Don't set this if you need sftp
-    kbdInteractiveAuthentication = false;
-    extraConfig = ''
-      AllowTcpForwarding yes
-      X11Forwarding no
-      AllowAgentForwarding no
-      AllowStreamLocalForwarding no
-      AuthenticationMethods publickey
-    '';
-  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -225,31 +112,14 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
 
-
   ### 
   ### Additions by Tim (see also pkgs sections above)
   ###
   
-  ### Fingerprint reader support
-  ### See https://discourse.nixos.org/t/how-to-use-fingerprint-unlocking-how-to-set-up-fprintd-english/21901
-  services.fprintd.enable = true;
-  services.fprintd.tod.enable = true;
-  # Works for thinkpad p14s
-  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-vfs0090; 
-  # If the vfs0090 Driver does not work, use the following driver
-  #services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
-
   ### Flakes support
       
   ### See https://nixos.wiki/wiki/Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-
-  ### OBS Virtual Camera Support
-  ### See also OBS packages installed further up
-  boot.extraModulePackages = [
-     config.boot.kernelPackages.v4l2loopback
-  ];  
 
   ###
   ### Flatpack support
@@ -260,5 +130,6 @@
   ## iPhone Support
   ## 
   services.usbmuxd.enable = true;
+
 
 }
