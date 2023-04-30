@@ -5,6 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../config/headless.nix
+      ../../config/docker.nix
       ../../config/tailscale.nix
       ../../config/python.nix
       ../../config/vim.nix
