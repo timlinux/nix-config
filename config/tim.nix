@@ -14,6 +14,11 @@
       drawio
       libreoffice-fresh
       flameshot
+      # For multilingual spell check in logseq, edit 
+      # vim ~/.config/Logseq/Preferences
+      # and add e.g.
+      # {"spellcheck":{"dictionaries":["en-GB","pt"],"dictionary":""}}
+      # TODO is to automate this with home manager....
       logseq
       vscode
       hugo
