@@ -1,16 +1,13 @@
 {
   description = "QGIS Developer Flake";
+  inputs = { nixpkgs.url = "github:nixos/nixpkgs"; };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs }:
+    let pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    in {
+      packages.x86_64-linux.qgis = pkgs.qgis;
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
-
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-
-    thing1 = {
-	thing2 = nixpkgs.legacyPackages.x86_64-linux.cowsay;
-    };
-
-
-  };
+      devShell.x86_64-linux =
+        pkgs.mkShell { buildInputs = [ self.packages.x86_64-linux.qgis pkgs.qgis ]; };
+   };
 }

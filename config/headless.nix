@@ -22,7 +22,6 @@
       aspellDicts.en
       aspellDicts.uk 
       aspellDicts.pt_PT
-
     ];
 
   };

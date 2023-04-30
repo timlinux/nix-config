@@ -1,7 +1,3 @@
-{ pkgs, ... }:
-{
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.timlinux = {
     isNormalUser = true;
     description = "Tim Sutton";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -43,7 +39,6 @@
       iftop
       blender
       gnome.gnome-terminal
-      aspellDicts.uk 
       starship
       btop
       gnucash
@@ -61,8 +56,6 @@
       aspellDicts.en
       aspellDicts.uk 
       aspellDicts.pt_PT
-
     ];
-
   };
 }
