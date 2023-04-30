@@ -11,6 +11,7 @@
 		YouCompleteMe
 		nerdtree
 		airline
+ 		vim-lastplace
 	]; # load plugins on startup
       };
       vimrcConfig.customRC = ''

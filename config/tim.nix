@@ -1,7 +1,10 @@
+{ pkgs, ... }:
+{
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.timlinux = {
     isNormalUser = true;
     description = "Tim Sutton";
     extraGroups = [ "networkmanager" "wheel" ];
-
     packages = with pkgs; [
       firefox
       qgis
