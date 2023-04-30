@@ -48,7 +48,13 @@
   # programs.mtr.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+   networking.firewall.allowedTCPPorts = [ 
+     3000 # adguard admin web ui - only needed for initial setup
+     8123 # home assistant
+     53   # DNS - adguard
+     80   # http - adguard
+     443  # https - adguard
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
