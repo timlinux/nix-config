@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.timlinux = {
+  users.users.marisa = {
     isNormalUser = true;
-    description = "Tim Sutton";
+    description = "Marisa";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
@@ -24,7 +24,6 @@
       # TODO is to automate this with home manager....
       logseq
       vscode
-      hugo
       gimp
       gnome3.gnome-tweaks 
       # After unstalling do
@@ -34,14 +33,10 @@
       synfigstudio
       kdenlive
       obs-studio
-      qtcreator
-      slack
       google-chrome
-      nextcloud-client
       tdesktop
       paperwork
       gnome.gnome-software
-      keepassxc
       gotop
       nethogs
       iftop
@@ -53,7 +48,6 @@
       maple-mono-NF
       #maple-mono-SC-NF
       nerdfonts
-      xournalpp
       #citations
       #emblem
       #eyedropper

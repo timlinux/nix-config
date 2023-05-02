@@ -9,29 +9,33 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../config/tailscale.nix
-      ../../config/python.nix
       ../../config/vim.nix
-      ../../config/tim.nix
-      ../../config/nvidia.nix
+      ../../config/marisa.nix
+      #../../config/nvidia.nix
       ../../config/locale.nix
-      ../../config/yubikey.nix
-      ../../config/ssh.nix
-      ../../config/cron-waterfall.nix
-      ../../config/ccache.nix
-
-    ];
+      #../../config/ssh.nix
+  ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
   };
 
-  networking.hostName = "waterfall"; # Define your hostname.
+  # Enable grub cryptodisk
+  boot.loader.grub.enableCryptodisk=true;
+
+  boot.initrd.luks.devices."luks-110c1dfb-f7f3-40e8-89d9-b6e7bdf6ddf2".keyFile = "/crypto_keyfile.bin";
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-76123249-8cab-469d-a04b-af3d58fd4985".device = "/dev/disk/by-uuid/76123249-8cab-469d-a04b-af3d58fd4985";
+  boot.initrd.luks.devices."luks-76123249-8cab-469d-a04b-af3d58fd4985".keyFile = "/crypto_keyfile.bin";
+
+
+  networking.hostName = "marisa"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
