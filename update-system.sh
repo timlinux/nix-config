@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/run/current-system/sw/bin/bash
 
 # Fetch latest changes and deploy
 # Expects this repo to be checked out in /root/nix-config
