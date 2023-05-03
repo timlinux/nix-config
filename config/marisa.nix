@@ -7,7 +7,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      qgis
       git
       mc
       ncdu

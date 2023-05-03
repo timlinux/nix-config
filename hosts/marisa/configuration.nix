@@ -13,6 +13,7 @@
       ../../config/marisa.nix
       #../../config/nvidia.nix
       ../../config/locale.nix
+      ../../config/qgis.nix
       ../../config/cron-system-update.nix
   ];
 
