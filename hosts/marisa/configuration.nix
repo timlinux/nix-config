@@ -13,7 +13,7 @@
       ../../config/marisa.nix
       #../../config/nvidia.nix
       ../../config/locale.nix
-      #../../config/ssh.nix
+      ../../config/cron-system-update.nix
   ];
 
   # Bootloader.

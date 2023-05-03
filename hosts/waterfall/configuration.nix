@@ -18,7 +18,8 @@
       ../../config/ssh.nix
       ../../config/cron-waterfall.nix
       ../../config/ccache.nix
-
+      ../../config/cron-waterfall.nix
+      ../../config/qgis.nix
     ];
 
   # Bootloader.
