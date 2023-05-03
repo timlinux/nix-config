@@ -14,7 +14,7 @@
       #../../config/nvidia.nix
       ../../config/locale.nix
       ../../config/qgis.nix
-      ../../config/cron-system-update.nix
+      ../../config/cron-update-system.nix
   ];
 
   # Bootloader.
