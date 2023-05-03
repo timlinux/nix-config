@@ -6,3 +6,4 @@
 
 cd /root/nix-config
 nix-shell -p git --run "git pull"
+nixos-rebuild switch
