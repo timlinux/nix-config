@@ -5,7 +5,7 @@
   time.timeZone = "Europe/Lisbon";
 
   # This will set the UI language for Gnome
-  i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.defaultLocale = "pt_PT.UTF-8";
 
   # Select internationalisation properties.
   i18n.extraLocaleSettings = {

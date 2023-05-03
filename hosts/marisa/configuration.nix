@@ -11,10 +11,10 @@
       ../../config/tailscale.nix
       ../../config/vim.nix
       ../../config/marisa.nix
-      #../../config/nvidia.nix
-      ../../config/locale.nix
+      ../../config/locale-pt.nix
       ../../config/qgis.nix
       ../../config/cron-update-system.nix
+      #../../config/nvidia.nix
   ];
 
   # Bootloader.
