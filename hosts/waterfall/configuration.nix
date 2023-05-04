@@ -20,6 +20,8 @@
       ../../config/ccache.nix
       ../../config/cron-waterfall.nix
       ../../config/qgis.nix
+      #../../config/android-sdk.nix
+      ../../config/postgres.nix
     ];
 
   # Bootloader.
