@@ -8,6 +8,8 @@
     packages = with pkgs; [
       firefox
       git
+      imagemagickBig
+      ffmpeg_5-full
       mc
       ncdu
       wget
