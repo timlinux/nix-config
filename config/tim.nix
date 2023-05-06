@@ -1,11 +1,25 @@
 { pkgs, ... }:
+
 {
+  environment.interactiveShellInit = ''
+    eval "$(starship init bash)"
+  '';
+  programs.bash.shellAliases = {
+    ls = "exa";
+    cat = "bat";
+    find = "fd";
+    l = "ls -alh";
+    ll = "ls -l";
+  };
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.timlinux = {
     isNormalUser = true;
     description = "Tim Sutton";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+      exa
+      bat
+      fd
       firefox
       git
       imagemagickBig
