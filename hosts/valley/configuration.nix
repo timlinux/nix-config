@@ -11,6 +11,7 @@
       ../../config/vim.nix
       ../../config/locale.nix
       ../../config/ssh.nix
+      ../../config/console-apps.nix
     ];
 
   # Bootloader.

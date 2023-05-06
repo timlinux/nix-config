@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../config/tailscale.nix
+      #../../config/android-sdk.nix
       ../../config/python.nix
       ../../config/vim.nix
       ../../config/nvidia.nix
@@ -17,10 +18,14 @@
       ../../config/ssh.nix
       ../../config/cron-waterfall.nix
       ../../config/ccache.nix
-      ../../config/cron-waterfall.nix
       ../../config/qgis.nix
-      #../../config/android-sdk.nix
       ../../config/postgres.nix
+      ../../config/console-apps.nix
+      ../../config/starship.nix
+      ../../config/gui-apps.nix
+      ../../config/services.nix
+      ../../config/fonts.nix
+      ../../config/locale-pt-en.nix
       ../../users/tim.nix
     ];
 
