@@ -1,5 +1,13 @@
 { config, pkgs, ... }:
 {
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "pt";
+    xkbVariant = "";
+  };
+
+  # Configure console keymap
+  console.keyMap = "pt-latin1";
 
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
@@ -19,4 +27,11 @@
     LC_TELEPHONE = "pt_PT.UTF-8";
     LC_TIME = "pt_PT.UTF-8";
   };
+
+  environment.systemPackages = with pkgs; [
+    aspell
+    aspellDicts.en
+    aspellDicts.uk 
+    aspellDicts.pt_PT
+  ];
 }

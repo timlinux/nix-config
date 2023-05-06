@@ -11,9 +11,8 @@
       ../../config/tailscale.nix
       ../../config/python.nix
       ../../config/vim.nix
-      ../../config/tim.nix
       ../../config/nvidia.nix
-      ../../config/locale.nix
+      ../../config/locale-pt-en.nix
       ../../config/yubikey.nix
       ../../config/ssh.nix
       ../../config/cron-waterfall.nix
@@ -22,6 +21,7 @@
       ../../config/qgis.nix
       #../../config/android-sdk.nix
       ../../config/postgres.nix
+      ../../users/tim.nix
     ];
 
   # Bootloader.

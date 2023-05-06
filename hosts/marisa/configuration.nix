@@ -10,11 +10,11 @@
       ./hardware-configuration.nix
       ../../config/tailscale.nix
       ../../config/vim.nix
-      ../../config/marisa.nix
       ../../config/locale-pt.nix
       ../../config/qgis.nix
       ../../config/cron-update-system.nix
       #../../config/nvidia.nix
+      ../../users/marisa.nix
   ];
 
   # Bootloader.
@@ -52,15 +52,6 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "pt";
-    xkbVariant = "";
-  };
-
-  # Configure console keymap
-  console.keyMap = "pt-latin1";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -134,6 +125,5 @@
   ## iPhone Support
   ## 
   services.usbmuxd.enable = true;
-
 
 }

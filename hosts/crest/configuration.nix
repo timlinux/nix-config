@@ -11,12 +11,16 @@
       ../../config/tailscale.nix
       ../../config/python.nix
       ../../config/vim.nix
-      ../../config/tim.nix
       ../../config/biometrics.nix
-      ../../config/locale.nix
       ../../config/yubikey.nix
       ../../config/ssh.nix
       ../../config/postgres.nix
+      ../../config/console-apps.nix
+      ../../config/gui-apps.nix
+      ../../config/services.nix
+      ../../config/fonts.nix
+      ../../config/locale-pt-en.nix
+      ../../users/tim.nix
     ];
 
   # Bootloader.
@@ -32,7 +36,6 @@
   # Enable swap on luks
   boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".device = "/dev/disk/by-uuid/cda39835-d2a7-42f1-9729-8a84a4a8ae60";
   boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".keyFile = "/crypto_keyfile.bin";
-
 
   networking.hostName = "crest"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -50,15 +53,6 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "pt";
-    xkbVariant = "";
-  };
-
-  # Configure console keymap
-  console.keyMap = "pt-latin1";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
