@@ -16,6 +16,7 @@
       ../../config/locale.nix
       ../../config/yubikey.nix
       ../../config/ssh.nix
+      ../../config/postgres.nix
     ];
 
   # Bootloader.

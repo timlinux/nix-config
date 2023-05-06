@@ -4,6 +4,7 @@
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_15;
+    extraPlugins = [ (pkgs.postgis.override { postgresql = pkgs.postgresql_15; }) ];  
     enableTCPIP = true;
     authentication = pkgs.lib.mkOverride 15 ''
       local all all trust
@@ -16,4 +17,8 @@
       GRANT ALL PRIVILEGES ON DATABASE gis TO kartoza;
     '';
   };
+  environment.systemPackages = with pkgs; [
+	pgadmin
+  ];
+
 }
