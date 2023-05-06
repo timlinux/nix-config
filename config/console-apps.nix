@@ -8,10 +8,10 @@
   '';
 
   # Example of how to add a config file in etc
-  environment.etc."starship.toml" = {
+  #environment.etc."starship.toml" = {
     #mode = "0555";
     #source = ../dotfiles/starship.toml;
-  };
+  #};
 
   # Example of how to set system wide env vars
   environment.variables = {

@@ -16,6 +16,7 @@
       ../../config/ssh.nix
       ../../config/postgres.nix
       ../../config/console-apps.nix
+      ../../config/starship.nix
       ../../config/gui-apps.nix
       ../../config/services.nix
       ../../config/fonts.nix

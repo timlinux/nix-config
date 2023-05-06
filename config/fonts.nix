@@ -5,6 +5,6 @@
   environment.systemPackages = with pkgs; [
     maple-mono-NF
     nerdfonts
-  }
+  ];
 }
 

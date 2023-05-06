@@ -11,12 +11,6 @@
     # ls = "exa";
   };
 
-  # Create any config files you want in /etc
-  environment.etc."starship.toml" = {
-    #mode = "0555";
-    #source = ../dotfiles/starship.toml;
-  };
-
   # Set any env vars here
   environment.variables = {
     #STARSHIP_CONFIG = "/etc/starship.toml";
