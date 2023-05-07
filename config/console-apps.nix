@@ -26,23 +26,30 @@
     find = "fd";
     l = "ls -alh";
     ll = "ls -l";
+    psql = "pgcli";
   };
 
   # Add system wide packages
   environment.systemPackages = with pkgs; [
+    asciinema
     bat
     btop
+    cowsay
     exa
     fd
     ffmpeg_5-full
+    figlet
     git
     gotop
     iftop
     imagemagickBig
+    lazydocker
     mc
     ncdu
     neofetch
     nethogs
+    pgcli
+    wallpaper
     wget
   ];
 }
