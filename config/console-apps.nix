@@ -4,7 +4,8 @@
 
   environment.interactiveShellInit = ''
     # Add anything that must be in bashrc here
-    echo "Sample bashrc line"
+    echo "Nix environment with setup configs by Tim."
+    neofetch
   '';
 
   # Example of how to add a config file in etc
@@ -29,18 +30,19 @@
 
   # Add system wide packages
   environment.systemPackages = with pkgs; [
-    exa
     bat
+    btop
+    exa
     fd
-    git
-    imagemagickBig
     ffmpeg_5-full
+    git
+    gotop
+    iftop
+    imagemagickBig
     mc
     ncdu
-    wget
-    gotop
+    neofetch
     nethogs
-    iftop
-    btop
+    wget
   ];
 }
