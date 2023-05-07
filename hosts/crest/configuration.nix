@@ -8,19 +8,20 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../config/tailscale.nix
-      ../../config/python.nix
-      ../../config/vim.nix
       ../../config/biometrics.nix
-      ../../config/yubikey.nix
-      ../../config/ssh.nix
-      ../../config/postgres.nix
       ../../config/console-apps.nix
-      ../../config/starship.nix
-      ../../config/gui-apps.nix
-      ../../config/services.nix
+      ../../config/docker.nix
       ../../config/fonts.nix
+      ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
+      ../../config/postgres.nix
+      ../../config/python.nix
+      ../../config/syncthing.nix
+      ../../config/ssh.nix
+      ../../config/starship.nix
+      ../../config/tailscale.nix
+      ../../config/vim.nix
+      ../../config/yubikey.nix
       ../../users/tim.nix
     ];
 

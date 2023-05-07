@@ -23,7 +23,7 @@
       ../../config/console-apps.nix
       ../../config/starship.nix
       ../../config/gui-apps.nix
-      ../../config/services.nix
+      ../../config/syncthing.nix
       ../../config/fonts.nix
       ../../config/locale-pt-en.nix
       ../../users/tim.nix

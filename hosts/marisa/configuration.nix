@@ -13,11 +13,10 @@
       ../../config/locale-pt.nix
       ../../config/qgis.nix
       ../../config/cron-update-system.nix
-      #../../config/nvidia.nix
       ../../config/console-apps.nix
       ../../config/starship.nix
       ../../config/gui-apps.nix
-      ../../config/services.nix
+      ../../config/syncthing.nix
       ../../config/fonts.nix
       ../../config/locale-pt.nix
       ../../users/marisa.nix
