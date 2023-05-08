@@ -10,7 +10,9 @@
   };
   services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
     [org.gnome.desktop.background]
-    picture-uri='file://etc/kartoza-wallpaper.png'
+    picture-uri='file:///etc/kartoza-wallpaper.png'
   '';
+  # Set manually like this
+  # gsettings set org.gnome.desktop.background picture-uri file:///etc/kartoza-wallpaper.png
 }
 
