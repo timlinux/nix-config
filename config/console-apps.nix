@@ -45,6 +45,7 @@
     iftop
     imagemagickBig
     lazydocker
+    lazygit
     mc
     ncdu
     neofetch
