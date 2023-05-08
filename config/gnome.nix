@@ -11,8 +11,12 @@
   services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
     [org.gnome.desktop.background]
     picture-uri='file:///etc/kartoza-wallpaper.png'
+    picture-uri-dark='file:///etc/kartoza-wallpaper.png'
   '';
-  # Set manually like this
-  # gsettings set org.gnome.desktop.background picture-uri file:///etc/kartoza-wallpaper.png
+  environment.interactiveShellInit = ''
+    # Set manually like this (once for light theme, once for dark)
+    gsettings set org.gnome.desktop.background picture-uri file:///etc/kartoza-wallpaper.png
+    gsettings set org.gnome.desktop.background picture-uri-dark file:///etc/kartoza-wallpaper.png
+  '';
 }
 
