@@ -12,6 +12,7 @@
       ../../config/console-apps.nix
       ../../config/docker.nix
       ../../config/fonts.nix
+      ../../config/gnome.nix
       ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
       ../../config/postgres.nix

@@ -27,6 +27,7 @@
     l = "ls -alh";
     ll = "ls -l";
     psql = "pgcli";
+    open = "xdg-open";
   };
 
   # Add system wide packages
@@ -49,7 +50,6 @@
     neofetch
     nethogs
     pgcli
-    wallpaper
     wget
   ];
 }
