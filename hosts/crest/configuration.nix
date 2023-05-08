@@ -17,9 +17,9 @@
       ../../config/locale-pt-en.nix
       ../../config/postgres.nix
       ../../config/python.nix
-      ../../config/syncthing.nix
       ../../config/ssh.nix
       ../../config/starship.nix
+      ../../config/syncthing.nix
       ../../config/tailscale.nix
       ../../config/vim.nix
       ../../config/yubikey.nix

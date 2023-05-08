@@ -8,24 +8,25 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../config/tailscale.nix
       #../../config/android-sdk.nix
-      ../../config/python.nix
-      ../../config/vim.nix
-      ../../config/nvidia.nix
-      ../../config/locale-pt-en.nix
-      ../../config/yubikey.nix
-      ../../config/ssh.nix
-      ../../config/cron-waterfall.nix
       ../../config/ccache.nix
-      ../../config/qgis.nix
-      ../../config/postgres.nix
       ../../config/console-apps.nix
-      ../../config/starship.nix
-      ../../config/gui-apps.nix
-      ../../config/syncthing.nix
+      ../../config/cron-waterfall.nix
+      ../../config/docker.nix
       ../../config/fonts.nix
+      ../../config/gnome.nix
+      ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
+      ../../config/nvidia.nix
+      ../../config/postgres.nix
+      ../../config/python.nix
+      ../../config/qgis.nix
+      ../../config/ssh.nix
+      ../../config/starship.nix
+      ../../config/syncthing.nix
+      ../../config/tailscale.nix
+      ../../config/vim.nix
+      ../../config/yubikey.nix
       ../../users/tim.nix
     ];
 
