@@ -12,6 +12,7 @@
       ../../config/ccache.nix
       ../../config/console-apps.nix
       ../../config/cron-waterfall.nix
+      ../../config/dir-env.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/gnome.nix

@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../config/biometrics.nix
       ../../config/console-apps.nix
+      ../../config/dir-env.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/gnome.nix
