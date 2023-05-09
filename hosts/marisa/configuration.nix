@@ -57,6 +57,9 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+ 
+  # Wacom support for Marisa
+  xserver.wacom.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -92,6 +95,8 @@
      ifuse # optional, to mount using 'ifuse' for iPhone
      # task tray for gnome
      gnomeExtensions.appindicator
+     xf86_input_wacom
+     
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
