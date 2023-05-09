@@ -58,15 +58,9 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "pt";
-    xkbVariant = "";
-  };
-
-  # Configure console keymap
-  console.keyMap = "pt-latin1";
-
+  # Wacom support for Marisa
+  services.xserver.wacom.enable = true;
+  
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -101,6 +95,8 @@
      ifuse # optional, to mount using 'ifuse' for iPhone
      # task tray for gnome
      gnomeExtensions.appindicator
+     xf86_input_wacom
+     usbutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
