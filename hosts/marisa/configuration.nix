@@ -59,7 +59,7 @@
   services.xserver.desktopManager.gnome.enable = true;
  
   # Wacom support for Marisa
-  xserver.wacom.enable = true;
+  services.xserver.wacom.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
