@@ -25,6 +25,7 @@
   environment.systemPackages = with pkgs; [
      xf86_input_wacom
      xsetwacom
+     wacomtablet # loads a lot of kde crap too, run it using kde_wacom_tabletfinder
   ];
 }
 
