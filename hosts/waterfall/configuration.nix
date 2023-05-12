@@ -15,10 +15,12 @@
       ../../config/dir-env.nix
       ../../config/docker.nix
       ../../config/fonts.nix
+      ../../config/games.nix
       ../../config/gnome.nix
       ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
       ../../config/nvidia.nix
+      ../../config/obs.nix
       ../../config/postgres.nix
       ../../config/python.nix
       ../../config/qgis.nix

@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 {
-  packages = with pkgs; [
+  # Add system wide packages
+  environment.systemPackages = with pkgs; [
     obs-studio
   ];
   ### OBS Virtual Camera Support
