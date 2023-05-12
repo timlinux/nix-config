@@ -35,6 +35,7 @@
     asciinema
     bat
     btop
+    byobu
     cowsay
     exa
     fd
