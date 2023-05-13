@@ -52,6 +52,8 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  ## Tweak by Tim to use adguard home
+  networking.nameservers = [ "100.100.68.130" "100.100.100.100" "94.140.14.15" "94.140.15.16" ]
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

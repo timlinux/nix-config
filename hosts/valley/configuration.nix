@@ -30,12 +30,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  ## Tweak by Tim to use adguard home
-  networking.nameservers = [ "100.100.68.130" "8.8.8.8" ]
-
-  # Configure console keymap
-  console.keyMap = "pt-latin1";
-
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
