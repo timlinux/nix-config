@@ -22,6 +22,7 @@
       ../../config/starship.nix
       ../../config/syncthing.nix
       ../../config/tailscale.nix
+      ../../config/uxplay.nix
       ../../config/vim.nix
       ../../config/yubikey.nix
       ../../users/tim.nix
