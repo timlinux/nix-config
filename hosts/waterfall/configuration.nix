@@ -54,7 +54,11 @@
   networking.networkmanager.enable = true;
   ## Tweak by Tim to use adguard home
   #networking.nameservers = [ "100.100.68.130" ];
-  networking.nameservers = [ "100.100.68.130" "100.100.100.100" "94.140.14.15" "94.140.15.16" ];
+  # These last two are the public adguard services to block
+  # ads, adult content etc. They will be overwritten by
+  # tailscale if it is running, so they are just a backup for
+  # when tailscale is down...
+  networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
