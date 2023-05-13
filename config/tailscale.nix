@@ -25,5 +25,14 @@
   # ip link show tailscale0
   # journalctl -fu tailscale
 
+  #
+  # Last important note:
+  # On the adguard/pihole host in your network
+  # you need to tell it NOT to use the DNS servers from 
+  # tailscale for external DNS resolution otherwise
+  # we will get stuck in a recursion hole. To do this
+  # (only on the adguard host) do rather:
+  # tailscale up --accept-dns=false
+
 }
 
