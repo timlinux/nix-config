@@ -11,6 +11,7 @@
   environment.systemPackages = with pkgs; [
     blender
     deja-dup
+    emote # emoji picker
     drawio
     firefox
     flameshot
@@ -19,6 +20,7 @@
     gnome.gnome-terminal
     gnucash
     google-chrome
+    gpick
     inkscape
     kdenlive
     keepassxc
