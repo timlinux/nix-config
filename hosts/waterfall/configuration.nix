@@ -58,6 +58,7 @@
   # ads, adult content etc. They will be overwritten by
   # tailscale if it is running, so they are just a backup for
   # when tailscale is down...
+  # See https://adguard-dns.io/kb/general/dns-providers/?utm_campaign=dns_kb_providers&utm_medium=ui&utm_source=home
   networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
 
   # Enable the X11 windowing system.
