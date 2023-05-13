@@ -9,6 +9,7 @@
 
   # Add system wide packages
   environment.systemPackages = with pkgs; [
+    audacity
     blender
     deja-dup
     emote # emoji picker
