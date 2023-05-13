@@ -15,6 +15,7 @@
     firefox
     flameshot
     gimp
+    gnome.gnome-sound-recorder
     gnome.gnome-terminal
     gnucash
     google-chrome
