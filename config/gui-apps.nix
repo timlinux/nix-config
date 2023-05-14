@@ -11,6 +11,7 @@
   environment.systemPackages = with pkgs; [
     audacity
     blender
+    dbeaver
     deja-dup
     emote # emoji picker
     drawio
