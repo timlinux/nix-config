@@ -33,6 +33,8 @@
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     asciinema
+    asciinema-agg
+    asciinema-scenario
     bat
     btop
     byobu
