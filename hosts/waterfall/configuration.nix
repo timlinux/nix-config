@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #../../config/android-sdk.nix
+      ../../config/arduino.nix
       ../../config/ccache.nix
       ../../config/console-apps.nix
       ../../config/cron-waterfall.nix
