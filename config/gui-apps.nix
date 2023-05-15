@@ -18,6 +18,7 @@
     firefox
     flameshot
     gimp
+    gnome.gnome-boxes
     gnome.gnome-sound-recorder
     gnome.gnome-terminal
     gnucash
