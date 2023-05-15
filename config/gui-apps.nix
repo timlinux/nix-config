@@ -9,6 +9,8 @@
 
   # Add system wide packages
   environment.systemPackages = with pkgs; [
+    adapta-gtk-theme
+    adapta-kde-theme
     audacity
     blender
     dbeaver
@@ -18,7 +20,16 @@
     firefox
     flameshot
     gimp
+    # Needed for gnome boxes
+    qemu_kvm
+    virt-manager
     gnome.gnome-boxes
+    (gnome.gnome-boxes.override {
+      qemu-utils = qemu-utils.override {
+        qemu = qemu_kvm;
+      };
+    })
+    gnome.gnome-tweaks
     gnome.gnome-sound-recorder
     gnome.gnome-terminal
     gnucash
