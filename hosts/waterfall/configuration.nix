@@ -8,24 +8,30 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../config/tailscale.nix
       #../../config/android-sdk.nix
-      ../../config/python.nix
-      ../../config/vim.nix
-      ../../config/nvidia.nix
-      ../../config/locale-pt-en.nix
-      ../../config/yubikey.nix
-      ../../config/ssh.nix
-      ../../config/cron-waterfall.nix
+      ../../config/arduino.nix
       ../../config/ccache.nix
-      ../../config/qgis.nix
-      ../../config/postgres.nix
       ../../config/console-apps.nix
-      ../../config/starship.nix
-      ../../config/gui-apps.nix
-      ../../config/syncthing.nix
+      ../../config/cron-waterfall.nix
+      ../../config/dir-env.nix
+      ../../config/docker.nix
       ../../config/fonts.nix
+      ../../config/games.nix
+      ../../config/gnome.nix
+      ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
+      ../../config/nvidia.nix
+      ../../config/obs.nix
+      ../../config/postgres.nix
+      ../../config/python.nix
+      ../../config/qgis.nix
+      ../../config/ssh.nix
+      ../../config/starship.nix
+      ../../config/syncthing.nix
+      ../../config/tailscale.nix
+      ../../config/uxplay.nix
+      ../../config/vim.nix
+      ../../config/yubikey.nix
       ../../users/tim.nix
     ];
 
@@ -48,6 +54,14 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  ## Tweak by Tim to use adguard home
+  #networking.nameservers = [ "100.100.68.130" ];
+  # These last two are the public adguard services to block
+  # ads, adult content etc. They will be overwritten by
+  # tailscale if it is running, so they are just a backup for
+  # when tailscale is down...
+  # See https://adguard-dns.io/kb/general/dns-providers/?utm_campaign=dns_kb_providers&utm_medium=ui&utm_source=home
+  networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -56,15 +70,9 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "pt";
-    xkbVariant = "";
-  };
-
-  # Configure console keymap
-  console.keyMap = "pt-latin1";
-
+  # Wacom support for Marisa
+  services.xserver.wacom.enable = true;
+  
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -99,6 +107,8 @@
      ifuse # optional, to mount using 'ifuse' for iPhone
      # task tray for gnome
      gnomeExtensions.appindicator
+     xf86_input_wacom
+     usbutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

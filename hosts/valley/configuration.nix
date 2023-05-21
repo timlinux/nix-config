@@ -4,15 +4,17 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../config/headless.nix
+      ../../config/console-apps.nix
       ../../config/docker.nix
-      ../../config/tailscale.nix
       ../../config/python.nix
       ../../config/vim.nix
       ../../config/locale-pt-en.nix
       ../../config/gateway.nix
+      ../../config/starship.nix
+      ../../config/syncthing.nix
       ../../config/ssh.nix
-      ../../config/console-apps.nix
+      ../../config/tailscale.nix
+      ../../users/tim.nix
     ];
 
   # Bootloader.
@@ -29,24 +31,30 @@
 
   nixpkgs.config.allowUnfree = true;
 
+<<<<<<< HEAD
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   ];
 
+=======
+>>>>>>> 665671123183a1e4d738edc0cfab1dd279dda226
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
 
   # Open ports in the firewall.
-   networking.firewall.allowedTCPPorts = [ 
+  networking.firewall.allowedTCPPorts = [ 
      3000 # adguard admin web ui - only needed for initial setup
      8123 # home assistant
      53   # DNS - adguard
      80   # http - adguard
      443  # https - adguard
   ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedUDPPorts = [ 
+     53   # DNS - adguard
+  ];
+
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

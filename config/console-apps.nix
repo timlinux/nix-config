@@ -33,8 +33,11 @@
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     asciinema
+    asciinema-agg
+    asciinema-scenario
     bat
     btop
+    byobu
     cowsay
     exa
     fd
@@ -50,6 +53,7 @@
     ncdu
     neofetch
     nethogs
+    nix-direnv # see https://github.com/nix-community/nix-direnv
     pgcli
     wget
   ];

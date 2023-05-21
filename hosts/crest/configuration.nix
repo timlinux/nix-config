@@ -8,8 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../config/arduino.nix
       ../../config/biometrics.nix
       ../../config/console-apps.nix
+      ../../config/dir-env.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/gnome.nix
@@ -17,10 +19,11 @@
       ../../config/locale-pt-en.nix
       ../../config/postgres.nix
       ../../config/python.nix
-      ../../config/syncthing.nix
       ../../config/ssh.nix
       ../../config/starship.nix
+      ../../config/syncthing.nix
       ../../config/tailscale.nix
+      ../../config/uxplay.nix
       ../../config/vim.nix
       ../../config/yubikey.nix
       ../../users/tim.nix

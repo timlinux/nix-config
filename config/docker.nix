@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    docker-compose
+  ];
 
   virtualisation.docker.enable = true;
   users.users.timlinux.extraGroups = [ "docker" ];
