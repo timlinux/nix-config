@@ -9,7 +9,8 @@
       ../../config/tailscale.nix
       ../../config/python.nix
       ../../config/vim.nix
-      ../../config/locale.nix
+      ../../config/locale-pt-en.nix
+      ../../config/gateway.nix
       ../../config/ssh.nix
       ../../config/console-apps.nix
     ];
@@ -23,25 +24,14 @@
   networking.hostName = "valley"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Configure console keymap
-  console.keyMap = "pt-latin1";
 
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  wget
-     neovim
-     vim 
-     wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
