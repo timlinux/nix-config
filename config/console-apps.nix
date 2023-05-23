@@ -28,6 +28,7 @@
     ll = "ls -l";
     psql = "pgcli";
     open = "xdg-open";
+    ping = "gping";
   };
 
   # Add system wide packages
@@ -44,6 +45,7 @@
     ffmpeg_5-full
     figlet
     git
+    gping
     gotop
     iftop
     imagemagickBig
