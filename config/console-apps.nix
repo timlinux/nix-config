@@ -57,6 +57,7 @@
     nethogs
     nix-direnv # see https://github.com/nix-community/nix-direnv
     pgcli
+    unzip
     wget
   ];
 }
