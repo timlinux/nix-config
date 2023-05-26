@@ -29,6 +29,7 @@
     psql = "pgcli";
     open = "xdg-open";
     ping = "gping";
+    du = "dua";
   };
 
   # Add system wide packages
@@ -40,6 +41,7 @@
     btop
     byobu
     cowsay
+    dua # better du command
     exa
     fd
     ffmpeg_5-full
