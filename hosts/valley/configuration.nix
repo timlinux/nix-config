@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ../../config/console-apps.nix
       ../../config/docker.nix
+      ../../config/ntfs.nix
       ../../config/python.nix
       ../../config/vim.nix
       ../../config/locale-pt-en.nix

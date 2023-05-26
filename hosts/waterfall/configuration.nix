@@ -22,6 +22,7 @@
       ../../config/locale-pt-en.nix
       ../../config/nvidia.nix
       ../../config/obs.nix
+      ../../config/ntfs.nix
       ../../config/postgres.nix
       ../../config/python.nix
       ../../config/qgis.nix

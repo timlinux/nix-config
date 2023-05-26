@@ -14,6 +14,7 @@
       ../../config/qgis.nix
       ../../config/cron-update-system.nix
       ../../config/console-apps.nix
+      ../../config/ntfs.nix
       ../../config/starship.nix
       ../../config/gui-apps.nix
       ../../config/syncthing.nix

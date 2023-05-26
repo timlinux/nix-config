@@ -1,0 +1,6 @@
+{ pkgs, ... }:
+
+{
+  boot.supportedFilesystems = [ "ntfs" ];
+}
+

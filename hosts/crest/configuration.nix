@@ -17,6 +17,7 @@
       ../../config/gnome.nix
       ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
+      ../../config/ntfs.nix
       ../../config/postgres.nix
       ../../config/python.nix
       ../../config/ssh.nix
