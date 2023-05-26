@@ -26,6 +26,7 @@
       ../../config/postgres.nix
       ../../config/python.nix
       ../../config/qgis.nix
+      ../../config/qgis-dev.nix
       ../../config/ssh.nix
       ../../config/starship.nix
       ../../config/syncthing.nix

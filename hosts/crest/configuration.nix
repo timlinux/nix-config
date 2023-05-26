@@ -19,6 +19,8 @@
       ../../config/locale-pt-en.nix
       ../../config/ntfs.nix
       ../../config/postgres.nix
+      ../../config/qgis.nix
+      ../../config/qgis-dev.nix
       ../../config/python.nix
       ../../config/ssh.nix
       ../../config/starship.nix
