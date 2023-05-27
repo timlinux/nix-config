@@ -45,10 +45,12 @@
     # {"spellcheck":{"dictionaries":["en-GB","pt"],"dictionary":""}}
     # TODO is to automate this with home manager....
     logseq
+    mpv # videa player
     nextcloud-client
     obs-studio
     paperwork
     qtcreator
+    shortwave # Internet streaming radio player
     slack
     synfigstudio
     tdesktop
