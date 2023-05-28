@@ -1,7 +1,36 @@
 { pkgs ? import <nixpkgs> {} }:
 
 pkgs.mkShell {
-  name = "cpp project";
+  name = "QGIS Development";
+  py = python3.override {
+    packageOverrides = self: super: {
+      pyqt5 = super.pyqt5.override {
+        withLocation = true;
+      };
+    };
+  };
+  qgis-python-deps = with py.pkgs; [
+    libsForQt5.qscintilla
+    python310Packages.qscintilla
+    python310Packages.jinja2
+    python310Packages.numpy
+    python310Packages.psycopg2
+    python310Packages.chardet
+    python310Packages.python-dateutil
+    python310Packages.pyyaml
+    python310Packages.pytz
+    python310Packages.requests
+    python310Packages.urllib3
+    python310Packages.pygments
+    python310Packages.pyqt-builder
+    python310Packages.sip
+    python310Packages.setuptools
+    python310Packages.owslib
+    python310Packages.six
+    python310Packages.pyqt5
+    python310Packages.pyqt5_with_qtwebkit
+    qscintilla-qt5
+  ];
   buildInputs = with pkgs; [
     bison
     clang-tools
@@ -30,10 +59,8 @@ pkgs.mkShell {
     libspatialindex
     libspatialite
     libzip
-    libzip
     netcdf
     ninja
-    openssl
     openssl
     pcre
     pdal
@@ -41,33 +68,12 @@ pkgs.mkShell {
     postgresql
     proj
     protobuf
-    protobuf 
     qscintilla
-    sqlite
     sqlite
     swig
     txt2tags
     zstd
-    # Python packages
-    libsForQt5.qscintilla
-    gdal
-    python310Packages.jinja2
-    python310Packages.numpy
-    python310Packages.psycopg2
-    python310Packages.chardet
-    python310Packages.python-dateutil
-    python310Packages.pyyaml
-    python310Packages.pytz
-    python310Packages.requests
-    python310Packages.urllib3
-    python310Packages.pygments
-    python310Packages.pyqt-builder
-    python310Packages.sip
-    python310Packages.setuptools
-    python310Packages.owslib
-    python310Packages.six
-    python310Packages.pyqt5
-    python310Packages.pyqt5_with_qtwebkit
+    (python3.withPackages qgis-python-deps)
   ];
   
   shellHook = ''
