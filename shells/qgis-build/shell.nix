@@ -1,16 +1,21 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.mkShell {
-  name = "QGIS Development";
-  py = python3.override {
+let 
+
+  fooScript = pkgs.writeScriptBin "build.sh" ''
+    #!/bin/sh
+    echo $FOO
+  '';
+
+  py = pkgs.python3.override {
     packageOverrides = self: super: {
       pyqt5 = super.pyqt5.override {
         withLocation = true;
       };
     };
   };
-  qgis-python-deps = with py.pkgs; [
-    libsForQt5.qscintilla
+
+  qgisPythonDeps = with pkgs; [
     python310Packages.qscintilla
     python310Packages.jinja2
     python310Packages.numpy
@@ -29,53 +34,60 @@ pkgs.mkShell {
     python310Packages.six
     python310Packages.pyqt5
     python310Packages.pyqt5_with_qtwebkit
-    qscintilla-qt5
+    #qscintilla-qt5
   ];
-  buildInputs = with pkgs; [
-    bison
-    clang-tools
-    cmake
-    cmakeCurses
-    exiv2
-    expat
-    fcgi
-    flex
-    gdal
-    geos
-    grass
-    gsl
-    hdf5
-    libsForQt5.qca-qt5
-    libsForQt5.qt5.qt3d
-    libsForQt5.qt5.qtbase
-    libsForQt5.qt5.qtlocation
-    libsForQt5.qt5.qtmultimedia
-    libsForQt5.qt5.qtsensors
-    libsForQt5.qt5.qtserialport
-    libsForQt5.qt5.qtxmlpatterns
-    libsForQt5.qt5.qtwebkit
-    libsForQt5.qtkeychain
-    libsForQt5.qwt
-    libspatialindex
-    libspatialite
-    libzip
-    netcdf
-    ninja
-    openssl
-    pcre
-    pdal
-    pkg-config
-    postgresql
-    proj
-    protobuf
-    qscintilla
-    sqlite
-    swig
-    txt2tags
-    zstd
-    (python3.withPackages qgis-python-deps)
-  ];
-  
+  qgisPythonEnv = pkgs.python3.withPackages qgisPythonDeps;
+#in qgisPythonEnv.env
+in
+
+  pkgs.mkShell {
+    name = "QGIS Development";
+    buildInputs = with pkgs; [
+      bison
+      clang-tools
+      cmake
+      cmakeCurses
+      exiv2
+      expat
+      fcgi
+      flex
+      gdal
+      geos
+      grass
+      gsl
+      hdf5
+      libsForQt5.qca-qt5
+      libsForQt5.qt5.qt3d
+      libsForQt5.qt5.qtbase
+      libsForQt5.qt5.qtlocation
+      libsForQt5.qt5.qtmultimedia
+      libsForQt5.qt5.qtsensors
+      libsForQt5.qt5.qtserialport
+      libsForQt5.qt5.qtxmlpatterns
+      libsForQt5.qt5.qtwebkit
+      #libsForQt5.qscintilla
+      libsForQt5.qtkeychain
+      libsForQt5.qwt
+      libspatialindex
+      libspatialite
+      libzip
+      netcdf
+      ninja
+      openssl
+      pcre
+      pdal
+      pkg-config
+      postgresql
+      proj
+      protobuf
+      qscintilla
+      sqlite
+      swig
+      txt2tags
+      zstd
+      #(python3.withPackages qgisPythonDeps)
+    ] ++ qgisPythonDeps;
+
   shellHook = ''
    # Some bash command and export some env vars.
    export FOO=BAR
