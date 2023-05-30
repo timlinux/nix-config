@@ -29,6 +29,7 @@
       ../../config/uxplay.nix
       ../../config/vim.nix
       ../../config/yubikey.nix
+      ../../config/vscode.nix
       ../../users/tim.nix
     ];
 

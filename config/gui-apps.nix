@@ -32,6 +32,7 @@
     gnome.gnome-tweaks
     gnome.gnome-sound-recorder
     gnome.gnome-terminal
+    gnomeExtensions.notes
     gnucash
     google-chrome
     gpick
@@ -54,7 +55,6 @@
     slack
     synfigstudio
     tdesktop
-    vscode
     xournalpp
     #citations
     #emblem
