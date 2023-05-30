@@ -53,12 +53,14 @@
     imagemagickBig
     lazydocker
     lazygit
+    lftp # for remote backups
     mc
     ncdu
     neofetch
     nethogs
     nix-direnv # see https://github.com/nix-community/nix-direnv
     pgcli
+    restic # for local backups
     unzip
     wget
   ];

@@ -1,12 +1,13 @@
 { pkgs, config, ... }:
 
 let
-  unstable = import <nixos-unstable> 
+  unstable = import
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable)
     { config = config.nixpkgs.config; };
 in {
 
   environment.systemPackages = with pkgs; [
-    vscode
+    unstable.vscode
   ];
 }
 
