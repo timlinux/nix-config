@@ -88,6 +88,16 @@ in
       #(python3.withPackages qgisPythonDeps)
     ] ++ qgisPythonDeps;
 
+  #nativeBuildInputs = [ makeWrapper wrapGAppsHook cmake flex bison ninja ];
+
+  patches = [
+    (substituteAll {
+      src = ./set-pyqt-package-dirs.patch;
+      pyQt5PackageDir = "${py.pkgs.pyqt5}/${py.pkgs.python.sitePackages}";
+      qsciPackageDir = "${py.pkgs.qscintilla-qt5}/${py.pkgs.python.sitePackages}";
+    })
+  ];
+
   shellHook = ''
    # Some bash command and export some env vars.
    export FOO=BAR
