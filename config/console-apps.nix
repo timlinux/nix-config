@@ -20,7 +20,8 @@
   };
 
   # Example of adding aliases for bash commands
-  programs.bash.shellAliases = {
+  #programs.bash.shellAliases = {
+  programs.fish.shellAliases = {
     ls = "exa";
     cat = "bat";
     find = "fd";
@@ -46,6 +47,7 @@
     fd
     ffmpeg_5-full
     figlet
+    fish # fish shell like bash but with lots of goodies
     git
     gping
     gotop

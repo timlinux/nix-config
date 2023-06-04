@@ -21,6 +21,7 @@
       ../../config/fonts.nix
       ../../config/locale-pt.nix
       ../../config/wacom.nix
+      ../../users/all.nix
       ../../users/marisa.nix
   ];
 

@@ -15,6 +15,7 @@
       ../../config/syncthing.nix
       ../../config/ssh.nix
       ../../config/tailscale.nix
+      ../../users/all.nix
       ../../users/tim.nix
     ];
 

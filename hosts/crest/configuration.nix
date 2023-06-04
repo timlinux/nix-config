@@ -30,6 +30,7 @@
       ../../config/vim.nix
       ../../config/yubikey.nix
       ../../config/vscode.nix
+      ../../users/all.nix
       ../../users/tim.nix
     ];
 

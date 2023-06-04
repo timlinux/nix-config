@@ -3,6 +3,7 @@
 {
   environment.interactiveShellInit = ''
     eval "$(starship init bash)"
+    eval "starship init fish| source"
   '';
 
   environment.etc."starship.toml" = {
