@@ -10,6 +10,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #../../config/android-sdk.nix
+      ../../config/upgrades.nix
       ../../config/arduino.nix
       ../../config/ccache.nix
       ../../config/console-apps.nix

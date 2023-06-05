@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../config/upgrades.nix
       ../../config/arduino.nix
       ../../config/biometrics.nix
       ../../config/console-apps.nix
