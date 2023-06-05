@@ -38,7 +38,7 @@
     zstd
     grass
     # Python packages
-    libsForQt5.qscintilla
+    #broken need to resolve libsForQt5.qscintilla
     gdal
     python310Packages.jinja2
     python310Packages.numpy

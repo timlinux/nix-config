@@ -56,13 +56,13 @@
     synfigstudio
     tdesktop
     xournalpp
-    #citations
-    #emblem
-    #eyedropper
-    #gaphor
+    citations
+    emblem
+    eyedropper # nice simple colour picker
+    gaphor # Uml diagramming app
     #lorem
-    #solanum
-    #zap
+    solanum
+    zap #Java application for web penetration testing
   ];
 }
 
