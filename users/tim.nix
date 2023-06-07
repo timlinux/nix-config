@@ -10,7 +10,8 @@
   users.users.timlinux = {
     isNormalUser = true;
     description = "Tim Sutton";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
+
     packages = with pkgs; [
       hugo
       popcorntime

@@ -16,6 +16,7 @@
       ../../config/console-apps.nix
       ../../config/cron-waterfall.nix
       ../../config/dir-env.nix
+      ../../config/display-server.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
@@ -24,6 +25,7 @@
       ../../config/locale-pt-en.nix
       ../../config/nvidia.nix
       ../../config/obs.nix
+      ../../config/printing.nix
       ../../config/ntfs.nix
       ../../config/postgres.nix
       ../../config/python.nix
@@ -68,19 +70,6 @@
   # when tailscale is down...
   # See https://adguard-dns.io/kb/general/dns-providers/?utm_campaign=dns_kb_providers&utm_medium=ui&utm_source=home
   networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Wacom support for Marisa
-  services.xserver.wacom.enable = true;
-  
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;

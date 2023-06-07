@@ -13,8 +13,6 @@
   hardware.nvidia.modesetting.enable = true;
   # Fix dispay issues on suspend resume
   hardware.nvidia.powerManagement.enable = true;  
-  # Set gnome to run on x11
-  services.xserver.displayManager.gdm.wayland = false; 
 
   ##
   ## End of nvidia settings

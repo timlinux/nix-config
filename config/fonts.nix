@@ -13,8 +13,18 @@
   # these packages in the fonts.fonts NixOS options list instead. 
   # 
   fonts.fonts = with pkgs; [
+    fira-code
+    fira
+    cooper-hewitt
+    ibm-plex
+    jetbrains-mono
+    iosevka
+    # bitmap
+    spleen
+    fira-code-symbols
+    powerline-fonts
+    nerdfonts 
     maple-mono-NF
-    nerdfonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
