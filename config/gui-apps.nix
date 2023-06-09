@@ -12,6 +12,7 @@
     adapta-kde-theme
     audacity
     blender
+    brave
     dbeaver
     deja-dup
     drawio
