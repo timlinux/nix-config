@@ -20,15 +20,16 @@
       ../../config/fonts.nix
       ../../config/games.nix
       ../../config/display-server.nix
-      ../../config/deepin-desktop.nix
+      ../../config/gnome-desktop.nix
+      #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
       #../../config/plasma-desktop.nix
-      #../../config/gnome-desktop.nix
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
-      ../../config/nvidia.nix
+      # Dont enable when using wayland - causes screen flickr
+      #../../config/nvidia.nix
       ../../config/obs.nix
       ../../config/printing.nix
       ../../config/ntfs.nix

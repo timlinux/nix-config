@@ -6,11 +6,13 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Currently I have issues running wayland like flashing windows etc.
-  services.xserver.displayManager.gdm.wayland = false;
+  # if enabling this with the nvidia driver so be sure to 
+  # switch off nvidia dribers in configuration.nix if using this
+  services.xserver.displayManager.gdm.wayland = true;
 
   environment.variables = {
-    # Hack for broken drag and drop in Qt apps - only works in wayland
-    #QT_QPA_PLATFORM = "wayland";
+    # Hack for broken drag and drop in Qt apps (including QGIS) - only works in wayland
+    QT_QPA_PLATFORM = "wayland";
     # Hack to make Qt apps run with a light qt theme
     QT_STYLE_OVERRIDE = "adwaita";
   };
