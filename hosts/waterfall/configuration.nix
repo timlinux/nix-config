@@ -16,12 +16,14 @@
       ../../config/console-apps.nix
       ../../config/cron-waterfall.nix
       ../../config/dir-env.nix
-      ../../config/display-server.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
+      ../../config/display-server.nix
+      ../../config/deepin-desktop.nix
+      #../../config/budgie-deskop.nix
       #../../config/plasma-desktop.nix
-      ../../config/gnome-desktop.nix
+      #../../config/gnome-desktop.nix
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
