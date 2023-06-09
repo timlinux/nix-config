@@ -6,8 +6,16 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Currently I have issues running wayland like flashing windows etc.
-  services.xserver.displayManager.gdm.wayland = false
+  services.xserver.displayManager.gdm.wayland = false;
 
+  environment.variables = {
+    # Hack for broken drag and drop in Qt apps - only works in wayland
+    #QT_QPA_PLATFORM = "wayland";
+    # Hack to make Qt apps run with a light qt theme
+    QT_STYLE_OVERRIDE = "adwaita";
+  };
+
+  qt.platformTheme = "gnome";
   # Set the background by default to Kartoza branding
   # Note that it will not override the setting if it already exists
   # so only visible on new installs

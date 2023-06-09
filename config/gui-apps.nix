@@ -17,13 +17,13 @@
     drawio
     firefox
     flameshot
-    gimp
+    gimp-with-plugins
     # Needed for gnome boxes
     qemu_kvm
     virt-manager
     gnucash
     google-chrome
-    inkscape
+    inkscape-with-extensions
     kdenlive
     keepassxc
     libreoffice-fresh
@@ -43,6 +43,8 @@
     tdesktop
     xournalpp
     zap #Java application for web penetration testing
+    # The following is a Qt theme engine, which can be configured with kvantummanager
+    libsForQt5.qtstyleplugin-kvantum
   ];
 }
 

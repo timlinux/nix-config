@@ -1,4 +1,3 @@
-??? from here until ???END lines may have been inserted/deleted
 { config, pkgs, ... }:
 
 {
@@ -16,9 +15,7 @@
       font-manager
       gnome.file-roller
       gnome.gnome-disk-utility
-      inksacpe-with-extensions
       libqalculate
-      libreoffice
       orca
       pavucontrol
       qalculate-gtk
