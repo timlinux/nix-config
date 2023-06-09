@@ -20,7 +20,9 @@
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
-      ../../config/gnome.nix
+      #../../config/plasma-desktop.nix
+      #../../config/gnome-desktop.nix
+      ../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
       ../../config/nvidia.nix
