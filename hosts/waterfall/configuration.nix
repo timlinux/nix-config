@@ -20,12 +20,15 @@
       ../../config/fonts.nix
       ../../config/games.nix
       ../../config/display-server.nix
-      ../../config/gnome-desktop.nix
+      #../../config/hyperland-desktop.nix
+      ../../config/gnome-desktop-x11.nix
+      #../../config/gnome-desktop-wayland.nix
       #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
       #../../config/plasma-desktop.nix
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
+      ../../config/gnome-desktop-apps.nix
       ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
       # Dont enable when using wayland - causes screen flickr
