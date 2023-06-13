@@ -32,7 +32,7 @@
       ../../config/gui-apps.nix
       ../../config/locale-pt-en.nix
       # Dont enable when using wayland - causes screen flickr
-      #../../config/nvidia.nix
+      ../../config/nvidia.nix
       ../../config/obs.nix
       ../../config/printing.nix
       ../../config/ntfs.nix

@@ -10,6 +10,8 @@
   # switch off nvidia dribers in configuration.nix if using this
   services.xserver.displayManager.gdm.wayland = true;
 
+  programs.xwayland.enable = true;
+  
   environment.variables = {
     # Hack for broken drag and drop in Qt apps (including QGIS) - only works in wayland
     QT_QPA_PLATFORM = "wayland";
@@ -35,5 +37,11 @@
     gsettings set org.gnome.desktop.background picture-uri file:///etc/kartoza-wallpaper.png
     gsettings set org.gnome.desktop.background picture-uri-dark file:///etc/kartoza-wallpaper.png
   '';
+
+  # Add system wide packages
+  environment.systemPackages = with pkgs; [
+    wl-clipboard
+    xdg-desktop-portal   
+  ];
 
 }
