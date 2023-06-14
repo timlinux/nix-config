@@ -63,6 +63,7 @@
     nethogs
     nix-direnv # see https://github.com/nix-community/nix-direnv
     pgcli
+    powertop
     restic # for local backups
     unzip
     wget
