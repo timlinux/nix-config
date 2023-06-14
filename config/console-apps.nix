@@ -42,6 +42,7 @@
     btop
     byobu
     cowsay
+    comma # handy "nix-shell -p" shortcut - just do ", programmename" and it does rather "nix-shell -p programmename"
     dua # better du command
     exa
     fd
