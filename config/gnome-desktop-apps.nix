@@ -11,7 +11,9 @@
     gnomeExtensions.notes
     gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
     gnome-decoder # Scan and Generate QR Codes
+    newsflash # rss feed reader
     gpick
+    junction # Lets you choose which browser to use to open links
     citations # Manage your bibliographies using the BibTeX format
     emblem
     gnome.gnome-tweaks
