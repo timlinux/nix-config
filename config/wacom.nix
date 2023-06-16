@@ -26,6 +26,7 @@
      xf86_input_wacom
      wacomtablet # loads a lot of kde crap too, run it using kde_wacom_tabletfinder
      libwacom
+     usbutils
   ];
 }
 

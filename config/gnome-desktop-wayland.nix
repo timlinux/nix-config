@@ -19,7 +19,7 @@
     QT_STYLE_OVERRIDE = "adwaita";
   };
 
-  qt.platformTheme = "gnome";
+  #qt.platformTheme = "gnome";
   # Set the background by default to Kartoza branding
   # Note that it will not override the setting if it already exists
   # so only visible on new installs

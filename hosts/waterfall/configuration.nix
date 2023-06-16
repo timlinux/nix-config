@@ -12,6 +12,7 @@
       #../../config/android-sdk.nix
       ../../config/upgrades.nix
       ../../config/arduino.nix
+      #../../config/biometrics.nix
       ../../config/ccache.nix
       ../../config/console-apps.nix
       ../../config/cron-waterfall.nix
@@ -30,13 +31,14 @@
       #../../config/pantheon-desktop.nix
       ../../config/gnome-desktop-apps.nix
       ../../config/gui-apps.nix
+      ../../config/iphone.nix
       ../../config/locale-pt-en.nix
       # Dont enable when using wayland - causes screen flickr
       ../../config/nvidia.nix
-      ../../config/obs.nix
-      ../../config/printing.nix
       ../../config/ntfs.nix
+      ../../config/obs.nix
       ../../config/postgres.nix
+      ../../config/printing.nix
       ../../config/python.nix
       ../../config/qgis.nix
       ../../config/qgis-dev.nix
@@ -101,17 +103,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-     neovim
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     libimobiledevice # Iphone support
-     ifuse # optional, to mount using 'ifuse' for iPhone
-     # task tray for gnome
-     gnomeExtensions.appindicator
-     xf86_input_wacom
-     usbutils
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -145,11 +136,6 @@
   ### Flatpack support
   ### see https://flatpak.org/setup/NixOS
   services.flatpak.enable = true;
-
-  ##
-  ## iPhone Support
-  ## 
-  services.usbmuxd.enable = true;
 
 
 }

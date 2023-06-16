@@ -5,32 +5,49 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      #../../config/android-sdk.nix
       ../../config/upgrades.nix
       ../../config/arduino.nix
       ../../config/biometrics.nix
+      ../../config/ccache.nix
       ../../config/console-apps.nix
+      #../../config/cron-crest.nix
       ../../config/dir-env.nix
       ../../config/docker.nix
       ../../config/fonts.nix
-      ../../config/gnome.nix
+      ../../config/games.nix
+      ../../config/display-server.nix
+      ../../config/gnome-desktop.nix
+      #../../config/deepin-desktop.nix
+      #../../config/budgie-deskop.nix
+      #../../config/plasma-desktop.nix
+      #../../config/xfce-desktop.nix
+      #../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
+      ../../config/iphone.nix
       ../../config/locale-pt-en.nix
+      # Dont enable when using wayland - causes screen flickr
+      #../../config/nvidia.nix
       ../../config/ntfs.nix
+      ../../config/obs.nix
       ../../config/postgres.nix
+      ../../config/printing.nix
+      ../../config/python.nix
       ../../config/qgis.nix
       ../../config/qgis-dev.nix
-      ../../config/python.nix
       ../../config/ssh.nix
       ../../config/starship.nix
       ../../config/syncthing.nix
       ../../config/tailscale.nix
       ../../config/uxplay.nix
       ../../config/vim.nix
-      ../../config/yubikey.nix
+      #../../config/yubikey.nix #using biometrics rather
       ../../config/vscode.nix
+      ../../config/wacom.nix
       ../../users/all.nix
       ../../users/tim.nix
     ];
@@ -60,14 +77,6 @@
   networking.networkmanager.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -86,20 +95,10 @@
     #media-session.enable = true;
   };
 
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-     neovim
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     libimobiledevice # Iphone support
-     ifuse # optional, to mount using 'ifuse' for iPhone
-     # task tray for gnome
-     gnomeExtensions.appindicator
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -120,10 +119,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
 
-  ### 
-  ### Additions by Tim (see also pkgs sections above)
-  ###
-  
   ### Flakes support
       
   ### See https://nixos.wiki/wiki/Flakes
@@ -133,11 +128,6 @@
   ### Flatpack support
   ### see https://flatpak.org/setup/NixOS
   services.flatpak.enable = true;
-
-  ##
-  ## iPhone Support
-  ## 
-  services.usbmuxd.enable = true;
 
 
 }

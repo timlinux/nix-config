@@ -7,9 +7,9 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    settings.PasswordAuthentication = false;
+    #settings.PasswordAuthentication = false;
     allowSFTP = false; # Don't set this if you need sftp
-    settings.KbdInteractiveAuthentication = false;
+    #settings.KbdInteractiveAuthentication = false;
     extraConfig = ''
       AllowTcpForwarding yes
       X11Forwarding no
