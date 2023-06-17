@@ -49,6 +49,7 @@
       #../../config/yubikey.nix #using biometrics rather
       ../../config/vscode.nix
       ../../config/wacom.nix
+      ../../config/unstable-apps.nix
       ../../users/all.nix
       ../../users/tim.nix
     ];

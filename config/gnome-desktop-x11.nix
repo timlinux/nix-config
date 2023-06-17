@@ -1,13 +1,6 @@
 { config, pkgs, ... }:
 
-# Workaround for thus bug is to (for now) use unstable gnome-shell
-# https://github.com/NixOS/nixpkgs/issues/230097#issuecomment-1584637482
-  
-let
-  unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable)
-    { config = config.nixpkgs.config; };
-in {
+{
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -43,8 +36,4 @@ in {
     gsettings set org.gnome.desktop.background picture-uri-dark file:///etc/kartoza-wallpaper.png
   '';
  
-  # Probably not needed, remove when unstable fix mentioned at top of file not needed
-  #environment.systemPackages = with pkgs; [
-  #    gnome-shell
-  #  ];
 }
