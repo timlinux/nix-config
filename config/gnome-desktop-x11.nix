@@ -17,7 +17,6 @@
     QT_STYLE_OVERRIDE = "adwaita";
   };
 
-  qt.platformTheme = "gnome";
   # Set the background by default to Kartoza branding
   # Note that it will not override the setting if it already exists
   # so only visible on new installs
@@ -35,5 +34,11 @@
     gsettings set org.gnome.desktop.background picture-uri file:///etc/kartoza-wallpaper.png
     gsettings set org.gnome.desktop.background picture-uri-dark file:///etc/kartoza-wallpaper.png
   '';
+  environment.systemPackages = with pkgs; [
+    # See https://github.com/FedoraQt/QGnomePlatform#usage
+    qgnomeplatform # make Qt apps look like Gtk if they do not specifiy their own theme
+  ];
+  # Also have the Qt theme env var set
+  qt.platformTheme = "gnome";
  
 }

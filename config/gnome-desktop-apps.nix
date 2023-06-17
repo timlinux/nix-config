@@ -4,6 +4,7 @@
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     adapta-gtk-theme
+    qgnomeplatform # make Qt apps look like Gtk if they do not specifiy their own theme
     dialect # gnome ui for google translate
     blanket # creates ambient white noise for focussed working
     authenticator # Two-factor authentication code generator for GNOME
@@ -12,6 +13,7 @@
     gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
     gnome-decoder # Scan and Generate QR Codes
     newsflash # rss feed reader
+    gnome.gnome-power-manager # run as gnome-power-statistics on CLI - gives charts of battery performance
     gpick
     junction # Lets you choose which browser to use to open links
     citations # Manage your bibliographies using the BibTeX format
