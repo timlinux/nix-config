@@ -34,6 +34,10 @@
     gsettings set org.gnome.desktop.background picture-uri file:///etc/kartoza-wallpaper.png
     gsettings set org.gnome.desktop.background picture-uri-dark file:///etc/kartoza-wallpaper.png
   '';
+  # QGnomePlatform seems to be the magic trick for fixing drag and drop issues
+  # with QGIS and for making QGIS match the gnome theme
+  # see also qt.plaformTheme directive below which will set the following env var:
+  # QT_QPA_PLATFORMTHEME gnome
   environment.systemPackages = with pkgs; [
     # See https://github.com/FedoraQt/QGnomePlatform#usage
     qgnomeplatform # make Qt apps look like Gtk if they do not specifiy their own theme
