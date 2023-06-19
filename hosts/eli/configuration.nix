@@ -10,14 +10,14 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #../../config/android-sdk.nix
-      ../../config/upgrades.nix
-      ../../config/arduino.nix
+      #../../config/upgrades.nix
+      #../../config/arduino.nix
       #../../config/conda.nix
       #../../config/biometrics.nix
-      ../../config/ccache.nix
-      ../../config/console-apps.nix
-      ../../config/cron-waterfall.nix
-      ../../config/dir-env.nix
+      #../../config/ccache.nix
+      #../../config/console-apps.nix
+      #../../config/cron-waterfall.nix
+      #../../config/dir-env.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
@@ -30,30 +30,30 @@
       #../../config/plasma-desktop.nix
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
-      ../../config/gnome-desktop-apps.nix
-      ../../config/gui-apps.nix
-      ../../config/iphone.nix
-      ../../config/locale-za-en.nix
+      #../../config/gnome-desktop-apps.nix
+      #../../config/gui-apps.nix
+      #../../config/iphone.nix
+      #../../config/locale-za-en.nix
       # Dont enable when using wayland - causes screen flickr
-      ../../config/nvidia.nix
-      ../../config/ntfs.nix
-      ../../config/obs.nix
-      ../../config/postgres.nix
-      ../../config/printing.nix
-      ../../config/python.nix
-      ../../config/qgis.nix
-      ../../config/qgis-dev.nix
-      ../../config/ssh.nix
-      ../../config/starship.nix
-      ../../config/syncthing.nix
-      ../../config/tailscale.nix
-      ../../config/uxplay.nix
-      ../../config/vim.nix
-      ../../config/yubikey.nix
-      ../../config/vscode.nix
-      ../../config/unstable-apps.nix
-      ../../users/all.nix
-      ../../users/eli.nix
+      #../../config/nvidia.nix
+      #../../config/ntfs.nix
+      #../../config/obs.nix
+      #../../config/postgres.nix
+      #../../config/printing.nix
+      #../../config/python.nix
+      #../../config/qgis.nix
+      #../../config/qgis-dev.nix
+      #../../config/ssh.nix
+      #../../config/starship.nix
+      #../../config/syncthing.nix
+      #../../config/tailscale.nix
+      #../../config/uxplay.nix
+      #../../config/vim.nix
+      #../../config/yubikey.nix
+      #../../config/vscode.nix
+      #../../config/unstable-apps.nix
+      #../../users/all.nix
+      #../../users/eli.nix
     ];
 
   # Bootloader.
@@ -77,6 +77,25 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # Set your time zone.
+  time.timeZone = "Africa/Johannesburg";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_ZA.UTF-8";
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "za";
+    xkbVariant = "";
+  };
   ## Tweak by Tim to use adguard home
   #networking.nameservers = [ "100.100.68.130" ];
   # These last two are the public adguard services to block
@@ -134,7 +153,7 @@
   ### Flakes support
       
   ### See https://nixos.wiki/wiki/Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   ###
   ### Flatpack support
