@@ -59,7 +59,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # Enable swap on luks
   boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".device = "/dev/disk/by-uuid/4a1f442c-e191-4f92-8b47-b580db36e463";
