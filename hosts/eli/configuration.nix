@@ -18,12 +18,12 @@
       #../../config/console-apps.nix
       #../../config/cron-waterfall.nix
       #../../config/dir-env.nix
-      ../../config/docker.nix
-      ../../config/fonts.nix
-      ../../config/games.nix
-      ../../config/display-server.nix
+      #../../config/docker.nix
+      #../../config/fonts.nix
+      #../../config/games.nix
+      #../../config/display-server.nix
       #../../config/hyperland-desktop.nix
-      ../../config/gnome-desktop-x11.nix
+      #../../config/gnome-desktop-x11.nix
       #../../config/gnome-desktop-wayland.nix
       #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
