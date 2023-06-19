@@ -12,7 +12,7 @@
       #../../config/android-sdk.nix
       ../../config/upgrades.nix
       ../../config/arduino.nix
-      ../../config/conda.nix
+      #../../config/conda.nix
       #../../config/biometrics.nix
       ../../config/ccache.nix
       ../../config/console-apps.nix
