@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  # Needed for gnome boxes and virt-manager
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     adapta-gtk-theme
@@ -26,6 +29,7 @@
     gaphor # Uml diagramming app
     #lorem
     solanum
+    virt-manager
     gnome.gnome-boxes
     (gnome.gnome-boxes.override {
       qemu-utils = qemu-utils.override {
