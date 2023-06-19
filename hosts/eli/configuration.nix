@@ -33,7 +33,7 @@
       ../../config/gnome-desktop-apps.nix
       ../../config/gui-apps.nix
       ../../config/iphone.nix
-      ../../config/locale-pt-en.nix
+      ../../config/locale-za-en.nix
       # Dont enable when using wayland - causes screen flickr
       ../../config/nvidia.nix
       ../../config/ntfs.nix
@@ -53,7 +53,7 @@
       ../../config/vscode.nix
       ../../config/unstable-apps.nix
       ../../users/all.nix
-      ../../users/tim.nix
+      ../../users/eli.nix
     ];
 
   # Bootloader.
@@ -61,12 +61,14 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".device = "/dev/disk/by-uuid/4a1f442c-e191-4f92-8b47-b580db36e463";
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
   };
 
-  networking.hostName = "waterfall"; # Define your hostname.
+  networking.hostName = "eli"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -82,7 +84,7 @@
   # tailscale if it is running, so they are just a backup for
   # when tailscale is down...
   # See https://adguard-dns.io/kb/general/dns-providers/?utm_campaign=dns_kb_providers&utm_medium=ui&utm_source=home
-  networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
+  #networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -123,7 +125,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
   ### 
   ### Additions by Tim (see also pkgs sections above)
