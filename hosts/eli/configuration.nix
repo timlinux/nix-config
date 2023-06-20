@@ -8,24 +8,24 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #../../config/console-apps.nix
-      #../../config/docker.nix
-      #../../config/fonts.nix
-      #../../config/games.nix
-      #../../config/gnome-desktop-apps.nix
-      #../../config/gui-apps.nix
-      #../../config/ntfs.nix
-      ##../../config/obs.nix
-      ##../../config/postgres.nix
-      ##../../config/printing.nix
-      ##../../config/python.nix
-      ##../../config/qgis.nix
-      ##../../config/ssh.nix
-      #../../config/starship.nix
-      ##../../config/syncthing.nix
-      #../../config/vim.nix
-      ##../../config/vscode.nix
-      ##../../config/unstable-apps.nix
+      ../../config/console-apps.nix
+      ../../config/docker.nix
+      ../../config/fonts.nix
+      ../../config/games.nix
+      ../../config/gnome-desktop-apps.nix
+      ../../config/gui-apps.nix
+      ../../config/ntfs.nix
+      ../../config/obs.nix
+      ../../config/postgres.nix
+      ../../config/printing.nix
+      ../../config/python.nix
+      ../../config/qgis.nix
+      ../../config/ssh.nix
+      ../../config/starship.nix
+      ../../config/syncthing.nix
+      ../../config/vim.nix
+      ../../config/vscode.nix
+      ../../config/unstable-apps.nix
     ];
 
   # Bootloader.
