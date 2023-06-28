@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../config/avahi.nix
       #../../config/android-sdk.nix
       ../../config/upgrades.nix
       ../../config/arduino.nix
@@ -21,6 +22,7 @@
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
+      ../../config/hp-scanner.nix
       ../../config/display-server.nix
       #../../config/hyperland-desktop.nix
       ../../config/gnome-desktop-x11.nix
