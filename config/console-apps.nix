@@ -31,6 +31,8 @@
     open = "xdg-open";
     ping = "gping";
     du = "dua";
+    ux = "uxplay -m -reset 5 -nohold -n Waterfall -nh -p";
+    ax-oculus = "scrcpy --crop 1730:974:1934:450 --max-fps 30";
   };
 
   # Add system wide packages
