@@ -68,6 +68,7 @@
     powertop
     restic # for local backups
     unzip
+    usbutils # lsusb etc
     wget
   ];
 }

@@ -14,6 +14,7 @@
   };
   environment.systemPackages = with pkgs; [
     scrcpy
+    android-tools
   ];
   # Enable the android debug environment too
   # On your device you also need to enable debugging....
