@@ -33,42 +33,45 @@
     du = "dua";
     ux = "uxplay -m -reset 5 -nohold -n Waterfall -nh -p";
     ax-oculus = "scrcpy --crop 1730:974:1934:450 --max-fps 30";
+    icat="kitty +kitten icat";
   };
 
   # Add system wide packages
   environment.systemPackages = with pkgs; [
-    asciinema
-    asciinema-agg
-    asciinema-scenario
-    bat
-    btop
-    byobu
-    cowsay
+    asciinema # record your console as ascii movies
+    asciinema-agg # record your console as ascii movies
+    asciinema-scenario # record your console as ascii movies
+    bat # beter implementation of cat
+    btop # another system monitor ui for console
+    byobu # terminal multiplexer
+    cowsay # Have a cow say stuff
     comma # handy "nix-shell -p" shortcut - just do ", programmename" and it does rather "nix-shell -p programmename"
     dua # better du command
-    exa
-    fd
-    ffmpeg_5-full
-    figlet
+    exa # better ls command
+    fd # a modern find implementation
+    ffmpeg_5-full # create movies from the command line
+    figlet # make text banners for your console
     fish # fish shell like bash but with lots of goodies
-    git
-    gping
-    gotop
-    iftop
-    imagemagickBig
-    lazydocker
-    lazygit
+    git # well we all know what this is right?
+    gping # a better ping implementation
+    gotop # system resource utilization console ui
+    iftop # see what bandwidth is used on each network interface
+    imagemagickBig # manipulate images on the command line see e.g. convert command
+    kitty # nicer terminal emulator with a lot of cool features
+    lazydocker # docker cli ui
+    lazygit # git cli UI
     lftp # for remote backups
-    mc
-    ncdu
-    neofetch
-    nethogs
+    mc # console file manager
+    ranger # console file manager
+    ncdu # understand disk usage. Use dua rather, it is much faster
+    neofetch # show stats of your system in terminal
+    nethogs # see what apps are using up your bandwidth
     nix-direnv # see https://github.com/nix-community/nix-direnv
-    pgcli
-    powertop
+    pgcli # better psql client for postgres
+    powertop # swee what apps use the most power on your machine
     restic # for local backups
-    unzip
+    unzip # unzip stuff
     usbutils # lsusb etc
-    wget
+    wget # fetch files over http
   ];
 }

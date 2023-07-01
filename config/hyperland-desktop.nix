@@ -5,8 +5,9 @@
   services.xserver.enable = true;
   # Enable the hyperland compositor.
   programs.hyprland.enable = true;
+  programs.hyprland.xwayland.enable = true;
   # Enable a display manager (recommended).
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
   environment.variables = {
     # Hack for broken drag and drop in Qt apps - only works in wayland
     #QT_QPA_PLATFORM = "wayland";
