@@ -29,6 +29,7 @@
     gaphor # Uml diagramming app
     #lorem
     solanum
+    warp
     virt-manager
     gnome.gnome-boxes
     (gnome.gnome-boxes.override {

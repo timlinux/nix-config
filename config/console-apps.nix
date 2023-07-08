@@ -53,6 +53,7 @@
     figlet # make text banners for your console
     fish # fish shell like bash but with lots of goodies
     git # well we all know what this is right?
+    gh # github command line tool - see https://cli.github.com/
     gping # a better ping implementation
     gotop # system resource utilization console ui
     iftop # see what bandwidth is used on each network interface

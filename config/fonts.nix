@@ -31,6 +31,7 @@
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    open-dyslexic
     powerline-fonts
     proggyfonts
     spleen
