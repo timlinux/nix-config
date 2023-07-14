@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../config/avahi.nix
       #../../config/android-sdk.nix
       ../../config/upgrades.nix
       ../../config/arduino.nix
@@ -21,6 +22,7 @@
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
+      ../../config/hp-scanner.nix
       ../../config/display-server.nix
       #../../config/hyperland-desktop.nix
       ../../config/gnome-desktop-x11.nix
@@ -43,6 +45,7 @@
       ../../config/python.nix
       ../../config/qgis.nix
       ../../config/qgis-dev.nix
+      ../../config/scrcpy.nix
       ../../config/ssh.nix
       ../../config/starship.nix
       ../../config/syncthing.nix
@@ -82,7 +85,7 @@
   # tailscale if it is running, so they are just a backup for
   # when tailscale is down...
   # See https://adguard-dns.io/kb/general/dns-providers/?utm_campaign=dns_kb_providers&utm_medium=ui&utm_source=home
-  networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
+  #networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
 
   # Enable sound with pipewire.
   sound.enable = true;

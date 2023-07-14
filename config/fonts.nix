@@ -13,27 +13,29 @@
   # these packages in the fonts.fonts NixOS options list instead. 
   # 
   fonts.fonts = with pkgs; [
-    fira-code
-    fira
-    cooper-hewitt
-    ibm-plex
-    jetbrains-mono
-    iosevka
     # bitmap
-    spleen
+    cooper-hewitt
+    dina-font
+    fira
+    fira-code
+    fira-code
     fira-code-symbols
-    powerline-fonts
-    nerdfonts 
+    fira-code-symbols
+    ibm-plex
+    iosevka
+    jetbrains-mono
+    liberation_ttf
     maple-mono-NF
+    mplus-outline-fonts.githubRelease
+    nerdfonts 
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
-    liberation_ttf
-    fira-code
-    fira-code-symbols
-    mplus-outline-fonts.githubRelease
-    dina-font
+    open-dyslexic
+    powerline-fonts
     proggyfonts
+    spleen
+    victor-mono
   ];
 }
 

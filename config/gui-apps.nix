@@ -39,10 +39,13 @@
     nextcloud-client
     obs-studio
     paperwork
+    peek
+    pidgin
     qtcreator
     slack
     synfigstudio
     tdesktop
+    tmux # needed by byobu
     xournalpp
     zap #Java application for web penetration testing
     # The following is a Qt theme engine, which can be configured with kvantummanager
