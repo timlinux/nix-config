@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../config/bootsplash.nix
       #../../config/android-sdk.nix
       ../../config/upgrades.nix
       ../../config/arduino.nix
@@ -58,7 +59,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
+  
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;

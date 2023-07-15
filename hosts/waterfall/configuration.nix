@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../config/bootsplash.nix
       ../../config/avahi.nix
       #../../config/android-sdk.nix
       ../../config/upgrades.nix
