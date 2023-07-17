@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      ../../config/bootsplash.nix
       ./hardware-configuration.nix
       ../../config/console-apps.nix
       ../../config/docker.nix

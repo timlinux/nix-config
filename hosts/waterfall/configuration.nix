@@ -45,7 +45,7 @@
       ../../config/printing.nix
       ../../config/python.nix
       ../../config/qgis.nix
-      ../../config/qgis-dev.nix
+      #../../config/qgis-dev.nix
       ../../config/scrcpy.nix
       ../../config/ssh.nix
       ../../config/starship.nix
