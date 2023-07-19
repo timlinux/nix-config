@@ -71,6 +71,7 @@
     pgcli # better psql client for postgres
     powertop # swee what apps use the most power on your machine
     restic # for local backups
+    s3cmd # for backup of our devops s3 buckets
     unzip # unzip stuff
     usbutils # lsusb etc
     wget # fetch files over http
