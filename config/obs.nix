@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   # Add system wide packages
   environment.systemPackages = with pkgs; [
@@ -13,5 +13,8 @@
   ### See also OBS packages installed further up
   boot.extraModulePackages = [
      config.boot.kernelPackages.v4l2loopback
+     config.boot.kernelPackages.v4l2loopback.out
   ];  
+  boot.kernelModules = [ "v4l2loopback" ];
+
 }

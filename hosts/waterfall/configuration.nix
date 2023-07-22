@@ -12,7 +12,7 @@
       ../../config/bootsplash.nix
       ../../config/avahi.nix
       #../../config/android-sdk.nix
-      ../../config/upgrades.nix
+      #../../config/upgrades.nix
       ../../config/arduino.nix
       ../../config/conda.nix
       #../../config/biometrics.nix
@@ -87,6 +87,8 @@
   # when tailscale is down...
   # See https://adguard-dns.io/kb/general/dns-providers/?utm_campaign=dns_kb_providers&utm_medium=ui&utm_source=home
   #networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
+  networking.networkmanager.insertNameservers = [ "8.8.8.8" "8.8.4.4" "10.31.0.5" ];
+  networking.nameservers = [ "8.8.8.8" "8.8.4.4" "10.31.0.5" ];
 
   # Enable sound with pipewire.
   sound.enable = true;
