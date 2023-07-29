@@ -11,7 +11,7 @@
       ./hardware-configuration.nix
       ../../config/bootsplash.nix
       #../../config/android-sdk.nix
-      ../../config/upgrades.nix
+      #../../config/upgrades.nix
       ../../config/arduino.nix
       ../../config/biometrics.nix
       ../../config/ccache.nix
