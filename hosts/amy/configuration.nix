@@ -5,74 +5,47 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
       ../../config/bootsplash.nix
-      ../../config/avahi.nix
-      #../../config/android-sdk.nix
-      #../../config/upgrades.nix
-      ../../config/arduino.nix
-      ../../config/conda.nix
-      #../../config/biometrics.nix
-      ../../config/ccache.nix
+      ./hardware-configuration.nix
       ../../config/console-apps.nix
-      ../../config/cron-waterfall.nix
-      ../../config/dir-env.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
-      ../../config/hp-scanner.nix
       ../../config/display-server.nix
-      #../../config/hyperland-desktop.nix
       ../../config/gnome-desktop-x11.nix
-      #../../config/gnome-desktop-wayland.nix
-      #../../config/deepin-desktop.nix
-      #../../config/budgie-deskop.nix
-      #../../config/plasma-desktop.nix
-      #../../config/xfce-desktop.nix
-      #../../config/pantheon-desktop.nix
+      ../../config/gui-apps.nix
       ../../config/gnome-desktop-apps.nix
       ../../config/gui-apps.nix
-      ../../config/iphone.nix
-      ../../config/locale-pt-en.nix
-      # Dont enable when using wayland - causes screen flickr
-      ../../config/nvidia.nix
       ../../config/ntfs.nix
       ../../config/obs.nix
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
       ../../config/qgis.nix
-      #../../config/qgis-dev.nix
-      ../../config/scanner.nix
-      ../../config/scrcpy.nix
       ../../config/ssh.nix
       ../../config/starship.nix
       ../../config/syncthing.nix
-      ../../config/tailscale.nix
-      ../../config/uxplay.nix
       ../../config/vim.nix
-      ../../config/yubikey.nix
       ../../config/vscode.nix
-      ../../config/web-dev.nix
       ../../config/unstable-apps.nix
-      ../../users/all.nix
-      ../../users/tim.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
   };
 
-  networking.hostName = "waterfall"; # Define your hostname.
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".device = "/dev/disk/by-uuid/4a1f442c-e191-4f92-8b47-b580db36e463";
+  boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".keyFile = "/crypto_keyfile.bin";
+
+  networking.hostName = "amy"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -81,16 +54,28 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  ## Tweak by Tim to use adguard home
-  #networking.nameservers = [ "100.100.68.130" ];
-  # These last two are the public adguard services to block
-  # ads, adult content etc. They will be overwritten by
-  # tailscale if it is running, so they are just a backup for
-  # when tailscale is down...
-  # See https://adguard-dns.io/kb/general/dns-providers/?utm_campaign=dns_kb_providers&utm_medium=ui&utm_source=home
-  #networking.nameservers = [ "94.140.14.15" "94.140.15.16" ];
-  networking.networkmanager.insertNameservers = [ "8.8.8.8" "8.8.4.4" "10.31.0.5" ];
-  networking.nameservers = [ "8.8.8.8" "8.8.4.4" "10.31.0.5" ];
+
+  # Set your time zone.
+  time.timeZone = "Africa/Johannesburg";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_ZA.UTF-8";
+
+  # Enable the X11 windowing system.
+  #services.xserver.enable = true;
+
+  # Enable the GNOME Desktop Environment.
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "za";
+    xkbVariant = "";
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -109,15 +94,43 @@
     #media-session.enable = true;
   };
 
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.amy = {
+    isNormalUser = true;
+    description = "amy";
+    #description = "Amy Ternent";
+    extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
+    packages = with pkgs; [
+      firefox
+    #  thunderbird
+    ];
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -131,21 +144,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
-
-  ### 
-  ### Additions by Tim (see also pkgs sections above)
-  ###
-  
-  ### Flakes support
-      
-  ### See https://nixos.wiki/wiki/Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  ###
-  ### Flatpack support
-  ### see https://flatpak.org/setup/NixOS
-  services.flatpak.enable = true;
-
+  system.stateVersion = "23.05"; # Did you read the comment?
 
 }
