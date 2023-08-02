@@ -46,6 +46,7 @@
       ../../config/python.nix
       ../../config/qgis.nix
       #../../config/qgis-dev.nix
+      ../../config/rstudio.nix
       ../../config/scanner.nix
       ../../config/scrcpy.nix
       ../../config/ssh.nix

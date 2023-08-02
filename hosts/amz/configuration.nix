@@ -45,7 +45,7 @@
   boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".device = "/dev/disk/by-uuid/4a1f442c-e191-4f92-8b47-b580db36e463";
   boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".keyFile = "/crypto_keyfile.bin";
 
-  networking.hostName = "amy"; # Define your hostname.
+  networking.hostName = "amz"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -98,9 +98,9 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.amy = {
+  users.users.amz = {
     isNormalUser = true;
-    description = "amy";
+    description = "amz";
     #description = "Amy Ternent";
     extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
     packages = with pkgs; [
