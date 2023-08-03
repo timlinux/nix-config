@@ -7,7 +7,10 @@
 {
   nixpkgs.config.allowUnfree = true;
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
+      # this needs to be first
+      ../../config/console-apps.nix
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../config/bootsplash.nix
       #../../config/android-sdk.nix
@@ -15,7 +18,6 @@
       ../../config/arduino.nix
       ../../config/biometrics.nix
       ../../config/ccache.nix
-      ../../config/console-apps.nix
       #../../config/cron-crest.nix
       ../../config/dir-env.nix
       ../../config/docker.nix

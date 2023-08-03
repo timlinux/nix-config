@@ -7,9 +7,12 @@
 {
   nixpkgs.config.allowUnfree = true;
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [ 
+      #console apps needs to be installed first
+      ../../config/console-apps.nix
       ../../config/bootsplash.nix
+      # Include the results of the hardware scan.
+      ./hardware-configuration.nix
       ../../config/avahi.nix
       #../../config/android-sdk.nix
       #../../config/upgrades.nix

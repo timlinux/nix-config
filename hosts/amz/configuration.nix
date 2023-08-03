@@ -6,10 +6,12 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ../../config/bootsplash.nix
-      ./hardware-configuration.nix
+    [ 
+      #console apps needs to be installed first
       ../../config/console-apps.nix
+      ../../config/bootsplash.nix
+      # Include the results of the hardware scan.
+      ./hardware-configuration.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
