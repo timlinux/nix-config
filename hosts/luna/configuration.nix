@@ -9,7 +9,7 @@
     [ 
       #console apps needs to be installed first
       ../../config/console-apps.nix
-      #../../config/bootsplash.nix
+      ../../config/bootsplash.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../config/docker.nix
@@ -33,6 +33,7 @@
       ../../config/vim.nix
       ../../config/vscode.nix
       ../../config/unstable-apps.nix
+      ../../config/yubikey.nix
     ];
 
   # Bootloader.

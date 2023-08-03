@@ -19,6 +19,7 @@
   };
   environment.systemPackages = with pkgs; [
 	pgadmin
+        pgadmin4-desktopmode
   ];
 
 }
