@@ -12,6 +12,7 @@
     blanket # creates ambient white noise for focussed working
     authenticator # Two-factor authentication code generator for GNOME
     emote # emoji picker
+    gnomeExtensions.dash-to-dock-for-cosmic
     gnomeExtensions.notes
     gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
     gnome-decoder # Scan and Generate QR Codes
