@@ -45,8 +45,8 @@
   };
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".device = "/dev/disk/by-uuid/4a1f442c-e191-4f92-8b47-b580db36e463";
-  boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-08467fd5-ce97-43b9-9a42-f0522205d407".device = "/dev/disk/by-uuid/08467fd5-ce97-43b9-9a42-f0522205d407";
+  boot.initrd.luks.devices."luks-08467fd5-ce97-43b9-9a42-f0522205d407".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "luna"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
