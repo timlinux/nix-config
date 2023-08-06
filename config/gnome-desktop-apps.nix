@@ -4,6 +4,14 @@
   # Needed for gnome boxes and virt-manager
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
+  # This and the xgg-portal below fixes focus stealing e.g. in QGIS where file dialogs
+  # appear behind the main window (I think it is this that cures it anyway)
+  xdg.portal = {
+    enable = true;
+    # wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     adapta-gtk-theme
@@ -12,6 +20,7 @@
     blanket # creates ambient white noise for focussed working
     authenticator # Two-factor authentication code generator for GNOME
     emote # emoji picker
+    xdg-desktop-portal-gtk
     gnomeExtensions.notes
     gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
     gnome-decoder # Scan and Generate QR Codes
