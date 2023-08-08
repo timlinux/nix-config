@@ -6,12 +6,12 @@
   programs.dconf.enable = true;
   # This and the xgg-portal below fixes focus stealing e.g. in QGIS where file dialogs
   # appear behind the main window (I think it is this that cures it anyway)
-  xdg.portal = {
-    enable = true;
-    # wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
+  #xdg.portal = {
+  #  enable = true;
+  #  # wlr.enable = true;
+  #  # gtk portal needed to make gtk apps happy
+  #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  #};
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     adapta-gtk-theme

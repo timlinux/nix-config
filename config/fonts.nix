@@ -12,30 +12,44 @@
   # the fonts accessible to applications. To achieve that, put 
   # these packages in the fonts.fonts NixOS options list instead. 
   # 
-  fonts.fonts = with pkgs; [
-    # bitmap
-    cooper-hewitt
-    dina-font
-    fira
-    fira-code
-    fira-code
-    fira-code-symbols
-    fira-code-symbols
-    ibm-plex
-    iosevka
-    jetbrains-mono
-    liberation_ttf
-    maple-mono-NF
-    mplus-outline-fonts.githubRelease
-    nerdfonts 
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    open-dyslexic
-    powerline-fonts
-    proggyfonts
-    spleen
-    victor-mono
-  ];
+  fonts = {
+    fonts = with pkgs; [
+      # bitmap
+      cooper-hewitt
+      dina-font
+      fira
+      fira-code
+      fira-code-symbols
+      font-awesome
+      ibm-plex
+      iosevka
+      jetbrains-mono
+      liberation_ttf
+      maple-mono-NF
+      mplus-outline-fonts.githubRelease
+      nerdfonts 
+      (nerdfonts.override { fonts = [ "Meslo" ]; })
+      noto-fonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      open-dyslexic
+      powerline-fonts
+      proggyfonts
+      source-han-sans
+      source-han-sans-japanese
+      source-han-serif-japanese
+      spleen
+      victor-mono
+    ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+	      monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
+	      serif = [ "Noto Serif" "Source Han Serif" ];
+	      sansSerif = [ "Noto Sans" "Source Han Sans" ];
+      };
+    };
+  };
 }
 
