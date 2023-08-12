@@ -25,7 +25,11 @@
 	"in vim you can do
         ":set spell spelllang=pt_pt
         "to switch to portuguese and it will automatically prompt you
-	"to donload the pt aspell files....
+	"to download the pt aspell files....
+        hi clear SpellBad
+        hi SpellBad cterm=underline
+        " Set style for gVim
+        hi SpellBad gui=undercurl
         " Enable highlight of lua, python and ruby in vimscript.
         let g:vimsyn_embed= "lPr"
 
