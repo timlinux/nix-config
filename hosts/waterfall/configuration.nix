@@ -23,6 +23,7 @@
       ../../config/console-apps.nix
       ../../config/cron-waterfall.nix
       ../../config/dir-env.nix
+      ../../config/distrobox.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
