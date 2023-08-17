@@ -19,6 +19,7 @@
     firefox
     flameshot
     gimp-with-plugins
+    gitkraken # nice UI for Git
     # Needed for gnome boxes
     qemu_kvm
     virt-manager
