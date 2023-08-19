@@ -150,4 +150,9 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
+  ###
+  ### Flatpack support
+  ### see https://flatpak.org/setup/NixOS
+  services.flatpak.enable = true;
+
 }
