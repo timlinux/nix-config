@@ -30,7 +30,7 @@
     psql = "pgcli";
     open = "xdg-open";
     ping = "gping";
-    du = "du-dust";
+    du = "dust";
     ux = "uxplay -m -reset 5 -nohold -n Waterfall -nh -p";
     ax-oculus = "scrcpy --crop 1730:974:1934:450 --max-fps 30";
     icat="kitty +kitten icat";
@@ -47,7 +47,7 @@
     cowsay # Have a cow say stuff
     comma # handy "nix-shell -p" shortcut - just do ", programmename" and it does rather "nix-shell -p programmename"
     dua # better du command
-    du-dust # another better du command
+    du-dust # another better du command - run as 'dust'
     exa # better ls command
     fd # a modern find implementation
     ffmpeg_5-full # create movies from the command line

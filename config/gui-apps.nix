@@ -24,6 +24,7 @@
     virt-manager
     gnucash
     google-chrome
+    ungoogled-chromium
     inkscape-with-extensions
     kdenlive
     keepassxc
