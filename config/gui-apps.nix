@@ -11,8 +11,10 @@
   environment.systemPackages = with pkgs; [
     adapta-kde-theme
     audacity
+    barrier # Share the same keyboard and mouse on two computers
     blender
     brave
+    copyq # Clipboard history manager with image support
     dbeaver
     deja-dup
     drawio
