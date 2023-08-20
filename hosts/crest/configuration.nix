@@ -21,7 +21,7 @@
       #../../config/cron-crest.nix
       ../../config/dir-env.nix
       ../../config/distrobox.nix
-      ../../config/docker.nix
+      #../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
       ../../config/display-server.nix
