@@ -1,33 +1,26 @@
-{ lib, makeWrapper, symlinkJoin 
-, extraPythonPackages ? (ps: [ ])
+{ lib, makeWrapper, symlinkJoin
 , libsForQt5
 }:
 with lib;
 let
-  qgis-unwrapped = libsForQt5.callPackage ./unwrapped.nix {  };
+  qgis-nopython-unwrapped = libsForQt5.callPackage ./unwrapped-nopython.nix {  };
 in symlinkJoin rec {
 
-  inherit (qgis-unwrapped) version;
+  inherit (qgis-nopython-unwrapped) version;
   name = "qgis-${version}";
 
-  paths = [ qgis-unwrapped ];
+  paths = [ qgis-nopython-unwrapped ];
 
-  nativeBuildInputs = [ makeWrapper qgis-unwrapped.py.pkgs.wrapPython ];
-
-  # extend to add to the python environment of QGIS without rebuilding QGIS application.
-  pythonInputs = qgis-unwrapped.pythonBuildInputs ++ (extraPythonPackages qgis-unwrapped.py.pkgs);
+  nativeBuildInputs = [ makeWrapper ];
 
   postBuild = ''
     # unpackPhase
 
-    buildPythonPath "$pythonInputs"
-
     wrapProgram $out/bin/qgis \
-      --prefix PATH : $program_PATH \
-      --set PYTHONPATH $program_PYTHONPATH
+      --prefix PATH : $program_PATH 
   '';
 
-  passthru.unwrapped = qgis-unwrapped;
+  passthru.unwrapped = qgis-nopython-unwrapped;
 
-  meta = qgis-unwrapped.meta;
+  inherit (qgis-nopython-unwrapped) meta;
 }

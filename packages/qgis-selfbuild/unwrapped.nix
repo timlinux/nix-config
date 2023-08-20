@@ -38,7 +38,7 @@
 , pdal
 , zstd
 , makeWrapper
-, wrapGAppsHook
+, wrapQtAppsHook
 , substituteAll
 }:
 
@@ -73,14 +73,14 @@ let
     six
   ];
 in mkDerivation rec {
-  version = "3.32.0";
+  version = "3.32.1";
   pname = "qgis-unwrapped";
 
   src = fetchFromGitHub {
     owner = "qgis";
     repo = "QGIS";
     rev = "final-${lib.replaceStrings [ "." ] [ "_" ] version}";
-    hash = "sha256-uwieYYI21dZPmmx4IefmvJpPI/XyM0eCeHsY+FTdKiM=";
+    hash = "sha256-VNC32ayKN3kiOJMAUPCy5j0wqltSLHjiKIeneFOJqH4=";
   };
 
   passthru = {
@@ -120,7 +120,7 @@ in mkDerivation rec {
     ++ lib.optional withWebKit qtwebkit
     ++ pythonBuildInputs;
 
-  nativeBuildInputs = [ makeWrapper wrapGAppsHook cmake flex bison ninja ];
+  nativeBuildInputs = [ makeWrapper wrapQtAppsHook cmake flex bison ninja ];
 
   patches = [
     (substituteAll {
@@ -131,9 +131,8 @@ in mkDerivation rec {
     ./fix-qsci.patch
   ];
 
-  #env = {
-  #  QT_QPA_PLATFORM_PLUGIN_PATH="${qt5.qtbase.bin}/lib/qt-${qt5.qtbase.version}/plugins/platforms";
-  #};
+  #QT_QPA_PLATFORM_PLUGIN_PATH="${qt5.qtbase.bin}/lib/qt-${qt5.qtbase.version}/plugins/platforms";
+  QT_QPA_PLATFORM_PLUGIN_PATH="/nix/store/9j0acz9qqp1lygwif5jncpz8hsyfmylw-qtbase-5.15.9-bin/lib/qt-5.15.9/plugins/platforms";
 
   cmakeFlags = [
     "-DWITH_3D=True"
@@ -147,15 +146,30 @@ in mkDerivation rec {
       in "-DGRASS_PREFIX${gmajor}=${grass}/grass${gmajor}${gminor}"
     );
 
-  dontWrapGApps = true; # wrapper params passed below
+  # This mimics what is happening in PixInsight.sh and adds on top the libudev0-shim, which
+  # without PixInsight crashes at startup.
+  qtWrapperArgs = [
+    #"--prefix LD_LIBRARY_PATH : ${libudev0-shim}/lib"
+    #"--set LC_ALL en_US.utf8"
+    #"--set AVAHI_COMPAT_NOWARN 1"
+    "--set QT_PLUGIN_PATH $out/opt/PixInsight/bin/lib/qt-plugins"
+    "--set QT_QPA_PLATFORM_PLUGIN_PATH $out/lib/qt-plugins/platforms"
+    "--set QT_AUTO_SCREEN_SCALE_FACTOR 0"
+    "--set QT_ENABLE_HIGHDPI_SCALING 0"
+    "--set QT_SCALE_FACTOR 1"
+    "--set QT_LOGGING_RULES '*=false'"
+    "--set QTWEBENGINEPROCESS_PATH $out/opt/PixInsight/bin/libexec/QtWebEngineProcess"
+  ];
+
+  dontWrapQtApps = true; # wrapper params passed below
 
   postFixup = lib.optionalString withGrass ''
-    # grass has to be availble on the command line even though we baked in
+    # grass has to be available on the command line even though we baked in
     # the path at build time using GRASS_PREFIX.
     # using wrapGAppsHook also prevents file dialogs from crashing the program
     # on non-NixOS
     wrapProgram $out/bin/qgis \
-      "''${gappsWrapperArgs[@]}" \
+      "''${qtWrapperArgs[@]}" \
       --prefix PATH : ${lib.makeBinPath [ grass ]}
   '';
 
