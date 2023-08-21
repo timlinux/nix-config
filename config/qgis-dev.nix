@@ -2,9 +2,9 @@
 
 {
   nixpkgs.overlays = [ (import ../packages) ];
-  # Add system wide packages
   environment.systemPackages = with pkgs; [
-    qgis-selfbuild # taken from packages folder
+    qgis # taken from packages folder
+    qgis-ltr # taken from packages folder
   ];
 }
 

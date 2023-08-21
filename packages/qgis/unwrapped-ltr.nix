@@ -150,6 +150,7 @@ in mkDerivation rec {
     wrapProgram $out/bin/qgis \
       "''${gappsWrapperArgs[@]}" \
       --prefix PATH : ${lib.makeBinPath [ grass ]}
+    ln -s qgis $out/bin/qgis-ltr
   '';
 
   meta = with lib; {

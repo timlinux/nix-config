@@ -23,8 +23,8 @@
       ../../config/console-apps.nix
       ../../config/cron-waterfall.nix
       ../../config/dir-env.nix
+      #../../config/docker.nix
       ../../config/distrobox.nix
-      ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
       ../../config/hp-scanner.nix
@@ -48,8 +48,8 @@
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
-      ../../config/qgis.nix
-      #../../config/qgis-dev.nix
+      #../../config/qgis.nix # Upstream packaged version
+      ../../config/qgis-dev.nix # My own overlay maintained in packages/qgis
       ../../config/rstudio.nix
       ../../config/scanner.nix
       ../../config/scrcpy.nix
