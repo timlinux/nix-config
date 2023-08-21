@@ -139,6 +139,7 @@ in mkDerivation rec {
     "-DWITH_PDAL=TRUE"
     "-DENABLE_TESTS=False"
     "-DWITH_SERVER=False"
+    "-DWITH_QSCIAPI=False" # Scintilla API generation currently broken - see https://github.com/NixOS/nixpkgs/issues/248239
   ] ++ lib.optional (!withWebKit) "-DWITH_QTWEBKIT=OFF"
     ++ lib.optional withGrass (let
         gmajor = lib.versions.major grass.version;
@@ -152,13 +153,13 @@ in mkDerivation rec {
     #"--prefix LD_LIBRARY_PATH : ${libudev0-shim}/lib"
     #"--set LC_ALL en_US.utf8"
     #"--set AVAHI_COMPAT_NOWARN 1"
-    "--set QT_PLUGIN_PATH $out/opt/PixInsight/bin/lib/qt-plugins"
+    #"--set QT_PLUGIN_PATH $out/opt/PixInsight/bin/lib/qt-plugins"
     "--set QT_QPA_PLATFORM_PLUGIN_PATH $out/lib/qt-plugins/platforms"
-    "--set QT_AUTO_SCREEN_SCALE_FACTOR 0"
-    "--set QT_ENABLE_HIGHDPI_SCALING 0"
-    "--set QT_SCALE_FACTOR 1"
-    "--set QT_LOGGING_RULES '*=false'"
-    "--set QTWEBENGINEPROCESS_PATH $out/opt/PixInsight/bin/libexec/QtWebEngineProcess"
+    #"--set QT_AUTO_SCREEN_SCALE_FACTOR 0"
+    #"--set QT_ENABLE_HIGHDPI_SCALING 0"
+    #"--set QT_SCALE_FACTOR 1"
+    #"--set QT_LOGGING_RULES '*=false'"
+    #"--set QTWEBENGINEPROCESS_PATH $out/opt/PixInsight/bin/libexec/QtWebEngineProcess"
   ];
 
   dontWrapQtApps = true; # wrapper params passed below
@@ -171,6 +172,7 @@ in mkDerivation rec {
     wrapProgram $out/bin/qgis \
       "''${qtWrapperArgs[@]}" \
       --prefix PATH : ${lib.makeBinPath [ grass ]}
+      ln -s qgis $out/bin/qgis-latest
   '';
 
   meta = with lib; {
