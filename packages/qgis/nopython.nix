@@ -7,7 +7,7 @@ let
 in symlinkJoin rec {
 
   inherit (qgis-nopython-unwrapped) version;
-  name = "qgis-${version}";
+  name = "qgis-nopython-${version}";
 
   paths = [ qgis-nopython-unwrapped ];
 
