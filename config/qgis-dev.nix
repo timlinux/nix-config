@@ -5,7 +5,7 @@
   environment.systemPackages = with pkgs; [
     qgis # taken from packages folder
     qgis-ltr # taken from packages folder
-    qgis-nopython # taken from packages folder
+    saga
   ];
 }
 

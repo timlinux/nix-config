@@ -25,6 +25,7 @@ in symlinkJoin rec {
     wrapProgram $out/bin/qgis \
       --prefix PATH : $program_PATH \
       --set PYTHONPATH $program_PYTHONPATH
+    ln -s qgis $out/bin/qgis-ltr
   '';
 
   passthru.unwrapped = qgis-ltr-unwrapped;
