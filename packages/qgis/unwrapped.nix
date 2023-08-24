@@ -41,6 +41,7 @@
 , qtwebkit
 , qtxmlpatterns
 , qwt
+, saga
 , sqlite
 , txt2tags
 , zstd
@@ -128,6 +129,7 @@ in mkDerivation rec {
     qtserialport
     qtxmlpatterns
     qwt
+    saga # Probably not needed for build
     sqlite
     txt2tags
     zstd
