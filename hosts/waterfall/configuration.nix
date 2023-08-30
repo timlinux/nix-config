@@ -45,6 +45,7 @@
       ../../config/nvidia.nix
       ../../config/ntfs.nix
       ../../config/obs.nix
+      #../../config/playwright.nix
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix

@@ -10,6 +10,7 @@
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     adapta-kde-theme
+    archi # CASE Modelling tool for db and system architecture design
     audacity
     barrier # Share the same keyboard and mouse on two computers
     blender
@@ -46,6 +47,7 @@
     peek
     pidgin
     qtcreator
+    schemaspy # Generate annotated schema documentation of pg and other databases
     slack
     synfigstudio
     tdesktop
