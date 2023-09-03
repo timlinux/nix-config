@@ -23,8 +23,8 @@
       ../../config/console-apps.nix
       ../../config/cron-waterfall.nix
       ../../config/dir-env.nix
-      #../../config/docker.nix
-      ../../config/distrobox.nix
+      ../../config/docker.nix
+      #../../config/distrobox.nix
       ../../config/fonts.nix
       ../../config/games.nix
       ../../config/hp-scanner.nix

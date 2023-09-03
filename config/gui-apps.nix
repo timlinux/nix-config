@@ -14,6 +14,7 @@
     audacity
     barrier # Share the same keyboard and mouse on two computers
     blender
+    bluefish # pretty basic html editing app
     brave
     copyq # Clipboard history manager with image support
     dbeaver
@@ -51,6 +52,7 @@
     slack
     synfigstudio
     tdesktop
+    thunderbirdPackages.thunderbird-115 # Email and calendar desktop app
     tmux # needed by byobu
     xournalpp
     zap #Java application for web penetration testing

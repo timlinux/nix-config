@@ -40,11 +40,11 @@
     solanum
     warp
     virt-manager
-    gnome.gnome-boxes
-    (gnome.gnome-boxes.override {
-      qemu-utils = qemu-utils.override {
-        qemu = qemu_kvm;
-      };
-    })
+    #gnome.gnome-boxes
+    #(gnome.gnome-boxes.override {
+    #  qemu-utils = qemu-utils.override {
+    #    qemu = qemu_kvm;
+    #  };
+    #})
   ];
 }
