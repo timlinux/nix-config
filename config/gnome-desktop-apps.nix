@@ -40,6 +40,7 @@
     solanum
     warp
     virt-manager
+    tuba
     #gnome.gnome-boxes
     #(gnome.gnome-boxes.override {
     #  qemu-utils = qemu-utils.override {
