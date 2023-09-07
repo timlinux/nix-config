@@ -11,6 +11,7 @@
          future
          mkdocs
          mkdocs-material
+         spyder
          # need to pip install mkdocs-with-pdf
      ]))
     ];
