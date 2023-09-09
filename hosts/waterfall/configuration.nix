@@ -153,5 +153,8 @@
   ### see https://flatpak.org/setup/NixOS
   services.flatpak.enable = true;
 
+  ###
+  ### Bleeding edge kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
 }
