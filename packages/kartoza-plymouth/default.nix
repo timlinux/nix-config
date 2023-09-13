@@ -24,7 +24,7 @@ mkdir -p $out/share/plymouth/themes/
   cp -r pack_1/flame $out/share/plymouth/themes
 cat pack_1/flame/flame.plymouth | sed  "s@\/usr\/@$out\/@" > $out/share/plymouth/themes/flame/flame.plymouth
   cp -r pack_1/kartoza $out/share/plymouth/themes
-cat pack_1/kartoza/kartoza.plymouth | sed  "s@\/usr\/@$out\/@" > $out/share/kartoza/themes/kartoza/kartoza.plymouth
+cat pack_1/kartoza/kartoza.plymouth | sed  "s@\/usr\/@$out\/@" > $out/share/plymouth/themes/kartoza/kartoza.plymouth
   '';
 }
 
