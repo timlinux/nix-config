@@ -49,6 +49,7 @@
     peek
     pidgin
     qtcreator
+    libsForQt5.qt5.qttools # qtdesigner, assistant etc.
     schemaspy # Generate annotated schema documentation of pg and other databases
     slack
     synfigstudio
