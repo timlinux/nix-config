@@ -10,7 +10,8 @@
   users.users.timlinux = {
     isNormalUser = true;
     description = "Tim Sutton";
-    extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2"  "adbusers" "scanner" "lp" ];
+    # dialout needed for arduino
+    extraGroups = [ "wheel" "disk" "libvirtd" "dialout" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2"  "adbusers" "scanner" "lp" ];
 
     packages = with pkgs; [
       hugo
