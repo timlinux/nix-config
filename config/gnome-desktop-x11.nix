@@ -24,6 +24,13 @@
     mode = "0555";
     source = ../resources/kartoza-ca-cert.crt;
   };
+  # Set the background by default to Kartoza branding
+  # Note that it will not override the setting if it already exists
+  # so only visible on new installs
+  environment.etc."kartoza-wallpaper.png" = {
+    mode = "0555";
+    source = ../resources/kartoza-wallpaper.png;
+  };
   # Set the GDM wallpaper - see https://discourse.nixos.org/t/gdm-background-image-and-theme/12632/4
   # Set the desktop wallpaper
   services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
