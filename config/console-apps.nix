@@ -22,7 +22,7 @@
   # Example of adding aliases for bash commands
   #programs.bash.shellAliases = {
   programs.fish.shellAliases = {
-    ls = "eza";
+    ls = "exa";
     cat = "bat";
     find = "fd";
     l = "ls -alh";
