@@ -13,7 +13,7 @@
   # these packages in the fonts.fonts NixOS options list instead. 
   # 
   fonts = {
-    packages = with pkgs; [
+    fonts = with pkgs; [
       # bitmap
       cooper-hewitt
       dina-font

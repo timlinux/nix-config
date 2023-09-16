@@ -24,7 +24,14 @@
     mode = "0555";
     source = ../resources/kartoza-ca-cert.crt;
   };
+  # Set the GDM wallpaper - see https://discourse.nixos.org/t/gdm-background-image-and-theme/12632/4
+  # Set the desktop wallpaper
   services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [com.ubuntu.login-screen]
+    background-repeat='no-repeat'
+    background-size='cover'
+    background-color='#777777'
+    background-picture-uri='file:///etc/kartoza-wallpaper.png'
     [org.gnome.desktop.background]
     picture-uri='file:///etc/kartoza-wallpaper.png'
     picture-uri-dark='file:///etc/kartoza-wallpaper.png'

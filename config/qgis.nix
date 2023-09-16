@@ -11,7 +11,8 @@ in
 {
 	environment.systemPackages = with pkgs; [
 		#qgis # Installed from stable
-		unstable.qgis-ltr # Installed from unstable
+		#unstable.qgis-ltr # Installed from unstable
+		unstable.qgis # Installed from unstable
                 saga
 	];
 }
