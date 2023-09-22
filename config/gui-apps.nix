@@ -48,6 +48,7 @@
     paperwork
     peek
     pidgin
+    qpwgraph # patch bay / audio wiring for pipewire
     qtcreator
     libsForQt5.qt5.qttools # qtdesigner, assistant etc.
     schemaspy # Generate annotated schema documentation of pg and other databases

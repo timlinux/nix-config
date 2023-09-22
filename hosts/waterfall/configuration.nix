@@ -27,11 +27,12 @@
       #../../config/distrobox.nix
       ../../config/fonts.nix
       ../../config/games.nix
+      ../../config/housekeeping.nix
       ../../config/hp-scanner.nix
       ../../config/display-server.nix
       #../../config/hyperland-desktop.nix
-      ../../config/gnome-desktop-x11.nix
-      #../../config/gnome-desktop-wayland.nix
+      #../../config/gnome-desktop-x11.nix
+      ../../config/gnome-desktop-wayland.nix
       #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
       #../../config/plasma-desktop.nix
@@ -72,7 +73,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
+  
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;

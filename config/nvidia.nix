@@ -12,6 +12,7 @@
   };
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "nvidia" ];
+  nixpkgs.config.nvidia.acceptLicense = true;
   hardware.nvidia = {
 
     # Modesetting is required.

@@ -59,6 +59,7 @@ let
   pythonBuildInputs = with py.pkgs; [
     chardet
     gdal
+    future
     jinja2
     numpy
     owslib
