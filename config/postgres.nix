@@ -18,8 +18,8 @@
     '';
   };
   environment.systemPackages = with pkgs; [
-	pgadmin
-        pgadmin4-desktopmode
+	#pgadmin
+        #pgadmin4-desktopmode
   ];
 
 }

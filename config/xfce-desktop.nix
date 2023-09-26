@@ -4,6 +4,12 @@
    #xfce
    services.xserver.desktopManager.xfce.enable  = true;
    services.xserver.displayManager.defaultSession  = "xfce";
+   xdg.portal = {
+    enable = true;
+    # wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   environment = {
     systemPackages = with pkgs; [

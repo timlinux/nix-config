@@ -6,6 +6,7 @@
   # Enable the hyperland compositor.
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
+  programs.hyprland.enableNvidiaPatches = true;
   # Enable a display manager (recommended).
   services.xserver.displayManager.sddm.enable = true;
   environment.variables = {
