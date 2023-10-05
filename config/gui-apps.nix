@@ -47,6 +47,7 @@
     nextcloud-client
     obs-studio
     paperwork
+    pdfarranger # handy tool to rotate, join etc pdfs. Then use xournal++ to edit
     peek
     pidgin
     qpwgraph # patch bay / audio wiring for pipewire
