@@ -12,26 +12,30 @@
       ../../config/bootsplash.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../config/avahi.nix
+      ../../config/display-server.nix
+      ../../config/dir-env.nix
       ../../config/docker.nix
       ../../config/fonts.nix
       ../../config/games.nix
-      ../../config/display-server.nix
+      ../../config/gnome-desktop-apps.nix
       ../../config/gnome-desktop-x11.nix
       ../../config/gui-apps.nix
-      ../../config/gnome-desktop-apps.nix
-      ../../config/gui-apps.nix
+      ../../config/housekeeping.nix
       ../../config/ntfs.nix
       ../../config/obs.nix
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
       ../../config/qgis.nix
+      ../../config/scanner.nix
+      ../../config/scrcpy.nix
       ../../config/ssh.nix
       ../../config/starship.nix
       ../../config/syncthing.nix
+      ../../config/unstable-apps.nix
       ../../config/vim.nix
       ../../config/vscode.nix
-      ../../config/unstable-apps.nix
     ];
 
   # Bootloader.
