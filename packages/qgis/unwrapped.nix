@@ -76,6 +76,7 @@ let
     sip
     six
     urllib3
+    pyqt5_with_qtwebkit
   ];
 in mkDerivation rec {
   version = "3.32.2";
@@ -130,12 +131,12 @@ in mkDerivation rec {
     qtserialport
     qtxmlpatterns
     qwt
+    qtwebkit
     saga # Probably not needed for build
     sqlite
     txt2tags
     zstd
   ] ++ lib.optional withGrass grass
-    ++ lib.optional withWebKit qtwebkit
     ++ pythonBuildInputs;
 
   patches = [
@@ -155,7 +156,7 @@ in mkDerivation rec {
   cmakeFlags = [
     "-DWITH_3D=True"
     "-DWITH_PDAL=TRUE"
-  ] ++ lib.optional (!withWebKit) "-DWITH_QTWEBKIT=OFF"
+    "-DWITH_QTWEBKIT=TRUE"]
     ++ lib.optional withGrass (let
         gmajor = lib.versions.major grass.version;
         gminor = lib.versions.minor grass.version;
