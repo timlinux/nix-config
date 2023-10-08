@@ -76,7 +76,9 @@ let
     sip
     six
     urllib3
-    pyqt5_with_qtwebkit
+    pyqt5_with_qtwebkit # Added by Tim for InaSAFE
+    pyqtgraph # Added by Tim for QGIS Animation workbench (should probably be standard)
+    sqlalchemy # Added by Tim for QGIS Animation workbench
   ];
 in mkDerivation rec {
   version = "3.32.2";
