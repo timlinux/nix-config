@@ -25,8 +25,8 @@
     ls = "exa";
     cat = "bat";
     find = "fd";
-    l = "eza -alh";
-    ll = "eza -l";
+    l = "exa -alh";
+    ll = "exa -l";
     psql = "pgcli";
     open = "xdg-open";
     ping = "gping";
