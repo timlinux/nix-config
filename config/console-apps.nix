@@ -22,7 +22,7 @@
   # Example of adding aliases for bash commands
   #programs.bash.shellAliases = {
   programs.fish.shellAliases = {
-    ls = "eza";
+    ls = "exa";
     cat = "bat";
     find = "fd";
     l = "eza -alh";
@@ -48,7 +48,7 @@
     comma # handy "nix-shell -p" shortcut - just do ", programmename" and it does rather "nix-shell -p programmename"
     dua # better du command
     du-dust # another better du command - run as 'dust'
-    eza # better ls command
+    exa # better ls command
     fd # a modern find implementation
     ffmpeg_5-full # create movies from the command line
     figlet # make text banners for your console

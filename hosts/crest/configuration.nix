@@ -42,8 +42,8 @@
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
-      ../../config/qgis.nix
-      #../../config/qgis-dev.nix
+      #../../config/qgis.nix # Upstream packaged version
+      ../../config/qgis-dev.nix # My own overlay maintained in packages/qgis
       ../../config/ssh.nix
       ../../config/starship.nix
       ../../config/syncthing.nix
