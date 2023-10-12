@@ -26,6 +26,7 @@
       ../../config/docker.nix
       #../../config/distrobox.nix
       ../../config/fonts.nix
+      ../../config/fwupd.nix
       ../../config/games.nix
       ../../config/housekeeping.nix
       ../../config/hp-scanner.nix

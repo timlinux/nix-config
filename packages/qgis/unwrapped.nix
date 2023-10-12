@@ -63,6 +63,8 @@ let
     jinja2
     numpy
     owslib
+    pandas
+    plotly
     psycopg2
     pygments
     pyqt-builder
@@ -148,6 +150,7 @@ in mkDerivation rec {
       pyQt5PackageDir = "${py.pkgs.pyqt5}/${py.pkgs.python.sitePackages}";
       qsciPackageDir = "${py.pkgs.qscintilla-qt5}/${py.pkgs.python.sitePackages}";
     })
+    ./exiv2-0.28.patch
   ];
 
   # Add path to Qt platform plugins
@@ -159,6 +162,8 @@ in mkDerivation rec {
   cmakeFlags = [
     "-DWITH_3D=True"
     "-DWITH_PDAL=TRUE"
+    "-DENABLE_TESTS=FALSE"
+    "-DWITH_SERVER=FALSE"
     "-DWITH_QTWEBKIT=TRUE"]
     ++ lib.optional withGrass (let
         gmajor = lib.versions.major grass.version;

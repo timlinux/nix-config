@@ -22,6 +22,7 @@
       ../../config/dir-env.nix
       ../../config/distrobox.nix
       #../../config/docker.nix
+      ../../config/fwupd.nix
       ../../config/fonts.nix
       ../../config/games.nix
       ../../config/display-server.nix
