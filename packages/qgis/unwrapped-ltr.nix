@@ -131,9 +131,12 @@ in mkDerivation rec {
   ];
 
   cmakeFlags = [
+    "-DCMAKE_BUILD_TYPE=Release"
     "-DWITH_3D=True"
     "-DWITH_PDAL=TRUE"
-  ] ++ lib.optional (!withWebKit) "-DWITH_QTWEBKIT=OFF"
+    "-DENABLE_TESTS=FALSE"
+    "-DWITH_SERVER=FALSE"
+    "-DWITH_QTWEBKIT=TRUE"]
     ++ lib.optional withGrass (let
         gmajor = lib.versions.major grass.version;
         gminor = lib.versions.minor grass.version;

@@ -160,6 +160,7 @@ in mkDerivation rec {
   '';
 
   cmakeFlags = [
+    "-DCMAKE_BUILD_TYPE=Release"
     "-DWITH_3D=True"
     "-DWITH_PDAL=TRUE"
     "-DENABLE_TESTS=FALSE"
