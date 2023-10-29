@@ -1,5 +1,6 @@
 { lib
 , fetchFromGitHub
+, fetchpatch
 , makeWrapper
 , mkDerivation
 , substituteAll
@@ -7,10 +8,11 @@
 , wrapQtAppsHook
 
 , withGrass ? true
-, withWebKit ? false
+, withWebKit ? true
 
 , bison
 , cmake
+, draco
 , exiv2
 , fcgi
 , flex
@@ -58,8 +60,8 @@ let
 
   pythonBuildInputs = with py.pkgs; [
     chardet
-    gdal
     future
+    gdal
     jinja2
     numpy
     owslib
@@ -67,8 +69,10 @@ let
     plotly
     psycopg2
     pygments
-    pyqt-builder
     pyqt5
+    pyqt5_with_qtwebkit # Added by Tim for InaSAFE
+    pyqt-builder
+    pyqtgraph # Added by Tim for QGIS Animation workbench (should probably be standard)
     python-dateutil
     pytz
     pyyaml
@@ -77,20 +81,18 @@ let
     setuptools
     sip
     six
-    urllib3
-    pyqt5_with_qtwebkit # Added by Tim for InaSAFE
-    pyqtgraph # Added by Tim for QGIS Animation workbench (should probably be standard)
     sqlalchemy # Added by Tim for QGIS Animation workbench
+    urllib3
   ];
 in mkDerivation rec {
-  version = "3.32.3";
+  version = "3.34.0";
   pname = "qgis-unwrapped";
 
   src = fetchFromGitHub {
     owner = "qgis";
     repo = "QGIS";
     rev = "final-${lib.replaceStrings [ "." ] [ "_" ] version}";
-    hash = "sha256-ge5ne22sDLKbrJk2vYQxpu3iRXSoOk9924c/RdtD3Nc=";
+    hash = "sha256-+Yzp8kfd7cfxTwsrxRo+6uS+2Aj4HfKA2E8hSf7htsU=";
     #hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
   };
 
@@ -111,6 +113,7 @@ in mkDerivation rec {
   ];
 
   buildInputs = [
+    draco
     exiv2
     fcgi
     geos
@@ -134,14 +137,15 @@ in mkDerivation rec {
     qtmultimedia
     qtsensors
     qtserialport
+    qtwebkit
     qtxmlpatterns
     qwt
-    qtwebkit
     saga # Probably not needed for build
     sqlite
     txt2tags
     zstd
   ] ++ lib.optional withGrass grass
+    ++ lib.optional withWebKit qtwebkit
     ++ pythonBuildInputs;
 
   patches = [
@@ -150,7 +154,11 @@ in mkDerivation rec {
       pyQt5PackageDir = "${py.pkgs.pyqt5}/${py.pkgs.python.sitePackages}";
       qsciPackageDir = "${py.pkgs.qscintilla-qt5}/${py.pkgs.python.sitePackages}";
     })
-    ./exiv2-0.28.patch
+    #(fetchpatch {
+    #  name = "exiv2-0.28.patch";
+    #  url = "https://github.com/qgis/QGIS/commit/32f5418fc4f7bb2ee986dee1824ff2989c113a94.patch";
+    #  hash = "sha256-zWyf+kLro4ZyUJLX/nDjY0nLneTaI1DxHvRsvwoWq14=";
+    #})
   ];
 
   # Add path to Qt platform plugins
@@ -165,7 +173,7 @@ in mkDerivation rec {
     "-DWITH_PDAL=TRUE"
     "-DENABLE_TESTS=FALSE"
     "-DWITH_SERVER=FALSE"
-    "-DWITH_QTWEBKIT=TRUE"]
+  ] ++ lib.optional (!withWebKit) "-DWITH_QTWEBKIT=OFF"
     ++ lib.optional withGrass (let
         gmajor = lib.versions.major grass.version;
         gminor = lib.versions.minor grass.version;
