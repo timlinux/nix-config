@@ -52,6 +52,7 @@
       ../../config/printing.nix
       ../../config/python.nix
       #../../config/qgis.nix # Upstream packaged version
+      ../../config/qtcreator.nix
       ../../config/qgis-dev.nix # My own overlay maintained in packages/qgis
       ../../config/rstudio.nix
       ../../config/scanner.nix

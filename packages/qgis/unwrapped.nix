@@ -60,9 +60,11 @@ let
 
   pythonBuildInputs = with py.pkgs; [
     chardet
+    debugpy
     future
     gdal
     jinja2
+    matplotlib
     numpy
     owslib
     pandas
