@@ -4,9 +4,11 @@
   nixpkgs.overlays = [ (import ../packages) ];
   environment.systemPackages = with pkgs; [
     # taken from packages folder
-    qgis
+    #qgis
     # taken from packages folder
-    qgis-ltr
+    #qgis-ltr
+    # taken from packages folder
+    qgis-master
     saga
   ];
 }
