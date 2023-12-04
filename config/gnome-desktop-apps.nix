@@ -21,14 +21,14 @@
     authenticator # Two-factor authentication code generator for GNOME
     emote # emoji picker
     xdg-desktop-portal-gtk
-    gnomeExtensions.notes
     gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
     gnome-decoder # Scan and Generate QR Codes
     newsflash # rss feed reader
     gnome.gnome-power-manager # run as gnome-power-statistics on CLI - gives charts of battery performance
     gpick
     junction # Lets you choose which browser to use to open links
-    citations # Manage your bibliographies using the BibTeX format
+    # broken in 23.11 upgrade
+    #citations # Manage your bibliographies using the BibTeX format
     emblem
     gnome.gnome-tweaks
     gnome.gnome-sound-recorder

@@ -26,8 +26,9 @@
       ../../config/fonts.nix
       ../../config/games.nix
       ../../config/display-server.nix
-      ../../config/gnome-desktop-x11.nix
-      ../../config/gnome-desktop-apps.nix
+      ../../config/gnome-desktop-wayland.nix
+      #../../config/gnome-desktop-x11.nix
+      #../../config/gnome-desktop-apps.nix
       #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
       #../../config/plasma-desktop.nix
@@ -35,7 +36,8 @@
       #../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
       ../../config/iphone.nix
-      ../../config/locale-pt-en.nix
+      #../../config/locale-pt-en.nix
+      ../../config/locale-za-en.nix
       # Dont enable when using wayland - causes screen flickr
       #../../config/nvidia.nix
       ../../config/ntfs.nix
@@ -44,7 +46,7 @@
       ../../config/printing.nix
       ../../config/python.nix
       ../../config/qtcreator.nix
-      ../../config/qgis.nix # Upstream packaged version
+      #../../config/qgis.nix # Upstream packaged version
       ../../config/qgis-dev.nix # My own overlay maintained in packages/qgis
       ../../config/rstudio.nix
       ../../config/ssh.nix

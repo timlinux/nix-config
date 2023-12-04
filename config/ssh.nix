@@ -17,8 +17,8 @@
       AuthenticationMethods publickey
     '';
     authorizedKeysFiles = ["~/.ssh/authorized_keys"];
-    passwordAuthentication = false; # originally true
-    permitRootLogin = "no";
+    settings.PermitRootLogin = "no";
+    settings.PasswordAuthentication = false; # originally true
     #challengeResponseAuthentication = false;
   };
 }
