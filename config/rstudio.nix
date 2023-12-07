@@ -1,3 +1,16 @@
+#
+#
+# NOTE:
+#
+# See the github.com/kartoza/sawps project
+# where I created a nix-shell that set up R with
+# custom libs like tidyverse. Better to use that 
+# approach rather than installing system wide.
+#
+#
+#
+#
+
 # Following derived from https://github.com/rikhuijzer/build-image/blob/master/default.nix
 # And https://nixos.wiki/wiki/R
 { pkgs, ... }:

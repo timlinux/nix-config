@@ -48,7 +48,7 @@
       ../../config/qtcreator.nix
       #../../config/qgis.nix # Upstream packaged version
       ../../config/qgis-dev.nix # My own overlay maintained in packages/qgis
-      ../../config/rstudio.nix
+      #../../config/rstudio.nix
       ../../config/ssh.nix
       ../../config/starship.nix
       ../../config/syncthing.nix
