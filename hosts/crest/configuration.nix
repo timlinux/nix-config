@@ -28,7 +28,7 @@
       ../../config/display-server.nix
       ../../config/gnome-desktop-wayland.nix
       #../../config/gnome-desktop-x11.nix
-      #../../config/gnome-desktop-apps.nix
+      ../../config/gnome-desktop-apps.nix
       #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
       #../../config/plasma-desktop.nix
