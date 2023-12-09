@@ -8,6 +8,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     unstable.vscode
+    docker-compose
   ];
 }
 
