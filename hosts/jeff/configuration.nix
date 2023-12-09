@@ -12,7 +12,7 @@
       ../../config/console-apps.nix
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../config/bootsplash.nix
+      #../../config/bootsplash.nix
       #../../config/android-sdk.nix
       #../../config/upgrades.nix
       #../../config/arduino.nix
@@ -21,26 +21,27 @@
       #../../config/cron-crest.nix
       ../../config/dir-env.nix
       #../../config/distrobox.nix
-      #../../config/docker.nix
+      ../../config/docker.nix
       ../../config/fwupd.nix
       ../../config/fonts.nix
-      #../../config/games.nix
+      ../../config/games.nix
       ../../config/display-server.nix
       #../../config/gnome-desktop-wayland.nix
       ../../config/gnome-desktop-x11.nix
       ../../config/gnome-desktop-apps.nix
+      ../../config/gnome-browser-connector.nix
       #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
       #../../config/plasma-desktop.nix
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
-      ##../../config/iphone.nix
+      #../../config/iphone.nix
       #../../config/locale-pt-en.nix
       ../../config/locale-ke-en.nix
       # Dont enable when using wayland - causes screen flickr
       #../../config/nvidia.nix
-      ../../config/ntfs.nix
+      #../../config/ntfs.nix
       ../../config/obs.nix
       ../../config/postgres.nix
       ../../config/printing.nix
@@ -65,7 +66,7 @@
 
   # Bootloader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/vda";
+  boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
   # boot.loader.systemd-boot.enable = true;
   # boot.loader.efi.canTouchEfiVariables = true;
@@ -78,7 +79,7 @@
   #boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".device = "/dev/disk/by-uuid/cda39835-d2a7-42f1-9729-8a84a4a8ae60";
   #boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".keyFile = "/crypto_keyfile.bin";
 
-  networking.hostName = "jeff"; # Define your hostname.
+  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -89,6 +90,7 @@
   networking.networkmanager.enable = true;
 
   # Enable the X11 windowing system.
+  services.xserver.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
