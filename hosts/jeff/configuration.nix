@@ -36,6 +36,7 @@
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
+      ../../config/kdeconnect.nix
       #../../config/iphone.nix
       #../../config/locale-pt-en.nix
       ../../config/locale-ke-en.nix
@@ -46,6 +47,7 @@
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
+      ../../config/pycharm-community.nix
       ../../config/qtcreator.nix
       ../../config/qgis.nix # Upstream packaged version
       #../../config/qgis-dev.nix # My own overlay maintained in packages/qgis
@@ -142,6 +144,16 @@
   ### Flatpack support
   ### see https://flatpak.org/setup/NixOS
   services.flatpak.enable = true;
+
+  networking.firewall = { 
+    enable = true;
+    allowedTCPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];  
+    allowedUDPPortRanges = [ 
+      { from = 1714; to = 1764; } # KDE Connect
+    ];  
+  };
 
 
 }
