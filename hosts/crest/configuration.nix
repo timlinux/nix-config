@@ -17,15 +17,15 @@
       #../../config/upgrades.nix
       ../../config/arduino.nix
       ../../config/biometrics.nix
-      ../../config/ccache.nix
+      #../../config/ccache.nix
       #../../config/cron-crest.nix
       ../../config/dir-env.nix
-      ../../config/distrobox.nix
+      #../../config/distrobox.nix
       #../../config/docker.nix
       ../../config/fwupd.nix
       ../../config/fonts.nix
       ../../config/games.nix
-      ../../config/display-server.nix
+      #../../config/display-server.nix
       ../../config/gnome-desktop-wayland.nix
       #../../config/gnome-desktop-x11.nix
       ../../config/gnome-desktop-apps.nix
@@ -42,22 +42,24 @@
       #../../config/nvidia.nix
       ../../config/ntfs.nix
       ../../config/obs.nix
-      ../../config/postgres.nix
+      #../../config/postgres.nix
       ../../config/printing.nix
-      ../../config/python.nix
-      ../../config/qtcreator.nix
+      ../../config/printing.nix
+      #../../config/python.nix
+      #../../config/qtcreator.nix
       #../../config/qgis.nix # Upstream packaged version
       ../../config/qgis-dev.nix # My own overlay maintained in packages/qgis
       #../../config/rstudio.nix
       ../../config/ssh.nix
       ../../config/starship.nix
+      ../../config/steam.nix
       ../../config/syncthing.nix
       #../../config/tailscale.nix
       ../../config/uxplay.nix
       ../../config/vim.nix
       #../../config/yubikey.nix #using biometrics rather
       ../../config/vscode.nix
-      ../../config/wacom.nix
+      #../../config/wacom.nix
       ../../config/unstable-apps.nix
       ../../users/all.nix
       ../../users/tim.nix
