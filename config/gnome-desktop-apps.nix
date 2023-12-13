@@ -21,7 +21,9 @@
     authenticator # Two-factor authentication code generator for GNOME
     emote # emoji picker
     xdg-desktop-portal-gtk
-    gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
+    # Currently not working
+    #gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
+    drawing # gnome native drawing app
     gnome-decoder # Scan and Generate QR Codes
     newsflash # rss feed reader
     gnome.gnome-power-manager # run as gnome-power-statistics on CLI - gives charts of battery performance

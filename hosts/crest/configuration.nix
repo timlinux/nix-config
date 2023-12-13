@@ -25,7 +25,7 @@
       ../../config/fwupd.nix
       ../../config/fonts.nix
       ../../config/games.nix
-      #../../config/display-server.nix
+      ../../config/display-server.nix
       ../../config/gnome-desktop-wayland.nix
       #../../config/gnome-desktop-x11.nix
       ../../config/gnome-desktop-apps.nix
@@ -38,6 +38,7 @@
       ../../config/iphone.nix
       #../../config/locale-pt-en.nix
       ../../config/locale-za-en.nix
+      ../../config/localsend.nix
       # Dont enable when using wayland - causes screen flickr
       #../../config/nvidia.nix
       ../../config/ntfs.nix

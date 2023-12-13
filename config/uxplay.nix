@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 # Config courtesy of https://github.com/TechsupportOnHold/uxplay/blob/main/uxplay.nix
+let
+  # For packages pinned to a specific version
+  pinnedHash = "c2786e7084cbad90b4f9472d5b5e35ecb57958af"; 
+  pinnedPkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/${pinnedHash}.tar.gz") { };
+in 
 {
   # Note:
   # 
@@ -9,8 +14,7 @@
   # We make an alias below for convenient launching
 
   programs.fish.shellAliases = {
-    ux = "uxplay -m -reset 5 -nohold -n Waterfall -nh -p";
-    ax-oculus = "scrcpy --crop 1730:974:1934:450 --max-fps 30";
+    ux = "uxplay -m -reset 5 -nohold -n Nixos -nh -p";
   };
   environment.systemPackages = with pkgs; [
     uxplay
