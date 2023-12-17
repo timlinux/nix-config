@@ -14,8 +14,8 @@
     extraGroups = [ "wheel" "disk" "libvirtd" "dialout" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2"  "adbusers" "scanner" "lp" ];
 
     packages = with pkgs; [
-      hugo
       popcorntime
+      freetube
     ];
   };
 }
