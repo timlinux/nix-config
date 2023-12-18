@@ -36,8 +36,8 @@
       #../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
       ../../config/iphone.nix
-      #../../config/locale-pt-en.nix
-      ../../config/locale-za-en.nix
+      ../../config/locale-pt-en.nix
+      #../../config/locale-za-en.nix
       ../../config/localsend.nix
       # Dont enable when using wayland - causes screen flickr
       #../../config/nvidia.nix
