@@ -11,7 +11,7 @@
     isNormalUser = true;
     description = "Tim Sutton";
     # dialout needed for arduino
-    extraGroups = [ "wheel" "disk" "libvirtd" "dialout" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2"  "adbusers" "scanner" "lp" ];
+    extraGroups = [ "wheel" "disk" "libvirtd" "dialout" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2"  "adbusers" "scanner" "lp" "i2c];
 
     packages = with pkgs; [
       popcorntime
