@@ -17,6 +17,7 @@
       ../../config/blocky.nix # Ad blocker
       #../../config/upgrades.nix
       ../../config/arduino.nix
+      ../../config/avahi.nix
       ../../config/biometrics.nix
       #../../config/ccache.nix
       #../../config/cron-crest.nix
