@@ -16,7 +16,8 @@
       #../../config/android-sdk.nix
       ../../config/blocky.nix # Ad blocker
       #../../config/upgrades.nix
-      ../../config/arduino.nix
+      # Use direnv in arduino dev folder rather
+      #../../config/arduino.nix
       ../../config/avahi.nix
       ../../config/biometrics.nix
       #../../config/ccache.nix
