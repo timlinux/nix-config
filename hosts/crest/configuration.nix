@@ -14,7 +14,7 @@
       ./hardware-configuration.nix
       ../../config/bootsplash.nix
       #../../config/android-sdk.nix
-      ../../config/blocky.nix # Ad blocker
+      #../../config/blocky.nix # Ad blocker
       #../../config/upgrades.nix
       # Use direnv in arduino dev folder rather
       #../../config/arduino.nix
@@ -23,7 +23,7 @@
       #../../config/ccache.nix
       #../../config/cron-crest.nix
       ../../config/dir-env.nix
-      #../../config/distrobox.nix
+      ../../config/distrobox.nix
       #../../config/docker.nix
       ../../config/fwupd.nix
       ../../config/fonts.nix
@@ -52,7 +52,8 @@
       #../../config/python.nix
       #../../config/qtcreator.nix
       #../../config/qgis.nix # Upstream packaged version
-      ../../config/qgis-dev.nix # My own overlay maintained in packages/qgis
+      ../../config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
+      ../../config/tilemaker.nix 
       #../../config/rstudio.nix
       ../../config/screen-control.nix
       ../../config/ssh.nix
