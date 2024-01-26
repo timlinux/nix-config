@@ -16,6 +16,7 @@
     packages = with pkgs; [
       popcorntime
       freetube
+      tailscale
     ];
   };
 }
