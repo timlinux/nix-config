@@ -23,8 +23,8 @@
       #../../config/ccache.nix
       #../../config/cron-crest.nix
       ../../config/dir-env.nix
-      ../../config/distrobox.nix
-      #../../config/docker.nix
+      #../../config/distrobox.nix
+      ../../config/docker.nix
       ../../config/fwupd.nix
       ../../config/fonts.nix
       ../../config/games.nix
@@ -60,7 +60,7 @@
       ../../config/starship.nix
       ../../config/steam.nix
       ../../config/syncthing.nix
-      #../../config/tailscale.nix
+      ../../config/tailscale.nix
       ../../config/uxplay.nix
       ../../config/vim.nix
       #../../config/yubikey.nix #using biometrics rather
