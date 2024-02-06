@@ -7,5 +7,6 @@ self: super:
   #qgis = super.callPackage ./qgis { };
   # This will build the master version
   qgis-master = super.callPackage ./qgis/master.nix { };
+  tilemaker = super.callPackage ./tilemaker/default.nix { };
 }
 
