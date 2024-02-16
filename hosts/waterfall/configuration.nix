@@ -51,6 +51,7 @@
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
+      ../../config/quickemu.nix # Run VMS easily
       #../../config/qgis.nix # Upstream packaged version
       ../../config/qtcreator.nix
       ../../config/qgis-dev.nix # My own overlay maintained in packages/qgis

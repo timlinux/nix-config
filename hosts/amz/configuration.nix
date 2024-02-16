@@ -28,6 +28,7 @@
       ../../config/printing.nix
       ../../config/python.nix
       #../../config/qgis.nix
+      ../../config/quickemu.nix # Run VMS easily
       ../../config/qgis-dev.nix
       ../../config/scanner.nix
       ../../config/scrcpy.nix
@@ -155,7 +156,7 @@
 
 
   services.openvpn.servers = {
-    command = { config = "config /home/amz/.openvpn/command.conf"; };
+    command = { config = "config /home/amz/.openvpn/command/amy_orange.ovpn"; };
   };
 
 }

@@ -24,6 +24,7 @@
       ../../config/obs.nix
       ../../config/postgres.nix
       ../../config/printing.nix
+      ../../config/quickemu.nix # Run VMS easily
       ../../config/python.nix
       ../../config/qgis.nix
       ../../config/rstudio.nix

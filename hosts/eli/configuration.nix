@@ -25,6 +25,7 @@
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
+      ../../config/quickemu.nix # Run VMS easily
       ../../config/qgis.nix
       ../../config/ssh.nix
       ../../config/starship.nix

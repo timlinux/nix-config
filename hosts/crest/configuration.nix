@@ -52,6 +52,7 @@
       #../../config/python.nix
       #../../config/qtcreator.nix
       #../../config/qgis.nix # Upstream packaged version
+      ../../config/quickemu.nix # Run VMS easily
       ../../config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
       ../../config/tilemaker.nix 
       #../../config/rstudio.nix
