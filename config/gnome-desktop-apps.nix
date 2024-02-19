@@ -23,8 +23,8 @@
     xdg-desktop-portal-gtk
     # Currently not working
     #gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
-    legacyPackages.x86_64-linux.gtop # needed for below
-    gnomeExtensions.tophat # Nice system monitor applet
+    #legacyPackages.x86_64-linux.gtop # needed for below
+    #gnomeExtensions.tophat # Nice system monitor applet
     drawing # gnome native drawing app
     gnome-decoder # Scan and Generate QR Codes
     newsflash # rss feed reader
