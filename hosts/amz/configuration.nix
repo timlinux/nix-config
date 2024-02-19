@@ -162,7 +162,7 @@
   # To enter your password
   # systemd-tty-ask-password-agent
   # To stop the vpn
-  # systemctl start openvpn-vpn.service
+  # systemctl stop openvpn-vpn.service
   
   services.openvpn.servers.vpn = {
     config = "config /home/amz/.openvpn/command/amy_orange.ovpn";
