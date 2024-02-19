@@ -169,6 +169,6 @@
     autoStart = false;
     authUserPass.password = ;
     authUserPass.username = "map_amy";
-    updateResolvConf = true;
+    updateResolvConf = false;
   };
 }
