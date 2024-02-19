@@ -154,12 +154,21 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
+  ## OpenVPN Configs
 
+  # All of the following should be run as root
+  # To start the VPN do:
+  # systemctl start openvpn-vpn.service
+  # To enter your password
+  # systemd-tty-ask-password-agent
+  # To stop the vpn
+  # systemctl start openvpn-vpn.service
+  
   services.openvpn.servers.vpn = {
     config = "config /home/amz/.openvpn/command/amy_orange.ovpn";
     autoStart = false;
-    authUserPass.password = *****;
-    authUserPass.username = *****;
+    authUserPass.password = ;
+    authUserPass.username = "map_amy";
     updateResolvConf = true;
   };
 }
