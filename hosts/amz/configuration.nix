@@ -27,9 +27,9 @@
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
-      #../../config/qgis.nix
+      ../../config/qgis.nix
       ../../config/quickemu.nix # Run VMS easily
-      ../../config/qgis-dev.nix
+      #../../config/qgis-dev.nix
       ../../config/scanner.nix
       ../../config/scrcpy.nix
       ../../config/ssh.nix
