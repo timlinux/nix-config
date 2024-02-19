@@ -155,8 +155,11 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
 
-  services.openvpn.servers = {
-    command = { config = "config /home/amz/.openvpn/command/amy_orange.ovpn"; };
+  services.openvpn.servers.vpn = {
+    config = "config /home/amz/.openvpn/command/amy_orange.ovpn";
+    autoStart = false;
+    authUserPass.password = *****;
+    authUserPass.username = *****;
+    updateResolvConf = true;
   };
-
 }
