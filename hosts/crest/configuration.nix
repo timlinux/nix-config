@@ -70,6 +70,7 @@
       ../../config/vscode.nix
       #../../config/wacom.nix
       ../../config/unstable-apps.nix
+      ../../config/zfs.nix
       ../../users/all.nix
       ../../users/tim.nix
     ];
@@ -96,8 +97,8 @@
   #};
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".device = "/dev/disk/by-uuid/cda39835-d2a7-42f1-9729-8a84a4a8ae60";
-  boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".keyFile = "/crypto_keyfile.bin";
+  #boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".device = "/dev/disk/by-uuid/cda39835-d2a7-42f1-9729-8a84a4a8ae60";
+  #boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "crest"; # Define your hostname.
   networking.hostId = "d13e0d41"; # needed for zfs
@@ -133,7 +134,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    pv # Needed for zfs backups
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
