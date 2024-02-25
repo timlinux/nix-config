@@ -6,6 +6,8 @@
 
 {
   nixpkgs.config.allowUnfree = true;
+
+  services.zfs.autoScrub.enable = true;
   imports =
     [ 
       # this needs to be first
@@ -53,8 +55,8 @@
       #../../config/qtcreator.nix
       #../../config/qgis.nix # Upstream packaged version
       ../../config/quickemu.nix # Run VMS easily
-      ../../config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
-      ../../config/tilemaker.nix 
+      #../../config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
+      #../../config/tilemaker.nix 
       #../../config/rstudio.nix
       ../../config/screen-control.nix
       ../../config/ssh.nix
@@ -73,20 +75,32 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid
+  # for notes on how I set up zfs
+  boot.loader.grub.enable = true;
+  boot.loader.grub.devices = [ "nodev" ];
+  boot.loader.grub.efiInstallAsRemovable = true;
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.useOSProber = true;
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.requestEncryptionCredentials = true;
+
   
   # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  #boot.initrd.secrets = {
+  #  "/crypto_keyfile.bin" = null;
+  #};
 
   # Enable swap on luks
   boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".device = "/dev/disk/by-uuid/cda39835-d2a7-42f1-9729-8a84a4a8ae60";
   boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "crest"; # Define your hostname.
+  networking.hostId = "d13e0d41"; # needed for zfs
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -119,6 +133,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    pv # Needed for zfs backups
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
