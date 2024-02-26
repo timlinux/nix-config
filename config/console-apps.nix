@@ -22,11 +22,11 @@
   # Example of adding aliases for bash commands
   #programs.bash.shellAliases = {
   programs.fish.shellAliases = {
-    ls = "eza";
+    ls = "eza --icons=always";
     cat = "bat";
     find = "fd";
-    l = "exa -alh";
-    ll = "exa -l";
+    l = "eza -alh --icons=always";
+    ll = "eza -l --icons=always";
     psql = "pgcli";
     open = "xdg-open";
     ping = "gping";

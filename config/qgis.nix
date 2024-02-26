@@ -19,6 +19,7 @@ in
 		#unstable.qgis-ltr # Installed from unstable
 		unstable.qgis # Installed from unstable
                 python311Packages.pyqt5_with_qtwebkit
+		libsForQt5.qt5.qtwebkit
                 saga
 	];
 }
