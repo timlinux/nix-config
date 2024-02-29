@@ -62,6 +62,7 @@
     lazygit # git cli UI
     lftp # for remote backups
     mc # console file manager
+    mdcat # render markdown in your shell
     ranger # console file manager
     ncdu # understand disk usage. Use dua rather, it is much faster
     neofetch # show stats of your system in terminal
