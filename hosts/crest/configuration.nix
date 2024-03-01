@@ -15,6 +15,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../config/bootsplash.nix
+      ../../config/appimage.nix
       #../../config/android-sdk.nix
       #../../config/blocky.nix # Ad blocker
       #../../config/upgrades.nix
@@ -64,12 +65,14 @@
       ../../config/steam.nix
       ../../config/syncthing.nix
       ../../config/tailscale.nix
+      ../../config/trezor.nix
       ../../config/uxplay.nix
       ../../config/vim.nix
       #../../config/yubikey.nix #using biometrics rather
       ../../config/vscode.nix
       #../../config/wacom.nix
       ../../config/unstable-apps.nix
+      ../../config/wine.nix
       ../../config/zfs.nix
       ../../users/all.nix
       ../../users/tim.nix
@@ -165,7 +168,7 @@
   services.flatpak.enable = true;
   ###
   ### Bleeding edge kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
 
 }
