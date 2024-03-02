@@ -32,9 +32,10 @@
       ../../config/fonts.nix
       ../../config/games.nix
       ../../config/display-server.nix
-      ../../config/gnome-desktop-wayland.nix
+      ../../config/kde-plasma6.nix
+      #../../config/gnome-desktop-wayland.nix
+      #../../config/gnome-desktop-apps.nix
       #../../config/gnome-desktop-x11.nix
-      ../../config/gnome-desktop-apps.nix
       #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
       #../../config/plasma-desktop.nix
