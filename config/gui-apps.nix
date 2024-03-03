@@ -17,7 +17,6 @@
     bluefish # pretty basic html editing app
     brave
     copyq # Clipboard history manager with image support
-    cloudcompare # lidar data workbench - note run CloudCompare (case sensitive) to start it,
     dbeaver
     deja-dup
     drawio

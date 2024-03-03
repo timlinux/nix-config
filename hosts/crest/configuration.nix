@@ -163,6 +163,8 @@
   ### See https://nixos.wiki/wiki/Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   ###
   ### Flatpack support
   ### see https://flatpak.org/setup/NixOS

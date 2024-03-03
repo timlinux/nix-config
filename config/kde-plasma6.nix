@@ -1,22 +1,10 @@
-# Install QGIS from the unstable channel
-# See https://discourse.nixos.org/t/installing-only-a-single-package-from-unstable/5598/4
- 
-##
-## For hints on how to set up python deps with QGIS
-## see the rstudio config
-##
-
+# Install kde plasma - currently you need to be on unstable to do it
+# See https://discourse.nixos.org/t/enable-plasma-6/40541
 { config, pkgs, ... }:
-let
-	unstable = import
-		(builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable)
-		# reuse the current configuration
-		{ config = config.nixpkgs.config; };
-in
 {
-        services.xserver.desktopManager.plasma6.enable = true;
-        services.xserver.displayManagers.sddm.wayland.enable = true;
-	environment.systemPackages = with pkgs; [
-	];
+    services.xserver.desktopManager.plasma6.enable = true;
+    services.xserver.displayManager.sddm.wayland.enable = true;
+    environment.systemPackages = with pkgs; [
+    ];
 }
 
