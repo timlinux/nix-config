@@ -23,6 +23,13 @@
     xdg-desktop-portal-gtk
     # Currently not working
     #gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
+    # As work around you can follow the notes here to manually install: 
+    # For GNOME 45+ users:
+    # 1) In the terminal: git clone https://github.com/zhrexl/DrawOnYourScreen2 ~/.local/share/gnome-shell/extensions/draw-on-your-screen2@zhrexl.github.com
+    # 2) restart gnome-shell: Xorg -> press Alt+F2 and r , Wayland: restart or re-login
+    # 3) Enable the extension with GNOME Extensions or GNOME Tweaks application
+    # 4) Press Super+Alt+D to test
+    # From commentor Mohsen at https://extensions.gnome.org/extension/1683/draw-on-you-screen/
     #legacyPackages.x86_64-linux.gtop # needed for below
     #gnomeExtensions.tophat # Nice system monitor applet
     drawing # gnome native drawing app
