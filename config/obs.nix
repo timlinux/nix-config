@@ -9,7 +9,7 @@
         obs-backgroundremoval # OBS plugin to replace the background in portrait images and video
         obs-3d-effect # create 3d effects for transitions
         waveform # show waveform of audio
-        obs-cli # control obs from cli
+        #obs-cli # control obs from cli
         droidcam-obs # use droidcam app on your phone to let it work as a camera. Also can remote control OBS
         obs-pipewire-audio-capture 
         input-overlay # show your keyboard and mouse on screen
