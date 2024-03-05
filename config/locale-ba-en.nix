@@ -2,7 +2,7 @@
 {
   # Configure keymap in X11
   services.xserver = {
-    layout = "pt";
+    layout = "ba";
     xkbVariant = "";
   };
 
@@ -12,20 +12,19 @@
   # Set your time zone.
   time.timeZone = "Europe/Sarajevo";
 
-  # This will set the UI language for Gnome
+  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Select internationalisation properties.
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "ba.UTF-8";
-    LC_IDENTIFICATION = "ba.UTF-8";
-    LC_MEASUREMENT = "ba.UTF-8";
-    LC_MONETARY = "ba.UTF-8";
-    LC_NAME = "ba.UTF-8";
-    LC_NUMERIC = "ba.UTF-8";
-    LC_PAPER = "ba.UTF-8";
-    LC_TELEPHONE = "ba.UTF-8";
-    LC_TIME = "ba.UTF-8";
+    LC_ADDRESS = "bs_BA.UTF-8";
+    LC_IDENTIFICATION = "bs_BA.UTF-8";
+    LC_MEASUREMENT = "bs_BA.UTF-8";
+    LC_MONETARY = "bs_BA.UTF-8";
+    LC_NAME = "bs_BA.UTF-8";
+    LC_NUMERIC = "bs_BA.UTF-8";
+    LC_PAPER = "bs_BA.UTF-8";
+    LC_TELEPHONE = "bs_BA.UTF-8";
+    LC_TIME = "bs_BA.UTF-8";
   };
   # Add system wide packages
   environment.systemPackages = with pkgs; [

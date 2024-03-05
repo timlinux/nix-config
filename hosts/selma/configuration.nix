@@ -79,37 +79,20 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sdb";
+  boot.loader.grub.useOSProber = true;
 
-  # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid
-  # for notes on how I set up zfs
-  #boot.loader.grub.enable = true;
-  #boot.loader.grub.devices = [ "nodev" ];
-  #boot.loader.grub.efiInstallAsRemovable = true;
-  #boot.loader.grub.efiSupport = true;
-  #boot.loader.grub.useOSProber = true;
-  #boot.supportedFilesystems = [ "zfs" ];
-  #boot.zfs.requestEncryptionCredentials = true;
-
-  
   # Setup keyfile
   boot.initrd.secrets = {
     "/crypto_keyfile.bin" = null;
   };
 
-  # Enable swap on luks
-  #boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".device = "/dev/disk/by-uuid/cda39835-d2a7-42f1-9729-8a84a4a8ae60";
-  #boot.initrd.luks.devices."luks-cda39835-d2a7-42f1-9729-8a84a4a8ae60".keyFile = "/crypto_keyfile.bin";
+  boot.loader.grub.enableCryptodisk=true;
+
+  boot.initrd.luks.devices."luks-081f5eb9-86b5-4527-a01e-fd1b1b59ea4b".keyFile = "/crypto_keyfile.bin";
 
   networking.hostName = "contour"; # Define your hostname.
-  #networking.hostId = "d13e0d42"; # needed for zfs
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
