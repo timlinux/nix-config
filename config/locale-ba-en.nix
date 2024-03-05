@@ -30,7 +30,7 @@
   environment.systemPackages = with pkgs; [
     aspell
     aspellDicts.en
-    aspellDicts.ba
+    #aspellDicts.ba
     aspellDicts.uk 
   ];
 }
