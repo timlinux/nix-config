@@ -47,7 +47,7 @@
       #../../config/locale-za-en.nix
       ../../config/localsend.nix
       # Dont enable when using wayland - causes screen flickr
-      ../../config/nvidia.nix
+      #../../config/nvidia.nix
       ../../config/ntfs.nix
       ../../config/obs.nix
       #../../config/postgres.nix
