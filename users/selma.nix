@@ -7,7 +7,7 @@
   '';
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.timlinux = {
+  users.users.selma = {
     isNormalUser = true;
     description = "Selma Vidimlic";
     # dialout needed for arduino
