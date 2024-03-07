@@ -41,7 +41,7 @@
       #../../config/plasma-desktop.nix
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
-      #../../config/gui-apps.nix
+      ../../config/gui-apps.nix
       ##../../config/iphone.nix
       ../../config/locale-ba-en.nix
       #../../config/locale-za-en.nix
