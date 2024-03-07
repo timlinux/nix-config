@@ -15,13 +15,13 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../config/bootsplash.nix
-      ../../config/appimage.nix
+      ##../../config/appimage.nix
       #../../config/android-sdk.nix
       #../../config/blocky.nix # Ad blocker
       #../../config/upgrades.nix
       # Use direnv in arduino dev folder rather
       #../../config/arduino.nix
-      ../../config/avahi.nix
+      ##../../config/avahi.nix
       #../../config/biometrics.nix
       #../../config/ccache.nix
       #../../config/cron-crest.nix
@@ -29,7 +29,7 @@
       #../../config/distrobox.nix
       #../../config/docker.nix
       ../../config/fwupd.nix
-      ../../config/fonts.nix
+      ##../../config/fonts.nix
       #../../config/games.nix
       ../../config/display-server.nix
       #../../config/kde-plasma6.nix
@@ -41,38 +41,38 @@
       #../../config/plasma-desktop.nix
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
-      ../../config/gui-apps.nix
-      ../../config/iphone.nix
+      #../../config/gui-apps.nix
+      ##../../config/iphone.nix
       ../../config/locale-ba-en.nix
       #../../config/locale-za-en.nix
-      ../../config/localsend.nix
+      ##../../config/localsend.nix
       # Dont enable when using wayland - causes screen flickr
       #../../config/nvidia.nix
-      ../../config/ntfs.nix
-      ../../config/obs.nix
+      ##../../config/ntfs.nix
+      ##../../config/obs.nix
       #../../config/postgres.nix
-      ../../config/printing.nix
+      ##../../config/printing.nix
       #../../config/python.nix
       #../../config/qtcreator.nix
-      ../../config/qgis.nix # Upstream packaged version
-      ../../config/quickemu.nix # Run VMS easily
+      ##../../config/qgis.nix # Upstream packaged version
+      #../../config/quickemu.nix # Run VMS easily
       #../../config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
       #../../config/tilemaker.nix 
       #../../config/rstudio.nix
-      ../../config/screen-control.nix
+      ##../../config/screen-control.nix
       ../../config/ssh.nix
       ../../config/starship.nix
       #../../config/steam.nix
       ../../config/syncthing.nix
-      ../../config/tailscale.nix
+      ##../../config/tailscale.nix
       #../../config/trezor.nix
-      ../../config/uxplay.nix
+      ##../../config/uxplay.nix
       ../../config/vim.nix
       #../../config/yubikey.nix #using biometrics rather
       ../../config/vscode.nix
       #../../config/wacom.nix
-      ../../config/unstable-apps.nix
-      ../../config/wine.nix
+      ##../../config/unstable-apps.nix
+      ##../../config/wine.nix
       #../../config/zfs.nix
       ../../users/all.nix
       ../../users/selma.nix
