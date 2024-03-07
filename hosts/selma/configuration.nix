@@ -15,7 +15,7 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../config/bootsplash.nix
-      ##../../config/appimage.nix
+      ../../config/appimage.nix
       #../../config/android-sdk.nix
       #../../config/blocky.nix # Ad blocker
       #../../config/upgrades.nix
@@ -29,7 +29,7 @@
       #../../config/distrobox.nix
       #../../config/docker.nix
       ../../config/fwupd.nix
-      ##../../config/fonts.nix
+      ../../config/fonts.nix
       #../../config/games.nix
       ../../config/display-server.nix
       #../../config/kde-plasma6.nix
