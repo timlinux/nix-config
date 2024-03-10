@@ -17,7 +17,7 @@
         obs-shaderfilter # crazy effects - see https://github.com/exeldro/obs-shaderfilter
         obs-source-record # record a source independently of the whole scene 
         obs-vintage-filter # make a source look old fashioned
-        obs-vertical-canvas # use with source record to record tiktok style vertical video at the same time as your normal recording
+        #obs-vertical-canvas # use with source record to record tiktok style vertical video at the same time as your normal recording
       ];
     })
   ];
