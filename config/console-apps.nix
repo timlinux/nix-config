@@ -32,6 +32,8 @@
     ping = "gping";
     du = "dust";
     icat="kitty +kitten icat";
+    # See https://github.com/kovidgoyal/kitty/issues/713#issuecomment-750704294
+    ssh="kitty +kitten ssh";
   };
 
   # Add system wide packages
