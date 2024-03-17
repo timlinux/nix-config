@@ -37,7 +37,31 @@
     gsettings set org.gnome.desktop.background picture-uri file:///etc/kartoza-wallpaper.png
     gsettings set org.gnome.desktop.background picture-uri-dark file:///etc/kartoza-wallpaper.png
   '';
-  
+  nixpkgs.overlays = [
+      (self: super: {
+        gnome = super.gnome.overrideScope' (selfg: superg: {
+          gnome-shell = superg.gnome-shell.overrideAttrs (old: {
+            patches = (old.patches or []) ++ [
+              (let
+                bg = pkgs.fetchurl {
+                  url = "https://raw.githubusercontent.com/timlinux/nix-config/main/resources/kartoza-wallpaper.png";
+                  sha256 = "sha256-HC7mzX/iLSHbK9sz8DVPj98skSWrzIbXc2Am29mMyOM=";
+                };
+              in pkgs.writeText "bg.patch" ''
+                --- a/data/theme/gnome-shell-sass/widgets/_login-lock.scss
+                +++ b/data/theme/gnome-shell-sass/widgets/_login-lock.scss
+                @@ -15,4 +15,5 @@ $_gdm_dialog_width: 23em;
+                 /* Login Dialog */
+                 .login-dialog {
+                   background-color: $_gdm_bg;
+                +  background-image: url('file://${bg}');
+                 }
+              '')
+            ];
+          });
+        }); 
+      })
+  ];
   # Things we do not want installed
   environment.gnome.excludePackages = with pkgs.gnome; [
     # baobab      # disk usage analyzer

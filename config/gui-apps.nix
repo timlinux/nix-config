@@ -33,7 +33,6 @@
     ungoogled-chromium
     inkscape-with-extensions
     kdenlive
-    keepassxc
     krita
     libreoffice-fresh
     # For multilingual spell check in logseq, edit 

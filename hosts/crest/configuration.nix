@@ -44,13 +44,16 @@
       ../../config/gui-apps.nix
       ../../config/iphone.nix
       ../../config/locale-pt-en.nix
+      ../../config/keepassxc.nix
       #../../config/locale-za-en.nix
       ../../config/localsend.nix
       # Dont enable when using wayland - causes screen flickr
       #../../config/nvidia.nix
+      #../../config/nagios.nix
       ../../config/ntfs.nix
       ../../config/obs.nix
       #../../config/postgres.nix
+      #../../config/nixos-conf-editor.nix
       ../../config/printing.nix
       ../../config/printing.nix
       #../../config/python.nix
