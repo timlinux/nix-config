@@ -36,7 +36,7 @@
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
-      ../../config/kdeconnect.nix
+      #../../config/kdeconnect.nix
       #../../config/iphone.nix
       #../../config/locale-pt-en.nix
       ../../config/locale-ke-en.nix
@@ -47,7 +47,7 @@
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
-      ../../config/pycharm-community.nix
+      #../../config/pycharm-community.nix
       ../../config/qtcreator.nix
       ../../config/qgis.nix # Upstream packaged version
       #../../config/qgis-dev.nix # My own overlay maintained in packages/qgis
