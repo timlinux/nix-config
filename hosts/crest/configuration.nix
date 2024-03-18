@@ -34,7 +34,10 @@
       ../../config/display-server.nix
       #../../config/kde-plasma6.nix
       ../../config/gnome-desktop-wayland.nix
+      ../../config/gnome-desktop-gdm.nix
       ../../config/gnome-desktop-apps.nix
+      #../../config/gnome-desktop-extensions.nix
+      ../../config/gnome-desktop-themes.nix
       #../../config/gnome-desktop-x11.nix
       #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
