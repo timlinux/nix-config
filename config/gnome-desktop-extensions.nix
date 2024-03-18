@@ -1,10 +1,9 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, configs, ... }:
 # Largely copied from https://github.com/Electrostasy/dots/blob/c62895040a8474bba8c4d48828665cfc1791c711/profiles/system/gnome/default.nix#L123
 
 let
   burnMyWindowsProfile = pkgs.writeText "nix-profile.conf" ''
     [burn-my-windows-profile]
-
     profile-high-priority=true
     profile-window-type=0
     profile-animation-type=0
@@ -22,7 +21,7 @@ in
 
     # Persists multi-monitor configuration.
     # TODO: Make independent of user.
-    persistence."/state".users.electro.files = [ ".config/monitors.xml" ];
+    #persistence."/state".users.electro.files = [ ".config/monitors.xml" ];
 
     sessionVariables.GTK_THEME = "adw-gtk3-dark";
 
