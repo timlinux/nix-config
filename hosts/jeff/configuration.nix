@@ -29,17 +29,16 @@
       #../../config/gnome-desktop-wayland.nix
       ../../config/gnome-desktop-x11.nix
       ../../config/gnome-desktop-apps.nix
-      ../../config/gnome-browser-connector.nix
       #../../config/deepin-desktop.nix
       #../../config/budgie-deskop.nix
       #../../config/plasma-desktop.nix
       #../../config/xfce-desktop.nix
       #../../config/pantheon-desktop.nix
       ../../config/gui-apps.nix
-      #../../config/kdeconnect.nix
       #../../config/iphone.nix
       #../../config/locale-pt-en.nix
       ../../config/locale-ke-en.nix
+      ../../config/nodejs.nix
       # Dont enable when using wayland - causes screen flickr
       #../../config/nvidia.nix
       #../../config/ntfs.nix
@@ -47,6 +46,7 @@
       ../../config/postgres.nix
       ../../config/printing.nix
       ../../config/python.nix
+      ../../config/quickemu.nix
       #../../config/pycharm-community.nix
       ../../config/qtcreator.nix
       ../../config/qgis.nix # Upstream packaged version
@@ -155,5 +155,6 @@
     ];  
   };
 
+  security.pki.certificateFiles = [ "/etc/ssl/certs/kartoza_ca_chain.crt" ];
 
 }
