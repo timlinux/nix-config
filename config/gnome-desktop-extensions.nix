@@ -1,6 +1,5 @@
 { pkgs, lib, configs, ... }:
 # Largely copied from https://github.com/Electrostasy/dots/blob/c62895040a8474bba8c4d48828665cfc1791c711/profiles/system/gnome/default.nix#L123
-
 let
   burnMyWindowsProfile = pkgs.writeText "nix-profile.conf" ''
     [burn-my-windows-profile]
@@ -17,23 +16,14 @@ let
   '';
 in
 {
-  environment = {
-
-    # Persists multi-monitor configuration.
-    # TODO: Make independent of user.
-    #persistence."/state".users.electro.files = [ ".config/monitors.xml" ];
-
-    sessionVariables.GTK_THEME = "adw-gtk3-dark";
-
-    systemPackages = with pkgs; [
-    ] ++ (with pkgs.gnomeExtensions; [
+  environment.systemPackages = with pkgs.gnomeExtensions; [
       blur-my-shell
       burn-my-windows
       dash-to-panel
       date-menu-formatter
       desktop-cube
-    ]);
-  };
+    ];
+  environment.sessionVariables.GTK_THEME = "adw-gtk3-dark";
 
   programs.dconf.profiles = {
     # TODO: Investigate customizing gdm greeter.
@@ -163,7 +153,7 @@ in
           panel-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: "TOP"));
           panel-sizes = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: 32));
           panel-element-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: [
-            { element = "showAppsButton"; visible = true; position = "stackedTL"; }
+            { element = "showAppsButton"; visible = false; position = "stackedTL"; }
             { element = "activitiesButton"; visible = false; position = "stackedTL"; }
             { element = "dateMenu"; visible = true; position = "stackedTL"; }
             { element = "leftBox"; visible = true; position = "stackedTL"; }
@@ -181,7 +171,7 @@ in
           appicon-padding = mkInt32 2;
           appicon-margin = mkInt32 0;
           trans-use-custom-opacity = true;
-          trans-panel-opacity = 0.25;
+          trans-panel-opacity = 0.95;
           show-favorites = false;
           group-apps = false;
           isolate-workspaces = true;
