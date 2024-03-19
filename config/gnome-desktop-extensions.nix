@@ -149,8 +149,8 @@ in
           # Even when we are not using multiple panels on multiple monitors,
           # the extension still creates them in the config, so we set the same
           # configuration for each (up to 2 monitors).
-          panel-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: "TOP"));
-          panel-sizes = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: 32));
+          panel-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: "BOTTOM"));
+          panel-sizes = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: 48));
           panel-element-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: [
             { element = "showAppsButton"; visible = false; position = "stackedTL"; }
             { element = "activitiesButton"; visible = false; position = "stackedTL"; }
@@ -166,7 +166,7 @@ in
           show-apps-icon-file = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
           show-apps-icon-padding = mkInt32 4;
           focus-highlight-dominant = true;
-          dot-size = mkInt32 0;
+          dot-size = mkInt32 3;
           appicon-padding = mkInt32 2;
           appicon-margin = mkInt32 0;
           trans-use-custom-opacity = true;
