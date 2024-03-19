@@ -80,6 +80,7 @@
       #../../config/wacom.nix
       ../../config/unstable-apps.nix
       ../../config/wine.nix
+      ../../config/virt.nix
       ../../config/zfs.nix
       ../../users/all.nix
       ../../users/tim.nix

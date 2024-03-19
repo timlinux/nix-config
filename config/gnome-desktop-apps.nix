@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Needed for gnome boxes and virt-manager
-  virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
   # This and the xgg-portal below fixes focus stealing e.g. in QGIS where file dialogs
   # appear behind the main window (I think it is this that cures it anyway)
@@ -64,7 +62,6 @@
     #lorem
     solanum
     warp
-    virt-manager
     tuba
     #gnome.gnome-boxes
     #(gnome.gnome-boxes.override {
