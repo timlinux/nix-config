@@ -26,7 +26,6 @@ in
   environment.sessionVariables.GTK_THEME = "adw-gtk3-dark";
 
   programs.dconf.profiles = {
-    # TODO: Investigate customizing gdm greeter.
     user.databases = [{
       settings = with lib.gvariant; {
         "org/gnome/desktop/calendar".show-weekdate = true;
@@ -181,7 +180,7 @@ in
         "org/gnome/shell/extensions/blur-my-shell".color-and-noise = false;
         "org/gnome/shell/extensions/blur-my-shell/applications".blur = false;
         "org/gnome/shell/extensions/burn-my-windows".active-profile = "${burnMyWindowsProfile}";
-        "org/gnome/shell/extensions/date-menu-formatter".pattern = "y-MM-dd kk:mm";
+        "org/gnome/shell/extensions/date-menu-formatter".pattern = "dd-MM-yyyy kk:mm";
         "org/gnome/shell/extensions/desktop-cube" = {
           last-first-gap = false;
           window-parallax = 0.75;
@@ -202,7 +201,10 @@ in
       Name=Wallpaper Randomiser
       Terminal=false
       Exec=${pkgs.writeShellScript "wallpaper.sh" ''
-        FILE=$(${pkgs.fd}/bin/fd '(.*\.jpeg|.*\.jpg|.*\.png)' $HOME/pictures/wallpapers | shuf -n 1)
+        #This will randomly grab an image from your home/pictures/wallpapers folder
+        #FILE=$(${pkgs.fd}/bin/fd '(.*\.jpeg|.*\.jpg|.*\.png)' $HOME/pictures/wallpapers | shuf -n 1)
+        #This will use our kartoza wallpaper rather
+        FILE=/etc/kartoza-wallpaper.png
         dconf write /org/gnome/desktop/background/picture-uri "'file://$FILE'"
         dconf write /org/gnome/desktop/background/picture-uri-dark "'file://$FILE'"
         dconf write /org/gnome/desktop/screensaver/picture-uri "'file://$FILE'"

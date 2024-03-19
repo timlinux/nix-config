@@ -83,6 +83,7 @@
       ../../config/zfs.nix
       ../../users/all.nix
       ../../users/tim.nix
+      ../../users/guest.nix
     ];
 
   # Bootloader.
