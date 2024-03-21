@@ -2,6 +2,8 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
+    ./nginx.nix # generated at runtime by nixos-infect
+    ./jupyter-reverse-proxy.nix # generated at runtime by nixos-infect
     
   ];
 
