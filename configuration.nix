@@ -9,78 +9,78 @@
 
   imports =
     [ 
-      # this needs to be first
+      ## this needs to be first
       config/console-apps.nix
       config/bootsplash.nix
-      config/appimage.nix
-      #config/android-sdk.nix
-      #config/blocky.nix # Ad blocker
-      #config/upgrades.nix
-      # Use direnv in arduino dev folder rather
-      #config/arduino.nix
-      config/avahi.nix
-      config/biometrics.nix
-      #config/ccache.nix
-      #config/cron-crest.nix
-      config/dir-env.nix
-      #config/distrobox.nix
-      config/docker.nix
-      config/fwupd.nix
-      config/fonts.nix
-      config/games.nix
+      #config/appimage.nix
+      ##config/android-sdk.nix
+      ##config/blocky.nix # Ad blocker
+      ##config/upgrades.nix
+      ## Use direnv in arduino dev folder rather
+      ##config/arduino.nix
+      #config/avahi.nix
+      #config/biometrics.nix
+      ##config/ccache.nix
+      ##config/cron-crest.nix
+      #config/dir-env.nix
+      ##config/distrobox.nix
+      #config/docker.nix
+      #config/fwupd.nix
+      #config/fonts.nix
+      #config/games.nix
       config/display-server.nix
-      #../../config/kde-plasma6.nix
+      ##../../config/kde-plasma6.nix
       config/gnome-desktop-wayland.nix
       config/gnome-desktop-gdm.nix
       config/gnome-desktop-apps.nix
       config/gnome-desktop-extensions.nix
       config/gnome-desktop-themes.nix
-      #config/gnome-desktop-x11.nix
-      #config/deepin-desktop.nix
-      #config/budgie-deskop.nix
-      #config/plasma-desktop.nix
-      #config/xfce-desktop.nix
-      #config/pantheon-desktop.nix
-      config/gui-apps.nix
-      config/iphone.nix
+      ##config/gnome-desktop-x11.nix
+      ##config/deepin-desktop.nix
+      ##config/budgie-deskop.nix
+      ##config/plasma-desktop.nix
+      ##config/xfce-desktop.nix
+      ##config/pantheon-desktop.nix
+      #config/gui-apps.nix
+      #config/iphone.nix
       config/locale-pt-en.nix
-      config/keepassxc.nix
-      #config/locale-za-en.nix
-      config/localsend.nix
-      # Dont enable when using wayland - causes screen flickr
-      #config/nvidia.nix
-      #config/nagios.nix
-      config/ntfs.nix
-      config/obs.nix
-      #config/postgres.nix
-      #config/nixos-conf-editor.nix
-      config/printing.nix
-      #config/python.nix
-      #config/qtcreator.nix
-      config/qgis.nix # Upstream packaged version
-      config/quickemu.nix # Run VMS easily
-      #../../config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
-      #config/tilemaker.nix 
-      #config/rstudio.nix
-      config/screen-control.nix
-      config/ssh.nix
-      config/starship.nix
-      config/steam.nix
-      config/syncthing.nix
-      config/tailscale.nix
-      config/trezor.nix
-      config/uxplay.nix
-      config/vim.nix
-      #config/yubikey.nix #using biometrics rather
-      config/vscode.nix
-      #config/wacom.nix
-      config/unstable-apps.nix
-      config/wine.nix
-      config/virt.nix
+      #config/keepassxc.nix
+      ##config/locale-za-en.nix
+      #config/localsend.nix
+      ## Dont enable when using wayland - causes screen flickr
+      ##config/nvidia.nix
+      ##config/nagios.nix
+      #config/ntfs.nix
+      #config/obs.nix
+      ##config/postgres.nix
+      ##config/nixos-conf-editor.nix
+      #config/printing.nix
+      ##config/python.nix
+      ##config/qtcreator.nix
+      #config/qgis.nix # Upstream packaged version
+      #config/quickemu.nix # Run VMS easily
+      ##../../config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
+      ##config/tilemaker.nix 
+      ##config/rstudio.nix
+      #config/screen-control.nix
+      #config/ssh.nix
+      #config/starship.nix
+      #config/steam.nix
+      #config/syncthing.nix
+      #config/tailscale.nix
+      #config/trezor.nix
+      #config/uxplay.nix
+      #config/vim.nix
+      ##config/yubikey.nix #using biometrics rather
+      #config/vscode.nix
+      ##config/wacom.nix
+      #config/unstable-apps.nix
+      #config/wine.nix
+      #config/virt.nix
       config/zfs.nix
-      users/all.nix
+      #users/all.nix
       users/tim.nix
-      users/guest.nix
+      #users/guest.nix
     ];
 
   # Bootloader.
@@ -156,7 +156,8 @@
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   ### Flatpack support
   ### see https://flatpak.org/setup/NixOS
-  services.flatpak.enable = true;
+
+  ## services.flatpak.enable = true;
   ###
   ### Bleeding edge kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
