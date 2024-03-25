@@ -26,6 +26,11 @@
 	    system = system;
             modules = shared-modules ++ [ ./hosts/crest.nix ];
           };
+          test = nixpkgs.lib.nixosSystem {
+            specialArgs = specialArgs;
+	    system = system;
+            modules = shared-modules ++ [ ./hosts/test.nix ];
+          };
         };
       };
 }
