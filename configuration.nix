@@ -98,7 +98,6 @@
   boot.loader.grub.useOSProber = true;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = true;
-
   
   networking.hostName = "crest"; # Define your hostname.
   networking.hostId = "d13e0d41"; # needed for zfs

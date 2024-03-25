@@ -24,7 +24,7 @@
           crest = nixpkgs.lib.nixosSystem {
             specialArgs = specialArgs;
 	    system = system;
-            modules = shared-modules ++ [ ./crest.nix ];
+            modules = shared-modules ++ [ ./hosts/crest.nix ];
           };
         };
       };
