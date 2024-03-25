@@ -127,6 +127,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+   home-manager 
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
