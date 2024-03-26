@@ -5,8 +5,9 @@ pkgs.stdenv.mkDerivation rec {
   pname = "kartoza-plymouth";
   version = "0.0.2";
 
-  src = builtins.fetchGit {
-    url = "https://github.com/timlinux/kartoza-plymouth-themes.git";
+  src = builtins.fetchTarball {
+    url = "https://github.com/timlinux/kartoza-plymouth-themes/tarball/master";
+    sha256 = "sha256:195rfcwgihxd63gqyzc80s0fys0c7aj8np9q3jmri9d5z4id9kpg";
   };
 
   buildInputs = [

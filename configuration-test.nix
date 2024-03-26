@@ -21,7 +21,7 @@
     [ 
       # this needs to be first
       ./config/console-apps.nix
-      #./config/bootsplash.nix
+      ./config/bootsplash.nix
       ./config/appimage.nix
       ./config/avahi.nix
       ./config/biometrics.nix
@@ -41,25 +41,25 @@
       ./config/locale-pt-en.nix
       #./config/keepassxc.nix
       ./config/localsend.nix
-      #./config/ntfs.nix
-      #./config/obs.nix
-      #./config/printing.nix
-      #./config/quickemu.nix # Run VMS easily
+      ./config/ntfs.nix
+      ./config/obs.nix
+      ./config/printing.nix
+      ./config/quickemu.nix # Run VMS easily
       #./config/qgis.nix
-      #./config/screen-control.nix
-      #./config/ssh.nix
-      #./config/starship.nix
-      #./config/syncthing.nix
-      #./config/tailscale.nix
-      #./config/uxplay.nix
-      #./config/vim.nix
+      ./config/screen-control.nix
+      ./config/ssh.nix
+      ./config/starship.nix
+      ./config/syncthing.nix
+      ./config/tailscale.nix
+      ./config/uxplay.nix
+      ./config/vim.nix
       #./config/vscode.nix
       #./config/unstable-apps.nix
       #./config/wine.nix
       #./config/virt.nix
-      #./users/all.nix
-      #./users/tim.nix
-      #./users/guest.nix
+      ./users/all.nix
+      ./users/tim.nix
+      ./users/guest.nix
     ];
 
   # Bootloader.
