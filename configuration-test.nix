@@ -45,7 +45,7 @@
       ./config/obs.nix
       ./config/printing.nix
       ./config/quickemu.nix # Run VMS easily
-      #./config/qgis.nix
+      ./config/qgis.nix
       ./config/screen-control.nix
       ./config/ssh.nix
       ./config/starship.nix

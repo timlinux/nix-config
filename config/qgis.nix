@@ -14,9 +14,14 @@ let
                     sha256="085jmvkr1r1ag18mp2skf9nrap3i3gwphlf7zaagwfh9q11lj13l";
                 })
 		# reuse the current configuration
-		{ config = config.nixpkgs.config; };
+		{ 
+                   inherit system;
+                   config = config.nixpkgs.config; };
 in
 {
+        nixpkgs.config.permittedInsecurePackages = [
+                "qtwebkit-5.212.0-alpha4"
+        ];
 	environment.systemPackages = with pkgs; [
 		#qgis # Installed from stable
 		#unstable.qgis-ltr # Installed from unstable
