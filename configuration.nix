@@ -156,8 +156,8 @@
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   ### Flatpack support
   ### see https://flatpak.org/setup/NixOS
-
-  ## services.flatpak.enable = true;
+  xdg.portal.enable = true;
+  services.flatpak.enable = true;
   ###
   ### Bleeding edge kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
