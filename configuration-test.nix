@@ -39,7 +39,7 @@
       ./config/gui-apps.nix
       ./config/iphone.nix
       ./config/locale-pt-en.nix
-      #./config/keepassxc.nix
+      ./config/keepassxc.nix
       ./config/localsend.nix
       ./config/ntfs.nix
       ./config/obs.nix
