@@ -35,12 +35,12 @@
       config/gnome-desktop-apps.nix
       config/gnome-desktop-extensions.nix
       config/gnome-desktop-themes.nix
-      config/gnome-desktop-x11.nix
-      config/deepin-desktop.nix
-      config/budgie-deskop.nix
-      config/plasma-desktop.nix
-      config/xfce-desktop.nix
-      config/pantheon-desktop.nix
+      #config/gnome-desktop-x11.nix
+      #config/deepin-desktop.nix
+      #config/budgie-deskop.nix
+      #config/plasma-desktop.nix
+      #config/xfce-desktop.nix
+      #config/pantheon-desktop.nix
       config/gui-apps.nix
       config/iphone.nix
       config/locale-pt-en.nix
