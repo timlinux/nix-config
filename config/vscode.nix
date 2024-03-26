@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ system ? builtins.currentSystem, pkgs, config, ... }:
 
 let
   unstable = import
@@ -7,7 +7,9 @@ let
       sha256="085jmvkr1r1ag18mp2skf9nrap3i3gwphlf7zaagwfh9q11lj13l";
     })
     # reuse the current configuration
-    { config = config.nixpkgs.config; };
+    { 
+        inherit system;
+        config = config.nixpkgs.config; };
 in {
 
   environment.systemPackages = with pkgs; [

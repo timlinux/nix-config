@@ -53,10 +53,10 @@
       ./config/tailscale.nix
       ./config/uxplay.nix
       ./config/vim.nix
-      #./config/vscode.nix
-      #./config/unstable-apps.nix
-      #./config/wine.nix
-      #./config/virt.nix
+      ./config/vscode.nix
+      ./config/unstable-apps.nix
+      ./config/wine.nix
+      ./config/virt.nix
       ./users/all.nix
       ./users/tim.nix
       ./users/guest.nix
