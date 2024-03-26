@@ -72,7 +72,9 @@
       config/trezor.nix
       config/uxplay.nix
       config/vim.nix
-      #config/yubikey.nix #using biometrics rather
+      config/yubikey.nix 
+      # For logging in using yubikey
+      config/yubikey-auth.nix 
       config/vscode.nix
       #config/wacom.nix
       config/unstable-apps.nix
