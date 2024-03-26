@@ -7,12 +7,5 @@
     yubikey-personalization-gui
   ];
 
-  ##
-  ## Yubikey PAM support - see https://nixos.wiki/wiki/Yubikey
-  ## 
-  services.udev.packages = [ 
-    pkgs.yubikey-personalization 
-    #gnome.gnome-settings-daemon # app tray
-  ];
 
 }

@@ -1,5 +1,12 @@
 { config, pkgs, ... }:
 {
+  ##
+  ## Yubikey PAM support - see https://nixos.wiki/wiki/Yubikey
+  ## 
+  services.udev.packages = [ 
+    pkgs.yubikey-personalization 
+    #gnome.gnome-settings-daemon # app tray
+  ];
   # Make sure to first do pam_u2f in above url before enabling this section
   security.pam.services = {
     login.u2fAuth = true;
