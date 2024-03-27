@@ -9,6 +9,8 @@
     outputs = { self, home-manager, nixpkgs }@inputs:
     let
       system = "x86_64-linux";
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+      forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
       specialArgs = inputs // { inherit system; };
       shared-modules = [
         home-manager.nixosModules.home-manager
