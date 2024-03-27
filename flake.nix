@@ -32,7 +32,7 @@
               };
             in
             {
-              unsafe-bootstrap = pkgs.callPackage ./packages/setup-zfs-machine{ };
+              setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine{ };
             });
         nixosConfigurations = {
           crest = nixpkgs.lib.nixosSystem {
