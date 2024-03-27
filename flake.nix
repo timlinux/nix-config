@@ -21,6 +21,19 @@
         }
       ];
     in {
+        packages = forAllSystems
+          (system:
+            let
+              pkgs = import nixpkgs {
+                inherit system;
+                overlays = [ self.overlays.default ];
+                config.allowUnfree = true;
+              };
+            in
+            {
+              #inherit (pkgs) neovimConfigured;
+              unsafe-bootstrap = pkgs.callPackage ./packages/setup-zfs-machine{ };
+        });
         nixosConfigurations = {
           crest = nixpkgs.lib.nixosSystem {
             specialArgs = specialArgs;
