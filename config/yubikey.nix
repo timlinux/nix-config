@@ -6,6 +6,8 @@
     yubikey-manager
     yubikey-personalization-gui
   ];
-
-
+  services.udev.packages = [ 
+    pkgs.yubikey-personalization 
+    #gnome.gnome-settings-daemon # app tray
+  ];
 }

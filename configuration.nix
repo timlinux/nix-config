@@ -74,7 +74,7 @@
       config/vim.nix
       config/yubikey.nix 
       # For logging in using yubikey
-      config/yubikey-auth.nix 
+      #config/yubikey-auth.nix 
       config/vscode.nix
       #config/wacom.nix
       config/unstable-apps.nix
@@ -102,8 +102,6 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = true;
   
-  networking.hostName = "crest"; # Define your hostname.
-  networking.hostId = "d13e0d41"; # needed for zfs
 
   # Enable networking
   networking.networkmanager.enable = true;

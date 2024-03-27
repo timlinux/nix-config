@@ -29,6 +29,11 @@
       fsType = "zfs";
     };
 
+  networking.hostName = "crest"; # Define your hostname.
+  # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId 
+  # Generate using this:
+  # head -c 8 /etc/machine-id
+  networking.hostId = "d13e0d41"; # needed for zfs
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
