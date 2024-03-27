@@ -9,8 +9,7 @@
     outputs = { self, home-manager, nixpkgs }@inputs:
     let
       system = "x86_64-linux";
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
-      forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
+      pkgs = import nixpkgs { inherit system; };
       specialArgs = inputs // { inherit system; };
       shared-modules = [
         home-manager.nixosModules.home-manager
@@ -23,17 +22,16 @@
         }
       ];
     in {
-        packages = forAllSystems
-          (system:
-            let
-              pkgs = import nixpkgs {
-                inherit system;
-                config.allowUnfree = true;
-              };
-            in
-            {
-              setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine{ };
-            });
+        packages.default = pkgs.writeScriptBin "runme" ''
+          echo "Tim nix-config default package"
+        ''; 
+        
+        packages.setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine{ };
+        # An app that uses the `runme` package
+        #apps.default = {
+        #    type = "app";
+        #    program = "${self.packages.${system}.runme}/bin/runme";
+        #};
         nixosConfigurations = {
           crest = nixpkgs.lib.nixosSystem {
             specialArgs = specialArgs;
