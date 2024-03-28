@@ -22,11 +22,11 @@
         }
       ];
     in {
-        packages.default = pkgs.writeScriptBin "runme" ''
+        packages.x86_64-linux.default = pkgs.writeScriptBin "runme" ''
           echo "Tim nix-config default package"
         ''; 
         
-        packages.setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine{ };
+        packages.x86_64-linux.setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine{ };
         # An app that uses the `runme` package
         #apps.default = {
         #    type = "app";
