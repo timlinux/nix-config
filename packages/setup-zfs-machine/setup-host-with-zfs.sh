@@ -32,7 +32,7 @@ This will irrevocably destroy all data on \`TARGET_DEVICE=${TARGET_DEVICE-/dev/n
 
 A FAT32 EFI system partition will be created as the first partition.
 
-An zfs partition will be created as the second partition.
+An zfs partition will be created as the second partition."
 
 gum confirm "Are you ready to setup this host (including destroying all data on the disk)?" || (echo "Ok!" && exit 1)
 
