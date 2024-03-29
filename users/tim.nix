@@ -10,9 +10,27 @@
   users.users.timlinux = {
     isNormalUser = true;
     description = "Tim Sutton";
-    # dialout needed for arduino
-    extraGroups = [ "wheel" "disk" "libvirtd" "dialout" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2"  "adbusers" "scanner" "lp" "i2c"];
-
+    extraGroups = [ 
+	    "wheel" 
+	    "disk" 
+	    "libvirtd" 
+	    "dialout" # needed for arduino
+	    "docker" 
+	    "audio" 
+	    "video" 
+	    "input" 
+	    "systemd-journal" 
+	    "networkmanager" 
+	    "network" 
+	    "davfs2"  
+	    "adbusers" 
+	    "scanner" 
+	    "lp" 
+	    "i2c"
+    ];
+    shell = pkgs.fish;
+    openssh.authorizedKeys.keys =
+        [ (builtins.readFile ./public-keys/id_ed25519_tim.pub) ];
     packages = with pkgs; [
       popcorntime
       freetube
