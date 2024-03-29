@@ -4,13 +4,35 @@
 # sudo virsh net-start default
 
 {
-  # Needed for gnome boxes and virt-manager
-  virtualisation.libvirtd.enable = true;
-  environment.systemPackages = with pkgs; [
-    virt-manager
-    # Fix for network adapter not being available
-    # probably not needed
-    libvirt-glib
-  ];
 
+  config = {
+    environment.systemPackages = with pkgs; [
+      gnome.adwaita-icon-theme
+      libosinfo
+      libvirt-glib
+      spice
+      spice-gtk
+      spice-protocol
+      virt-manager
+      virt-viewer
+      win-spice
+      win-virtio
+    ];
+
+    programs.dconf.enable = true;
+
+    # Manage the virtualisation services
+    virtualisation = {
+      libvirtd = {
+        enable = true;
+        qemu = {
+          swtpm.enable = true;
+          ovmf.enable = true;
+          ovmf.packages = [ pkgs.OVMFFull.fd ];
+        };
+      };
+      spiceUSBRedirection.enable = true;
+    };
+    services.spice-vdagentd.enable = true;
+  };
 }
