@@ -26,6 +26,7 @@
 	    "adbusers" 
 	    "scanner" 
 	    "lp" 
+	    "lpadmin" 
 	    "i2c"
     ];
     shell = pkgs.fish;
