@@ -4,7 +4,6 @@
 # sudo virsh net-start default
 
 {
-
   config = {
     environment.systemPackages = with pkgs; [
       gnome.adwaita-icon-theme
@@ -25,6 +24,7 @@
     virtualisation = {
       libvirtd = {
         enable = true;
+        onBoot = "start";
         qemu = {
           swtpm.enable = true;
           ovmf.enable = true;
