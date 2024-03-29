@@ -2,7 +2,8 @@
 
 # If the network adapter does not want to start do
 # sudo virsh net-start default
-
+# Or make it default to start every time by running
+# virsh net-autostart default
 {
   config = {
     environment.systemPackages = with pkgs; [
@@ -24,7 +25,6 @@
     virtualisation = {
       libvirtd = {
         enable = true;
-        onBoot = "start";
         qemu = {
           swtpm.enable = true;
           ovmf.enable = true;
