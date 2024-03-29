@@ -10,4 +10,5 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
+nix build
 nixos-rebuild switch --flake .
