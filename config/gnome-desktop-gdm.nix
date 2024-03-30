@@ -17,8 +17,9 @@
             patches = (old.patches or []) ++ [
               (let
                 bg = pkgs.fetchurl {
-                  url = "https://raw.githubusercontent.com/timlinux/nix-config/main/resources/kartoza-background.gdm.png";
-                  sha256 = "sha256-A4bPbLfCcIVzPADZ8doLxe8qNh9nggP4iRPOrhhVo8Y=";
+                  # TODO change branch in URL below to main once flakes branch is merged
+                  url = "https://raw.githubusercontent.com/timlinux/nix-config/flakes/resources/kartoza-background.gdm.png";
+                  sha256 = "sha256-d0uggPxXo9G4xOJ7LElPp1BJvUNZ6h5NEPSF1l+AZnw=";
                 };
               in pkgs.writeText "bg.patch" ''
                 --- a/data/theme/gnome-shell-sass/widgets/_login-lock.scss
