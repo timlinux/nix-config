@@ -4,10 +4,31 @@
 # sudo virsh net-start default
 # Or make it default to start every time by running
 # virsh net-autostart default
+#
+# Verify the interface is up like this
+#sudo virsh net-list
+# Name      State    Autostart   Persistent
+#--------------------------------------------
+# default   active   yes         yes
+#
+#
+# Note that currently you cannot use virtman and 
+# adguard at the same time since they fight over the
+# virtual nic. So shutdown adguard before you want to 
+# use virtman:
+#
+# sudo systemctl stop adguardhome.service  
+# sudo virsh net-start default
+#
+# to start adguard again when you are done with virtman:
+# 
+# sudo virsh net-destroy default
+# Network default destroyed
+# sudo systemctl start adguardhome.service
+#
 {
   config = {
     environment.systemPackages = with pkgs; [
-      gnome.adwaita-icon-theme
       libosinfo
       libvirt-glib
       spice
