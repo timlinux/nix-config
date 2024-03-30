@@ -18,7 +18,7 @@
               (let
                 bg = pkgs.fetchurl {
                   url = "https://raw.githubusercontent.com/timlinux/nix-config/main/resources/kartoza-background.gdm.png";
-                  sha256 = "";
+                  sha256 = "sha256-A4bPbLfCcIVzPADZ8doLxe8qNh9nggP4iRPOrhhVo8Y=";
                 };
               in pkgs.writeText "bg.patch" ''
                 --- a/data/theme/gnome-shell-sass/widgets/_login-lock.scss
