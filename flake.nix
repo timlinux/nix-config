@@ -61,6 +61,10 @@
             modules = shared-modules ++ [ ./hosts/test.nix ];
           };
         };
+        # invoke with 
+        # nix develop
+        # or
+        # nix develop .#default
         devShells.${system}.default = with pkgs;
           mkShell {
             buildInputs = [
@@ -143,9 +147,20 @@
 	      zstd
             ];
             shellHook = ''
-            echo "🌳 Welcome to the development environment!"
+            echo "🌳 Welcome to the QGIS development environment!"
             '';
-          };
+        };
+        # invoke with 
+        # nix develop .#hugo
+        #devShells.${system}.hugo = with pkgs;
+        #  mkShell {
+        #    buildInputs = [
+        #      hugo
+        #    ];
+        #    shellHook = ''
+        #    echo "🌳 Welcome to the HUGO dev environment!"
+        #    '';
+        #};
     };
 }
 

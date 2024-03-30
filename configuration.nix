@@ -42,6 +42,7 @@
       #config/xfce-desktop.nix
       #config/pantheon-desktop.nix
       config/gui-apps.nix
+      config/grub-theme.nix
       config/harden.nix
       config/iphone.nix
       config/locale-pt-en.nix
