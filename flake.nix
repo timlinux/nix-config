@@ -145,9 +145,20 @@
 	      sqlite
 	      txt2tags
 	      zstd
+              # See https://discourse.nixos.org/t/python-qt-woes/11808/2
+              # Needed to give us functional qt tools in our shell
+              qt5.wrapQtAppsHook
+              makeWrapper
+              bashInteractive
             ];
+
             shellHook = ''
             echo "🌳 Welcome to the QGIS development environment!"
+            setQtEnvironment=$(mktemp --suffix .setQtEnvironment.sh)
+            echo "shellHook: setQtEnvironment = $setQtEnvironment"
+            makeWrapper "/bin/sh" "$setQtEnvironment" "''${qtWrapperArgs[@]}"
+            sed "/^exec/d" -i "$setQtEnvironment"
+            source "$setQtEnvironment"
             '';
         };
         # invoke with 
