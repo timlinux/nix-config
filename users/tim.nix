@@ -39,10 +39,11 @@
     ];
   };
   home-manager = {
+    users.timlinux.home.stateVersion = "23.11";
     users.timlinux = {
-      imports = [ ../home/home.nix ];
-      };
-      home.stateVersion = "23.11";
+      imports = [ 
+        #../home/home.nix 
+      ];
     };
   };
 }
