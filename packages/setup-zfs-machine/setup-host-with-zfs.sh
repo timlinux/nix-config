@@ -20,10 +20,21 @@ BLUE=34
 CYAN=36
 RED=31
 
+if [ "$EUID" -ne 0 ]
+  then 
+    echo "🛑Run this as SUDO!"
+  exit
+fi
+
+beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
+
 lsblk -o name,mountpoint,size,uuid,vendor
 
 if test -z "${TARGET_DEVICE-}"; then
 	TARGET_DEVICE=$(gum input --prompt "What is the target device? (TARGET_DEVICE): " --placeholder "/dev/nvme?n?")
+        if beginswith "/dev/nvme" "$TARGET_DEVICE"; then
+            TARGET_DEVICE="${TARGET_DEVICE}p"
+        fi
 fi
 echo "Got \`$(gum style --foreground ${BLUE} "TARGET_DEVICE")=$(gum style --foreground ${CYAN} "${TARGET_DEVICE}")\`"
 
@@ -51,8 +62,8 @@ partprobe || true
 sgdisk "${TARGET_DEVICE}" -n 1:0:+10G
 sgdisk "${TARGET_DEVICE}" -t 1:ef00
 sgdisk "${TARGET_DEVICE}" -c 1:efi
-mkfs.fat -F 32 "${TARGET_DEVICE}"p1
-fatlabel "${TARGET_DEVICE}"p1 NIXBOOT
+mkfs.fat -F 32 "${TARGET_DEVICE}"1
+fatlabel "${TARGET_DEVICE}"1 NIXBOOT
 
 # Create a partition for / using the remaining space
 sgdisk "${TARGET_DEVICE}" -n 2:0:0
@@ -77,7 +88,7 @@ if [ "$ENCRYPT" == "YES" ]; then
 	-O keylocation=prompt \
 	-O keyformat=passphrase \
 	-O mountpoint=none \
-	NIXROOT "${TARGET_DEVICE}"p2
+	NIXROOT "${TARGET_DEVICE}"2
 else
   # Create an non encrypted zpool
   zpool create -f \
@@ -91,7 +102,7 @@ else
 	-O normalization=formD \
 	-O dnodesize=auto \
 	-O mountpoint=none \
-	NIXROOT "${TARGET_DEVICE}"p2
+	NIXROOT "${TARGET_DEVICE}"2
 fi
 
 zfs create -o mountpoint=legacy NIXROOT/root
@@ -101,7 +112,7 @@ zfs create -o refreservation=1G -o mountpoint=none NIXROOT/reserved
 mount -t zfs NIXROOT/root /mnt
 mkdir /mnt/boot
 mkdir /mnt/home
-mount "${TARGET_DEVICE}"p1 /mnt/boot
+mount "${TARGET_DEVICE}"1 /mnt/boot
 mount -t zfs NIXROOT/home /mnt/home
 nixos-generate-config --root /mnt
 nixos-install 

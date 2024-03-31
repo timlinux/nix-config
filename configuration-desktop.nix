@@ -9,7 +9,7 @@
 
   imports =
     [ 
-      config/adguard.nix
+      #config/adguard.nix
       config/console-apps.nix
       config/bootsplash.nix
       config/appimage.nix

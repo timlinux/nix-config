@@ -8,6 +8,7 @@ writeShellApplication {
     cryptsetup
     gptfdisk
     dosfstools
+    parted #for partprobe 
   ];
   text = builtins.readFile ./setup-host-with-zfs.sh;
 }
