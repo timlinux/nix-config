@@ -8,7 +8,7 @@
       owner = "kartoza";
       repo = "kartoza-grub-theme";
       rev = "main";
-      hash = "sha256-83Q9GA/ZcIF3tU/4aCoM8zGqBN+mxfay8Wzc/s3Olss=";
+      hash = "";
     };
     installPhase = "ls -lah themes; mkdir nixos; tar -xf themes/nixos.tar -C nixos; ls -lah; cp -r nixos $out/";
   };

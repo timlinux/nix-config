@@ -38,4 +38,11 @@
       tailscale
     ];
   };
+  home-manager = {
+    users.timlinux = {
+      imports = [ ../home/home.nix ];
+      };
+      home.stateVersion = "23.11";
+    };
+  };
 }
