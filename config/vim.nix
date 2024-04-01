@@ -12,6 +12,7 @@
 		nerdtree
 		airline
  		vim-lastplace
+                colorizer
 	]; # load plugins on startup
       };
       vimrcConfig.customRC = ''

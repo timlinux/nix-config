@@ -70,6 +70,7 @@
     neofetch # show stats of your system in terminal
     nethogs # see what apps are using up your bandwidth
     nix-direnv # see https://github.com/nix-community/nix-direnv
+    nix-prefetch-github # see https://github.com/seppeljordan/nix-prefetch-github
     pgcli # better psql client for postgres
     powertop # swee what apps use the most power on your machine
     restic # for local backups
