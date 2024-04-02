@@ -142,16 +142,23 @@ HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --place
 rpl "HOSTNAME" "${HOSTNAME}" /mnt/etc/nixos/configuration.nix
 
 git clone https://github.com/timlinux/nix-config.git
-
 cd nix-config
+cd flakes
+git checkout flakes
+cd ..
+cd ..
+
+mv /mnt/etc/nixos /mnt/etc/nixos_org
+mv nix-config /mnt/etc/nixos
+hostname ${HOSTNAME}
 
 gum style "
 
 Partitioning is complete. If you do not have a host entry for this host
-already configured, you need to add it to the hosts/ folder
+already configured, you need to add it to the hosts folder
 and the flake.nix file. Then run:
 
-./update-system.sh
+sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#${HOSTNAME}
 "
 
 
