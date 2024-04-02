@@ -15,6 +15,7 @@
 # https://github.com/mcdonc/p51-thinkpad-nixos/blob/zfsvid/configuration.nix
 
 set -e
+set -x
 
 BLUE=34
 CYAN=36
@@ -38,8 +39,10 @@ if test -z "${TARGET_DEVICE}"; then
 fi
 echo "Got \`$(gum style --foreground ${BLUE} "TARGET_DEVICE")=$(gum style --foreground ${CYAN} "${TARGET_DEVICE}")\`"
 
+sgdisk -O $TARGET_DEVICE
+
 gum style "
-This will irrevocably destroy all data on \`TARGET_DEVICE=${TARGET_DEVICE-/dev/null}\`!!!
+This will irrevocably destroy all data on \`TARGET_DEVICE=${TARGET_DEVICE}\`!!!
 
 A FAT32 EFI system partition will be created as the first partition.
 
@@ -49,7 +52,7 @@ gum confirm "Are you ready to setup this host (including destroying all data on 
 
 
 gum style --bold --foreground "${RED}" "Destroying existing partitions on \`TARGET_DEVICE=${TARGET_DEVICE}\` in 10..."
-sleep 10
+sleep 1
 gum style --bold --foreground "${RED}" "Formatting"
 
 umount -r /mnt || true
@@ -115,4 +118,28 @@ mkdir /mnt/home
 mount "${TARGET_DEVICE}"1 /mnt/boot
 mount -t zfs NIXROOT/home /mnt/home
 nixos-generate-config --root /mnt
+
+
+repl " boot.loader.grub.enable = true;" "\
+  # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \
+  # for notes on how I set up zfs \
+  services.zfs.autoScrub.enable = true; \
+  boot.loader.grub.enable = true; \ 
+  boot.loader.grub.devices = [\"nodev\"]; \
+  boot.loader.grub.efiInstallAsRemovable = true; \
+  boot.loader.grub.efiSupport = true; \
+  boot.loader.grub.useOSProber = true; \
+  boot.supportedFilesystems = [\"zfs\"]; \
+  boot.zfs.requestEncryptionCredentials = true; \
+  networking.hostName = \"HOSTNAME\"; # Define your hostname. \
+  # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \
+  # Generate using this: \
+  # head -c 8 /etc/machine-id \
+  networking.hostId = \"MACHINEID\"; # needed for zfs" /mnt/etc/nixos/configuration.nix
+
+MACHINE=$(head -c 8 /etc/machine-id)
+rpl "MACHINEID" "${MACHINEID}" /mnt/etc/nixos/configuration.nix
+HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
+rpl "HOSTNAME" "${HOSTNAME}" /mnt/etc/nixos/configuration.nix
+
 nixos-install 
