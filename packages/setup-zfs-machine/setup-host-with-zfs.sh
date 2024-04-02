@@ -30,7 +30,7 @@ beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
 
 lsblk -o name,mountpoint,size,uuid,vendor
 
-if test -z "${TARGET_DEVICE-}"; then
+if test -z "${TARGET_DEVICE}"; then
 	TARGET_DEVICE=$(gum input --prompt "What is the target device? (TARGET_DEVICE): " --placeholder "/dev/nvme?n?")
         if beginswith "/dev/nvme" "$TARGET_DEVICE"; then
             TARGET_DEVICE="${TARGET_DEVICE}p"
