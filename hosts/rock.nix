@@ -33,7 +33,7 @@
   # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId 
   # Generate using this:
   # head -c 8 /etc/machine-id
-  networking.hostId = "853f479d"; # needed for zfs
+  networking.hostId = "0c83c5df"; # needed for zfs
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
