@@ -3,6 +3,7 @@
   programs.vim.defaultEditor = true;
 
   environment.systemPackages = with pkgs; [
+    alejandra # nix code formatter do :%!alejandra -qq
     ((vim_configurable.override { }).customize {
       name = "vim";
       vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {

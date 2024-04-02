@@ -42,10 +42,7 @@
     users.timlinux.home.stateVersion = "23.11";
     users.timlinux = {
       imports = [ 
-        ../home/kitty.nix
-        ../home/direnv/default.nix
-        ../home/xdg/default.nix
-        ../home/git/default.nix
+        ../home/default.nix
       ];
       #programs.git.config.user.name = "Tim Sutton";
       #programs.git.config.user.email = "tim@kartoza.com";
