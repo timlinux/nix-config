@@ -61,16 +61,12 @@ sgdisk -o "${TARGET_DEVICE}"
 partprobe || true
 
 # Create a partition for /boot of 10GB formatted with FAT
-sgdisk "${TARGET_DEVICE}" -n 1:0:+10G
-sgdisk "${TARGET_DEVICE}" -t 1:ef00
-sgdisk "${TARGET_DEVICE}" -c 1:efi
+sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
 mkfs.fat -F 32 "${TARGET_DEVICE}"1
 fatlabel "${TARGET_DEVICE}"1 NIXBOOT
 
 # Create a partition for / using the remaining space
-sgdisk "${TARGET_DEVICE}" -n 2:0:0
-sgdisk "${TARGET_DEVICE}" -t 2:8309
-sgdisk "${TARGET_DEVICE}" -c 2:encrypt
+sgdisk -n 2:0:0 -t 0:8300 -c 0:NIXROOT "${TARGET_DEVICE}" 
 
 echo "Do you want to encrypt your disk? Typically you should only say no here if you plan to restart the host remotely / without user interaction."
 ENCRYPT=$(gum choose "YES" "NO")
@@ -109,13 +105,17 @@ fi
 
 zfs create -o mountpoint=legacy NIXROOT/root
 zfs create -o mountpoint=legacy NIXROOT/home
+zfs create -o mountpoint=legacy NIXROOT/nix
 # reserved to cope with running out of disk space
 zfs create -o refreservation=1G -o mountpoint=none NIXROOT/reserved
 mount -t zfs NIXROOT/root /mnt
 mkdir /mnt/boot
 mkdir /mnt/home
+mkdir /mnt/nix
+
 mount "${TARGET_DEVICE}"1 /mnt/boot
 mount -t zfs NIXROOT/home /mnt/home
+mount -t zfs NIXROOT/nix /mnt/nix
 nixos-generate-config --root /mnt
 
 
