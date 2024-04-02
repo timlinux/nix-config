@@ -1,91 +1,91 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   nixpkgs.config.allowUnfree = true;
 
-  imports =
-    [ 
-      #config/adguard.nix
-      config/console-apps.nix
-      config/bootsplash.nix
-      config/appimage.nix
-      #config/android-sdk.nix
-      #config/blocky.nix # Ad blocker
-      #config/upgrades.nix
-      # Use direnv in arduino dev folder rather
-      #config/arduino.nix
-      config/avahi.nix
-      config/biometrics.nix
-      #config/ccache.nix
-      #config/cron-crest.nix
-      config/dir-env.nix
-      #config/distrobox.nix
-      config/docker.nix
-      config/fwupd.nix
-      config/fonts.nix
-      config/games.nix
-      config/display-server.nix
-      #../../config/kde-plasma6.nix
-      config/gnome-desktop-wayland.nix
-      config/gnome-desktop-gdm.nix
-      config/gnome-desktop-apps.nix
-      config/gnome-desktop-extensions.nix
-      config/gnome-desktop-themes.nix
-      #config/gnome-desktop-x11.nix
-      #config/deepin-desktop.nix
-      #config/budgie-deskop.nix
-      #config/plasma-desktop.nix
-      #config/xfce-desktop.nix
-      #config/pantheon-desktop.nix
-      config/gui-apps.nix
-      config/grub-theme.nix
-      config/harden.nix
-      config/iphone.nix
-      config/locale-pt-en.nix
-      config/keepassxc.nix
-      #config/locale-za-en.nix
-      config/localsend.nix
-      # Dont enable when using wayland - causes screen flickr
-      #config/nvidia.nix
-      #config/nagios.nix
-      config/ntfs.nix
-      config/obs.nix
-      #config/postgres.nix
-      #config/nixos-conf-editor.nix
-      config/printing.nix
-      #config/python.nix
-      #config/qtcreator.nix
-      config/qgis.nix # Upstream packaged version
-      config/quickemu.nix # Run VMS easily
-      #../../config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
-      #config/tilemaker.nix 
-      #config/rstudio.nix
-      config/screen-control.nix
-      config/ssh.nix
-      config/starship.nix
-      config/steam.nix
-      config/syncthing.nix
-      config/tailscale.nix
-      config/trezor.nix
-      config/uxplay.nix
-      config/vim.nix
-      config/yubikey.nix 
-      # For logging in using yubikey
-      #config/yubikey-auth.nix 
-      config/vscode.nix
-      #config/wacom.nix
-      config/unstable-apps.nix
-      config/wine.nix
-      config/virt.nix
-      config/zfs.nix
-      users/all.nix
-      users/tim.nix
-      users/guest.nix
-    ];
+  imports = [
+    #config/adguard.nix
+    config/console-apps.nix
+    config/bootsplash.nix
+    config/appimage.nix
+    #config/android-sdk.nix
+    #config/blocky.nix # Ad blocker
+    #config/upgrades.nix
+    # Use direnv in arduino dev folder rather
+    #config/arduino.nix
+    config/avahi.nix
+    config/biometrics.nix
+    #config/ccache.nix
+    #config/cron-crest.nix
+    config/dir-env.nix
+    #config/distrobox.nix
+    config/docker.nix
+    config/fwupd.nix
+    config/fonts.nix
+    config/games.nix
+    config/display-server.nix
+    #../../config/kde-plasma6.nix
+    config/gnome-desktop-wayland.nix
+    config/gnome-desktop-gdm.nix
+    config/gnome-desktop-apps.nix
+    config/gnome-desktop-extensions.nix
+    config/gnome-desktop-themes.nix
+    #config/gnome-desktop-x11.nix
+    #config/deepin-desktop.nix
+    #config/budgie-deskop.nix
+    #config/plasma-desktop.nix
+    #config/xfce-desktop.nix
+    #config/pantheon-desktop.nix
+    config/gui-apps.nix
+    config/grub-theme.nix
+    config/harden.nix
+    config/iphone.nix
+    config/locale-pt-en.nix
+    config/keepassxc.nix
+    #config/locale-za-en.nix
+    config/localsend.nix
+    # Dont enable when using wayland - causes screen flickr
+    #config/nvidia.nix
+    #config/nagios.nix
+    config/ntfs.nix
+    config/obs.nix
+    #config/postgres.nix
+    #config/nixos-conf-editor.nix
+    config/printing.nix
+    #config/python.nix
+    #config/qtcreator.nix
+    config/qgis.nix # Upstream packaged version
+    config/quickemu.nix # Run VMS easily
+    #../../config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
+    #config/tilemaker.nix
+    #config/rstudio.nix
+    config/screen-control.nix
+    config/ssh.nix
+    config/starship.nix
+    config/steam.nix
+    config/syncthing.nix
+    config/tailscale.nix
+    config/trezor.nix
+    config/uxplay.nix
+    config/vim.nix
+    config/yubikey.nix
+    # For logging in using yubikey
+    #config/yubikey-auth.nix
+    config/vscode.nix
+    #config/wacom.nix
+    config/unstable-apps.nix
+    config/wine.nix
+    config/virt.nix
+    config/zfs.nix
+    users/all.nix
+    users/tim.nix
+    users/guest.nix
+  ];
 
   # Bootloader.
   #boot.loader.systemd-boot.enable = true;
@@ -96,13 +96,12 @@
   # for notes on how I set up zfs
   services.zfs.autoScrub.enable = true;
   boot.loader.grub.enable = true;
-  boot.loader.grub.devices = [ "nodev" ];
+  boot.loader.grub.devices = ["nodev"];
   boot.loader.grub.efiInstallAsRemovable = true;
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = ["zfs"];
   boot.zfs.requestEncryptionCredentials = true;
-  
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -124,11 +123,10 @@
     #media-session.enable = true;
   };
 
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   home-manager 
+    home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -150,9 +148,9 @@
   system.stateVersion = "22.11"; # Did you read the comment?
 
   ### Flakes support
-      
+
   ### See https://nixos.wiki/wiki/Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
@@ -163,6 +161,4 @@
   ###
   ### Bleeding edge kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-
-
 }

@@ -7,6 +7,9 @@ in {
   config = {
     programs.git = {
       enable = true;
+      #enableGPGSign = true;
+      # Optionally, you can specify the path to your GPG key here
+      # gpgKey = "/path/to/your/gpg/key";
       extraConfig = {
         core = { editor = "vim"; };
         pull = { rebase = "false"; };

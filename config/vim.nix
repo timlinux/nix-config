@@ -81,7 +81,9 @@
     
 	" Cut and paste from the system keyboard
 	set clipboard=unnamed
-
+ 
+        " Shortcut to format a .nix file using alejandra
+        :nnoremap <C-=> :%!alejandra -qq<CR>
       '';
     })
   ];
