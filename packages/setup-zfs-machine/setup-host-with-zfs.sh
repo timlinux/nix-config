@@ -119,22 +119,22 @@ mount -t zfs NIXROOT/home /mnt/home
 nixos-generate-config --root /mnt
 
 
-rpl " boot.loader.grub.enable = true;" "\
-  # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \
-  # for notes on how I set up zfs \
-  services.zfs.autoScrub.enable = true; \
-  boot.loader.grub.enable = true; \ 
-  boot.loader.grub.devices = [\"nodev\"]; \
-  boot.loader.grub.efiInstallAsRemovable = true; \
-  boot.loader.grub.efiSupport = true; \
-  boot.loader.grub.useOSProber = true; \
-  boot.supportedFilesystems = [\"zfs\"]; \
-  boot.zfs.requestEncryptionCredentials = true; \
-  networking.hostName = \"HOSTNAME\"; # Define your hostname. \
-  # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \
-  # Generate using this: \
-  # head -c 8 /etc/machine-id \
-  networking.hostId = \"MACHINEID\"; # needed for zfs" /mnt/etc/nixos/configuration.nix
+rpl " boot.loader.grub.enable = true;" "\n
+  # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
+  # for notes on how I set up zfs \n
+  services.zfs.autoScrub.enable = true; \n
+  boot.loader.grub.enable = true; \n
+  boot.loader.grub.devices = [\"nodev\"]; \n
+  boot.loader.grub.efiInstallAsRemovable = true; \n
+  boot.loader.grub.efiSupport = true; \n
+  boot.loader.grub.useOSProber = true; \n
+  boot.supportedFilesystems = [\"zfs\"]; \n
+  boot.zfs.requestEncryptionCredentials = true; \n
+  networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
+  # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
+  # Generate using this: \n
+  # head -c 8 /etc/machine-id \n
+  networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
 
 MACHINE=$(head -c 8 /etc/machine-id)
 rpl "MACHINEID" "${MACHINEID}" /mnt/etc/nixos/configuration.nix
