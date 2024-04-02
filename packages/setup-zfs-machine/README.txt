@@ -11,6 +11,8 @@ sudo nix run github:timlinux/flakes/flake#setup-zfs-machine
 or
 
 ```
-nix-shell -p gum rpl
-curl -sL https://raw.githubusercontent.com/timlinux/nix-config/flakes/packages/setup-zfs-machine/setup-host-with-zfs.sh | sudo bash
+nix-shell -p gum rpl wget
+wget https://raw.githubusercontent.com/timlinux/nix-config/flakes/packages/setup-zfs-machine/setup-host-with-zfs.sh 
+chmod +x setup-host-with-zfs.sh
+sudo ./setup-host-with-zfs.sh
 ```

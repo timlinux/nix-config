@@ -136,7 +136,7 @@ rpl " boot.loader.grub.enable = true;" "\n
   # head -c 8 /etc/machine-id \n
   networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
 
-MACHINE=$(head -c 8 /etc/machine-id)
+MACHINEID=$(head -c 8 /etc/machine-id)
 rpl "MACHINEID" "${MACHINEID}" /mnt/etc/nixos/configuration.nix
 HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
 rpl "HOSTNAME" "${HOSTNAME}" /mnt/etc/nixos/configuration.nix
