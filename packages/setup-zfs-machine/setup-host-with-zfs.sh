@@ -15,7 +15,6 @@
 # https://github.com/mcdonc/p51-thinkpad-nixos/blob/zfsvid/configuration.nix
 
 set -e
-set -x
 
 BLUE=34
 CYAN=36
@@ -120,7 +119,7 @@ mount -t zfs NIXROOT/home /mnt/home
 nixos-generate-config --root /mnt
 
 
-repl " boot.loader.grub.enable = true;" "\
+rpl " boot.loader.grub.enable = true;" "\
   # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \
   # for notes on how I set up zfs \
   services.zfs.autoScrub.enable = true; \
