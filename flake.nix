@@ -58,6 +58,13 @@
         system = system;
         modules = shared-modules ++ [./hosts/crest.nix];
       };
+      # Virtman manual testbed
+      rock = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules = shared-modules ++ [./hosts/rock.nix];
+      }; 
+      # Automated testbed
       test = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
