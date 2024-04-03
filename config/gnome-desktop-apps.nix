@@ -54,7 +54,6 @@
     emblem
     gnome.gnome-tweaks
     gnome.gnome-sound-recorder
-    gnome.gnome-terminal
     shortwave # Internet streaming radio player
     eyedropper # nice simple colour picker
     gaphor # Uml diagramming app
