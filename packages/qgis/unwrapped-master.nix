@@ -67,6 +67,7 @@ let
     numpy
     owslib
     pandas
+    geopandas
     plotly
     psycopg2
     pygments
