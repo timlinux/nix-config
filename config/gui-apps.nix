@@ -22,7 +22,6 @@
     drawio
     firefox
     flameshot
-    fluffychat
     gimp-with-plugins
     gitkraken # nice UI for Git
     # Needed for gnome boxes

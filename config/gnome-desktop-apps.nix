@@ -21,7 +21,7 @@
     amberol
     celluloid
     eyedropper
-    fractal-next
+    fractal-next # matrix chatt app
     gnome.gnome-calculator
     gnome.gnome-system-monitor
     gnome.gnome-weather
@@ -48,7 +48,6 @@
     gnome-decoder # Scan and Generate QR Codes
     newsflash # rss feed reader
     gnome.gnome-power-manager # run as gnome-power-statistics on CLI - gives charts of battery performance
-    gpick
     junction # Lets you choose which browser to use to open links
     # broken in 23.11 upgrade
     #citations # Manage your bibliographies using the BibTeX format

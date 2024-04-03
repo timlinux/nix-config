@@ -64,6 +64,11 @@
         system = system;
         modules = shared-modules ++ [./hosts/rock.nix];
       }; 
+      jeff = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules = shared-modules ++ [./hosts/jeff.nix];
+      };
       # Automated testbed
       test = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
