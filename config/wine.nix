@@ -5,6 +5,7 @@
     wineWowPackages.waylandFull
     # winetricks (all versions)
     winetricks
+    bottles
   ];
 }
 

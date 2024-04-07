@@ -11,7 +11,7 @@ stdenv.mkDerivation (finalAttrs: {
     # Include the v if using a version branch
     #rev = "v${finalAttrs.version}";
     rev = "${finalAttrs.version}";
-    hash = "sha256-azoA6FFVnzkm5474xn+O+30r5sTRRA/IdW6qfRw4dpQ=";
+    hash = "sha256-xm8St+gbXWb/7W7F8ktUWHgM/ka8uRmVMChJsnhxBsk=";
   };
 
   postPatch = ''
