@@ -63,8 +63,10 @@
     config/quickemu.nix # Run VMS easily
     #config/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
     config/tilemaker.nix
+    config/tlp.nix
     #config/rstudio.nix
     config/screen-control.nix
+    config/ssdtrim.nix
     config/ssh.nix
     config/starship.nix
     config/steam.nix
