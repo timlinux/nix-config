@@ -121,7 +121,6 @@ nixos-generate-config --root /mnt
 
 if [ "$ENCRYPT" == "YES" ]; then
   rpl " boot.loader.grub.enable = true;" "\n
-  boot.loader.grub.enable = true; \n
   # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
   # for notes on how I set up zfs \n
   services.zfs.autoScrub.enable = true; \n
@@ -139,7 +138,6 @@ if [ "$ENCRYPT" == "YES" ]; then
   networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
 else
   rpl " boot.loader.grub.enable = true;" "\n
-  boot.loader.grub.enable = true; \n
   # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
   # for notes on how I set up zfs \n
   services.zfs.autoScrub.enable = true; \n
