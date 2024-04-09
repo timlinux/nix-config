@@ -60,8 +60,16 @@ sgdisk --zap-all "${TARGET_DEVICE}"
 sgdisk -o "${TARGET_DEVICE}"
 partprobe || true
 
+gum style --bold --foreground "${RED}" "Choose a boot partition type..."
+BOOT=$(gum choose "EFI" "MBR" "BIOS")
 # Create a partition for /boot of 10GB formatted with FAT
-sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
+if [ "$BOOT" == "EFI" ]; then
+    sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
+elif [ "$BOOT" == "MBR" ]; then
+    sgdisk -n 0:0:+10G -t 0:ef01 -c 0:efi "${TARGET_DEVICE}"
+else # BIOS
+    sgdisk -n 0:0:+10G -t 0:ef02 -c 0:efi "${TARGET_DEVICE}"
+fi
 mkfs.fat -F 32 "${TARGET_DEVICE}"1
 fatlabel "${TARGET_DEVICE}"1 NIXBOOT
 
@@ -102,7 +110,8 @@ else
 	-O mountpoint=none \
 	NIXROOT "${TARGET_DEVICE}"2
 fi
-
+# legacy mount points do not get auto mounted at boot
+# rather they must be mounted using fstab
 zfs create -o mountpoint=legacy NIXROOT/root
 zfs create -o mountpoint=legacy NIXROOT/home
 zfs create -o mountpoint=legacy NIXROOT/nix
@@ -119,40 +128,72 @@ mount -t zfs NIXROOT/nix /mnt/nix
 nixos-generate-config --root /mnt
 
 
-if [ "$ENCRYPT" == "YES" ]; then
-  rpl " boot.loader.grub.enable = true;" "\n
-  # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
-  # for notes on how I set up zfs \n
-  services.zfs.autoScrub.enable = true; \n
-  boot.loader.grub.enable = true; \n
-  boot.loader.grub.devices = [\"nodev\"]; \n
-  boot.loader.grub.efiInstallAsRemovable = true; \n
-  boot.loader.grub.efiSupport = true; \n
-  boot.loader.grub.useOSProber = true; \n
-  boot.supportedFilesystems = [\"zfs\"]; \n
-  boot.zfs.requestEncryptionCredentials = true; \n
-  networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
-  # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
-  # Generate using this: \n
-  # head -c 8 /etc/machine-id \n
-  networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
-else
-  rpl " boot.loader.grub.enable = true;" "\n
-  # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
-  # for notes on how I set up zfs \n
-  services.zfs.autoScrub.enable = true; \n
-  boot.loader.grub.enable = true; \n
-  boot.loader.grub.devices = [\"nodev\"]; \n
-  boot.loader.grub.efiInstallAsRemovable = true; \n
-  boot.loader.grub.efiSupport = true; \n
-  boot.loader.grub.useOSProber = true; \n
-  boot.supportedFilesystems = [\"zfs\"]; \n
-  boot.zfs.requestEncryptionCredentials = false; \n
-  networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
-  # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
-  # Generate using this: \n
-  # head -c 8 /etc/machine-id \n
-  networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
+if [ "$BOOT" == "EFI" ]; then
+  if [ "$ENCRYPT" == "YES" ]; then
+    rpl " boot.loader.grub.enable = true;" "\n
+    # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
+    # for notes on how I set up zfs \n
+    services.zfs.autoScrub.enable = true; \n
+    boot.loader.grub.enable = true; \n
+    boot.loader.grub.devices = [\"nodev\"]; \n
+    boot.loader.grub.efiInstallAsRemovable = true; \n
+    boot.loader.grub.efiSupport = true; \n
+    boot.loader.grub.useOSProber = true; \n
+    boot.supportedFilesystems = [\"zfs\"]; \n
+    boot.zfs.requestEncryptionCredentials = true; \n
+    networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
+    # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
+    # Generate using this: \n
+    # head -c 8 /etc/machine-id \n
+    networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
+  else
+    rpl " boot.loader.grub.enable = true;" "\n
+    # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
+    # for notes on how I set up zfs \n
+    services.zfs.autoScrub.enable = true; \n
+    boot.loader.grub.enable = true; \n
+    boot.loader.grub.devices = [\"nodev\"]; \n
+    boot.loader.grub.efiInstallAsRemovable = true; \n
+    boot.loader.grub.efiSupport = true; \n
+    boot.loader.grub.useOSProber = true; \n
+    boot.supportedFilesystems = [\"zfs\"]; \n
+    boot.zfs.requestEncryptionCredentials = false; \n
+    networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
+    # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
+    # Generate using this: \n
+    # head -c 8 /etc/machine-id \n
+    networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
+  fi
+else # MBR or BIOS
+  if [ "$ENCRYPT" == "YES" ]; then
+    rpl " boot.loader.grub.enable = true;" "\n
+    boot.supportedFilesystems = [ \"zfs\" ];\n
+    # Use the systemd-boot EFI boot loader.\n
+    boot.loader.systemd-boot.enable = true;\n
+    boot.loader.efi.canTouchEfiVariables = true;\n
+    services.zfs.autoScrub.enable = true; \n
+    boot.loader.grub.enable = true; \n
+    boot.zfs.requestEncryptionCredentials = true; \n
+    networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
+    # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
+    # Generate using this: \n
+    # head -c 8 /etc/machine-id \n
+    networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
+  else
+    rpl " boot.loader.grub.enable = true;" "\n
+    boot.supportedFilesystems = [ \"zfs\" ];\n
+    # Use the systemd-boot EFI boot loader.\n
+    boot.loader.systemd-boot.enable = true;\n
+    boot.loader.efi.canTouchEfiVariables = true;\n
+    services.zfs.autoScrub.enable = true; \n
+    boot.loader.grub.enable = true; \n
+    boot.zfs.requestEncryptionCredentials = false; \n
+    networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
+    # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
+    # Generate using this: \n
+    # head -c 8 /etc/machine-id \n
+    networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
+  fi
 fi
 
 MACHINEID=$(head -c 8 /etc/machine-id)
