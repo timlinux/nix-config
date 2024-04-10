@@ -127,6 +127,13 @@ mount -t zfs NIXROOT/home /mnt/home
 mount -t zfs NIXROOT/nix /mnt/nix
 nixos-generate-config --root /mnt
 
+echo "Are you installing in a VM?"
+VM=$(gum choose "YES" "NO")
+if [ "$VM" == "YES" ]; then
+  VMCONFIG=""
+else
+  VMCONFIG="#"
+fi
 
 if [ "$BOOT" == "EFI" ]; then
   if [ "$ENCRYPT" == "YES" ]; then
@@ -141,6 +148,7 @@ if [ "$BOOT" == "EFI" ]; then
     boot.loader.grub.useOSProber = true; \n
     boot.supportedFilesystems = [\"zfs\"]; \n
     boot.zfs.requestEncryptionCredentials = true; \n
+    ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
     networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
     # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
     # Generate using this: \n
@@ -158,6 +166,7 @@ if [ "$BOOT" == "EFI" ]; then
     boot.loader.grub.useOSProber = true; \n
     boot.supportedFilesystems = [\"zfs\"]; \n
     boot.zfs.requestEncryptionCredentials = false; \n
+    ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
     networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
     # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
     # Generate using this: \n
@@ -174,6 +183,7 @@ else # MBR or BIOS
     services.zfs.autoScrub.enable = true; \n
     boot.loader.grub.enable = true; \n
     boot.zfs.requestEncryptionCredentials = true; \n
+    ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
     networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
     # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
     # Generate using this: \n
@@ -188,6 +198,7 @@ else # MBR or BIOS
     services.zfs.autoScrub.enable = true; \n
     boot.loader.grub.enable = true; \n
     boot.zfs.requestEncryptionCredentials = false; \n
+    ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
     networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
     # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
     # Generate using this: \n
