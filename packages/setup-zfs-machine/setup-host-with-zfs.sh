@@ -212,6 +212,12 @@ mv /mnt/etc/nixos /mnt/etc/nixos_org
 mv nix-config /mnt/etc/nixos
 hostname ${HOSTNAME}
 
+# Just for info...
+sudo zfs list
+sudo mount | grep NIXROOT
+sudo mount | grep boot
+
+
 gum style "
 
 Partitioning is complete. If you do not have a host entry for this host
