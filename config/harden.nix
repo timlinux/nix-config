@@ -48,7 +48,7 @@
       "page_alloc.shuffle=1"
     ];
 
-    services.openssh.PermitRootLogin = lib.mkForce "no";
+    services.openssh.permitRootLogin = lib.mkForce "no";
     services.fail2ban.enable = true;
   };
 }
