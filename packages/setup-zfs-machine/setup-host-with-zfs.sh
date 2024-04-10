@@ -236,7 +236,11 @@ already configured, you need to add it to the hosts folder
 and the flake.nix file. Then run:
 
 sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#${HOSTNAME}
+
+alternatively, for a simple install (not using flakes) based on this 
+configuration, run:
+
+nixos-install 
 "
 
 
-#nixos-install 
