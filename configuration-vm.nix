@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
   imports =
     [ 
       config/console-apps.nix
