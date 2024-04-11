@@ -5,11 +5,11 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-      ../configuration-minimal.nix
+    [ (modulesPath + "/profiles/qemu-guest.nix")
+      ../configuration-vm.nix
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -26,6 +26,8 @@
 
   fileSystems."/boot" =
     { device = "/dev/vda1";
+      #use uuid rather
+      #device = "/dev/disk/by-uuid/D7EC-2233";
       fsType = "vfat";
     };
 
@@ -52,5 +54,4 @@
   # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

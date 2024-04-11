@@ -60,16 +60,8 @@ sgdisk --zap-all "${TARGET_DEVICE}"
 sgdisk -o "${TARGET_DEVICE}"
 partprobe || true
 
-gum style --bold --foreground "${RED}" "Choose a boot partition type..."
-BOOT=$(gum choose "EFI" "MBR" "BIOS")
-# Create a partition for /boot of 10GB formatted with FAT
-if [ "$BOOT" == "EFI" ]; then
-    sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
-elif [ "$BOOT" == "MBR" ]; then
-    sgdisk -n 0:0:+10G -t 0:ef01 -c 0:efi "${TARGET_DEVICE}"
-else # BIOS
-    sgdisk -n 0:0:+10G -t 0:ef02 -c 0:efi "${TARGET_DEVICE}"
-fi
+sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
+
 mkfs.fat -F 32 "${TARGET_DEVICE}"1
 fatlabel "${TARGET_DEVICE}"1 NIXBOOT
 
@@ -127,6 +119,37 @@ mount -t zfs NIXROOT/home /mnt/home
 mount -t zfs NIXROOT/nix /mnt/nix
 nixos-generate-config --root /mnt
 
+echo "Are you installing an existing flake profile?"
+FLAKE=$(gum choose "YES" "NO")
+if [ "$VM" == "YES" ]; then
+  git clone https://github.com/timlinux/nix-config.git
+  cd nix-config
+  cd flakes
+  git checkout flakes
+  cd ..
+  cd ..
+  mv /mnt/etc/nixos /mnt/etc/nixos_org
+  mv nix-config /mnt/etc/nixos
+  hostname ${HOSTNAME}
+  # Just for info...
+  sudo zfs list
+  sudo mount | grep NIXROOT
+  sudo mount | grep boot
+  gum style "
+Partitioning is complete. If you do not have a host entry for this host
+already configured, you need to add it to the hosts folder
+and the flake.nix file. Then (or if you already have the flake setup) run:
+
+sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#${HOSTNAME}
+"
+  exit
+fi
+
+
+##
+## Remaining steps are of if you are not using flake based install
+##
+
 echo "Are you installing in a VM?"
 VM=$(gum choose "YES" "NO")
 if [ "$VM" == "YES" ]; then
@@ -135,76 +158,42 @@ else
   VMCONFIG="#"
 fi
 
-if [ "$BOOT" == "EFI" ]; then
-  if [ "$ENCRYPT" == "YES" ]; then
-    rpl " boot.loader.grub.enable = true;" "\n
-    # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
-    # for notes on how I set up zfs \n
-    services.zfs.autoScrub.enable = true; \n
-    boot.loader.grub.enable = true; \n
-    boot.loader.grub.devices = [\"nodev\"]; \n
-    boot.loader.grub.efiInstallAsRemovable = true; \n
-    boot.loader.grub.efiSupport = true; \n
-    boot.loader.grub.useOSProber = true; \n
-    boot.supportedFilesystems = [\"zfs\"]; \n
-    boot.zfs.requestEncryptionCredentials = true; \n
-    ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
-    networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
-    # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
-    # Generate using this: \n
-    # head -c 8 /etc/machine-id \n
-    networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
-  else
-    rpl " boot.loader.grub.enable = true;" "\n
-    # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
-    # for notes on how I set up zfs \n
-    services.zfs.autoScrub.enable = true; \n
-    boot.loader.grub.enable = true; \n
-    boot.loader.grub.devices = [\"nodev\"]; \n
-    boot.loader.grub.efiInstallAsRemovable = true; \n
-    boot.loader.grub.efiSupport = true; \n
-    boot.loader.grub.useOSProber = true; \n
-    boot.supportedFilesystems = [\"zfs\"]; \n
-    boot.zfs.requestEncryptionCredentials = false; \n
-    ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
-    networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
-    # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
-    # Generate using this: \n
-    # head -c 8 /etc/machine-id \n
-    networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
-  fi
-else # MBR or BIOS
-  if [ "$ENCRYPT" == "YES" ]; then
-    rpl " boot.loader.grub.enable = true;" "\n
-    boot.supportedFilesystems = [ \"zfs\" ];\n
-    # Use the systemd-boot EFI boot loader.\n
-    boot.loader.systemd-boot.enable = true;\n
-    boot.loader.efi.canTouchEfiVariables = true;\n
-    services.zfs.autoScrub.enable = true; \n
-    boot.loader.grub.enable = true; \n
-    boot.zfs.requestEncryptionCredentials = true; \n
-    ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
-    networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
-    # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
-    # Generate using this: \n
-    # head -c 8 /etc/machine-id \n
-    networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
-  else
-    rpl " boot.loader.grub.enable = true;" "\n
-    boot.supportedFilesystems = [ \"zfs\" ];\n
-    # Use the systemd-boot EFI boot loader.\n
-    boot.loader.systemd-boot.enable = true;\n
-    boot.loader.efi.canTouchEfiVariables = true;\n
-    services.zfs.autoScrub.enable = true; \n
-    boot.loader.grub.enable = true; \n
-    boot.zfs.requestEncryptionCredentials = false; \n
-    ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
-    networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
-    # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
-    # Generate using this: \n
-    # head -c 8 /etc/machine-id \n
-    networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
-  fi
+if [ "$ENCRYPT" == "YES" ]; then
+  rpl " boot.loader.grub.enable = true;" "\n
+  # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
+  # for notes on how I set up zfs \n
+  services.zfs.autoScrub.enable = true; \n
+  boot.loader.grub.enable = true; \n
+  boot.loader.grub.devices = [\"nodev\"]; \n
+  boot.loader.grub.efiInstallAsRemovable = true; \n
+  boot.loader.grub.efiSupport = true; \n
+  boot.loader.grub.useOSProber = true; \n
+  boot.supportedFilesystems = [\"zfs\"]; \n
+  boot.zfs.requestEncryptionCredentials = true; \n
+  ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
+  networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
+  # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
+  # Generate using this: \n
+  # head -c 8 /etc/machine-id \n
+  networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
+else
+  rpl " boot.loader.grub.enable = true;" "\n
+  # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid \n
+  # for notes on how I set up zfs \n
+  services.zfs.autoScrub.enable = true; \n
+  boot.loader.grub.enable = true; \n
+  boot.loader.grub.devices = [\"nodev\"]; \n
+  boot.loader.grub.efiInstallAsRemovable = true; \n
+  boot.loader.grub.efiSupport = true; \n
+  boot.loader.grub.useOSProber = true; \n
+  boot.supportedFilesystems = [\"zfs\"]; \n
+  boot.zfs.requestEncryptionCredentials = false; \n
+  ${VMCONFIG}boot.zfs.devNodes = \"/dev/disk/by-path\"; \n
+  networking.hostName = \"HOSTNAME\"; # Define your hostname. \n
+  # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId \n
+  # Generate using this: \n
+  # head -c 8 /etc/machine-id \n
+  networking.hostId = \"MACHINEID\"; # needed for zfs\n" /mnt/etc/nixos/configuration.nix
 fi
 
 MACHINEID=$(head -c 8 /etc/machine-id)
@@ -212,35 +201,11 @@ rpl "MACHINEID" "${MACHINEID}" /mnt/etc/nixos/configuration.nix
 HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
 rpl "HOSTNAME" "${HOSTNAME}" /mnt/etc/nixos/configuration.nix
 
-git clone https://github.com/timlinux/nix-config.git
-cd nix-config
-cd flakes
-git checkout flakes
-cd ..
-cd ..
-
-mv /mnt/etc/nixos /mnt/etc/nixos_org
-mv nix-config /mnt/etc/nixos
-hostname ${HOSTNAME}
-
-# Just for info...
-sudo zfs list
-sudo mount | grep NIXROOT
-sudo mount | grep boot
-
-
 gum style "
-
-Partitioning is complete. If you do not have a host entry for this host
-already configured, you need to add it to the hosts folder
-and the flake.nix file. Then run:
-
-sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#${HOSTNAME}
-
-alternatively, for a simple install (not using flakes) based on this 
-configuration, run:
+Partitioning is complete.
+To complete the configuration, run:
 
 nixos-install 
+reboot
 "
-
 
