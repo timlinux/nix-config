@@ -130,6 +130,14 @@ if [ "$DESTROY" == "DESTROY" ]; then
 
 fi
 
+# Check if filesystem is mounted
+if mountpoint -q /mnt; then
+    echo "The filesystem at /mnt is mounted."
+  gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Mounted' 'It appears the ZFS datasets are already mounted.'
+else
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
@@ -140,15 +148,15 @@ NIXROOT/root /mnt
 NIXROOT/home /mnt/home
 NIXROOT/nix  /mnt/nix
 '
+  mount -t zfs NIXROOT/root /mnt
+  mkdir /mnt/boot
+  mkdir /mnt/home
+  mkdir /mnt/nix
 
-mount -t zfs NIXROOT/root /mnt
-mkdir /mnt/boot
-mkdir /mnt/home
-mkdir /mnt/nix
-
-mount "${TARGET_DEVICE}"1 /mnt/boot
-mount -t zfs NIXROOT/home /mnt/home
-mount -t zfs NIXROOT/nix /mnt/nix
+  mount "${TARGET_DEVICE}"1 /mnt/boot
+  mount -t zfs NIXROOT/home /mnt/home
+  mount -t zfs NIXROOT/nix /mnt/nix
+fi
 
 hostname ${HOSTNAME}
 
@@ -157,7 +165,7 @@ gum style \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
 	'Mounts' $(sudo zfs list;sudo mount | grep NIXROOT;sudo mount | grep boot)
 
-echo "Are you installing an existing flake profile?"
+echo "Are you installing an existing flake profile for $HOSTNAME?"
 FLAKE=$(gum choose "YES" "NO")
 if [ "$FLAKE" == "YES" ]; then
   git clone https://github.com/timlinux/nix-config.git
@@ -169,12 +177,13 @@ if [ "$FLAKE" == "YES" ]; then
   mv /mnt/etc/nixos /mnt/etc/nixos_org
   mv nix-config /mnt/etc/nixos
   gum style "
-Partitioning is complete. If you do not have a host entry for this host
-already configured, you need to add it to the hosts folder
-and the flake.nix file. Then (or if you already have the flake setup) run:
+  Partitioning is complete. If you do not have a host entry for this host
+  already configured, you need to add it to the hosts folder
+  and the flake.nix file. Then (or if you already have the flake setup) run:
 
-sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#${HOSTNAME}
+  sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#${HOSTNAME}
 "
+  # We are done here....
   exit
 fi
 
@@ -182,16 +191,6 @@ fi
 ##
 ## Remaining steps are of if you are not using flake based install
 ##
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Mounting' 'Mounting the partitions and ZFS datasets:
-
-/mnt/boot
-NIXROOT/root /mnt
-NIXROOT/home /mnt/home
-NIXROOT/nix  /mnt/nix
-'
 nixos-generate-config --root /mnt
 
 echo "Are you installing in a VM?"
