@@ -158,6 +158,7 @@ NIXROOT/nix  /mnt/nix
   mount -t zfs NIXROOT/nix /mnt/nix
 fi
 
+HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
 hostname ${HOSTNAME}
 
 gum style \
@@ -241,7 +242,6 @@ fi
 
 MACHINEID=$(head -c 8 /etc/machine-id)
 rpl "MACHINEID" "${MACHINEID}" /mnt/etc/nixos/configuration.nix
-HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
 rpl "HOSTNAME" "${HOSTNAME}" /mnt/etc/nixos/configuration.nix
 
 gum style "
