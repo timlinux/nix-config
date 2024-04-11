@@ -6,8 +6,6 @@ install nixos onto the disk.
 ```
 sudo nix run github:timlinux/flakes/flake#setup-zfs-machine
 ```
-
-
 or
 
 ```
