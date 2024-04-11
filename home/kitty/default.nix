@@ -25,8 +25,8 @@
       tab_max_width_auto_shrink no
       tab_bar_background #DF9E2F
       active_tab_background #569FC6
-      tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
-      active_tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+      tab_title_template "💻️ {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+      active_tab_title_template "⚙️ {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
       tab_font 'Hack, Monaco, "DejaVu Sans Mono", monospace'
     '';
   };
