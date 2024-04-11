@@ -217,7 +217,8 @@ else
 fi
 
 MACHINEID=$(head -c 8 /etc/machine-id)
-
+echo "--"
+set +e
 read -d '\n' REPLACEMENT << EndOfText
   # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid 
   # for notes on how I set up zfs 
@@ -236,6 +237,12 @@ read -d '\n' REPLACEMENT << EndOfText
   # head -c 8 /etc/machine-id 
   networking.hostId = "${MACHINEID}"; # needed for zfs
 EndOfText
+echo "--"
+
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Adding this to configuration.nix' "${REPLACEMENT}"
 
 # It can be either of these so we check for both
 rpl " boot.loader.grub.enable = true;" "${REPLACEMENT}" /mnt/etc/nixos/configuration.nix
