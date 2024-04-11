@@ -200,7 +200,7 @@ fi
 ##
 ## Remaining steps are of if you are not using flake based install
 ##
-nixos-generate-config --root /mnt
+nixos-generate-config --force --root /mnt
 
 echo "Are you installing in a VM?"
 VM=$(gum choose "YES" "NO")
