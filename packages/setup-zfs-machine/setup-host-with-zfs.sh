@@ -28,12 +28,18 @@ fi
 
 beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
 
-lsblk -o name,mountpoint,size,uuid,vendor
 
+
+# Function to prompt user to select a block device
 if test -z "${TARGET_DEVICE}"; then
-	TARGET_DEVICE=$(gum input --prompt "What is the target device? (TARGET_DEVICE): " --placeholder "/dev/nvme?n?")
+  echo "Available block devices:"
+  lsblk -o name,mountpoint,size,uuid,vendor
+  echo ""
+  echo "Confirm which to use:"
+  TARGET_DEVICE=$(gum choose $(lsblk -o NAME,SIZE,TYPE,MOUNTPOINT | grep 'disk' | awk '{print $1}'))
 fi
 echo "Got \`$(gum style --foreground ${BLUE} "TARGET_DEVICE")=$(gum style --foreground ${CYAN} "${TARGET_DEVICE}")\`"
+
 sgdisk -O $TARGET_DEVICE
 
 gum style "
