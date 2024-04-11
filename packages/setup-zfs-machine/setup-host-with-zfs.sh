@@ -36,10 +36,6 @@ fi
 echo "Got \`$(gum style --foreground ${BLUE} "TARGET_DEVICE")=$(gum style --foreground ${CYAN} "${TARGET_DEVICE}")\`"
 sgdisk -O $TARGET_DEVICE
 
-if beginswith "/dev/nvme" "$TARGET_DEVICE"; then
-  TARGET_DEVICE="${TARGET_DEVICE}p"
-fi
-
 gum style "
 Do you want to destroy the partitions or use them 'as is'? 
 If you plan to use them as is, there should be the following
@@ -78,10 +74,16 @@ if [ "$DESTROY" == "DESTROY" ]; then
   sgdisk -o "${TARGET_DEVICE}"
   partprobe || true
 
+if beginswith "/dev/nvme" "$TARGET_DEVICE"; then
+  FULL_TARGET_DEVICE="${TARGET_DEVICE}p"
+else
+  FULL_TARGET_DEVICE="${TARGET_DEVICE}"
+fi
+
   sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
 
-  mkfs.fat -F 32 "${TARGET_DEVICE}"1
-  fatlabel "${TARGET_DEVICE}"1 NIXBOOT
+  mkfs.fat -F 32 "${FULL_TARGET_DEVICE}"1
+  fatlabel "${FULL_TARGET_DEVICE}"1 NIXBOOT
 
   # Create a partition for / using the remaining space
   sgdisk -n 2:0:0 -t 0:8300 -c 0:NIXROOT "${TARGET_DEVICE}" 
@@ -104,7 +106,7 @@ if [ "$DESTROY" == "DESTROY" ]; then
 	-O keylocation=prompt \
 	-O keyformat=passphrase \
 	-O mountpoint=none \
-	NIXROOT "${TARGET_DEVICE}"2
+	NIXROOT "${FULL_TARGET_DEVICE}"2
   else
     # Create an non encrypted zpool
     zpool create -f \
@@ -118,7 +120,7 @@ if [ "$DESTROY" == "DESTROY" ]; then
 	-O normalization=formD \
 	-O dnodesize=auto \
 	-O mountpoint=none \
-	NIXROOT "${TARGET_DEVICE}"2
+	NIXROOT "${FULL_TARGET_DEVICE}"2
   fi
   # legacy mount points do not get auto mounted at boot
   # rather they must be mounted using fstab
@@ -153,7 +155,7 @@ NIXROOT/nix  /mnt/nix
   mkdir /mnt/home
   mkdir /mnt/nix
 
-  mount "${TARGET_DEVICE}"1 /mnt/boot
+  mount "${FULL_TARGET_DEVICE}"1 /mnt/boot
   mount -t zfs NIXROOT/home /mnt/home
   mount -t zfs NIXROOT/nix /mnt/nix
 fi
