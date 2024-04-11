@@ -246,6 +246,11 @@ MACHINEID=$(head -c 8 /etc/machine-id)
 rpl "MACHINEID" "${MACHINEID}" /mnt/etc/nixos/configuration.nix
 rpl "HOSTNAME" "${HOSTNAME}" /mnt/etc/nixos/configuration.nix
 
+# TODO: Investigate why nixos-generate-config puts the wrong blk uuid in hardware config
+HWBLKID=$(cat /mnt/etc/nixos/hardware-configuration.nix | grep by-uuid | grep -o "[A-Z0-9-]*\"" | tail -1 | sed "s/\"//g")
+ACTUALBLKID=$(blkid | grep NIXBOOT | grep -o "UUID=\"[A-Z0-9-]*\"" | sed "s/UUID=\"//" | sed "s/\"//")
+rpl "${HWBLKID}" "${ACTUALBLKID}" /mnt/etc/nixos/hardware_configuration.nix
+
 gum style "
 Partitioning is complete.
 To complete the configuration, run:
