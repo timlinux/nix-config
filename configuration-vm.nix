@@ -7,13 +7,8 @@
       config/console-apps.nix
       config/bootsplash.nix
       config/appimage.nix
-      config/avahi.nix
-      config/biometrics.nix
       config/dir-env.nix
-      config/docker.nix
-      config/fwupd.nix
       config/fonts.nix
-      config/games.nix
       config/display-server.nix
       config/gnome-desktop-wayland.nix
       config/gnome-desktop-gdm.nix
@@ -24,24 +19,14 @@
       config/grub-theme.nix
       config/harden.nix
       config/locale-pt-en.nix
-      config/keepassxc.nix
       config/localsend.nix
-      config/ntfs.nix
       config/obs.nix
-      config/printing.nix
-      config/qgis.nix # Upstream packaged version
       config/ssh.nix
       config/starship.nix
-      config/steam.nix
       config/syncthing.nix
       config/tailscale.nix
-      config/trezor.nix
-      config/uxplay.nix
       config/vim.nix
-      config/yubikey.nix
       config/unstable-apps.nix
-      config/wine.nix
-      config/virt.nix
       config/zfs.nix
       users/all.nix
       users/guest.nix
