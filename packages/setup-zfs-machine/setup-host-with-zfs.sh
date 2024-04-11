@@ -32,13 +32,13 @@ lsblk -o name,mountpoint,size,uuid,vendor
 
 if test -z "${TARGET_DEVICE}"; then
 	TARGET_DEVICE=$(gum input --prompt "What is the target device? (TARGET_DEVICE): " --placeholder "/dev/nvme?n?")
-        if beginswith "/dev/nvme" "$TARGET_DEVICE"; then
-            TARGET_DEVICE="${TARGET_DEVICE}p"
-        fi
 fi
 echo "Got \`$(gum style --foreground ${BLUE} "TARGET_DEVICE")=$(gum style --foreground ${CYAN} "${TARGET_DEVICE}")\`"
-
 sgdisk -O $TARGET_DEVICE
+
+if beginswith "/dev/nvme" "$TARGET_DEVICE"; then
+  TARGET_DEVICE="${TARGET_DEVICE}p"
+fi
 
 gum style "
 Do you want to destroy the partitions or use them 'as is'? 
