@@ -238,8 +238,8 @@ read -d '\n' REPLACEMENT << EndOfText
 EndOfText
 
 # It can be either of these so we check for both
-rpl " boot.loader.grub.enable = true;" $REPLACEMENT /mnt/etc/nixos/configuration.nix
-rpl " boot.loader.systemd-boot.enable = true;" $REPLACEMENT /mnt/etc/nixos/configuration.nix
+rpl " boot.loader.grub.enable = true;" "${REPLACEMENT}" /mnt/etc/nixos/configuration.nix
+rpl " boot.loader.systemd-boot.enable = true;" "${REPLACEMENT}" /mnt/etc/nixos/configuration.nix
 # This needs to be disabled as it collides with boot.loader.grub.efiInstallAsRemovable
 rpl "boot.loader.efi.canTouchEfiVariables = true;" "#boot.loader.efi.canTouchEfiVariables = true;" /mnt/etc/nixos/configuration.nix
 
