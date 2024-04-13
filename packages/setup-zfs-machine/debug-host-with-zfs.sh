@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-set -e
-
 BLUE=34
 CYAN=36
 RED=31
