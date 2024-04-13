@@ -55,11 +55,6 @@ sudo zfs mount NIXROOT/root
 sudo zfs set mountpoint=/mnt/home NIXROOT/home
 sudo zfs set mountpoint=/mnt/nix NIXROOT/nix
 sudo mount /dev/vda1 /mnt/boot/
-#cd /mnt
-#sudo chroot ./ /nix/var/nix/profiles/system/activate
-#sudo chroot ./ /run/current-system/sw/bin/bash
-#rm /etc/resolv.conf
-#echo 'nameserver 1.1.1.1' > /etc/resolv.conf
 
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
@@ -72,6 +67,17 @@ gum style \
   --align center --width 50 --margin "1 2" --padding "2 4" \
   'Success' "Ok you are now in the chroot environment. If you rebuild you need to use --option sandbox false e.g."
 
-echo "sudo nixos-rebuild switch --option sandbox false"
+echo "Disabling the build configuration sandbox"
+echo "sandbox = false" > /etc/nix/nix.conf
+echo "sudo nixos-rebuild switch"
+rm /etc/nix/nix.conf
 
-
+# Alternative to nixos-enter is to manually chroot
+#cd /mnt
+#mount -o bind /dev /mnt/dev
+#mount -o bind /proc /mnt/proc
+#mount -o bind /sys /mnt/sys
+#sudo chroot ./ /nix/var/nix/profiles/system/activate
+#sudo chroot ./ /run/current-system/sw/bin/bash
+#rm /etc/resolv.conf
+#echo 'nameserver 1.1.1.1' > /etc/resolv.conf

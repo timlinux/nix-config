@@ -226,6 +226,7 @@ read -d '\n' REPLACEMENT << EndOfText
   services.zfs.autoScrub.enable = true; 
   boot.loader.grub.enable = true; 
   boot.loader.grub.devices = ["nodev"]; 
+  # Bios will then look for an EFI device
   boot.loader.grub.efiInstallAsRemovable = true; 
   boot.loader.grub.efiSupport = true; 
   boot.loader.grub.useOSProber = true; 
