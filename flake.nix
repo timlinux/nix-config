@@ -58,6 +58,12 @@
         system = system;
         modules = shared-modules ++ [./hosts/crest.nix];
       };
+      # Tim headless box
+      valley = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules = shared-modules ++ [./hosts/valley.nix];
+      };
       # Virtman manual testbed
       rock = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
