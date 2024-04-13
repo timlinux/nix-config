@@ -65,12 +65,16 @@ nixos-enter --root '/mnt'
 gum style \
   --foreground 212 --border-foreground 212 --border double \
   --align center --width 50 --margin "1 2" --padding "2 4" \
-  'Success' "Ok you are now in the chroot environment. If you rebuild you need to use --option sandbox false e.g."
+  'Success' "Ok you are now in the chroot environment."
 
-echo "Disabling the build configuration sandbox"
-echo "sandbox = false" > /etc/nix/nix.conf
 echo "sudo nixos-rebuild switch"
-rm /etc/nix/nix.conf
+gum style \
+  --foreground 212 --border-foreground 212 --border double \
+  --align center --width 50 --margin "1 2" --padding "2 4" \
+  'Note' "Disabling the build configuration sandbox, when "
+  "you are done with your rescue, please rm /etc/nix.conf before"
+  "you reboot."
+echo "sandbox = false" > /etc/nix/nix.conf
 
 # Alternative to nixos-enter is to manually chroot
 #cd /mnt
