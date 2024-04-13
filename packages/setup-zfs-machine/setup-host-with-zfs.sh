@@ -174,6 +174,8 @@ gum style \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
 	'Mounts' $(sudo zfs list;sudo mount | grep NIXROOT;sudo mount | grep boot)
 
+nixos-generate-config --force --root /mnt
+
 echo "Are you installing an existing flake profile for $HOSTNAME?"
 FLAKE=$(gum choose "YES" "NO")
 if [ "$FLAKE" == "YES" ]; then
@@ -196,11 +198,10 @@ if [ "$FLAKE" == "YES" ]; then
   exit
 fi
 
-
 ##
 ## Remaining steps are of if you are not using flake based install
 ##
-nixos-generate-config --force --root /mnt
+
 
 echo "Are you installing in a VM?"
 VM=$(gum choose "YES" "NO")
