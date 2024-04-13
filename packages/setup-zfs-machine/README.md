@@ -29,7 +29,7 @@ Then from your existing machine ssh to the install host (replace the IP
 address as appropriate):
 
 ```
-ssh nixos@192.169.0.2
+ssh -o StrictHostKeyChecking=no nixos@192.169.0.2
 ```
 
 
