@@ -55,20 +55,23 @@ sudo zfs mount NIXROOT/root
 sudo zfs set mountpoint=/mnt/home NIXROOT/home
 sudo zfs set mountpoint=/mnt/nix NIXROOT/nix
 sudo mount /dev/vda1 /mnt/boot/
-cd /mnt
-sudo chroot ./ /nix/var/nix/profiles/system/activate
-sudo chroot ./ /run/current-system/sw/bin/bash
-rm /etc/resolv.conf
-echo 'nameserver 1.1.1.1' > /etc/resolv.conf
+#cd /mnt
+#sudo chroot ./ /nix/var/nix/profiles/system/activate
+#sudo chroot ./ /run/current-system/sw/bin/bash
+#rm /etc/resolv.conf
+#echo 'nameserver 1.1.1.1' > /etc/resolv.conf
 
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
 	--align center --width 50 --margin "1 2" --padding "2 4" \
 	'Current Mounts' $(sudo zfs list;sudo mount | grep NIXROOT;sudo mount | grep boot)
 
+nixos-enter --root '/mnt'
 gum style \
   --foreground 212 --border-foreground 212 --border double \
   --align center --width 50 --margin "1 2" --padding "2 4" \
-  'Success' "Ok you are now in the chroot environment."
+  'Success' "Ok you are now in the chroot environment. If you rebuild you need to use --option sandbox false e.g."
+
+echo "sudo nixos-rebuild switch --option sandbox false"
 
 
