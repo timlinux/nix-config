@@ -28,7 +28,21 @@ gum style \
   --align center --width 80 --margin "1 2" --padding "2 4" \
   'About this script:' "${MESSAGE}"
 
-beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Current Mounts' $(sudo zfs list;sudo mount | grep NIXROOT;sudo mount | grep boot)
+
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Mounting' 'Mounting the partitions and ZFS datasets:
+
+/mnt/boot
+NIXROOT/root /mnt
+NIXROOT/home /mnt/home
+NIXROOT/nix  /mnt/nix
+'
 
 sudo zpool import -d /dev/vda2 -f NIXROOT
 sudo zpool list
@@ -48,6 +62,11 @@ sudo chroot ./ /nix/var/nix/profiles/system/activate
 sudo chroot ./ /run/current-system/sw/bin/bash
 rm /etc/resolv.conf
 echo 'nameserver 1.1.1.1' > /etc/resolv.conf
+
+gum style \
+	--foreground 212 --border-foreground 212 --border double \
+	--align center --width 50 --margin "1 2" --padding "2 4" \
+	'Current Mounts' $(sudo zfs list;sudo mount | grep NIXROOT;sudo mount | grep boot)
 
 gum style \
   --foreground 212 --border-foreground 212 --border double \
