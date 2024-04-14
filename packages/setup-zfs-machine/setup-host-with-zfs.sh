@@ -66,7 +66,7 @@ read -d '\n' LOGO << EndOfText
 EndOfText
 # Above text generated at https://manytools.org/hacker-tools/ascii-banner/
 # Using ANSI Shadow font
-gum style $LOGO
+gum style "$LOGO"
 set -e
 
 

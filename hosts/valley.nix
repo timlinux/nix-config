@@ -29,6 +29,11 @@
       fsType = "zfs";
     };
 
+  fileSystems."/nix" =
+    { device = "NIXROOT/nix";
+      fsType = "zfs";
+    };
+
   networking.hostName = "valley"; # Define your hostname.
   # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId 
   # Generate using this:
