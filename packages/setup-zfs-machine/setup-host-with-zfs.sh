@@ -66,15 +66,13 @@ read -d '\n' LOGO << EndOfText
 EndOfText
 # Above text generated at https://manytools.org/hacker-tools/ascii-banner/
 # Using ANSI Shadow font
-gum style "$LOGO"
+echo "$LOGO"
 set -e
-
 
 HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
 hostname ${HOSTNAME}
 echo "Are you installing an existing flake profile for $HOSTNAME?"
 FLAKE=$(gum choose "YES" "NO")
-
 
 # Function to prompt user to select a block device
 if test -z "${TARGET_DEVICE}"; then
