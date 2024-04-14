@@ -52,7 +52,7 @@ A VM that you can use to test and experiment with things. To set up the VM, foll
 ![Step 8](img/vm-install8.png)
 ![Step 9](img/vm-install9.png)
 ![Step 10](img/vm-install0.png)
-![Step 11](img/vm-install1.png)
+![Step 11](img/vm-install11.png)
 
 
 ## Listing flakes
