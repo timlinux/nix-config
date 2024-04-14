@@ -13,6 +13,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  # Use adguard for DNS on the valley NUC
+  networking.nameservers = [ "192.168.0.2" ];
 
   fileSystems."/" =
     { device = "NIXROOT/root";
