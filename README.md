@@ -14,6 +14,47 @@ This repo provides:
 2. Some custom packages that I use.
 3. Many modules which may prove useful for setting up things like zfs, OBS, Headscale and many other niceties.
 
+## Setting up a new system
+
+I have written (based on great examples I found online) a handy dandy setup script that will completely set up new hosts with ZFS, encrytion, flakes and various other niceties. You can find this script in [``packages/setup-zfs-machine/``](packages/setup-zfs-machine/) - check the [README.md](packages/setup-zfs-machine/README.md) there first as it explains how to fetch the script when installing to a new maching. Each system added to this repo should be validated in the table below. Currently validation is manual, unfortunately.
+
+## Hosts 
+
+### Valley 
+
+An i3 Intel NUC that I use as a home server.
+
+| Host | Encryption | Flake | Works | Notes |
+|---|---|---|---|----|
+| valley | 🟢 | 🔴 | ✔️ | Generic install |
+| valley | 🔴 | 🔴 | ✔️ | Generic install |
+| valley | 🟢 | 🟢 | ✔️ | ❤️  Production install for home server |
+| valley | 🔴 | 🟢 | ⛔️ No profile for this |
+
+### Rock
+
+A VM that you can use to test and experiment with things. To set up the VM, follow the steps below the table.
+
+|Host | Encryption | Flake | Works| Notes |
+|-----|------------|------|------|------| 
+|rock| 🟢| 🔴| ✔️| | Generic Install |
+|rock| 🔴| 🔴| ✔️| | Generic Install |
+|rock| 🟢| 🟢| ✔️ | ❤️  Production install for learning NixOS etc. |
+|rock| 🔴| 🟢| ⛔️ No profile for this |
+
+![Step 1](img/vm-install1.png)
+![Step 2](img/vm-install2.png)
+![Step 3](img/vm-install3.png)
+![Step 4](img/vm-install4.png)
+![Step 5](img/vm-install5.png)
+![Step 6](img/vm-install6.png)
+![Step 7](img/vm-install7.png)
+![Step 8](img/vm-install8.png)
+![Step 9](img/vm-install9.png)
+![Step 10](img/vm-install0.png)
+![Step 11](img/vm-install1.png)
+
+
 ## Listing flakes
 
 You can list the flakes like this:
