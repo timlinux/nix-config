@@ -262,7 +262,7 @@ gum style "
 Partitioning is complete.
 To complete the configuration, run:
 
-nixos-install 
+sudo nixos-install 
 reboot
 "
 
