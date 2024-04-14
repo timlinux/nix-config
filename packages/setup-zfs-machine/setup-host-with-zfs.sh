@@ -28,6 +28,52 @@ fi
 
 beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
 
+set +e
+read -d '\n' LOGO << EndOfText
+                      ///             
+                  ///////////         
+                 ////     ////        
+                 ///       ///        
+                 ////      *//        
+              ,,, //// //////////     
+           ,,,,,   ////        /////  
+          ,,,         ,,,,        /// 
+          ,,,       ,,,,  /      //// 
+           ,,,,,,,,,,,   ///////////  
+              ,,,,           ///* 
+
+██╗  ██╗ █████╗ ██████╗ ████████╗ ██████╗ ███████╗ █████╗             
+██║ ██╔╝██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗╚══███╔╝██╔══██╗            
+█████╔╝ ███████║██████╔╝   ██║   ██║   ██║  ███╔╝ ███████║            
+██╔═██╗ ██╔══██║██╔══██╗   ██║   ██║   ██║ ███╔╝  ██╔══██║            
+██║  ██╗██║  ██║██║  ██║   ██║   ╚██████╔╝███████╗██║  ██║            
+╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝            
+                                                                      
+███╗   ██╗██╗██╗  ██╗ ██████╗ ███████╗    ███████╗███████╗███████╗    
+████╗  ██║██║╚██╗██╔╝██╔═══██╗██╔════╝    ╚══███╔╝██╔════╝██╔════╝    
+██╔██╗ ██║██║ ╚███╔╝ ██║   ██║███████╗      ███╔╝ █████╗  ███████╗    
+██║╚██╗██║██║ ██╔██╗ ██║   ██║╚════██║     ███╔╝  ██╔══╝  ╚════██║    
+██║ ╚████║██║██╔╝ ██╗╚██████╔╝███████║    ███████╗██║     ███████║    
+╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝    ╚══════╝╚═╝     ╚══════╝    
+                                                                      
+██╗███╗   ██╗███████╗████████╗ █████╗ ██╗     ██╗     ███████╗██████╗ 
+██║████╗  ██║██╔════╝╚══██╔══╝██╔══██╗██║     ██║     ██╔════╝██╔══██╗
+██║██╔██╗ ██║███████╗   ██║   ███████║██║     ██║     █████╗  ██████╔╝
+██║██║╚██╗██║╚════██║   ██║   ██╔══██║██║     ██║     ██╔══╝  ██╔══██╗
+██║██║ ╚████║███████║   ██║   ██║  ██║███████╗███████╗███████╗██║  ██║
+╚═╝╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝
+
+EndOfText
+# Above text generated at https://manytools.org/hacker-tools/ascii-banner/
+# Using ANSI Shadow font
+gum style LOGO
+set -e
+
+
+HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
+hostname ${HOSTNAME}
+echo "Are you installing an existing flake profile for $HOSTNAME?"
+FLAKE=$(gum choose "YES" "NO")
 
 
 # Function to prompt user to select a block device
@@ -86,48 +132,58 @@ else
   FULL_TARGET_DEVICE="${TARGET_DEVICE}"
 fi
 
-  sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
+sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
 
-  mkfs.fat -F 32 "${FULL_TARGET_DEVICE}"1
-  fatlabel "${FULL_TARGET_DEVICE}"1 NIXBOOT
+mkfs.fat -F 32 "${FULL_TARGET_DEVICE}"1
+fatlabel "${FULL_TARGET_DEVICE}"1 NIXBOOT
 
-  # Create a partition for / using the remaining space
-  sgdisk -n 2:0:0 -t 0:8300 -c 0:NIXROOT "${TARGET_DEVICE}" 
+# If we are installing from flake then the 
+# UUID of the boot disk is hard coded in out configs
+# So we need to go and fetch the config, parse out the UUID
+# then manually assign it to boot after making the partition
 
-  echo "Do you want to encrypt your disk? Typically you should only say no here if you plan to restart the host remotely / without user interaction."
-  ENCRYPT=$(gum choose "YES" "NO")
-  if [ "$ENCRYPT" == "YES" ]; then
-    # Create an encrypted zpool
-    zpool create -f \
-        -o altroot="/mnt" \
- 	-o ashift=12 \
-	-o autotrim=on \
-	-O compression=lz4 \
-	-O acltype=posixacl \
-	-O xattr=sa \
-	-O relatime=on \
-	-O normalization=formD \
-	-O dnodesize=auto \
-	-O encryption=aes-256-gcm \
-	-O keylocation=prompt \
-	-O keyformat=passphrase \
-	-O mountpoint=none \
-	NIXROOT "${FULL_TARGET_DEVICE}"2
-  else
-    # Create an non encrypted zpool
-    zpool create -f \
-        -o altroot="/mnt" \
- 	-o ashift=12 \
-	-o autotrim=on \
-	-O compression=lz4 \
-	-O acltype=posixacl \
-	-O xattr=sa \
-	-O relatime=on \
-	-O normalization=formD \
-	-O dnodesize=auto \
-	-O mountpoint=none \
-	NIXROOT "${FULL_TARGET_DEVICE}"2
-  fi
+if [ "$FLAKE" == "YES" ]; then
+  BOOTUUID=$(curl -s https://github.com/timlinux/nix-config/blob/flakes/hosts/valley.nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
+  tune2fs "${FULL_TARGET_DEVICE}"1 -U ${BOOTUUID}
+fi
+
+# Create a partition for / using the remaining space
+sgdisk -n 2:0:0 -t 0:8300 -c 0:NIXROOT "${TARGET_DEVICE}" 
+
+gum style "Do you want to encrypt your disk? Typically you should only say no here if you plan to restart the host remotely / without user interaction."
+ENCRYPT=$(gum choose "YES" "NO")
+if [ "$ENCRYPT" == "YES" ]; then
+  # Create an encrypted zpool
+  zpool create -f \
+      -o altroot="/mnt" \
+      -o ashift=12 \
+      -o autotrim=on \
+      -O compression=lz4 \
+      -O acltype=posixacl \
+      -O xattr=sa \
+      -O relatime=on \
+      -O normalization=formD \
+      -O dnodesize=auto \
+      -O encryption=aes-256-gcm \
+      -O keylocation=prompt \
+      -O keyformat=passphrase \
+      -O mountpoint=none \
+      NIXROOT "${FULL_TARGET_DEVICE}"2
+else
+  # Create an non encrypted zpool
+  zpool create -f \
+      -o altroot="/mnt" \
+      -o ashift=12 \
+      -o autotrim=on \
+      -O compression=lz4 \
+      -O acltype=posixacl \
+      -O xattr=sa \
+      -O relatime=on \
+      -O normalization=formD \
+      -O dnodesize=auto \
+      -O mountpoint=none \
+      NIXROOT "${FULL_TARGET_DEVICE}"2
+fi
   # legacy mount points do not get auto mounted at boot
   # rather they must be mounted using fstab
   zfs create -o mountpoint=legacy NIXROOT/root
@@ -166,8 +222,6 @@ NIXROOT/nix  /mnt/nix
   mount -t zfs NIXROOT/nix /mnt/nix
 fi
 
-HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
-hostname ${HOSTNAME}
 
 gum style \
 	--foreground 212 --border-foreground 212 --border double \
@@ -176,8 +230,6 @@ gum style \
 
 nixos-generate-config --force --root /mnt
 
-echo "Are you installing an existing flake profile for $HOSTNAME?"
-FLAKE=$(gum choose "YES" "NO")
 if [ "$FLAKE" == "YES" ]; then
   git clone https://github.com/timlinux/nix-config.git
   cd nix-config
