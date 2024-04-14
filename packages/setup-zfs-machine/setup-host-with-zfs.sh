@@ -133,7 +133,6 @@ else
 fi
 
 sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
-
 mkfs.fat -F 32 "${FULL_TARGET_DEVICE}"1
 fatlabel "${FULL_TARGET_DEVICE}"1 NIXBOOT
 
@@ -144,7 +143,9 @@ fatlabel "${FULL_TARGET_DEVICE}"1 NIXBOOT
 
 if [ "$FLAKE" == "YES" ]; then
   BOOTUUID=$(curl -s https://github.com/timlinux/nix-config/blob/flakes/hosts/valley.nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
-  tune2fs "${FULL_TARGET_DEVICE}"1 -U ${BOOTUUID}
+  # See https://superuser.com/a/1294893
+  printf "\x${BOOTUUID:7:2}\x${BOOTUUID:5:2}\x${BOOTUUID:2:2}\x${BOOTUUID:0:2}" \
+    | dd bs=1 seek=67 count=4 conv=notrunc of="${FULL_TARGET_DEVICE}"1
 fi
 
 # Create a partition for / using the remaining space
