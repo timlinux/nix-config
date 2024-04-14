@@ -5,7 +5,7 @@ let
   pinnedHash = "c2786e7084cbad90b4f9472d5b5e35ecb57958af"; 
   pinnedPkgs = import (fetchTarball {
      url="https://github.com/NixOS/nixpkgs/archive/${pinnedHash}.tar.gz";
-     sha256="0xsl3dsqx1i717waihk29nk3jqkrk5jcw9hxsbw97p5dbbnc47li";
+     sha256="1g8wq4bfq9y1h2qch8nac31sas3lgrbxra7lcc5hj9jgyrzjsm3y";
   });
 in 
 {
