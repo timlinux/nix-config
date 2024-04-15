@@ -77,7 +77,7 @@
     # gedit       # text editor
     # simple-scan # document scanner
     # totem       # video player
-    # yelp        # help viewer
+    yelp        # help viewer
     # evince      # document viewer
     # file-roller # archive manager
     geary       # email client
@@ -87,17 +87,18 @@
     gnome-calendar 
     # gnome-characters 
     # gnome-clocks 
-    # gnome-contacts
+    gnome-contacts
     # gnome-font-viewer 
     # gnome-logs 
     gnome-maps 
-    # gnome-music 
-    # gnome-photos 
+    gnome-music 
+    gnome-photos 
     # gnome-screenshot
     # gnome-system-monitor 
     # gnome-weather 
     # gnome-disk-utility 
     gnome-terminal
+    gnome-console
     pkgs.gnome-connections
   ];
 

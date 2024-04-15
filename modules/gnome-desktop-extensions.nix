@@ -15,7 +15,14 @@ let
     glide-scale=0.85
   '';
 in
-{
+{  
+  # I know this isnt the best place to put the image 
+  # but it works for now...
+  environment.etc."kartoza-start-button.png" = {
+    mode = "0555";
+    source = ../resources/kartoza-start-button.png;
+  };
+
   environment.systemPackages = with pkgs.gnomeExtensions; [
       blur-my-shell
       burn-my-windows
@@ -31,7 +38,6 @@ in
         "org/gnome/desktop/calendar".show-weekdate = true;
         "org/gnome/desktop/input-sources".sources = [
           (mkTuple [ "xkb" "us" ])
-          (mkTuple [ "xkb" "lt" ])
           (mkTuple [ "xkb" "pt" ])
         ];
         "org/gnome/desktop/interface".color-scheme = "prefer-dark";
@@ -152,7 +158,7 @@ in
           panel-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: "BOTTOM"));
           panel-sizes = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: 48));
           panel-element-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: [
-            { element = "showAppsButton"; visible = false; position = "stackedTL"; }
+            { element = "showAppsButton"; visible = true; position = "stackedTL"; }
             { element = "activitiesButton"; visible = false; position = "stackedTL"; }
             { element = "dateMenu"; visible = true; position = "stackedTL"; }
             { element = "leftBox"; visible = true; position = "stackedTL"; }
@@ -163,7 +169,7 @@ in
             { element = "desktopButton"; visible = false; position = "stackedBR"; }
           ]));
           multi-monitors = false;
-          show-apps-icon-file = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
+          show-apps-icon-file = "environment.etc."kartoza-start-button.png";
           show-apps-icon-padding = mkInt32 4;
           focus-highlight-dominant = true;
           dot-size = mkInt32 3;
