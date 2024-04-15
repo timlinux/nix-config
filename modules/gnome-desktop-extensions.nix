@@ -151,6 +151,8 @@ in
           "desktop-cube@schneegans.github.com"
         ];
 
+        # See https://github.com/home-sweet-gnome/dash-to-panel/blob/master/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml
+        # To understand what options can be used
         "org/gnome/shell/extensions/dash-to-panel" = {
           # Even when we are not using multiple panels on multiple monitors,
           # the extension still creates them in the config, so we set the same
@@ -160,17 +162,19 @@ in
           panel-element-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: [
             { element = "showAppsButton"; visible = true; position = "stackedTL"; }
             { element = "activitiesButton"; visible = false; position = "stackedTL"; }
-            { element = "dateMenu"; visible = true; position = "stackedTL"; }
             { element = "leftBox"; visible = true; position = "stackedTL"; }
             { element = "taskbar"; visible = true; position = "centerMonitor"; }
             { element = "centerBox"; visible = false; position = "centered"; }
             { element = "rightBox"; visible = true; position = "stackedBR"; }
+            { element = "dateMenu"; visible = true; position = "stackedBR"; }
             { element = "systemMenu"; visible = true; position = "stackedBR"; }
             { element = "desktopButton"; visible = false; position = "stackedBR"; }
           ]));
           multi-monitors = false;
-          show-apps-icon-file = "environment.etc."kartoza-start-button.png";
-          show-apps-icon-padding = mkInt32 4;
+          # Find a nicer way to reference this
+          show-apps-icon-file = "/etc/kartoza-start-button.png";
+          show-apps-icon-side-padding = mkInt32 0;
+          show-apps-icon-padding = mkInt32 0;
           focus-highlight-dominant = true;
           dot-size = mkInt32 3;
           appicon-padding = mkInt32 2;
@@ -182,6 +186,8 @@ in
           isolate-workspaces = true;
           hide-overview-on-startup = true;
           stockgs-keep-dash = true;
+          animate-appicon-hover = true;
+          animate-appicon-hover-animation-type = "PLANK";
         };
         "org/gnome/shell/extensions/blur-my-shell".color-and-noise = false;
         "org/gnome/shell/extensions/blur-my-shell/applications".blur = false;

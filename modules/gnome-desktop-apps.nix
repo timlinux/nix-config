@@ -92,13 +92,11 @@
     # gnome-logs 
     gnome-maps 
     gnome-music 
-    gnome-photos 
     # gnome-screenshot
     # gnome-system-monitor 
     # gnome-weather 
     # gnome-disk-utility 
     gnome-terminal
-    gnome-console
     pkgs.gnome-connections
   ];
 
