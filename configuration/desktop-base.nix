@@ -40,6 +40,5 @@
     ../modules/wine.nix
     ../modules/virt.nix
     ../modules/zfs-sanoid.nix
-    ../modules/zfs-encryption.nix
   ];
 }

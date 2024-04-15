@@ -2,9 +2,25 @@
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
-      ../configuration/test.nix
+      ../configuration/minimal.nix
       ../users/guest.nix
     ];
+  # See vm-test-environment.sh in top of nix-config repo
+  # See https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm
+  virtualisation.vmVariant = {
+    # following configuration is added only when building nixos with build-vm
+    virtualisation = {
+      memorySize = 4096; # Use 2048MiB memory.
+      cores = 4;
+    };
+  };
+
+  boot.loader.grub.enable = true;
+  boot.loader.grub.devices = ["nodev"];
+  boot.loader.grub.efiInstallAsRemovable = true;
+  boot.loader.grub.efiSupport = true;
+  boot.loader.grub.useOSProber = true;
+  networking.hostName = "test"; # Define your hostname.
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "rtsx_usb_sdmmc" ];
   boot.initrd.kernelModules = [ ];

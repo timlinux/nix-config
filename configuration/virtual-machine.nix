@@ -7,7 +7,6 @@
       ../modules/appimage.nix
       ../modules/dir-env.nix
       ../modules/fonts.nix
-      ../modules/display-server.nix
       ../modules/gnome-desktop-wayland.nix
       ../modules/gnome-desktop-gdm.nix
       ../modules/gnome-desktop-apps.nix

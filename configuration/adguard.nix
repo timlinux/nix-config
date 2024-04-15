@@ -5,6 +5,5 @@
     ./base.nix
     ../modules/adguard.nix
     ../modules/zfs-encryption.nix
-    ../users/tim.nix
   ];
 }
