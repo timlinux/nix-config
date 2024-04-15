@@ -16,4 +16,12 @@
     packages = with pkgs; [
     ];
   };
+  home-manager = {
+    users.guest.home.stateVersion = "23.11";
+    users.guest = {
+      imports = [
+        ../home/default.nix
+      ];
+    };
+  };
 }
