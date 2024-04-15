@@ -8,6 +8,7 @@
     ../modules/dir-env.nix
     ../modules/docker.nix
     ../modules/flatpak.nix
+    ../modules/fetchers.nix
     ../modules/fwupd.nix
     ../modules/fonts.nix
     ../modules/games.nix
