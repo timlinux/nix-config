@@ -1,26 +1,15 @@
-# See the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs,  ... }: 
+{ config,pkgs,... }: 
 {
-  nixpkgs.config.allowUnfree = true;
-
   imports = [
-    config/adguard.nix
-    config/console-apps.nix
-    config/bootsplash.nix
-    config/grub-theme.nix
-    config/harden.nix
-    config/locale-pt-en.nix
-    config/ssh.nix
-    config/starship.nix
-    config/tailscale.nix
-    config/vim.nix
-    config/zfs.nix
-    users/all.nix
-    users/tim.nix
-    users/guest.nix
+    ../modules/display-server.nix
+    ../../../modules/kde-plasma6.nix
   ];
 
   # Bootloader.
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
+  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
   # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid
   # for notes on how I set up zfs
   services.zfs.autoScrub.enable = true;
@@ -48,7 +37,7 @@
     #jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
+    # no need to redefine it in your ../modules for now)
     #media-session.enable = true;
   };
 
@@ -58,19 +47,36 @@
     home-manager
   ];
 
+  # Some programs need SUID wrappers, can be ../modulesured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  # (e.g. man ../modulesuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "22.11"; # Did you read the comment?
 
   ### Flakes support
+
   ### See https://nixos.wiki/wiki/Flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  ### Flatpack support
+  ### see https://flatpak.org/setup/NixOS
+  xdg.portal.enable = true;
+  services.flatpak.enable = true;
+  ###
   ### Bleeding edge kernel
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 }

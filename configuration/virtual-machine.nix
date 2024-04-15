@@ -1,35 +1,25 @@
-{ config, lib, pkgs, ... }:
+{ config,lib,pkgs,... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.../modules.allowUnfree = true;
   imports =
     [ 
-      config/console-apps.nix
-      config/bootsplash.nix
-      config/appimage.nix
-      config/dir-env.nix
-      config/fonts.nix
-      config/display-server.nix
-      config/gnome-desktop-wayland.nix
-      config/gnome-desktop-gdm.nix
-      config/gnome-desktop-apps.nix
-      config/gnome-desktop-extensions.nix
-      config/gnome-desktop-themes.nix
-      config/gui-apps.nix
-      config/grub-theme.nix
-      config/harden.nix
-      config/locale-pt-en.nix
-      config/localsend.nix
-      config/obs.nix
-      config/ssh.nix
-      config/starship.nix
-      config/syncthing.nix
-      config/tailscale.nix
-      config/vim.nix
-      config/unstable-apps.nix
-      config/zfs.nix
-      users/all.nix
-      users/guest.nix
+      ../modules/appimage.nix
+      ../modules/dir-env.nix
+      ../modules/fonts.nix
+      ../modules/display-server.nix
+      ../modules/gnome-desktop-wayland.nix
+      ../modules/gnome-desktop-gdm.nix
+      ../modules/gnome-desktop-apps.nix
+      ../modules/gnome-desktop-extensions.nix
+      ../modules/gnome-desktop-themes.nix
+      ../modules/gui-apps.nix
+      ../modules/localsend.nix
+      ../modules/syncthing.nix
+      ../modules/vim.nix
+      ../modules/zfs-encryption.nix
+      ../users/all.nix
+      ../users/guest.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

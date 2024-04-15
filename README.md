@@ -1,10 +1,46 @@
 # Tim's Nix Configuration
 
-📒 Note: Like most things in life, and in particular in open source, this work is highly derivative. I tried to credit upstream sources in the various configuration files provided here whenever possible.
+```
+                      ///             
+                  ///////////         
+                 ////     ////        
+                 ///       ///        
+                 ////      *//        
+              ,,, //// //////////     
+           ,,,,,   ////        /////  
+          ,,,         ,,,,        /// 
+          ,,,       ,,,,  /      //// 
+           ,,,,,,,,,,,   ///////////  
+              ,,,,           ///* 
+
+██╗  ██╗ █████╗ ██████╗ ████████╗ ██████╗ ███████╗ █████╗             
+██║ ██╔╝██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗╚══███╔╝██╔══██╗            
+█████╔╝ ███████║██████╔╝   ██║   ██║   ██║  ███╔╝ ███████║            
+██╔═██╗ ██╔══██║██╔══██╗   ██║   ██║   ██║ ███╔╝  ██╔══██║            
+██║  ██╗██║  ██║██║  ██║   ██║   ╚██████╔╝███████╗██║  ██║            
+╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝            
+                                                                      
+███╗   ██╗██╗██╗  ██╗ ██████╗ ███████╗ 
+████╗  ██║██║╚██╗██╔╝██╔═══██╗██╔════╝
+██╔██╗ ██║██║ ╚███╔╝ ██║   ██║███████╗
+██║╚██╗██║██║ ██╔██╗ ██║   ██║╚════██║
+██║ ╚████║██║██╔╝ ██╗╚██████╔╝███████║
+╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝
+
+```
+
+📒 Note: Like most things in life, and in particular in open source, this work
+is highly derivative. I tried to credit upstream sources in the various
+configuration files provided here whenever possible.
 
 ## Background
 
-I started using NixOS in April 2023. I like keeping notes and making my work repeatable, so NixOS is a good fit for my brain. This repository accumulates the various things I put onto my computers and is going to be in a state of continuous evolution.
+I started using NixOS in April 2023. I like keeping notes and making my work
+repeatable, so NixOS is a good fit for my brain. This repository accumulates
+the various things I put onto my computers and is going to be in a state of
+continuous evolution. I am co-founder of a company called
+[Kartoza](https://kartoza.com). We use NixOS on our linux workstations and 
+this repository provides a canonical source of those configurations.
 
 ## What this repo provides
 
@@ -16,9 +52,37 @@ This repo provides:
 
 ## Setting up a new system
 
-I have written (based on great examples I found online) a handy dandy setup script that will completely set up new hosts with ZFS, encrytion, flakes and various other niceties. You can find this script in [``packages/setup-zfs-machine/``](packages/setup-zfs-machine/) - check the [README.md](packages/setup-zfs-machine/README.md) there first as it explains how to fetch the script when installing to a new maching. Each system added to this repo should be validated in the table below. Currently validation is manual, unfortunately.
+I have written (based on great examples I found online) a handy dandy setup
+script that will completely set up new hosts with ZFS, encrytion, flakes and
+various other niceties. You can find this script in
+[``packages/setup-zfs-machine/``](packages/setup-zfs-machine/) - check the
+[README.md](packages/setup-zfs-machine/README.md) there first as it explains
+how to fetch the script when installing to a new maching. Each system added to
+this repo should be validated in the table below. Currently validation is
+manual, unfortunately.
 
 ## Hosts 
+
+### Test
+
+The test environment for NixOS that can be used to 
+validate configuration changes etc. The text environment
+is created using the `nixos-rebuild build-vm` command and
+can be created by running `./vm-test-environment.sh` in
+the root of this repo.
+
+You can log in to this test environment using:
+
+User: guest
+Pass: guest
+
+| Host | Encryption | Flake | Works | Notes |
+|---|---|---|---|----|
+| valley | 🟢 | 🔴 | ⛔️ | Encryption not supported, no profile for this.|
+| valley | 🔴 | 🔴 | ⛔️ | Encryption not supported, no profile for this. |
+| valley | 🟢 | 🟢 | ⛔️ | Encryption not supported, no profile for this.|
+| valley | 🔴 | 🟢 | ✔️| | ❤️  Generic install created for testing. |
+
 
 ### Valley 
 
@@ -29,18 +93,21 @@ An i3 Intel NUC that I use as a home server.
 | valley | 🟢 | 🔴 | ✔️ | Generic install |
 | valley | 🔴 | 🔴 | ✔️ | Generic install |
 | valley | 🟢 | 🟢 | ✔️ | ❤️  Production install for home server |
-| valley | 🔴 | 🟢 | ⛔️ No profile for this |
+| valley | 🔴 | 🟢 | ⛔️| No profile for this |
 
 ### Rock
 
-A VM that you can use to test and experiment with things. To set up the VM, follow the steps below the table.
+A VM that you can use to test and experiment with things. To set up the VM,
+follow the steps below the table. Unlike the 'test' VM, rock is
+intended to be installed on a manually partitioned virtual disk
+with ZFS.
 
 |Host | Encryption | Flake | Works| Notes |
 |-----|------------|------|------|------| 
 |rock| 🟢| 🔴| ✔️| | Generic Install |
 |rock| 🔴| 🔴| ✔️| | Generic Install |
 |rock| 🟢| 🟢| ✔️ | ❤️  Production install for learning NixOS etc. |
-|rock| 🔴| 🟢| ⛔️ No profile for this |
+|rock| 🔴| 🟢| ⛔️ | No profile for this |
 
 ![Step 1](img/vm-install1.png)
 ![Step 2](img/vm-install2.png)

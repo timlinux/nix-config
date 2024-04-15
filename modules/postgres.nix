@@ -3,7 +3,7 @@
 
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql_15;
+    package = pkgs.postgresql_16;
     extraPlugins = [ (pkgs.postgis.override { postgresql = pkgs.postgresql_15; }) ];  
     enableTCPIP = true;
     authentication = pkgs.lib.mkOverride 15 ''
