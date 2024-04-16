@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 {
+  # See also home/gtk
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     xdg-desktop-portal   

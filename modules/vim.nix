@@ -83,6 +83,7 @@
 	set clipboard=unnamed
  
         " Shortcut to format a .nix file using alejandra
+        " Do this to format: :%!alejandra -qq
         :nnoremap <C-=> :%!alejandra -qq<CR>
       '';
     })
