@@ -2,7 +2,7 @@
 { config, pkgs,  ... }: 
 {
   imports = [
-    zfs-no-encryption.nix
+    ./zfs-no-encryption.nix
   ];
   boot.zfs.requestEncryptionCredentials = true;
 }

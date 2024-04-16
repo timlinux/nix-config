@@ -12,6 +12,7 @@
   imports = [
     ../modules/console-apps.nix
     ../modules/bootsplash.nix
+    ../modules/fish.nix
     ../modules/garbage-collection.nix
     ../modules/grub-theme.nix
     ../modules/harden.nix

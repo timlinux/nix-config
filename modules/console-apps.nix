@@ -8,32 +8,9 @@
     neofetch
   '';
 
-  # Example of how to add a config file in etc
-  #environment.etc."starship.toml" = {
-    #mode = "0555";
-    #source = ../dotfiles/starship.toml;
-  #};
-
   # Example of how to set system wide env vars
   environment.variables = {
     #STARSHIP_CONFIG = "/etc/starship.toml";
-  };
-
-  # Example of adding aliases for bash commands
-  #programs.bash.shellAliases = {
-  programs.fish.shellAliases = {
-    ls = "eza --icons=always";
-    cat = "bat";
-    find = "fd";
-    l = "eza -alh --icons=always";
-    ll = "eza -l --icons=always";
-    psql = "pgcli";
-    open = "xdg-open";
-    ping = "gping";
-    du = "dust";
-    icat="kitty +kitten icat";
-    # See https://github.com/kovidgoyal/kitty/issues/713#issuecomment-750704294
-    ssh="kitty +kitten ssh";
   };
 
   # Add system wide packages
@@ -52,7 +29,6 @@
     fd # a modern find implementation
     ffmpeg_5-full # create movies from the command line
     figlet # make text banners for your console
-    fish # fish shell like bash but with lots of goodies
     git # well we all know what this is right?
     gh # github command line tool - see https://cli.github.com/
     gping # a better ping implementation
