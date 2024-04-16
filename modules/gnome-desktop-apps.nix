@@ -21,7 +21,8 @@
     amberol
     celluloid
     eyedropper
-    fractal-next # matrix chatt app
+    fractal-next # matrix chat app
+    gnome.dconf-editor
     gnome.gnome-calculator
     gnome.gnome-system-monitor
     gnome.gnome-weather

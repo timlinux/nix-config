@@ -11,4 +11,4 @@ if [ "$EUID" -ne 0 ]
 fi
 
 nix build
-nixos-rebuild switch --flake .
+NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --flake .

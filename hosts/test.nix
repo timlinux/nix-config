@@ -3,7 +3,8 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
       ../configuration/minimal.nix
-      ../users/guest.nix
+      #../users/guest.nix
+      ../users/tim.nix
     ];
   # See vm-test-environment.sh in top of nix-config repo
   # See https://nixos.wiki/wiki/NixOS:nixos-rebuild_build-vm

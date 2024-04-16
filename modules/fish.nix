@@ -2,6 +2,7 @@
 
 {
   programs.fish.enable = true;
+  users.defaultUserShell = pkgs.fish;
 
   # Example of adding aliases for bash commands
   #programs.bash.shellAliases = {
@@ -22,6 +23,13 @@
 
   environment.systemPackages = with pkgs; [
     fish # fish shell like bash but with lots of goodies
+    fishPlugins.done
+    fishPlugins.fzf-fish
+    fishPlugins.forgit
+    fishPlugins.hydro
+    fzf
+    #fishPlugins.grc
+    #grc
   ];
 
 

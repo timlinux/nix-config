@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{pkgs, ...}: 
+{
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
     echo "Hello from tim.nix"
@@ -27,12 +28,12 @@
       "lpadmin"
       "i2c"
     ];
-    shell = pkgs.fish;
+    #already set in fish module
+    #shell = pkgs.fish;
     openssh.authorizedKeys.keys = [(builtins.readFile ./public-keys/id_ed25519_tim.pub)];
     packages = with pkgs; [
       popcorntime
       freetube
-      tailscale
     ];
   };
   home-manager = {

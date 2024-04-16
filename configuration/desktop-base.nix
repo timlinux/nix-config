@@ -1,6 +1,7 @@
 { config,pkgs,... }: 
 {
   imports = [
+    ./base.nix
     ../modules/appimage.nix
     ../modules/avahi.nix
     ../modules/biometrics.nix
