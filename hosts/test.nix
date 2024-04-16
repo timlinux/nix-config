@@ -3,7 +3,7 @@
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
       ../configuration/minimal.nix
-      #../users/guest.nix
+      ../users/guest.nix
       ../users/tim.nix
     ];
   # See vm-test-environment.sh in top of nix-config repo

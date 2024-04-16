@@ -24,6 +24,8 @@ in
   };
 
   environment.systemPackages = with pkgs.gnomeExtensions; [
+      user-themes
+      tray-icons-reloaded
       blur-my-shell
       burn-my-windows
       dash-to-panel
@@ -144,6 +146,8 @@ in
         };
 
         "org/gnome/shell".enabled-extensions = [
+          "user-theme@gnome-shell-extensions.gcampax.github.com"
+          "trayIconsReloaded@selfmade.pl"
           "blur-my-shell@aunetx"
           "burn-my-windows@schneegans.github.com"
           "dash-to-panel@jderose9.github.com"
@@ -157,6 +161,7 @@ in
           # Even when we are not using multiple panels on multiple monitors,
           # the extension still creates them in the config, so we set the same
           # configuration for each (up to 2 monitors).
+          dotStyle = "DASHES";
           panel-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: "BOTTOM"));
           panel-sizes = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: 48));
           panel-element-positions = builtins.toJSON (lib.genAttrs [ "0" "1" ] (x: [

@@ -8,6 +8,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.timlinux = {
     isNormalUser = true;
+    initialPassword = "timlinux";
     description = "Tim Sutton";
     extraGroups = [
       "wheel"
