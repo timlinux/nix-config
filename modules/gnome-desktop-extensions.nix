@@ -168,7 +168,7 @@ in
             { element = "showAppsButton"; visible = true; position = "stackedTL"; }
             { element = "activitiesButton"; visible = false; position = "stackedTL"; }
             { element = "leftBox"; visible = true; position = "stackedTL"; }
-            { element = "taskbar"; visible = true; position = "centerMonitor"; }
+            { element = "taskbar"; visible = true; position = "stackedTL"; }
             { element = "centerBox"; visible = false; position = "centered"; }
             { element = "rightBox"; visible = true; position = "stackedBR"; }
             { element = "dateMenu"; visible = true; position = "stackedBR"; }
