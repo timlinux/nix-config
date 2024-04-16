@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  # See also modules/gnome-desktop-extensions.nix
+  # search for shell to see how we set the shell theme
   gtk = {
     enable = true;
     theme = {
