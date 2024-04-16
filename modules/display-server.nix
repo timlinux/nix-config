@@ -5,7 +5,9 @@
   services.xserver.enable = true;
   #hardware.opengl.enable = true;
   environment.systemPackages = with pkgs; [
-    xorg.xkill
+   xorg.xkill
+   # Wayland clipboard
+   wl-clipboard
   ];
 
 }

@@ -154,6 +154,12 @@ in
           "date-menu-formatter@marcinjakubowski.github.com"
           "desktop-cube@schneegans.github.com"
         ];
+        "org/gnome/shell" = {
+           disable-user-extensions = false;
+           "org/gnome/shell/extensions/user-theme" = {
+           name = "Obsidian-2-Aqua";
+           };
+        };
 
         # See https://github.com/home-sweet-gnome/dash-to-panel/blob/master/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml
         # To understand what options can be used
