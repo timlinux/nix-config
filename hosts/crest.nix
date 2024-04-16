@@ -5,6 +5,7 @@
       ../configuration/desktop-gnome.nix
       ../modules/locale-pt-en.nix
       ../modules/biometrics.nix
+      ../modules/zfs-encryption.nix
       ../users/tim.nix
     ];
 
