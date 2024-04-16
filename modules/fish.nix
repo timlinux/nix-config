@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  programs.fish.enable = true;
 
   # Example of adding aliases for bash commands
   #programs.bash.shellAliases = {
