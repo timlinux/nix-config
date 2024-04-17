@@ -170,7 +170,6 @@ in {
             # Even when we are not using multiple panels on multiple monitors,
             # the extension still creates them in the config, so we set the same
             # configuration for each (up to 2 monitors).
-            dotStyle = "DASHES";
             panel-positions = builtins.toJSON (lib.genAttrs ["0" "1"] (x: "BOTTOM"));
             panel-sizes = builtins.toJSON (lib.genAttrs ["0" "1"] (x: 48));
             panel-element-positions = builtins.toJSON (lib.genAttrs ["0" "1"] (x: [
@@ -220,24 +219,41 @@ in {
                 position = "stackedBR";
               }
             ]));
+            animate-appicon-hover = true;
+            #animate-appicon-hover-animation-extent = "{'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}";
+            animate-appicon-hover-animation-type = "PLANK";
+            #animate-appicon-hover-animation-zoom = "{'SIMPLE': 1.0, 'RIPPLE': 1.25, 'PLANK': 2.25999}";
+            appicon-margin = mkInt32 8;
+            appicon-padding = mkInt32 4;
+            click-action = "CYCLE";
+            dot-color-dominant = true;
+            dot-color-override = false;
+            dot-position = "BOTTOM";
+            dot-size = mkInt32 3;
+            dot-style-focused = "DASHES";
+            dot-style-unfocused = "DASHES";
+            focus-highlight-dominant = true;
+            group-apps = false;
+            hide-overview-on-startup = true;
+            hot-keys = true;
+            hot-keys-overlay-combo = "TEMPORARILY";
+            intellihide = false;
+            intellihide-only-secondary = false;
+            intellihide-use-pressure = true;
+            isolate-monitors = true;
+            isolate-workspaces = true;
+            # build error if enabled   
+            #leftbox-padding = mkUint32 -1;
             multi-monitors = false;
+            #panel-anchors = "{'0':'MIDDLE','1':'MIDDLE','2':'MIDDLE','3':'MIDDLE'}";
             # Find a nicer way to reference this
             show-apps-icon-file = "/etc/kartoza-start-button.png";
             show-apps-icon-side-padding = mkInt32 0;
             show-apps-icon-padding = mkInt32 0;
-            focus-highlight-dominant = true;
-            dot-size = mkInt32 3;
-            appicon-padding = mkInt32 2;
-            appicon-margin = mkInt32 0;
             trans-use-custom-opacity = true;
             trans-panel-opacity = 0.95;
             show-favorites = false;
-            group-apps = false;
-            isolate-workspaces = true;
-            hide-overview-on-startup = true;
-            stockgs-keep-dash = true;
-            animate-appicon-hover = true;
-            animate-appicon-hover-animation-type = "PLANK";
+            stockgs-keep-dash = false;
           };
           "org/gnome/shell/extensions/blur-my-shell".color-and-noise = false;
           "org/gnome/shell/extensions/blur-my-shell/applications".blur = false;

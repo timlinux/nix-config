@@ -17,7 +17,6 @@
       ../modules/syncthing.nix
       ../modules/vim.nix
       ../modules/zfs-encryption.nix
-      ../users/all.nix
       ../users/guest.nix
     ];
 
