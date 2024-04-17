@@ -1,5 +1,4 @@
-{pkgs, ...}: 
-{
+{pkgs, ...}: {
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
     echo "Hello from tim.nix"
@@ -37,14 +36,14 @@
       freetube
     ];
   };
-  #home-manager = {
-  #  users.timlinux.home.stateVersion = "23.11";
-  #  users.timlinux = {
-  #    imports = [
-  #      ../home/default.nix
-  #    ];
-  #    #programs.git.config.user.name = "Tim Sutton";
-  #    #programs.git.config.user.email = "tim@kartoza.com";
-  #  };
-  #};
+  home-manager = {
+    users.timlinux.home.stateVersion = "23.11";
+    users.timlinux = {
+      imports = [
+        ../home/default.nix
+      ];
+      #programs.git.config.user.name = "Tim Sutton";
+      #programs.git.config.user.email = "tim@kartoza.com";
+    };
+  };
 }

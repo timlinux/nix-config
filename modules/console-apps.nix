@@ -1,17 +1,9 @@
-{ pkgs, ... }:
-
-{
-
+{pkgs, ...}: {
   environment.interactiveShellInit = ''
     # Add anything that must be in bashrc here
     echo "Nix environment with setup configs by Tim."
     neofetch
   '';
-
-  # Example of how to set system wide env vars
-  environment.variables = {
-    #STARSHIP_CONFIG = "/etc/starship.toml";
-  };
 
   # Add system wide packages
   environment.systemPackages = with pkgs; [

@@ -1,5 +1,9 @@
-{ config,modules,pkgs,... }: 
 {
+  config,
+  modules,
+  pkgs,
+  ...
+}: {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     home-manager
@@ -18,9 +22,9 @@
     ../modules/harden.nix
     ../modules/locale-pt-en.nix
     ../modules/ssh.nix
-    ../modules/starship.nix
+    # Done using home manager rather
+    #../modules/starship.nix
     ../modules/tailscale.nix
     ../modules/vim.nix
   ];
-
 }

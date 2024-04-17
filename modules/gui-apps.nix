@@ -1,12 +1,4 @@
-{ pkgs, ... }:
-
-{
-
-  # Example of how to set system wide env vars
-  environment.variables = {
-    #STARSHIP_CONFIG = "/etc/starship.toml";
-  };
-
+{pkgs, ...}: {
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     adapta-kde-theme
@@ -35,7 +27,7 @@
     kdenlive
     krita
     libreoffice-fresh
-    # For multilingual spell check in logseq, edit 
+    # For multilingual spell check in logseq, edit
     # vim ~/.config/Logseq/Preferences
     # and add e.g.
     # {"spellcheck":{"dictionaries":["en-GB","pt"],"dictionary":""}}
@@ -63,4 +55,3 @@
     libsForQt5.qtstyleplugin-kvantum
   ];
 }
-
