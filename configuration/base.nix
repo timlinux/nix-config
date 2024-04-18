@@ -22,8 +22,7 @@
     ../modules/harden.nix
     ../modules/locale-pt-en.nix
     ../modules/ssh.nix
-    # Done using home manager rather
-    #../modules/starship.nix
+    ../modules/starship.nix
     ../modules/tailscale.nix
     ../modules/vim.nix
   ];
