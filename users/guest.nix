@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
+    starship init fish | source
     echo "Hello from guest.nix"
   '';
 
@@ -12,7 +11,7 @@
     initialPassword = "guest";
     description = "Guest User";
     # dialout needed for arduino
-    extraGroups = [ "audio" "video" "input"];
+    extraGroups = ["audio" "video" "input"];
     packages = with pkgs; [
     ];
   };

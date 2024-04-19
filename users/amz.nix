@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
+    starship init fish | source
     echo "Hello from amz.nix"
   '';
 
@@ -10,7 +9,7 @@
   users.users.amz = {
     isNormalUser = true;
     description = "Amy Ternent";
-    extraGroups = [ "wheel" "disk" "libvirtd" "dialout" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2"  "adbusers" "scanner" "lp" ];
+    extraGroups = ["wheel" "disk" "libvirtd" "dialout" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" "adbusers" "scanner" "lp"];
 
     packages = with pkgs; [
       hugo

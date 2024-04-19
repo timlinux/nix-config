@@ -1,8 +1,11 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./gtk/default.nix
     ./kitty/default.nix
-    ./starship/default.nix
     ./direnv/default.nix
     ./xdg/default.nix
     ./git/default.nix
@@ -15,6 +18,4 @@
   #  '';
   #};
   #home.file."starship.toml".text = builtins.readFile ../dotfiles/starship.toml;
-  
-
 }

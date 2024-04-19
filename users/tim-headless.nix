@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
+    starship init fish | source
     echo "Hello from tim.nix"
   '';
 

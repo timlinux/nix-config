@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
@@ -16,9 +14,9 @@
     open = "xdg-open";
     ping = "gping";
     du = "dust";
-    icat="kitty +kitten icat";
+    icat = "kitty +kitten icat";
     # See https://github.com/kovidgoyal/kitty/issues/713#issuecomment-750704294
-    ssh="kitty +kitten ssh";
+    ssh = "kitty +kitten ssh";
   };
 
   environment.systemPackages = with pkgs; [
@@ -31,6 +29,4 @@
     #fishPlugins.grc
     #grc
   ];
-
-
 }

@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
+    starship init fish | source
     echo "Hello from eli.nix"
   '';
 
@@ -10,7 +9,7 @@
   users.users.eli = {
     isNormalUser = true;
     description = "Eli Volschenk";
-    extraGroups = [ "wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" ];
+    extraGroups = ["wheel" "disk" "libvirtd" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2"];
 
     packages = with pkgs; [
     ];
