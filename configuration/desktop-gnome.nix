@@ -1,7 +1,10 @@
-{ config,pkgs,... }: 
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
-    ./desktop-base.nix
+    ./base.nix
     ../modules/display-server.nix
     ../modules/gnome-desktop-wayland.nix
     ../modules/gnome-desktop-gdm.nix

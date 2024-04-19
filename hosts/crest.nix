@@ -8,6 +8,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome.nix
+    ../configuration/desktop-apps.nix
     ../modules/locale-pt-en.nix
     ../modules/biometrics.nix
     ../modules/zfs-encryption.nix
