@@ -1,7 +1,6 @@
 { config,lib,pkgs,... }:
 
 {
-  nixpkgs.../modules.allowUnfree = true;
   imports =
     [ 
       ../modules/appimage.nix
