@@ -10,7 +10,7 @@
     ../modules/locale-pt-en.nix
     ../modules/zfs-encryption.nix
     ../users/guest.nix
-    ../users/timlinux.nix
+    ../users/tim.nix
   ];
 
   boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk"];
