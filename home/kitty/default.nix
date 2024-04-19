@@ -18,7 +18,7 @@
       hide_window_decorations yes
       tab_activity_symbol 🔔
       tab_bar_style powerline
-      tab_powerline_style angled 
+      tab_powerline_style angled
       tab_title_format '{title}'
       tab_title_style 'bold'
       tab_max_width '20%'
