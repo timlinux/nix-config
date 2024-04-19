@@ -6,7 +6,7 @@
 }: {
   
   
-  pkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
   imports = [
     ../modules/appimage.nix
     ../modules/dir-env.nix
