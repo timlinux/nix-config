@@ -15,7 +15,7 @@
       cursor #DF9E2F
       cursor_text_color #C3C7D1
       scrollback_lines 10000
-      hide_window_decorations yes
+      hide_window_decorations no
       tab_activity_symbol 🔔
       tab_bar_style powerline
       tab_powerline_style angled

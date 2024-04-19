@@ -1,9 +1,12 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [ ()
       ../configuration/virtual-machine.nix
+      ../modules/locale-pt-en.nix
+      ../modules/zfs-encryption.nix
       ../users/guest.nix
+      ../users/timlinux.nix
     ];
 
   boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
