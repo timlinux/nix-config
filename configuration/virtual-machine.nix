@@ -7,7 +7,7 @@
 }: {
   nixpkgs.config.allowUnfree = true;
   imports = [
-    modulesPath + "/profiles/qemu-guest.nix"
+    (modulesPath + "/profiles/qemu-guest.nix")
     ../configuration/desktop-gnome.nix
   ];
 
