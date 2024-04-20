@@ -7,6 +7,6 @@
     ./qgis.nix
     ./keepassxc.nix
     ./vscode.nix
-    ./uxplay
+    ./uxplay.nix
   ];
 }
