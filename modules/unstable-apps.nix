@@ -4,9 +4,9 @@
   ...
 }: {
   imports = [
-    qgis.nix
-    keepassxc.nix
-    vscode.nix
-    uxplay
+    ./qgis.nix
+    ./keepassxc.nix
+    ./vscode.nix
+    ./uxplay
   ];
 }
