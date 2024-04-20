@@ -18,14 +18,14 @@ This flake will prepare the partition scheme on a disk using ZFS and then
 install nixos onto the disk.
 
 ```
-sudo nix run github:timlinux/flakes/flake#setup-zfs-machine
+sudo nix run github:timlinux/main/flake#setup-zfs-machine
 ```
 
 ### Running locally
 
 ```
 nix-shell -p gum rpl wget
-wget https://raw.githubusercontent.com/timlinux/nix-config/flakes/packages/setup-zfs-machine/setup-host-with-zfs.sh 
+wget https://raw.githubusercontent.com/timlinux/nix-config/main/packages/setup-zfs-machine/setup-host-with-zfs.sh 
 chmod +x setup-host-with-zfs.sh
 sudo ./setup-host-with-zfs.sh
 ```
@@ -63,7 +63,7 @@ debug-host-with-zfs.sh
 
 ```
 nix-shell -p gum rpl wget
-wget https://raw.githubusercontent.com/timlinux/nix-config/flakes/packages/setup-zfs-machine/debug-host-with-zfs.sh 
+wget https://raw.githubusercontent.com/timlinux/nix-config/main/packages/setup-zfs-machine/debug-host-with-zfs.sh 
 chmod +x debug-host-with-zfs.sh
 sudo ./debug-host-with-zfs.sh
 ```
