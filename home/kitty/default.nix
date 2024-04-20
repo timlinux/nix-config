@@ -1,7 +1,7 @@
 {
   programs.kitty = {
     enable = true;
-    programs.kitty.shellIntegration.enableFishIntegration = true;
+    shellIntegration.enableFishIntegration = true;
     extraConfig = ''
       # Start maximized
       map winmax toggle maximize_window

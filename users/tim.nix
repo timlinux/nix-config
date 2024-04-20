@@ -45,7 +45,6 @@
     users.timlinux.home.stateVersion = "23.11";
     users.timlinux = {
       imports = [
-        # Currently broken
         ../home/default.nix
       ];
       #programs.git.config.user.name = "Tim Sutton";
