@@ -1,7 +1,10 @@
 {
   programs.kitty = {
     enable = true;
+    programs.kitty.shellIntegration.enableFishIntegration = true;
     extraConfig = ''
+      # Start maximized
+      map winmax toggle maximize_window
       # Kartoza Kitty Theme
       background_opacity 0.95
       font_size 18
