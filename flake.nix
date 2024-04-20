@@ -69,7 +69,7 @@
         specialArgs = specialArgs;
         system = system;
         modules = shared-modules ++ [./hosts/rock.nix];
-      }; 
+      };
       jeff = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
@@ -95,7 +95,6 @@
           py.python
           py.requests
           git
-
           virtualenv
           py.chardet
           py.debugpy
