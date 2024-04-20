@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-echo "🏃Running config in a test vm"
+echo "🏃Running flake in a test vm"
+echo "See https://lhf.pt/posts/demystifying-nixos-basic-flake/"
+echo "For a detailed explanation"
 rm *.qcow2
-#nixos-rebuild build-vm --flake .#myhost && result/bin/run-*-vm
-NIXOS_CONFIG=$PWD/hosts/test/configuration.nix NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild build-vm && result/bin/run-*-vm
-#NIXOS_CONFIG=$PWD/hosts/test/configuration.nix NIXPKGS_ALLOW_INSECURE=1 nixos-rebuild build-vm-with-bootloader && result/bin/run-*-vm
+# #test is the name of the host config as listed in flake.nix
+nixos-rebuild build-vm --flake .#test && result/bin/run-*-vm
+
