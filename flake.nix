@@ -42,16 +42,46 @@
       };
     };
   in {
+    ######################################################
+    ##
+    ## Package Definitions. See
+    ## https://determinate.systems/posts/nix-run/
+    ## For a basic introduction
+    ##
+    ######################################################
+    #
+    # Default package:
+    #
+    # Run with
+    # "nix run"
+    # or
+    # nix run github:timlinux/nix-config#default
     packages.x86_64-linux.default = pkgs.writeScriptBin "runme" ''
       echo "Tim nix-config default package"
     '';
+    #
+    # Package to help you prepare for setting up a new machine.
+    #
+    # Run with
+    # nix run .#about
+    # or
+    # nix run github:timlinux/nix-config#about
+    packages.x86_64-linux.about = pkgs.callPackage ./packages/about {};
 
+    #
+    # Package format your disk with ZFS then set up your machine
+    #
+    # Run with
+    # nix run .#setup-zfs-machine
+    # or
+    # nix run github:timlinux/nix-config#setup-zfs-machine
     packages.x86_64-linux.setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine {};
-    # An app that uses the `runme` package
-    #apps.default = {
-    #    type = "app";
-    #    program = "${self.packages.${system}.runme}/bin/runme";
-    #};
+
+    ######################################################
+    ##
+    ## Configurations for each host we manage
+    ##
+    ######################################################
     nixosConfigurations = {
       crest = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
@@ -82,6 +112,13 @@
         modules = shared-modules ++ [./hosts/test.nix];
       };
     };
+
+    ######################################################
+    ##
+    ## Developer environments
+    ##
+    ######################################################
+
     # invoke with
     # nix develop
     # or

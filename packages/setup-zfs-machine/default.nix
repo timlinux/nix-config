@@ -1,14 +1,12 @@
-{ writeShellApplication, bash, gum, cryptsetup, gptfdisk, dosfstools, ... }:
-
-writeShellApplication {
+{pkgs, ...}:
+pkgs.writeShellApplication {
   name = "setup-host-with-zfs";
   runtimeInputs = [
-    bash
-    gum
-    cryptsetup
-    gptfdisk
-    dosfstools
-    parted #for partprobe 
+    pkgs.bash
+    pkgs.gum
+    pkgs.rpl
+    pkgs.gptfdisk
+    pkgs.dosfstools
   ];
   text = builtins.readFile ./setup-host-with-zfs.sh;
 }
