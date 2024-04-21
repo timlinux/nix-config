@@ -36,7 +36,6 @@ in {
     date-menu-formatter
     desktop-cube
   ];
-
   programs.dconf.profiles = {
     user.databases = [
       {
@@ -44,7 +43,7 @@ in {
           # Set the gnome-shell theme
           # See also home/gtk
           "org/gnome/shell/extensions/user-theme" = {
-              name = "Obsidian-2-Aqua";
+            name = "Obsidian-2-Aqua";
           };
           "org/gnome/desktop/calendar".show-weekdate = true;
           "org/gnome/desktop/input-sources".sources = [
@@ -242,7 +241,7 @@ in {
             intellihide-use-pressure = true;
             isolate-monitors = true;
             isolate-workspaces = true;
-            # build error if enabled   
+            # build error if enabled
             #leftbox-padding = mkUint32 -1;
             multi-monitors = false;
             #panel-anchors = "{'0':'MIDDLE','1':'MIDDLE','2':'MIDDLE','3':'MIDDLE'}";
