@@ -83,17 +83,25 @@
     ##
     ######################################################
     nixosConfigurations = {
+      # Tim's p14s thinkpad - love this machine!
       crest = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
         modules = shared-modules ++ [./hosts/crest.nix];
       };
+      # Tim Tuxedo desktop box
+      valley = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules = shared-modules ++ [./hosts/waterfall.nix];
+      };      
       # Tim headless box
       valley = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
         modules = shared-modules ++ [./hosts/valley.nix];
       };
+      
       # Virtman manual testbed
       rock = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
