@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-#shellcheck disable=all
-#Above removes unused var warning
-#It must be directly after the shebang line
 
 # Choose
 export GUM_CHOOSE_CURSOR_FOREGROUND="#F1C069"
