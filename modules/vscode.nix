@@ -4,7 +4,7 @@ let
   unstable = import
     (builtins.fetchTarball {
       url="https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
-      sha256="1g8wq4bfq9y1h2qch8nac31sas3lgrbxra7lcc5hj9jgyrzjsm3y";
+      sha256="1nzkvhf90fh7mqy10dv6rdb76yl1a6xy3icsndmz1a7b1zbllsci";
     })
     # reuse the current configuration
     { 
