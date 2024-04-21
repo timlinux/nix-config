@@ -52,6 +52,13 @@ This repo provides:
 
 ## Setting up a new system
 
+If you do not already have a hardware-configuration.nix, you need to either:
+
+* Run the standard NixOS installer on your system, setting up your disks etc,
+* Run the zfs command line installer provided in this flake which will scrub your disks and reformat them with zfs. This is the recommended way to set up your system for the first time.
+
+Whether you use option 1 or 2 above, I *highly* recommend that you encrypt your system. Both options above provide easy workflows for doing that.
+
 I have written (based on great examples I found online) a handy dandy setup
 script that will completely set up new hosts with ZFS, encrytion, flakes and
 various other niceties. You can find this script in
@@ -61,7 +68,117 @@ how to fetch the script when installing to a new maching. Each system added to
 this repo should be validated in the table below. Currently validation is
 manual, unfortunately.
 
-## Hosts 
+## Adding a new host to this flake
+
+There are a few steps when adding a new host for the first time:
+
+1. Create the host file
+2. Create the user file 
+3. Add the host to the flake.nix
+
+### The host file
+
+Create a new host file in hosts e.g.
+
+```
+touch hosts/waterfall.nix
+```
+The newly created file should exactly match the hostname. This starting point for this file is the hardware-configuration.nix that a new nix installation would generate (see the previous section for more info). This file will normally be found in ``/etc/nixos/``.
+
+There are a few edits you need to make to this file to provide:
+
+#### A network id for your ZFS pool
+
+See [this link](https://search.nixos.org/options?channel=unstable&show=networking.. hostId&query=networking.hostId). You can generate a unique host id using this:
+
+```
+head -c 8 /etc/machine-id
+```
+
+And then place the entry in your <hostname>.nix file. e.g.
+
+```
+networking.hostId = "d13e0d41"; # needed for zfs
+```
+  
+
+#### A hostname
+
+This should exactly match the hostname of your system. For example:
+
+
+```
+networking.hostName = "crest"; # Define your hostname.
+```
+  
+
+#### Additional imports to defined your desktop environment etc.
+
+The scheme of this flake provides three main types of imports:
+
+1. **configurations** - these are meta collections of components to e.g. set up your desktop environment or a suite of applications.
+2. **modules** - these are atomic units of functionality you can add to your system. Many of them will be added though your chosen configuration, but you may choose to add specific modules. For example locale, biometrics etc.
+3. **users** - This is a list of one or more users that you want to have accounts on your system.
+
+There is no "one size fits all" here, but a good starting point will be to look at other hosts and copy their config. For example, here is my list of imports for my system which has a fingerprint reader (needs to be a linux supported reader), a Portuguese keyboard and zfs with encryption enabled:
+
+```
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ../configuration/desktop-gnome.nix
+    ../configuration/desktop-apps.nix
+    ../modules/locale-pt-en.nix
+    ../modules/biometrics.nix
+    ../modules/zfs-encryption.nix
+    ../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+    ../users/tim.nix
+  ];
+```
+
+See the next section for more details about the user file.
+
+### The user file
+
+This file should be added into the ``users`` folder if needed. Name the file after the user's name e.g. ``tim.nix``. It is probably easiest to just copy one of the existing users and adapt it.
+
+The users file file configures your user name, home-manager modules and your user groups. For the most part, you can simply copy the existing user file and then replace all instances of the old user name with your user name.
+
+
+
+### The flake file
+
+You need to copy in a new entry for your host into ``flake.nix`` e.g.
+
+```
+      # Tim headless box
+      valley = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules = shared-modules ++ [./hosts/valley.nix];
+      };
+```
+
+Then replace the comment and shared modules to reference the new host you have created.
+
+### Submitting your change
+
+Finally, your edits to the flake need to be upstreamed to our git repo. Follow normal git workflows for doing that. I recommend adding your host to the existing hosts list in the next section so the expected behaviour for that host is clear.
+
+### Applying the flake to your system
+
+Simply call the script provided in the root of this flake directory to then apply the changes to your system:
+
+```
+sudo ./update-system.sh
+```
+
+Applying the flake may take some time depending on your internet connection and whether it needs to compile stuff.
+
+Once the installation completes, reboot and you should be experiencing a nice Kartoza branded experience all the way through the boot up and log in process.
+
+If you experience any issues, remember that you can always select a previous generation at the initial start of your system and then boot into your old environment.
+
+## Existing hosts 
 
 ### Test
 
