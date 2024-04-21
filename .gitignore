@@ -1,5 +1,8 @@
+.vscode-extensions
+.direnv
 *.*~
 .Rhistory
 result
 result-man
 *.swp
+*.qcow2

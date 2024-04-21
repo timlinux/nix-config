@@ -38,7 +38,7 @@
 , qtmultimedia
 , qtsensors
 , qtserialport
-, qtwebkit
+#, qtwebkit
 , qtxmlpatterns
 , qwt
 , saga
@@ -52,6 +52,7 @@ let
     packageOverrides = self: super: {
       pyqt5 = super.pyqt5.override {
         withLocation = true;
+        withSerialPort = true;
       };
     };
   };
@@ -66,11 +67,12 @@ let
     numpy
     owslib
     pandas
+    geopandas
     plotly
     psycopg2
     pygments
     pyqt5
-    pyqt5_with_qtwebkit # Added by Tim for InaSAFE
+#    pyqt5_with_qtwebkit # Added by Tim for InaSAFE
     pyqt-builder
     pyqtgraph # Added by Tim for QGIS Animation workbench (should probably be standard)
     python-dateutil
@@ -88,7 +90,10 @@ in mkDerivation rec {
   version = "master";
   pname = "qgis-master";
   
-  src = builtins.fetchGit { url = "/home/timlinux/dev/cpp/QGIS"; };
+  src = fetchGit {
+    url = "/home/timlinux/dev/cpp/QGIS"; 
+    rev = "1a4e1a77e778730c9b451dc9115f0e97e35b89c9";
+  };
   #src = fetchFromGitHub {
   #  owner = "qgis";
   #  repo = "QGIS";
@@ -138,7 +143,7 @@ in mkDerivation rec {
     qtmultimedia
     qtsensors
     qtserialport
-    qtwebkit
+#    qtwebkit
     qtxmlpatterns
     qwt
     saga # Probably not needed for build
@@ -146,7 +151,7 @@ in mkDerivation rec {
     txt2tags
     zstd
   ] ++ lib.optional withGrass grass
-    ++ lib.optional withWebKit qtwebkit
+    #++ lib.optional withWebKit qtwebkit
     ++ pythonBuildInputs;
 
   patches = [
@@ -158,6 +163,7 @@ in mkDerivation rec {
   ];
 
   # Add path to Qt platform plugins
+  # (offscreen is needed by "${APIS_SRC_DIR}/generate_console_pap.py")
   preBuild = ''
     export QT_QPA_PLATFORM_PLUGIN_PATH=${qtbase.bin}/lib/qt-${qtbase.version}/plugins/platforms
   '';
@@ -192,11 +198,11 @@ in mkDerivation rec {
     #mv qgis $out/bin/qgis-master
   '';
 
-  meta = {
+  meta = with lib; {
     description = "A Free and Open Source Geographic Information System";
     homepage = "https://www.qgis.org";
     license = lib.licenses.gpl2Plus;
-    platforms = with lib.platforms; linux;
-    maintainers = with lib.maintainers; [ lsix sikmir willcohen ];
+    maintainers = with maintainers; teams.geospatial.members ++ [ lsix ];
+    platforms = with platforms; linux;
   };
 }
