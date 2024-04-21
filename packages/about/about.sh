@@ -23,7 +23,7 @@ export BORDER="rounded"
 export BORDER_BACKGROUND="#1F1F1F"
 export BORDER_FOREGROUND="#F1C069"
 #ALIGN="left"
-export HEIGHT=10
+export HEIGHT=3
 export WIDTH=80
 export MARGIN=1
 export PADDING=2
@@ -133,6 +133,8 @@ fi
 gum spin --spinner dot --title "Fetching Keys" -- sleep 5 &
 
 gum style 'Browse:' "Choose a hardware profile in 'skate' that you would like to see?"
-skate list -k | gum filter | xargs skate get
+skate list -k | gum filter | xargs skate get | gum style
+
+
 
 
