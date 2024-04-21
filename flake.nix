@@ -90,7 +90,7 @@
         modules = shared-modules ++ [./hosts/crest.nix];
       };
       # Tim Tuxedo desktop box
-      valley = nixpkgs.lib.nixosSystem {
+      waterfall = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
         modules = shared-modules ++ [./hosts/waterfall.nix];
