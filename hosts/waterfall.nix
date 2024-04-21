@@ -11,12 +11,25 @@
     ../users/tim.nix
   ];
 
+  networking.hostName = "waterfall"; # Define your hostname.
+  networking.hostId = "384bb6a1"; # needed for zfs
+
+  # Bootloader. - carried over from original configuration.nix
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  
+  # Setup keyfile - carried over from original configuration.nix
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+
+  # Rest of this file carried over from carried over from original hardware-configuration.nix
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-  networking.hostName = "waterfall"; # Define your hostname.
-  networking.hostId = "384bb6a1"; # needed for zfs
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/47860b62-6335-4d90-b6e7-74d34c11e5f9";
