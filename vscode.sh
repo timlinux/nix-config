@@ -4,4 +4,6 @@ echo "--------------------------------"
 
 code --extensions-dir=.vscode-extensions --install-extension bbenoist.nix
 code --extensions-dir=.vscode-extensions --install-extension kamadorueda.alejandra
+code --extensions-dir=.vscode-extensions --install-extension naumovs.color-highlight
+
 code --extensions-dir=".vscode-extensions" .
