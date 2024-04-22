@@ -234,7 +234,7 @@ in {
             focus-highlight-dominant = true;
             group-apps = false;
             # removes labels next to app icons in panel...
-            group-apps-label-max-width=0;
+            group-apps-label-max-width = mkInt32 0;
             hide-overview-on-startup = true;
             hot-keys = true;
             hot-keys-overlay-combo = "TEMPORARILY";
