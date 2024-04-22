@@ -52,15 +52,15 @@
     ##
     ######################################################
     #
-    # Default package:
+    # Default package - utilities to help you prepare for setting up a new machine.
     #
     # Run with
     # "nix run"
     # or
+    # nix run github:timlinux/nix-config
+    # or
     # nix run github:timlinux/nix-config#default
-    packages.x86_64-linux.default = pkgs.writeScriptBin "runme" ''
-      echo "Tim nix-config default package"
-    '';
+    packages.x86_64-linux.default = pkgs.callPackage ./packages/utils {};
     #
     # Package to help you prepare for setting up a new machine.
     #
@@ -68,8 +68,10 @@
     # nix run .#utils
     # or
     # nix run github:timlinux/nix-config#utils
-    packages.x86_64-linux.utils = pkgs.callPackage ./packages/utils {};
 
+    packages.x86_64-linux.runme = pkgs.writeScriptBin "runme" ''
+      echo "Tim nix-config default package"
+    '';
     #
     # Package format your disk with ZFS then set up your machine
     #

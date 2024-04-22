@@ -50,6 +50,22 @@ This repo provides:
 2. Some custom packages that I use.
 3. Many modules which may prove useful for setting up things like zfs, OBS, Headscale and many other niceties.
 
+You can list the flakes like this:
+
+```
+nix flake show github:timlinux/nix-config
+```
+
+Or if you want to refer to a git branch, add it to the end of the URL e.g. for a branch called 'flakes':
+
+```
+nix flake show github:timlinux/nix-config/flakes
+```
+
+You will get something like this in the output (most likely changed since I made this screenshot):
+
+![](img/flake-show.png)
+
 ## Setting up a new system
 
 If you do not already have a hardware-configuration.nix, you need to either:
@@ -239,23 +255,7 @@ with ZFS.
 ![Step 11](img/vm-install11.png)
 
 
-## Listing flakes
 
-You can list the flakes like this:
-
-```
-nix flake show github:timlinux/nix-config
-```
-
-Or if you want to refer to a git branch, add it to the end of the URL e.g. for a branch called 'flakes':
-
-```
-nix flake show github:timlinux/nix-config/flakes
-```
-
-You will get something like this in the output (most likely changed since I made this screenshot):
-
-![](img/flake-show.png)
 
 ## Updating flakes
 
