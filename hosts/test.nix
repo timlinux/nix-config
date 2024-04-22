@@ -2,7 +2,7 @@
 {
   imports =
     [ (modulesPath + "/installer/scan/not-detected.nix")
-      ../configuration/desktop-gnome.nix
+      ../configuration/desktop-kde.nix
       ../users/guest.nix
       ../users/tim.nix
     ];

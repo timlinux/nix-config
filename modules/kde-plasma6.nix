@@ -5,8 +5,6 @@
   pkgs,
   ...
 }: {
-  services.xserver.desktopManager.plasma6.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  environment.systemPackages = with pkgs; [
-  ];
+  services.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;  
 }

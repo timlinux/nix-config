@@ -10,7 +10,7 @@
     ../configuration/desktop-kde.nix
     ../configuration/desktop-apps.nix
     ../modules/locale-ke-en.nix
-    ../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+    #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
     ../users/jeff.nix
   ];
 
