@@ -54,7 +54,20 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "unstable": "unstable"
+      }
+    },
+    "unstable": {
+      "locked": {
+        "lastModified": 1713687659,
+        "narHash": "sha256-Yd8KuOBpZ0Slau/NxFhMPJI0gBxeax0vq/FD0rqKwuQ=",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable"
       }
     }
   },

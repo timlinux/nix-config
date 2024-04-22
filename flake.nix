@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    unstable.url="https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
   };
 
@@ -10,6 +11,7 @@
     self,
     home-manager,
     nixpkgs,
+    unstable,
   } @ inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -113,11 +115,17 @@
         system = system;
         modules = shared-modules ++ [./hosts/jeff.nix];
       };
-      # Automated testbed
-      test = nixpkgs.lib.nixosSystem {
+      # Automated testbed - test gnome
+      test-gnome = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
-        modules = shared-modules ++ [./hosts/test.nix];
+        modules = shared-modules ++ [./hosts/test-gnome.nix];
+      };
+      # Automated testbed - test kde
+      test = unstable.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules = shared-modules ++ [./hosts/test-kde.nix];
       };
     };
 

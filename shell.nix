@@ -15,6 +15,8 @@ let
   pinnedPkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/${pinnedHash}.tar.gz") { };
 in pkgs.mkShell rec {
   buildInputs = [
+    gum # UX for TUIs
+    skate # Distributed key/value store
     pinnedPkgs.onefetch
     pinnedPkgs.neofetch
     pinnedPkgs.onefetch
