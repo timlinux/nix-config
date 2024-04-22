@@ -120,7 +120,10 @@ VM=$(gum choose "GNOME" "PLASMA6")
 echo "🏃Running flake in a test ${VM} vm"
 echo "See https://lhf.pt/posts/demystifying-nixos-basic-flake/"
 echo "For a detailed explanation"
-rm *.qcow2
+if ls *.cow2 1> /dev/null 2>&1; then
+    rm -f *.cow2
+fi
+
 
 if [ "$VM" == "GNOME" ]; then
   # #test is the name of the host config as listed in flake.nix
