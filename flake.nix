@@ -122,7 +122,7 @@
         modules = shared-modules ++ [./hosts/test-gnome.nix];
       };
       # Automated testbed - test kde
-      test = unstable.lib.nixosSystem {
+      test-kde = unstable.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
         modules = shared-modules ++ [./hosts/test-kde.nix];
