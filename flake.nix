@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-    unstable.url="https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
+    unstable.url = "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
   };
 
@@ -65,10 +65,10 @@
     # Package to help you prepare for setting up a new machine.
     #
     # Run with
-    # nix run .#about
+    # nix run .#utils
     # or
-    # nix run github:timlinux/nix-config#about
-    packages.x86_64-linux.about = pkgs.callPackage ./packages/about {};
+    # nix run github:timlinux/nix-config#utils
+    packages.x86_64-linux.utils = pkgs.callPackage ./packages/utils {};
 
     #
     # Package format your disk with ZFS then set up your machine
@@ -96,14 +96,14 @@
         specialArgs = specialArgs;
         system = system;
         modules = shared-modules ++ [./hosts/waterfall.nix];
-      };      
+      };
       # Tim headless box
       valley = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
         modules = shared-modules ++ [./hosts/valley.nix];
       };
-      
+
       # Virtman manual testbed
       rock = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
