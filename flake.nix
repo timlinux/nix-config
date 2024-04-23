@@ -93,7 +93,19 @@
     # nix profile uninstall .#qgis
     #
     packages.x86_64-linux.qgis = pkgs.callPackage ./packages/qgis {};
-
+    #
+    # Package tilemaker latest version
+    #
+    # Run with
+    # nix run .#tilemaker
+    # or
+    # nix run github:timlinux/nix-config#tilemaker
+    # or install by doing
+    # nix profile install .#tilemaker
+    # and uninstall:
+    # nix profile uninstall .#tilemaker
+    #
+    packages.x86_64-linux.tilemaker = pkgs.callPackage ./packages/tilemaker {};
     ######################################################
     ##
     ## Configurations for each host we manage
