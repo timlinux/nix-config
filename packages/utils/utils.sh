@@ -76,7 +76,6 @@ setup_gum () {
     export GUM_FILTER_CURSOR_TEXT_FOREGROUND="#F1C069"
     export GUM_FILTER_MATCH_FOREGROUND="#F1C069"
     export GUM_FILTER_PROMPT_FOREGROUND="#F1C069"
-    
 }
 
 
@@ -85,9 +84,11 @@ welcome() {
     set +e
     
 read -r -d '\n' MESSAGE << EndOfText
-This script will provide useful diagnosis info about your system.
+This script will provide useful tools and info for managing and setting up your NixOS system.
 
 Tim Sutton, April 2024
+Kartoza.com
+
 EndOfText
     
 read -r -d '\n' LOGO << EndOfText
@@ -149,12 +150,14 @@ start_syncthing() {
 
 # Main menu function
 main_menu() {
-    choice=$(gum choose "Generate your system hardware profile" "Start syncthing")
+    choice=$(gum choose "Generate your system hardware profile" "Start syncthing" "Exit")
     
     case $choice in
         "Generate your system hardware profile") generate_hardware_profile ;;
         "Start syncthing") start_syncthing ;;
+        "Exit") exit 1 ;;
         *) echo "Invalid choice. Please select again." ;;
+
     esac
 }
 

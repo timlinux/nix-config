@@ -80,6 +80,19 @@
     # or
     # nix run github:timlinux/nix-config#setup-zfs-machine
     packages.x86_64-linux.setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine {};
+    #
+    # Package QGIS with Tim custom additions
+    #
+    # Run with
+    # nix run .#qgis
+    # or
+    # nix run github:timlinux/nix-config#qgis
+    # or install by doing
+    # nix profile install .#qgis
+    # and uninstall:
+    # nix profile uninstall .#qgis
+    #
+    packages.x86_64-linux.qgis = pkgs.callPackage ./packages/qgis {};
 
     ######################################################
     ##
