@@ -1,7 +1,6 @@
 {
   lib,
   fetchFromGitHub,
-  fetchpatch,
   makeWrapper,
   mkDerivation,
   substituteAll,
@@ -58,7 +57,7 @@
 
   pythonBuildInputs = with py.pkgs; [
     chardet
-    debugpy
+    debugpy # Added by Tim for debugging
     future
     gdal
     jinja2
@@ -91,17 +90,17 @@ in
     version = "master";
     pname = "qgis-master";
 
-    src = fetchGit {
-      url = "/home/timlinux/dev/cpp/QGIS";
-      rev = "5c22031187402ca3ff59bcde7712fecfbde9e9cc";
-    };
-    #src = fetchFromGitHub {
-    #  owner = "qgis";
-    #  repo = "QGIS";
-    #  rev = "master";
-    #  #hash = "sha256-PpWdyYuuh0cq2YsMaMprE9MvzDTBNvpEgeVNmOUMzjs=";
-    #  hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    #src = fetchGit {
+    #  url = "/home/timlinux/dev/cpp/QGIS";
+    #  rev = "581589aa0a4af3bb62a4f7e88cacaf94be752050";
     #};
+    src = fetchFromGitHub {
+      owner = "qgis";
+      repo = "QGIS";
+      rev = "master";
+      #  #hash = "sha256-PpWdyYuuh0cq2YsMaMprE9MvzDTBNvpEgeVNmOUMzjs=";
+      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    };
 
     passthru = {
       inherit pythonBuildInputs;

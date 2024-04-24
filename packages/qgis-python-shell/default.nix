@@ -1,5 +1,14 @@
-{pkgs ? import <nixpkgs> {} }:
+# See https://discourse.nixos.org/t/qgis-python-scripts/17746/2
+{pkgs ? import <nixpkgs> {}, python3 }:
 let
+  py = python3.override {
+    packageOverrides = self: super: {
+      pyqt5 = super.pyqt5.override {
+        withLocation = true;
+        withSerialPort = true;
+      };
+    };
+  };
 in
 pkgs.mkShell rec {
   buildInputs = with pkgs; [
@@ -8,7 +17,7 @@ pkgs.mkShell rec {
     qt5.full
     qtcreator
     python3
-    python3Packages.pyqt5
+    py.pyqt5
     python3Packages.gdal
     python3Packages.ipython
     python3Packages.pandas
