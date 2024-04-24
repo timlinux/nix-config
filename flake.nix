@@ -93,6 +93,7 @@
     # nix profile uninstall .#qgis
     #
     packages.x86_64-linux.qgis = pkgs.callPackage ./packages/qgis {};
+
     #
     # Package tilemaker latest version
     #
