@@ -7,12 +7,12 @@ pkgs.mkShell rec {
     qgis
     qt5.full
     qtcreator
-    python38
-    python38Packages.pyqt5
-    python38Packages.gdal
-    python38Packages.ipython
-    python38Packages.pandas
-    python38Packages.pytest
+    python3
+    python3Packages.pyqt5
+    python3Packages.gdal
+    python3Packages.ipython
+    python3Packages.pandas
+    python3Packages.pytest
   ];
   shellHook = ''
   export QT_QPA_PLATFORM=offscreen
