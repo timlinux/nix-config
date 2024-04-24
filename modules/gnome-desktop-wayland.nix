@@ -3,8 +3,12 @@
   pkgs,
   ...
 }: {
-  # Enable the GNOME Desktop Environment.
+  # Enable the GNOME Desktop Environment - Wayland
+  # Currently I have issues running wayland like flashing windows etc.
+  # if enabling this with the nvidia driver so be sure to
+  # switch off nvidia drivers in configuration.nix if using this
   services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
   programs.xwayland.enable = true;
 
   environment.variables = {
