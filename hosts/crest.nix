@@ -13,6 +13,7 @@
     ../modules/biometrics.nix
     ../modules/zfs-encryption.nix
     ../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+    ../modules/qgis-dev.nix # qgis, keepasxc, vscode, uxplay
     ../users/tim.nix
   ];
 
