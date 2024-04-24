@@ -73,6 +73,15 @@
       echo "Tim nix-config default package"
     '';
     #
+    # Package to provide a shell with QGIS Python for headless QGIS work.
+    #
+    # Run with
+    # nix shell .#qgis-python-shell
+    # or
+    # nix run github:timlinux/nix-config#qgis-python-shell
+
+    packages.x86_64-linux.qgis-python-shell = pkgs.callPackage ./packages/qgis-python-shell {};
+    #
     # Package format your disk with ZFS then set up your machine
     #
     # Run with

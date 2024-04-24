@@ -14,6 +14,7 @@ let
   pinnedHash = "617579a787259b9a6419492eaac670a5f7663917";
   pinnedPkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/${pinnedHash}.tar.gz") { };
 in pkgs.mkShell rec {
+  allowUnfree = true;
   buildInputs = [
     gum # UX for TUIs
     skate # Distributed key/value store
