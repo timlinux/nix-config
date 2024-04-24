@@ -7,7 +7,7 @@
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../configuration/desktop-gnome.nix
+    ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
     ../modules/locale-pt-en.nix
     ../modules/biometrics.nix

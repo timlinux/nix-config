@@ -1,10 +1,12 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Enable the GNOME Desktop Environment.
   services.xserver.desktopManager.gnome.enable = true;
   programs.xwayland.enable = true;
-  
+
   environment.variables = {
     # Hack for broken drag and drop in Qt apps (including QGIS) - only works in wayland
     QT_QPA_PLATFORM = "wayland";
@@ -32,9 +34,9 @@
   '';
   # Todo : check what these do
   #gnome = {
-    #core-utilities.enable = false;
-    #tracker-miners.enable = false;
-    #tracker.enable = false;
+  #core-utilities.enable = false;
+  #tracker-miners.enable = false;
+  #tracker.enable = false;
   #};
   # Required for ssh-askpass.
   programs.seahorse.enable = true;

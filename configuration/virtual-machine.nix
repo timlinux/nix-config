@@ -8,7 +8,7 @@
   nixpkgs.config.allowUnfree = true;
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
-    ../configuration/desktop-gnome.nix
+    ../configuration/desktop-gnome-wayland.nix
   ];
 
   #Extra bit of magic for vm

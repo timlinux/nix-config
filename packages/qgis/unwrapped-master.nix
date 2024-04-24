@@ -78,6 +78,7 @@
     pytz
     pyyaml
     qscintilla-qt5
+    rasterio # Added by Tim for GEEST
     requests
     setuptools
     sip
@@ -92,7 +93,7 @@ in
 
     src = fetchGit {
       url = "/home/timlinux/dev/cpp/QGIS";
-      rev = "1a4e1a77e778730c9b451dc9115f0e97e35b89c9";
+      rev = "5c22031187402ca3ff59bcde7712fecfbde9e9cc";
     };
     #src = fetchFromGitHub {
     #  owner = "qgis";
