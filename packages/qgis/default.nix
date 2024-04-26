@@ -9,10 +9,10 @@ with lib; let
   qgis-latest = libsForQt5.callPackage ./unwrapped.nix {};
 in
   symlinkJoin rec {
-    inherit (qgis-master) version;
+    inherit (qgis-latest) version;
     name = "qgis-${version}";
 
-    paths = [qgis-master];
+    paths = [qgis-latest];
 
     nativeBuildInputs = [
       makeWrapper

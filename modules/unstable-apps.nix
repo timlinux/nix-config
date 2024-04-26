@@ -5,8 +5,8 @@
 }: {
   imports = [
     ./qgis-unstable.nix
-    ./keepassxc.nix
-    ./vscode.nix
-    ./uxplay.nix
+    ./keepassxc-unstable.nix
+    ./vscode-unstable.nix
+    ./uxplay-unstable.nix
   ];
 }
