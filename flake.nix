@@ -14,6 +14,17 @@
     unstable,
   } @ inputs: let
     system = "x86_64-linux";
+    # See https://github.com/mcdonc/.nixconfig/blob/86254905e2d13fc42292ac47fd13310d0c778935/videos/oldpkgs/script.rst
+    # And the implementations referenced from modules/unstable-apps.nix
+    overlay-unstable = final: prev: {
+      unstable = import unstable {
+        inherit system;
+        config.allowUnfree = true;
+        config.permittedInsecurePackages = [
+          "qtwebkit-5.212.0-alpha4"
+        ];
+      };
+    };
     pkgs = import nixpkgs {
       inherit system;
       config = {
@@ -126,7 +137,16 @@
       crest = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
-        modules = shared-modules ++ [./hosts/crest.nix];
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/crest.nix];
       };
       # Tim Tuxedo desktop box
       waterfall = nixpkgs.lib.nixosSystem {

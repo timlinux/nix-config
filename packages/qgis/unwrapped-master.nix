@@ -98,8 +98,8 @@ in
       owner = "qgis";
       repo = "QGIS";
       rev = "master";
-      #  #hash = "sha256-PpWdyYuuh0cq2YsMaMprE9MvzDTBNvpEgeVNmOUMzjs=";
-      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      hash = "sha256-w+glJxacDItEng8/rENmjB5FRyjLUpeOiOEkl+XO++0=";
+      #hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
     };
 
     passthru = {

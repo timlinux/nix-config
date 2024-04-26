@@ -20,7 +20,6 @@ in pkgs.mkShell rec {
     skate # Distributed key/value store
     pinnedPkgs.onefetch
     pinnedPkgs.neofetch
-    pinnedPkgs.onefetch
     pinnedPkgs.ipfetch
     pinnedPkgs.cpufetch
     pinnedPkgs.ramfetch
