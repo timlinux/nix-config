@@ -271,6 +271,76 @@ or for a git branch e.g. 'flakes' branch:
 nix flake update github:timlinux/nix-config/flakes
 ```
 
+## Other things you can do
+
+### Working with QGIS
+
+#### Choosing a version
+
+There are 3 options for installing QGIS:
+
+1. Install the nix cache stable version - no special setup is needed, just include the ``modules/qgis-stable.nix`` module.
+2. Install the nix cache  unstable version - no special setup is needed, just include the ``modules/qgis.nix`` module. This version is also provided by default in ``modules/unstable-apps.nix`` (see example below).
+3. Install the my custom version - I have made a custom QGIS build which bundles in extra pythoon packages and gives me a space to 
+customise it as wanted. To use it add include the ``modules/qgis-dev.nix`` module (see example below)
+
+
+📒 Some notes
+
+1. Option 3 will perform a full source compile which is going to use a bunch of resources on your computer - it could take like an hour or more depending on your processor speed.
+2. None of the configurations include QGIS by default so you need to add it to your host - either add it separately to your host/<hostname>.nix depending on which option you prefer, or add the group of unstable apps which will include the qgis-unstable upstream build. Here is an example from my host:
+
+
+```
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ../configuration/desktop-gnome-x11.nix
+    ../configuration/desktop-apps.nix
+    ../modules/locale-pt-en.nix
+    ../modules/biometrics.nix
+    ../modules/zfs-encryption.nix
+    #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+
+    # I do it this way so that we use hand compiled QGIS with
+    # all the extra goodies I want like pyqtgraph
+    # rasterio, debug libs etc. available to the build of QGIS
+    # Note that it is mutually exclusive (for now) to the upstream
+    # QGIS binaries and also the build may take quite a while on
+    # your pc.   If you prefer to use the upstream built binary,
+    # you can comment out these next 4 lines and uncomment the
+    # unstable-apps entry above.
+    ../modules/keepassxc.nix
+    ../modules/vscode.nix
+    ../modules/uxplay.nix
+    ../modules/qgis-dev.nix
+    ../users/tim.nix
+  ];
+  ```
+
+#### Viewing the available packages
+
+You can view the packages in the QGIS Python console like this:
+
+```
+import pkg_resources
+ 
+installed_packages = pkg_resources.working_set
+for package in installed_packages:
+    print(f"{package.key}=={package.version}")
+```
+
+#### Dynamically adding packages
+
+
+If you want more python packages to be available in your QGIS, you can either modify the custom version as indicated in the section above, or you can use an overlay when launching QGIS like this:
+
+```
+nix-shell -p \
+  'qgis.override { extraPythonPackages = (ps: [ ps.numpy ps.future ps.geopandas ps.rasterio ]);}' \
+  --command "qgis"
+```
+
+
 
 ## Resources
 
