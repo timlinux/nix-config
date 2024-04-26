@@ -87,19 +87,29 @@
   ];
 in
   mkDerivation rec {
-    version = "master";
+    #version = "master";
+    version = "3.36.2";
     pname = "qgis-master";
 
     #src = fetchGit {
     #  url = "/home/timlinux/dev/cpp/QGIS";
     #  rev = "581589aa0a4af3bb62a4f7e88cacaf94be752050";
     #};
+    #src = fetchFromGitHub {
+    #  owner = "qgis";
+    #  repo = "QGIS";
+    #  rev = "master";
+    #  hash = "sha256-w+glJxacDItEng8/rENmjB5FRyjLUpeOiOEkl+XO++0=";
+    #  #hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+    #};
+    #version = "3.36.2";
+    #pname = "qgis-unwrapped";
+
     src = fetchFromGitHub {
       owner = "qgis";
       repo = "QGIS";
-      rev = "master";
-      hash = "sha256-w+glJxacDItEng8/rENmjB5FRyjLUpeOiOEkl+XO++0=";
-      #hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+      rev = "final-${lib.replaceStrings ["."] ["_"] version}";
+      hash = "sha256-/8mpzl/6UpjrMVjae2nqpS2DBRCq86rE+B3INzoRz8g=";
     };
 
     passthru = {

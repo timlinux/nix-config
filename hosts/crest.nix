@@ -12,8 +12,20 @@
     ../modules/locale-pt-en.nix
     ../modules/biometrics.nix
     ../modules/zfs-encryption.nix
-    ../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
-    #../modules/qgis-dev.nix
+    #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+
+    # I do it this way so that we use hand compiled QGIS with
+    # all the extra goodies I want like pyqtgraph
+    # rasterio, debug libs etc. available to the build of QGIS
+    # Note that it is mutually exclusive (for now) to the upstream
+    # QGIS binaries and also the build may take quite a while on
+    # your pc.   If you prefer to use the upstream built binary,
+    # you can comment out these next 4 lines and uncomment the
+    # unstable-apps entry above.
+    ../modules/keepassxc.nix
+    ../modules/vscode.nix
+    ../modules/uxplay.nix
+    ../modules/qgis-dev.nix
     ../users/tim.nix
   ];
 
