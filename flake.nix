@@ -27,11 +27,6 @@
     };
     pkgs = import nixpkgs {
       inherit system;
-      config = {
-        nixpkgs.config.permittedInsecurePackages = [
-          "qtwebkit-5.212.0-alpha4"
-        ];
-      };
     };
     specialArgs = inputs // {inherit system;};
     shared-modules = [
@@ -152,37 +147,91 @@
       waterfall = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
-        modules = shared-modules ++ [./hosts/waterfall.nix];
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/waterfall.nix];
       };
       # Tim headless box
       valley = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
-        modules = shared-modules ++ [./hosts/valley.nix];
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/valley.nix];
       };
 
       # Virtman manual testbed
       rock = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
-        modules = shared-modules ++ [./hosts/rock.nix];
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/rock.nix];
       };
       jeff = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
-        modules = shared-modules ++ [./hosts/jeff.nix];
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/jeff.nix];
       };
       # Automated testbed - test gnome
       test-gnome = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
-        modules = shared-modules ++ [./hosts/test-gnome.nix];
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/test-gnome.nix];
       };
       # Automated testbed - test kde
       test-kde = unstable.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
-        modules = shared-modules ++ [./hosts/test-kde.nix];
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/test-kde.nix];
       };
     };
 
