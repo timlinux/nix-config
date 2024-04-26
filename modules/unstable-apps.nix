@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./qgis.nix
+    ./qgis-unstable.nix
     ./keepassxc.nix
     ./vscode.nix
     ./uxplay.nix

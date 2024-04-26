@@ -23,7 +23,7 @@
     ../modules/keepassxc.nix
     ../modules/vscode.nix
     ../modules/uxplay.nix
-    ../modules/qgis-dev.nix
+    ../modules/qgis-sourcebuild.nix
 
     ../users/jeff.nix
   ];

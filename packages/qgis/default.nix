@@ -6,21 +6,21 @@
   libsForQt5,
 }:
 with lib; let
-  qgis-unwrapped = libsForQt5.callPackage ./unwrapped.nix {};
+  qgis-latest = libsForQt5.callPackage ./unwrapped.nix {};
 in
   symlinkJoin rec {
-    inherit (qgis-unwrapped) version;
+    inherit (qgis-master) version;
     name = "qgis-${version}";
 
-    paths = [qgis-unwrapped];
+    paths = [qgis-master];
 
     nativeBuildInputs = [
       makeWrapper
-      qgis-unwrapped.py.pkgs.wrapPython
+      qgis-latest.py.pkgs.wrapPython
     ];
 
     # extend to add to the python environment of QGIS without rebuilding QGIS application.
-    pythonInputs = qgis-unwrapped.pythonBuildInputs ++ (extraPythonPackages qgis-unwrapped.py.pkgs);
+    pythonInputs = qgis-latest.pythonBuildInputs ++ (extraPythonPackages qgis-latest.py.pkgs);
 
     postBuild = ''
       # unpackPhase
@@ -33,9 +33,9 @@ in
     '';
 
     passthru = {
-      unwrapped = qgis-unwrapped;
+      unwrapped = qgis-latest;
       tests.qgis = nixosTests.qgis;
     };
 
-    inherit (qgis-unwrapped) meta;
+    inherit (qgis-latest) meta;
   }

@@ -280,9 +280,9 @@ nix flake update github:timlinux/nix-config/flakes
 There are 3 options for installing QGIS:
 
 1. Install the nix cache stable version - no special setup is needed, just include the ``modules/qgis-stable.nix`` module.
-2. Install the nix cache  unstable version - no special setup is needed, just include the ``modules/qgis.nix`` module. This version is also provided by default in ``modules/unstable-apps.nix`` (see example below).
-3. Install the my custom version - I have made a custom QGIS build which bundles in extra pythoon packages and gives me a space to 
-customise it as wanted. To use it add include the ``modules/qgis-dev.nix`` module (see example below)
+2. Install the nix cache  unstable version - no special setup is needed, just include the ``modules/qgis-unstable.nix`` module. This version is also provided by default in ``modules/unstable-apps.nix`` (see example below). Note that unstable does not speak to the quality of the QGIS release, only to the fact that the package is provided from the Nix unstable repository.
+3. Install my custom QGIS version - I have made a custom QGIS build which bundles in extra pythoon packages and gives me a space to 
+customise it as wanted. To use it add include the ``modules/qgis-sourcebuild.nix`` module (see example below)
 
 
 📒 Some notes
