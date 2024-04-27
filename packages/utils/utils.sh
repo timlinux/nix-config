@@ -175,6 +175,14 @@ main_menu() {
     esac
 }
 
+confirm_format() {
+    echo "This tool is destructive! It will delete all your partitions on your hard drive. Do you want to continue?"
+    DESTROY=$(gum choose "DESTROY" "CANCEL")
+    if [ "$DESTROY" == "DESTROY" ]; then
+        nix run .#setup-zfs-machine
+    fi
+}
+
 system_menu() {
     gum style "🚀 Kartoza NixOS :: System Menu"
     choice=$(
@@ -199,7 +207,7 @@ system_menu() {
         system_menu
         ;;
     "⚠️ Format disk with ZFS ⚠️")
-        echo "TODO"
+        confirm_format
         prompt_to_continue
         system_menu
         ;;
