@@ -1,13 +1,14 @@
-{ config, ... }:
-let
+{config, ...}: let
   browser = "re.sonny.Junction.desktop";
   # spreadsheet = "libreoffice-calc.desktop";
   pdf = "evince.desktop";
+  qgis = "org.qgis.qgis.desktop";
 in {
   config = {
     xdg = {
       enable = true;
-
+      # See https://github.com/nix-community/home-manager/issues/1213
+      configFile."mimeapps.list".force = true;
       userDirs = {
         createDirectories = true;
         enable = true;
@@ -29,8 +30,10 @@ in {
           "x-scheme-handler/http" = browser;
           "x-scheme-handler/https" = browser;
           "x-scheme-handler/unknown" = browser;
-
-          # "application/vnd.oasis.opendocument.spreadsheet" = spreadsheet;
+          "text/plain" = "org.gnome.TextEditor.desktop";
+          "application/octet-stream" = qgis;
+          "image/tiff" = qgis;
+          "application/vnd.sqlite3" = qgis;
         };
       };
     };

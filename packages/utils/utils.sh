@@ -220,6 +220,8 @@ system_menu() {
             "❄️ Update flake lock" \
             "⚙️ Start syncthing" \
             "🪪 Generate host id" \
+            "👀 Watch dconf" \
+            "🎬️ Mimetypes diff" \
             "⚠️ Format disk with ZFS ⚠️" \
             "🏠️ Main menu"
     )
@@ -267,6 +269,14 @@ system_menu() {
         head -c 8 /etc/machine-id
         prompt_to_continue
         system_menu
+        ;;
+    "👀 Watch dconf")
+        echo "Click around in gnome settings etc. to see what changes. Then propogate those changes to your nix configs."
+        dconf watch /
+        ;;
+    "🎬️ Mimetypes diff")
+        echo "Use the file manager to open different file types, then see the diff here to add them to home/xdg/default.nix to make these the default for all users."
+        echo "TODO: ls -lah ~/.config/mimeapps.list"
         ;;
     "⚠️ Format disk with ZFS ⚠️")
         confirm_format

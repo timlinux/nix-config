@@ -50,6 +50,7 @@ in {
             (mkTuple ["xkb" "us"])
             (mkTuple ["xkb" "pt"])
           ];
+          "org/gnome/desktop/interface".font-name = "Avenir LT Std 13";
           "org/gnome/desktop/interface".color-scheme = "prefer-dark";
           "org/gnome/desktop/interface".show-battery-percentage = true;
           "org/gnome/desktop/media-handling".automount = false;
