@@ -187,6 +187,7 @@ system_menu() {
     gum style "🚀 Kartoza NixOS :: System Menu"
     choice=$(
         gum choose \
+            "🏃🏽‍♂️ Update system" \
             "⚙️ Start syncthing" \
             "🪪 Generate host id" \
             "⚠️ Format disk with ZFS ⚠️" \
@@ -195,6 +196,16 @@ system_menu() {
 
     case $choice in
     "Help") help_menu ;;
+    "🏃🏽‍♂️ Update system")
+        if [ "$EUID" -ne 0 ]; then
+            echo "🛑 Run this as SUDO!"
+            exit
+        fi
+        NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nix build --impure
+        NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure --flake .
+        prompt_to_continue
+        system_menu
+        ;;
     "⚙️ Start syncthing")
         start_syncthing
         prompt_to_continue
