@@ -154,6 +154,30 @@ prompt_to_continue() {
     clear
 }
 
+run_gnome_test_vm() {
+
+    echo "🏃Running flake in a test GNOME vm"
+
+    if ls test.qcow2 1>/dev/null 2>&1; then
+        rm -f test.qcow2
+    fi
+    # #test-gnome is the name of the host config as listed in flake.nix
+    nixos-rebuild build-vm --flake .#test-gnome && result/bin/run-test-vm
+
+}
+
+run_kde_test_vm() {
+
+    echo "🏃Running flake in a test KDE vm"
+
+    if ls test.qcow2 1>/dev/null 2>&1; then
+        rm -f test.qcow2
+    fi
+    # #test-kde is the name of the host config as listed in flake.nix
+    nixos-rebuild build-vm --flake .#test-kde && result/bin/run-test-vm
+
+}
+
 main_menu() {
     gum style "🏠️ Kartoza NixOS :: Main Menu"
     choice=$(
@@ -161,6 +185,7 @@ main_menu() {
             "💁🏽 Help" \
             "🚀 System management" \
             "❓️ System info" \
+            "🖥️ Test VMs" \
             "💡 About" \
             "🛑 Exit"
     )
@@ -169,6 +194,7 @@ main_menu() {
     "💁🏽 Help") help_menu ;;
     "🚀 System management") system_menu ;;
     "❓️ System info") system_info_menu ;;
+    "🖥️ Test VMs") test_vms_menu ;;
     "💡 About") about ;;
     "🛑 Exit") exit 1 ;;
     *) echo "Invalid choice. Please select again." ;;
@@ -188,6 +214,10 @@ system_menu() {
     choice=$(
         gum choose \
             "🏃🏽‍♂️ Update system" \
+            "🧹 Clear disk space" \
+            "💻️ Update firmware" \
+            "🕵🏽‍♀️ Setup VPN" \
+            "❄️ Update flake lock" \
             "⚙️ Start syncthing" \
             "🪪 Generate host id" \
             "⚠️ Format disk with ZFS ⚠️" \
@@ -197,12 +227,33 @@ system_menu() {
     case $choice in
     "Help") help_menu ;;
     "🏃🏽‍♂️ Update system")
-        if [ "$EUID" -ne 0 ]; then
-            echo "🛑 Run this as SUDO!"
-            exit
-        fi
-        NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nix build --impure
-        NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure --flake .
+        sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nix build --impure
+        sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure --flake .
+        prompt_to_continue
+        system_menu
+        ;;
+    "🧹 Clear disk space")
+        sudo nix-collect-garbage -d
+        prompt_to_continue
+        system_menu
+        ;;
+    "💻️ Update firmware")
+        sudo fwupdmgr refresh --force
+        sudo fwupdmgr get-updates
+        sudo fwupdmgr update
+        prompt_to_continue
+        system_menu
+        ;;
+    "🕵🏽‍♀️ Setup VPN")
+        gum style "VPN Setup" "Before you run this, you need to save your vpn configuration in ~/.wireguard/kartoza-vpn.conf"
+        nmcli connection import type wireguard file ~/.wireguard/kartoza-vpn.conf
+        nmcli connection show
+        prompt_to_continue
+        system_menu
+        ;;
+    "❄️ Update flake lock")
+        gum style "Flake update" "Running flake update to update the lock file."
+        nix flake update
         prompt_to_continue
         system_menu
         ;;
@@ -221,32 +272,6 @@ system_menu() {
         confirm_format
         prompt_to_continue
         system_menu
-        ;;
-    "🏠️ Main menu")
-        clear
-        main_menu
-        ;;
-    *) echo "🛑 Invalid choice. Please select again." ;;
-    esac
-}
-
-help_menu() {
-    gum style "💁🏽 Kartoza NixOS :: Help Menu:"
-    choice=$(
-        gum choose \
-            "📃 Documentation (in terminal)" \
-            "🌍️ Documentation (in browser)" \
-            "🏠️ Main menu"
-    )
-
-    case $choice in
-    "📃 Documentation (in terminal)")
-        glow -p -s dark https://raw.githubusercontent.com/timlinux/nix-config/main/README.md
-        help_menu
-        ;;
-    "🌍️ Documentation (in browser)")
-        xdg-open https://github.com/timlinux/nix-config/blob/main/README.md
-        help_menu
         ;;
     "🏠️ Main menu")
         clear
@@ -322,6 +347,63 @@ system_info_menu() {
     esac
 
 }
+
+test_vms_menu() {
+    gum style "🖥️ Kartoza NixOS :: Test VMs Menu" "See https://lhf.pt/posts/demystifying-nixos-basic-flake/ For a detailed explanation"
+
+    choice=$(
+        gum choose \
+            "🖥️ Minimal Gnome VM" \
+            "🖥️ Minimal KDE VM" \
+            "🖥️ Complete Gnome VM (for screen recording)" \
+            "🏠️ Main menu"
+    )
+
+    case $choice in
+    "🖥️ Minimal Gnome VM")
+        clear
+        run_gnome_test_vm
+        main_menu
+        ;;
+    "🖥️ Minimal KDE VM")
+        clear
+        run_kde_test_vm
+        main_menu
+        ;;
+    "🖥️ Complete Gnome VM (for screen recording)")
+        clear
+        main_menu
+        ;;
+    *) echo "🛑 Invalid choice. Please select again." ;;
+    esac
+}
+
+help_menu() {
+    gum style "💁🏽 Kartoza NixOS :: Help Menu:"
+    choice=$(
+        gum choose \
+            "📃 Documentation (in terminal)" \
+            "🌍️ Documentation (in browser)" \
+            "🏠️ Main menu"
+    )
+
+    case $choice in
+    "📃 Documentation (in terminal)")
+        glow -p -s dark https://raw.githubusercontent.com/timlinux/nix-config/main/README.md
+        help_menu
+        ;;
+    "🌍️ Documentation (in browser)")
+        xdg-open https://github.com/timlinux/nix-config/blob/main/README.md
+        help_menu
+        ;;
+    "🏠️ Main menu")
+        clear
+        main_menu
+        ;;
+    *) echo "🛑 Invalid choice. Please select again." ;;
+    esac
+}
+
 # Call the main menu function
 setup_gum
 welcome

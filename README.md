@@ -46,9 +46,54 @@ this repository provides a canonical source of those configurations.
 
 This repo provides:
 
-1. The flakes that I use to set up a number of different systems that I manage.
+1. The flake that I use to set up a number of different systems that I manage.
 2. Some custom packages that I use.
 3. Many modules which may prove useful for setting up things like zfs, OBS, Headscale and many other niceties.
+
+## Quickstart
+
+I have made a lovely menu / terminal app with all the key functionality provided by this flake:
+
+```
+nix run .#
+```
+
+![](img/menu1.png)
+
+
+From here you can perform tasks from the listed sub menus:
+
+### Help documentation
+
+![](img/menu2.png)
+
+Provides the documentation you are looking at on this page, either as console text or in your web browser.
+
+### System management
+
+Provides tools for configuring your system, starting services, setting up your VPN etc.
+
+![](img/menu3.png)
+
+
+### System info
+
+Provides informative diagnostic info for your system.
+
+![](img/menu4.png)
+
+### Test VMS
+
+Provides test VMs that you can use to try out variants of this flake.
+
+![](img/menu5.png)
+
+
+### About
+
+![](img/menu6.png)
+
+## Listing this flake
 
 You can list the flakes like this:
 
@@ -316,6 +361,11 @@ customise it as wanted. To use it add include the ``modules/qgis-sourcebuild.nix
     ../users/tim.nix
   ];
   ```
+
+## The Utils Package
+
+I have written a package called 'utils' which is a starting point for managing your system.
+
 
 #### Viewing the available packages
 
