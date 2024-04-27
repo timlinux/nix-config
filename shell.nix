@@ -18,6 +18,7 @@ in pkgs.mkShell rec {
   buildInputs = [
     gum # UX for TUIs
     skate # Distributed key/value store
+    pinnedPkgs.glow # terminal markdown viewer
     pinnedPkgs.onefetch
     pinnedPkgs.neofetch
     pinnedPkgs.ipfetch

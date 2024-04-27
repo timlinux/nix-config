@@ -309,10 +309,10 @@ customise it as wanted. To use it add include the ``modules/qgis-sourcebuild.nix
     # your pc.   If you prefer to use the upstream built binary,
     # you can comment out these next 4 lines and uncomment the
     # unstable-apps entry above.
-    ../modules/keepassxc.nix
-    ../modules/vscode.nix
-    ../modules/uxplay.nix
-    ../modules/qgis-dev.nix
+    ../modules/keepassxc-unstable.nix
+    ../modules/vscode-unstable.nix
+    ../modules/uxplay-unstable.nix
+    ../modules/qgis-sourcebuild.nix
     ../users/tim.nix
   ];
   ```
