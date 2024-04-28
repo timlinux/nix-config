@@ -205,7 +205,7 @@ confirm_format() {
     echo "This tool is destructive! It will delete all your partitions on your hard drive. Do you want to continue?"
     DESTROY=$(gum choose "DESTROY" "CANCEL")
     if [ "$DESTROY" == "DESTROY" ]; then
-        nix run .#setup-zfs-machine
+        nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config
     fi
 }
 
