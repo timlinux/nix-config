@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 #
 # This script will automate the creation of a zfs pool and
 # then set up nixos on it. It will COMPLETELY TRASH the
@@ -8,14 +7,13 @@
 #
 # Tim Sutton, March 2024
 #
-# This script was heavily derived from these two sources 
+# This script was heavily derived from these two sources
 # (my thanks to both!)
 #
 # https://github.com/Hoverbear-Consulting/flake/blob/89cbf802a0be072108a57421e329f6f013e335a6/packages/unsafe-bootstrap/unsafe-bootstrap.sh
 # https://github.com/mcdonc/p51-thinkpad-nixos/blob/zfsvid/configuration.nix
 
 set -e
-
 
 # Choose
 export GUM_CHOOSE_CURSOR_FOREGROUND="#F1C069"
@@ -93,16 +91,15 @@ export GUM_FILTER_CURSOR_TEXT_FOREGROUND="#F1C069"
 export GUM_FILTER_MATCH_FOREGROUND="#F1C069"
 export GUM_FILTER_PROMPT_FOREGROUND="#F1C069"
 
-if [ "$EUID" -ne 0 ]
-  then 
-    echo "🛑Run this as SUDO!"
+if [ "$EUID" -ne 0 ]; then
+  echo "🛑Run this as SUDO!"
   exit
 fi
 
-beginswith() { case $2 in "$1"*) true;; *) false;; esac; }
+beginswith() { case $2 in "$1"*) true ;; *) false ;; esac }
 
 set +e
-read -d '\n' LOGO << EndOfText
+read -d '\n' LOGO <<EndOfText
 
 ----------------------------------------------------------------------------
 
@@ -178,7 +175,7 @@ if [ "$DESTROY" == "DESTROY" ]; then
 
   gum confirm "Are you ready to setup this host (including destroying all data on the disk)?" || (echo "Ok!" && exit 1)
   gum style --bold --foreground "${RED}" "Destroying existing partitions on \`TARGET_DEVICE=${TARGET_DEVICE}\` in 10..."
- 
+
   sleep 1
   gum style --bold --foreground "${RED}" "Formatting"
 
@@ -188,36 +185,36 @@ if [ "$DESTROY" == "DESTROY" ]; then
   sgdisk -o "${TARGET_DEVICE}"
   partprobe || true
 
-if beginswith "/dev/nvme" "$TARGET_DEVICE"; then
-  FULL_TARGET_DEVICE="${TARGET_DEVICE}p"
-else
-  FULL_TARGET_DEVICE="${TARGET_DEVICE}"
-fi
+  if beginswith "/dev/nvme" "$TARGET_DEVICE"; then
+    FULL_TARGET_DEVICE="${TARGET_DEVICE}p"
+  else
+    FULL_TARGET_DEVICE="${TARGET_DEVICE}"
+  fi
 
-sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
-mkfs.fat -F 32 "${FULL_TARGET_DEVICE}"1
-fatlabel "${FULL_TARGET_DEVICE}"1 NIXBOOT
+  sgdisk -n 0:0:+10G -t 0:ef00 -c 0:efi "${TARGET_DEVICE}"
+  mkfs.fat -F 32 "${FULL_TARGET_DEVICE}"1
+  fatlabel "${FULL_TARGET_DEVICE}"1 NIXBOOT
 
-# If we are installing from flake then the 
-# UUID of the boot disk is hard coded in out configs
-# So we need to go and fetch the config, parse out the UUID
-# then manually assign it to boot after making the partition
+  # If we are installing from flake then the
+  # UUID of the boot disk is hard coded in out configs
+  # So we need to go and fetch the config, parse out the UUID
+  # then manually assign it to boot after making the partition
 
-if [ "$FLAKE" == "YES" ]; then
-  BOOTUUID=$(curl -s https://github.com/timlinux/nix-config/blob/flakes/hosts/valley.nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
-  # See https://superuser.com/a/1294893
-  printf "\x${BOOTUUID:7:2}\x${BOOTUUID:5:2}\x${BOOTUUID:2:2}\x${BOOTUUID:0:2}" \
-    | dd bs=1 seek=67 count=4 conv=notrunc of="${FULL_TARGET_DEVICE}"1
-fi
+  if [ "$FLAKE" == "YES" ]; then
+    BOOTUUID=$(curl -s https://github.com/timlinux/nix-config/blob/flakes/hosts/valley.nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
+    # See https://superuser.com/a/1294893
+    printf "\x${BOOTUUID:7:2}\x${BOOTUUID:5:2}\x${BOOTUUID:2:2}\x${BOOTUUID:0:2}" |
+      dd bs=1 seek=67 count=4 conv=notrunc of="${FULL_TARGET_DEVICE}"1
+  fi
 
-# Create a partition for / using the remaining space
-sgdisk -n 2:0:0 -t 0:8300 -c 0:NIXROOT "${TARGET_DEVICE}" 
+  # Create a partition for / using the remaining space
+  sgdisk -n 2:0:0 -t 0:8300 -c 0:NIXROOT "${TARGET_DEVICE}"
 
-gum style "Do you want to encrypt your disk? Typically you should only say no here if you plan to restart the host remotely / without user interaction."
-ENCRYPT=$(gum choose "YES" "NO")
-if [ "$ENCRYPT" == "YES" ]; then
-  # Create an encrypted zpool
-  zpool create -f \
+  gum style "Do you want to encrypt your disk? Typically you should only say no here if you plan to restart the host remotely / without user interaction."
+  ENCRYPT=$(gum choose "YES" "NO")
+  if [ "$ENCRYPT" == "YES" ]; then
+    # Create an encrypted zpool
+    zpool create -f \
       -o altroot="/mnt" \
       -o ashift=12 \
       -o autotrim=on \
@@ -232,9 +229,9 @@ if [ "$ENCRYPT" == "YES" ]; then
       -O keyformat=passphrase \
       -O mountpoint=none \
       NIXROOT "${FULL_TARGET_DEVICE}"2
-else
-  # Create an non encrypted zpool
-  zpool create -f \
+  else
+    # Create an non encrypted zpool
+    zpool create -f \
       -o altroot="/mnt" \
       -o ashift=12 \
       -o autotrim=on \
@@ -246,7 +243,7 @@ else
       -O dnodesize=auto \
       -O mountpoint=none \
       NIXROOT "${FULL_TARGET_DEVICE}"2
-fi
+  fi
   # legacy mount points do not get auto mounted at boot
   # rather they must be mounted using fstab
   zfs create -o mountpoint=legacy NIXROOT/root
@@ -259,16 +256,16 @@ fi
 
 # Check if filesystem is mounted
 if mountpoint -q /mnt; then
-    echo "The filesystem at /mnt is mounted."
+  echo "The filesystem at /mnt is mounted."
   gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Mounted' 'It appears the ZFS datasets are already mounted.'
+    --foreground 212 --border-foreground 212 --border double \
+    --align center --width 50 --margin "1 2" --padding "2 4" \
+    'Mounted' 'It appears the ZFS datasets are already mounted.'
 else
-gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Mounting' 'Mounting the partitions and ZFS datasets:
+  gum style \
+    --foreground 212 --border-foreground 212 --border double \
+    --align center --width 50 --margin "1 2" --padding "2 4" \
+    'Mounting' 'Mounting the partitions and ZFS datasets:
 
 /mnt/boot
 NIXROOT/root /mnt
@@ -285,11 +282,14 @@ NIXROOT/nix  /mnt/nix
   mount -t zfs NIXROOT/nix /mnt/nix
 fi
 
-
 gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Mounts' $(sudo zfs list;sudo mount | grep NIXROOT;sudo mount | grep boot)
+  --foreground 212 --border-foreground 212 --border double \
+  --align center --width 50 --margin "1 2" --padding "2 4" \
+  'Mounts' $(
+    sudo zfs list
+    sudo mount | grep NIXROOT
+    sudo mount | grep boot
+  )
 
 nixos-generate-config --force --root /mnt
 
@@ -317,7 +317,6 @@ fi
 ## Remaining steps are of if you are not using flake based install
 ##
 
-
 echo "Are you installing in a VM?"
 VM=$(gum choose "YES" "NO")
 if [ "$VM" == "YES" ]; then
@@ -335,7 +334,7 @@ fi
 MACHINEID=$(head -c 8 /etc/machine-id)
 echo "--"
 set +e
-read -d '\n' REPLACEMENT << EndOfText
+read -d '\n' REPLACEMENT <<EndOfText
   # See https://github.com/mcdonc/p51-thinkpad-nixos/tree/zfsvid 
   # for notes on how I set up zfs 
   services.zfs.autoScrub.enable = true; 
@@ -357,9 +356,9 @@ EndOfText
 echo "--"
 
 gum style \
-	--foreground 212 --border-foreground 212 --border double \
-	--align center --width 50 --margin "1 2" --padding "2 4" \
-	'Adding this to configuration.nix' "${REPLACEMENT}"
+  --foreground 212 --border-foreground 212 --border double \
+  --align center --width 50 --margin "1 2" --padding "2 4" \
+  'Adding this to configuration.nix' "${REPLACEMENT}"
 
 # It can be either of these so we check for both
 rpl " boot.loader.grub.enable = true;" "${REPLACEMENT}" /mnt/etc/nixos/configuration.nix
@@ -367,9 +366,8 @@ rpl " boot.loader.systemd-boot.enable = true;" "${REPLACEMENT}" /mnt/etc/nixos/c
 # This needs to be disabled as it collides with boot.loader.grub.efiInstallAsRemovable
 rpl "boot.loader.efi.canTouchEfiVariables = true;" "#boot.loader.efi.canTouchEfiVariables = true;" /mnt/etc/nixos/configuration.nix
 
-
 # TODO: Investigate why nixos-generate-config puts the wrong blk uuid in hardware config
-HWBLKID=$(cat /mnt/etc/nixos/hardware-configuration.nix | grep by-uuid | grep -o "[A-Z0-9-]*\"" | tail -1 | sed "s/\"//g")
+HWBLKID=$(grep </mnt/etc/nixos/hardware-configuration.nix by-uuid | grep -o "[A-Z0-9-]*\"" | tail -1 | sed "s/\"//g")
 ACTUALBLKID=$(blkid | grep NIXBOOT | grep -o "UUID=\"[A-Z0-9-]*\"" | sed "s/UUID=\"//" | sed "s/\"//")
 rpl "${HWBLKID}" "${ACTUALBLKID}" /mnt/etc/nixos/hardware_configuration.nix
 
@@ -380,4 +378,3 @@ To complete the configuration, run:
 sudo nixos-install 
 reboot
 "
-
