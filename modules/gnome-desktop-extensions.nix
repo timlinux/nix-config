@@ -35,6 +35,7 @@ in {
     dash-to-panel
     date-menu-formatter
     desktop-cube
+    runcat
   ];
   programs.dconf.profiles = {
     user.databases = [
@@ -162,6 +163,7 @@ in {
             "dash-to-panel@jderose9.github.com"
             "date-menu-formatter@marcinjakubowski.github.com"
             "desktop-cube@schneegans.github.com"
+            "runcat@kolesnikov.se"
           ];
 
           # See https://github.com/home-sweet-gnome/dash-to-panel/blob/master/schemas/org.gnome.shell.extensions.dash-to-panel.gschema.xml

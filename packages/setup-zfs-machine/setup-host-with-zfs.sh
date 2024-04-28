@@ -203,7 +203,7 @@ if [ "$DESTROY" == "DESTROY" ]; then
   # then manually assign it to boot after making the partition
 
   if [ "$FLAKE" == "YES" ]; then
-    BOOTUUID=$(curl -s https://github.com/timlinux/nix-config/blob/flakes/hosts/valley.nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
+    BOOTUUID=$(curl -s https://raw.githubusercontent.com/timlinux/nix-config/main/hosts/"${HOSTNAME}".nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
     # See https://superuser.com/a/1294893
     printf "\x%s\x%s\x%s\x%s" "${BOOTUUID:7:2}" "${BOOTUUID:5:2}" "${BOOTUUID:2:2}" "${BOOTUUID:0:2}" |
       dd bs=1 seek=67 count=4 conv=notrunc of="${FULL_TARGET_DEVICE}"1
@@ -297,11 +297,6 @@ nixos-generate-config --force --root /mnt
 
 if [ "$FLAKE" == "YES" ]; then
   git clone https://github.com/timlinux/nix-config.git
-  cd nix-config
-  cd flakes
-  git checkout flakes
-  cd ..
-  cd ..
   mv /mnt/etc/nixos /mnt/etc/nixos_org
   mv nix-config /mnt/etc/nixos
   gum style "
