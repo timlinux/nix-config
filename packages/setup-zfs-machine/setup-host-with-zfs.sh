@@ -141,7 +141,8 @@ if test -z "${TARGET_DEVICE}"; then
   lsblk -o name,mountpoint,size,uuid,vendor
   echo ""
   echo "Confirm which to use:"
-  TARGET_DEVICE=/dev/$(gum choose "$(lsblk -o NAME,SIZE,TYPE,MOUNTPOINT | grep 'disk' | awk '{print $1}')")
+  BLOCK_DEVICES="$(lsblk -o NAME,SIZE,TYPE,MOUNTPOINT | grep 'disk' | awk '{print $1}')"
+  TARGET_DEVICE=/dev/$(gum choose "${BLOCK_DEVICES}")
 fi
 echo "Got \`$(gum style --foreground "${BLUE}" "TARGET_DEVICE")=$(gum style --foreground "${CYAN}" "${TARGET_DEVICE}")\`"
 
