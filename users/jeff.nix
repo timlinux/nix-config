@@ -10,10 +10,9 @@
     starship init fish | source
   '';
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.timlinux = {
+  users.users.jeff = {
     isNormalUser = true;
-    initialPassword = "timlinux";
-    description = "Tim Sutton";
+    description = "Jeff";
     extraGroups = [
       "wheel"
       "disk"
