@@ -54,6 +54,14 @@ This repo provides:
 
 I have made a lovely menu / terminal app with all the key functionality provided by this flake:
 
+Running the flake directly from github:
+
+```
+nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config
+```
+
+Or from a local checkout:
+
 ```
 nix run .#
 ```
