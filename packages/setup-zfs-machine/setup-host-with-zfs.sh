@@ -99,7 +99,7 @@ fi
 beginswith() { case $2 in "$1"*) true ;; *) false ;; esac }
 
 set +e
-read -d '\n' LOGO <<EndOfText
+read -r -d '\n' LOGO <<EndOfText
 
 ----------------------------------------------------------------------------
 
@@ -131,7 +131,7 @@ echo "$LOGO"
 set -e
 
 HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
-hostname ${HOSTNAME}
+hostname "${HOSTNAME}"
 echo "Are you installing an existing flake profile for $HOSTNAME?"
 FLAKE=$(gum choose "YES" "NO")
 
@@ -141,11 +141,11 @@ if test -z "${TARGET_DEVICE}"; then
   lsblk -o name,mountpoint,size,uuid,vendor
   echo ""
   echo "Confirm which to use:"
-  TARGET_DEVICE=/dev/$(gum choose $(lsblk -o NAME,SIZE,TYPE,MOUNTPOINT | grep 'disk' | awk '{print $1}'))
+  TARGET_DEVICE=/dev/$(gum choose "$(lsblk -o NAME,SIZE,TYPE,MOUNTPOINT | grep 'disk' | awk '{print $1}')")
 fi
-echo "Got \`$(gum style --foreground ${BLUE} "TARGET_DEVICE")=$(gum style --foreground ${CYAN} "${TARGET_DEVICE}")\`"
+echo "Got \`$(gum style --foreground "${BLUE}" "TARGET_DEVICE")=$(gum style --foreground "${CYAN}" "${TARGET_DEVICE}")\`"
 
-sgdisk -O $TARGET_DEVICE
+sgdisk -O "$TARGET_DEVICE"
 
 gum style "
 Do you want to destroy the partitions or use them 'as is'? 
@@ -203,7 +203,7 @@ if [ "$DESTROY" == "DESTROY" ]; then
   if [ "$FLAKE" == "YES" ]; then
     BOOTUUID=$(curl -s https://github.com/timlinux/nix-config/blob/flakes/hosts/valley.nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
     # See https://superuser.com/a/1294893
-    printf "\x${BOOTUUID:7:2}\x${BOOTUUID:5:2}\x${BOOTUUID:2:2}\x${BOOTUUID:0:2}" |
+    printf "\x%s\x%s\x%s\x%s" "${BOOTUUID:7:2}" "${BOOTUUID:5:2}" "${BOOTUUID:2:2}" "${BOOTUUID:0:2}" |
       dd bs=1 seek=67 count=4 conv=notrunc of="${FULL_TARGET_DEVICE}"1
   fi
 
@@ -285,11 +285,11 @@ fi
 gum style \
   --foreground 212 --border-foreground 212 --border double \
   --align center --width 50 --margin "1 2" --padding "2 4" \
-  'Mounts' $(
+  'Mounts' "$(
     sudo zfs list
     sudo mount | grep NIXROOT
     sudo mount | grep boot
-  )
+  )"
 
 nixos-generate-config --force --root /mnt
 
