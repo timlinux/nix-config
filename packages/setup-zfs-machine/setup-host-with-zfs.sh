@@ -176,10 +176,10 @@ if [ "$DESTROY" == "DESTROY" ]; then
     An zfs partition will be created as the second partition."
 
   gum confirm "Are you ready to setup this host (including destroying all data on the disk)?" || (echo "Ok!" && exit 1)
-  gum style --bold --foreground "${RED}" "Destroying existing partitions on \`TARGET_DEVICE=${TARGET_DEVICE}\` in 10..."
+  gum style --bold --foreground "#ff0000" "💣️ Destroying existing partitions on \`TARGET_DEVICE=${TARGET_DEVICE}\` in 10..."
 
   sleep 1
-  gum style --bold --foreground "${RED}" "Formatting"
+  gum style --bold --foreground "#ff0000" "🧹 Formatting"
 
   umount -r /mnt || true
   umount -r "${TARGET_DEVICE}" || true
