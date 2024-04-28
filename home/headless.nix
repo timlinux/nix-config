@@ -1,10 +1,6 @@
-{ pkgs, ... }:
-
-{
-      imports = [ 
-        ./kitty/default.nix
-        ./direnv/default.nix
-        ./git/default.nix
-      ];
+{pkgs, ...}: {
+  imports = [
+    ./direnv/default.nix
+    ./git/default.nix
+  ];
 }
-
