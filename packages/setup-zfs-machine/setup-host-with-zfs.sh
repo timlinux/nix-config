@@ -136,16 +136,15 @@ echo "Are you installing an existing flake profile for $HOSTNAME?"
 FLAKE=$(gum choose "YES" "NO")
 
 # Function to prompt user to select a block device
-if test -z "${TARGET_DEVICE}"; then
-  echo "Available block devices:"
-  lsblk -o name,mountpoint,size,uuid,vendor
-  echo ""
-  echo "Confirm which to use:"
-  BLOCK_DEVICES="$(lsblk -o NAME,SIZE,TYPE,MOUNTPOINT | grep 'disk' | awk '{print $1}')"
-  TARGET_DEVICE=$(gum choose "${BLOCK_DEVICES}")
-  # shellcheck disable=SC2154
-  TARGET_DEVICE=/dev/"${TARGET_DEVICE}"
-fi
+echo "Available block devices:"
+lsblk -o name,mountpoint,size,uuid,vendor
+echo ""
+echo "Confirm which to use:"
+BLOCK_DEVICES="$(lsblk -o NAME,SIZE,TYPE,MOUNTPOINT | grep 'disk' | awk '{print $1}')"
+CHOSEN_DEVICE=$(gum choose "${BLOCK_DEVICES}")
+# shellcheck disable=SC2154
+TARGET_DEVICE=/dev/"${CHOSEN_DEVICE}"
+
 echo "Got \`$(gum style --foreground "${BLUE}" "TARGET_DEVICE")=$(gum style --foreground "${CYAN}" "${TARGET_DEVICE}")\`"
 
 sgdisk -O "$TARGET_DEVICE"
