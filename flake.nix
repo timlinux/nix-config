@@ -219,7 +219,7 @@
           ++ [./hosts/test-gnome.nix];
       };
       # Automated testbed - test kde
-      test-kde = unstable.lib.nixosSystem {
+      test-kde6 = unstable.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
         modules =
@@ -231,7 +231,22 @@
             }: {nixpkgs.overlays = [overlay-unstable];})
           ]
           ++ shared-modules
-          ++ [./hosts/test-kde.nix];
+          ++ [./hosts/test-kde6.nix];
+      };
+      # Automated testbed - test kde5
+      test-kde5 = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/test-kde5.nix];
       };
     };
 

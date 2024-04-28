@@ -7,9 +7,11 @@
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../configuration/desktop-kde.nix
+    ../configuration/desktop-kde5.nix
     ../configuration/desktop-apps.nix
     ../modules/locale-ke-en.nix
+    ../modules/openvpn.nix
+    ../modules/jeff-grub.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
 
     # I do it this way so that we use hand compiled QGIS with
