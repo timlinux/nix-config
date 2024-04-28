@@ -205,7 +205,7 @@ confirm_format() {
     echo "This tool is destructive! It will delete all your partitions on your hard drive. Do you want to continue?"
     DESTROY=$(gum choose "DESTROY" "CANCEL")
     if [ "$DESTROY" == "DESTROY" ]; then
-        nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config
+        nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config#setup-zfs-machine
     fi
 }
 
@@ -213,10 +213,10 @@ system_menu() {
     gum style "🚀 Kartoza NixOS :: System Menu"
     choice=$(
         gum choose \
-            "🏃🏽‍♂️ Update system" \
+            "🏃🏽 Update system" \
             "🧹 Clear disk space" \
             "💻️ Update firmware" \
-            "🕵🏽‍♀️ Setup VPN" \
+            "🕵🏽 Setup VPN" \
             "❄️ Update flake lock" \
             "⚙️ Start syncthing" \
             "🪪 Generate host id" \
@@ -228,7 +228,7 @@ system_menu() {
 
     case $choice in
     "Help") help_menu ;;
-    "🏃🏽‍♂️ Update system")
+    "🏃🏽 Update system")
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nix build --impure
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure --flake .
         prompt_to_continue
@@ -246,7 +246,7 @@ system_menu() {
         prompt_to_continue
         system_menu
         ;;
-    "🕵🏽‍♀️ Setup VPN")
+    "🕵🏽 Setup VPN")
         gum style "VPN Setup" "Before you run this, you need to save your vpn configuration in ~/.wireguard/kartoza-vpn.conf"
         nmcli connection import type wireguard file ~/.wireguard/kartoza-vpn.conf
         nmcli connection show
