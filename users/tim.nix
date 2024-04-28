@@ -48,8 +48,7 @@
         ../home/default.nix
         ../home/keybindings/gnome.nix
       ];
-      home.file."mc".source = "${dotfilesDir}/mc/ini";
-      home.file."mc".target = ".config/mc/ini";
+
       #programs.git.config.user.name = "Tim Sutton";
       #programs.git.config.user.email = "tim@kartoza.com";
     };
