@@ -44,6 +44,34 @@ this repository provides a canonical source of those configurations.
 
 ## What this repo provides
 
+It's easier to start with a few screenshots!
+
+![alt text](img/boot-menu.png)
+
+This is the boot menu, when you start your computer. From it you can 'roll' back to previous versions of your system before you made your last upgrade. Wait a few seconds and it will simply boot into your system.
+
+
+![alt text](img/boot-splash.png)
+
+This is the boot splash screen. It will show a nice animation of a place marker while the system starts. It will also be here that you enter your disk encryption password. This flake provides all the tools you need to set up your disk with ZFS with encryption enabled.
+
+
+![alt text](img/boot-login.png)
+
+Once the boot process completes, you will arrive at our custom, Kartoza branded, login screen.
+
+
+![alt text](img/boot-desktop.png)
+
+After logging in, your NixOS desktop awaits you! Get productive with the range of developer, GIS and productivity applications we pre-install on each system. Also tools for media creation (like OBS) are set up and ready to use.
+
+
+![alt text](img/boot-shell.png)
+
+
+We have tried to make every part of the experience great. For example our shell customisations add a Kartoza branded starship bar to your shell prompt. Each system can have its own specific customisation, whilst all of our system enjoy a base line of useful functionality.
+
+
 This repo provides:
 
 1. The flake that I use to set up a number of different systems that I manage.
