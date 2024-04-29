@@ -220,6 +220,36 @@ list_open_ports() {
     set -e
 }
 
+backup_zfs() {
+
+    # Based partly on logic described here:
+    # https://gist.github.com/kapythone/dbdbf7ad1961c606e62e215e5d30de98
+
+    # Initially create the pool on a new external drive like this:
+    # sudo zpool create NIXBACKUPS /dev/sda
+    # Then unmount it before running this script
+    # zpool export NIXBACKUPS
+
+    DATE=$(date '+%Y-%m-%d.%Hh-%M')
+    echo "🐴 Mounting NIXBACKUPS volume from USB drive"
+    sudo zpool import NIXBACKUPS
+    echo "🗓️ Preparing a snapshot for $DATE"
+    echo "📸 Taking a snapshot"
+    sudo zfs snapshot NIXROOT/home@"$DATE"-Home
+    zfs list -t snapshot
+    zfs list
+    echo "📨Sending the snapshot to the external USB disk"
+    sudo syncoid NIXROOT/home NIXBACKUPS/home
+    echo "📝Listing the snapshots now that it is copied to the USB disk"
+    zfs list -t snapshot
+    # Stop zfs looking for this pool
+    echo "🔌Unplugging the backup zpool"
+    sudo zpool export NIXBACKUPS
+    # Power off the  USB drive:
+    echo "⚡️Powering off the USB drive"
+    sudo udisksctl power-off -b /dev/sda
+}
+
 confirm_format() {
     echo "This tool is destructive! It will delete all your partitions on your hard drive. Do you want to continue?"
     DESTROY=$(gum choose "DESTROY" "CANCEL")
@@ -257,6 +287,7 @@ system_menu() {
         gum choose \
             "🏃🏽 Update system" \
             "🦠 Virus scan your home" \
+            "💿️ Backup ZFS to USB disk" \
             "🧹 Clear disk space" \
             "💻️ Update firmware" \
             "🕵🏽 Setup VPN" \
@@ -281,6 +312,11 @@ system_menu() {
         clamscan -i /home/"$(whomai)"
         prompt_to_continue
         system_info_menu
+        ;;
+    "💿️ Backup ZFS to USB disk")
+        backup_zfs
+        prompt_to_continue
+        system_menu
         ;;
     "🧹 Clear disk space")
         sudo nix-collect-garbage -d
