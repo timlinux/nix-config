@@ -72,6 +72,10 @@ After logging in, your NixOS desktop awaits you! Get productive with the range o
 We have tried to make every part of the experience great. For example our shell customisations add a Kartoza branded starship bar to your shell prompt. Each system can have its own specific customisation, whilst all of our system enjoy a base line of useful functionality.
 
 
+Here is a walkthrough of setting up a VM with Kartoza NixOS:
+
+[![Alt text](https://img.youtube.com/vi/s59y0FOUN74/0.jpg)](https://www.youtube.com/watch?v=s59y0FOUN74)
+
 This repo provides:
 
 1. The flake that I use to set up a number of different systems that I manage.
