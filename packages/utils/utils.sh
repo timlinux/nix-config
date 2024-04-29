@@ -166,15 +166,27 @@ run_gnome_test_vm() {
 
 }
 
-run_kde_test_vm() {
+run_kde5_test_vm() {
 
-    echo "🏃Running flake in a test KDE vm"
+    echo "🏃Running flake in a test KDE-5 vm"
 
     if ls test.qcow2 1>/dev/null 2>&1; then
         rm -f test.qcow2
     fi
     # #test-kde is the name of the host config as listed in flake.nix
-    nixos-rebuild build-vm --flake .#test-kde && result/bin/run-test-vm
+    nixos-rebuild build-vm --flake .#test-kde5 && result/bin/run-test-vm
+
+}
+
+run_kde6_test_vm() {
+
+    echo "🏃Running flake in a test KDE-6 vm"
+
+    if ls test.qcow2 1>/dev/null 2>&1; then
+        rm -f test.qcow2
+    fi
+    # #test-kde is the name of the host config as listed in flake.nix
+    nixos-rebuild build-vm --flake .#test-kde6 && result/bin/run-test-vm
 
 }
 
@@ -364,7 +376,8 @@ test_vms_menu() {
     choice=$(
         gum choose \
             "🖥️ Minimal Gnome VM" \
-            "🖥️ Minimal KDE VM" \
+            "🖥️ Minimal KDE-5 VM" \
+            "🖥️ Minimal KDE-6 VM" \
             "🖥️ Complete Gnome VM (for screen recording)" \
             "🏠️ Main menu"
     )
@@ -375,9 +388,14 @@ test_vms_menu() {
         run_gnome_test_vm
         main_menu
         ;;
-    "🖥️ Minimal KDE VM")
+    "🖥️ Minimal KDE-5 VM")
         clear
-        run_kde_test_vm
+        run_kde5_test_vm
+        main_menu
+        ;;
+    "🖥️ Minimal KDE-6 VM")
+        clear
+        run_kde6_test_vm
         main_menu
         ;;
     "🖥️ Complete Gnome VM (for screen recording)")
