@@ -64,9 +64,10 @@
     #
 
     # enable firewall and block all ports
-    #networking.firewall.enable = true;
-    #networking.firewall.allowedTCPPorts = [];
-    #networking.firewall.allowedUDPPorts = [];
+    networking.firewall.enable = true;
+    # Note that other services will add ports back in
+    networking.firewall.allowedTCPPorts = [];
+    networking.firewall.allowedUDPPorts = [];
 
     # disable coredump that could be exploited later
     # and also slow down the system when something crash

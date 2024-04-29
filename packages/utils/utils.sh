@@ -6,7 +6,7 @@ setup_gum() {
     export GUM_CHOOSE_HEADER_FOREGROUND="#F1C069"
     export GUM_CHOOSE_ITEM_FOREGROUND="#F1C069"
     export GUM_CHOOSE_SELECTED_FOREGROUND="#F1C069"
-    export GUM_CHOOSE_HEIGHT=10
+    export GUM_CHOOSE_HEIGHT=20
     export GUM_CHOOSE_CURSOR="👉️"
     export GUM_CHOOSE_HEADER="Choose one:"
     export GUM_CHOOSE_CURSOR_PREFIX="❓️"
@@ -190,6 +190,44 @@ run_kde6_test_vm() {
 
 }
 
+list_open_ports() {
+    set +e
+    open_ports=$(netstat -tuln | grep '^tcp' | awk '{print $4}')
+
+    # Initialize variable to store Markdown table
+    markdown_table="| Port | Service |\n|------|---------|\n"
+
+    # Iterate over each open port
+    while read -r line; do
+        # Extract port number
+        port=$(echo "$line" | cut -d ":" -f 2)
+
+        # Lookup service name based on port number
+        service=$(getent services "$port" | awk '{print $1}')
+
+        # If service not found, use port number
+        if [ -z "$service" ]; then
+            service="$port"
+        fi
+
+        # Add row to Markdown table
+        markdown_table+="| $port | $service |\n"
+    done <<<"$open_ports"
+
+    # Output Markdown table to a variable
+    # -e to render newlines
+    echo -e "$markdown_table" | glow -
+    set -e
+}
+
+confirm_format() {
+    echo "This tool is destructive! It will delete all your partitions on your hard drive. Do you want to continue?"
+    DESTROY=$(gum choose "DESTROY" "CANCEL")
+    if [ "$DESTROY" == "DESTROY" ]; then
+        sudo nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config#setup-zfs-machine
+    fi
+}
+
 main_menu() {
     gum style "🏠️ Kartoza NixOS :: Main Menu"
     choice=$(
@@ -213,19 +251,12 @@ main_menu() {
     esac
 }
 
-confirm_format() {
-    echo "This tool is destructive! It will delete all your partitions on your hard drive. Do you want to continue?"
-    DESTROY=$(gum choose "DESTROY" "CANCEL")
-    if [ "$DESTROY" == "DESTROY" ]; then
-        sudo nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config#setup-zfs-machine
-    fi
-}
-
 system_menu() {
     gum style "🚀 Kartoza NixOS :: System Menu"
     choice=$(
         gum choose \
             "🏃🏽 Update system" \
+            "🦠 Virus scan your home" \
             "🧹 Clear disk space" \
             "💻️ Update firmware" \
             "🕵🏽 Setup VPN" \
@@ -245,6 +276,11 @@ system_menu() {
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure --flake .
         prompt_to_continue
         system_menu
+        ;;
+    "🦠 Virus scan your home")
+        clamscan -i /home/"$(whomai)"
+        prompt_to_continue
+        system_info_menu
         ;;
     "🧹 Clear disk space")
         sudo nix-collect-garbage -d
@@ -309,7 +345,9 @@ system_info_menu() {
     choice=$(
         gum choose \
             "💻️ Generate your system hardware profile" \
-            "🗃️ General System info" \
+            "🗃️ General system info" \
+            "🚢 Open ports - nmap" \
+            "🚢 Open ports - netstat" \
             "😺 Git stats" \
             "👨🏽‍🏫 GitHub user info" \
             "🌐 Your ISP and IP" \
@@ -325,7 +363,17 @@ system_info_menu() {
         prompt_to_continue
         system_info_menu
         ;;
-    "🗃️ General System info")
+    "🚢 Open ports - nmap")
+        nix-shell -p nmap --command "nmap localhost"
+        prompt_to_continue
+        system_info_menu
+        ;;
+    "🚢 Open ports - netstat")
+        list_open_ports
+        prompt_to_continue
+        system_info_menu
+        ;;
+    "🗃️ General system info")
         neofetch
         prompt_to_continue
         system_info_menu
@@ -434,5 +482,6 @@ help_menu() {
 
 # Call the main menu function
 setup_gum
+clear
 welcome
 main_menu
