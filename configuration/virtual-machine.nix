@@ -9,6 +9,7 @@
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     ../configuration/desktop-gnome-wayland.nix
+    ../modules/games.nix
   ];
 
   #Extra bit of magic for vm
