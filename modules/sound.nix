@@ -8,8 +8,6 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  #noise suppression tool - creates a virtual mic
-  programs.noisetorch.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

@@ -26,6 +26,7 @@
     ../modules/vscode-unstable.nix
     ../modules/uxplay-unstable.nix
     ../modules/qgis-sourcebuild.nix
+    ../modules/sound-noise-suppression-unstable.nix
     ../modules/tilemaker-sourcebuild.nix
     # R&D Package for Wolfgang
     ../modules/gverify-sourcebuild.nix
