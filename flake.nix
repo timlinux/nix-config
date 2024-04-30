@@ -122,6 +122,20 @@
     # nix profile uninstall .#tilemaker
     #
     packages.x86_64-linux.tilemaker = pkgs.callPackage ./packages/tilemaker {};
+
+    #
+    # Package gverify latest version
+    #
+    # Run with
+    # nix run .#gverify
+    # or
+    # nix run github:timlinux/nix-config#gverify
+    # or install by doing
+    # nix profile install .#gverify
+    # and uninstall:
+    # nix profile uninstall .#gverify
+    #
+    packages.x86_64-linux.gverify = pkgs.callPackage ./packages/gverify {};
     ######################################################
     ##
     ## Configurations for each host we manage
