@@ -4,6 +4,7 @@ pkgs.writeShellApplication {
   runtimeInputs = [
     pkgs.bash
     pkgs.gum # UX for TUIs
+    pkgs.glow # For reading markdown in terminal
     pkgs.skate # Distributed key/value store
     pkgs.onefetch # Gives stats on this git repo
     pkgs.neofetch # Gives stats on this system

@@ -309,7 +309,7 @@ system_menu() {
         system_menu
         ;;
     "🦠 Virus scan your home")
-        clamscan -i /home/"$(whomai)"
+        clamscan -i /home/"$(whoami)"
         prompt_to_continue
         system_info_menu
         ;;
