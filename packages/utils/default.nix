@@ -12,6 +12,7 @@ pkgs.writeShellApplication {
     pkgs.ramfetch # And your RAM
     pkgs.starfetch # Tell you interesing info about a star cluster
     pkgs.octofetch # Tell you about a github user e.g. octofetch timlinux
+    pkgs.sysbench # CPU Benchmarking utility
   ];
   text = builtins.readFile ./utils.sh;
 }

@@ -382,6 +382,7 @@ system_info_menu() {
         gum choose \
             "💻️ Generate your system hardware profile" \
             "🗃️ General system info" \
+            "🏃🏽 Generate CPU Benchmark" \
             "🚢 Open ports - nmap" \
             "🚢 Open ports - netstat" \
             "😺 Git stats" \
@@ -399,6 +400,17 @@ system_info_menu() {
         prompt_to_continue
         system_info_menu
         ;;
+    "🗃️ General system info")
+        neofetch
+        prompt_to_continue
+        system_info_menu
+        ;;
+    "🏃🏽 Generate CPU Benchmark")
+        CPU_COUNT=$(lscpu | grep '^CPU(s):' | grep -o "[0-9]*")
+        sysbench --threads="${CPU_COUNT}" cpu run
+        prompt_to_continue
+        system_info_menu
+        ;;
     "🚢 Open ports - nmap")
         nix-shell -p nmap --command "nmap localhost"
         prompt_to_continue
@@ -409,11 +421,7 @@ system_info_menu() {
         prompt_to_continue
         system_info_menu
         ;;
-    "🗃️ General system info")
-        neofetch
-        prompt_to_continue
-        system_info_menu
-        ;;
+
     "😺 Git stats")
         onefetch
         prompt_to_continue
