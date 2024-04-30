@@ -133,6 +133,9 @@ Provides test VMs that you can use to try out variants of this flake.
 
 ![](img/menu6.png)
 
+
+📽️ Please see the [Video Walkthrough](https://youtu.be/kR54Gbr-ZP0) I made of the Utils menu for more details on the above.
+
 ## Listing this flake
 
 You can list the flakes like this:
