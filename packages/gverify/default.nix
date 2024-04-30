@@ -18,6 +18,7 @@ stdenv.mkDerivation rec {
       owner = "pinkmatter";
       repo = "GVerify";
       rev = "master";
+      # nix-shell -p nix-prefetch-git --command "nix-prefetch-git --url https://github.com/pinkmatter/GVerify" | grep "hash is"
       sha256 = "0knd5ha4aizwhh5cq7adhjpn97lhzskwnbfj1ddy3vl1zv358g8h";
     }
     + "/src";

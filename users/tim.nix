@@ -48,9 +48,11 @@
         ../home/default.nix
         ../home/keybindings/gnome.nix
       ];
-
-      #programs.git.config.user.name = "Tim Sutton";
-      #programs.git.config.user.email = "tim@kartoza.com";
+      # Set to null to let GnuPG decide what signing key to use depending on commit’s author.p
+      programs.git.signing.key = null;
+      programs.git.signing.signByDefault = true;
+      programs.git.userName = "Tim Sutton";
+      programs.git.userEmail = "tim@kartoza.com";
     };
   };
 }

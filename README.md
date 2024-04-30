@@ -407,7 +407,7 @@ customise it as wanted. To use it add include the ``modules/qgis-sourcebuild.nix
 I have written a package called 'utils' which is a starting point for managing your system.
 
 
-#### Viewing the available packages
+#### Viewing the available python packages
 
 You can view the packages in the QGIS Python console like this:
 
@@ -429,6 +429,32 @@ nix-shell -p \
   'qgis.override { extraPythonPackages = (ps: [ ps.numpy ps.future ps.geopandas ps.rasterio ]);}' \
   --command "qgis"
 ```
+
+## Using packages from your own systems
+
+You don't need to directly use this flake to benefit from the packages it defines. Here is an example of how you can use the package:
+
+Save as e.g. ``gverify.nix``
+
+```
+{ config, pkgs, ... }:
+{
+  environment.systemPackages = with pkgs; [
+    # Other packages...
+    (fetchFromGitHub {
+      owner = "timlinux";
+      repo = "nix-config";
+      # nix-shell -p nix-prefetch-git --command "nix-prefetch-git --url https://github.com/timlinux/nix-config" | grep "hash is"
+      rev = "0ah43vmdpjwl6s6vcd1kmfg8srhns5pmzd95a5iwavkn3qjlh4wm";
+      # Optionally, you can specify a specific subdirectory
+      # subdir = "packages";
+    }).gverify  # Replace `packageName` with the actual name of the package you want to include
+  ];
+}
+```
+
+Then in your ``configuration.nix`` add ``gverify.nix`` to your ``imports`` list.
+
 
 
 
