@@ -25,9 +25,8 @@
     ../modules/printing.nix
     ../modules/python.nix
     ../modules/quickemu.nix # Run VMS easily
-    #../modules/qgis-dev.nix # My own overlay mainsha256-xpOF/0qFuvTUWQ1I8x/gy5qSLKzSgcQahS47PG+bTRA=
-    ../modules/tilemaker.nix
     ../modules/tlp.nix
+    # Use it from nix shell rather
     #../modules/rstudio.nix
     ../modules/screen-control.nix
     ../modules/sound.nix
