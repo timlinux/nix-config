@@ -1,27 +1,28 @@
-{config, ...}: let
-  #str2Bool = (x: if x == "dark" then false else true);
-  #isLight = str2Bool config.theme.color;
-  isLight = false;
-in {
+{config, ...}: {
   config = {
-    programs.atuin = {
+    programs.bottom = {
       enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableZshIntegration = true;
-      flags = [
-        "--disable-up-arrow"
-      ];
-      package = pkgs.atuin;
       settings = {
-        auto_sync = true;
-        #dialect = "uk";
-        #key_path = config.sops.secrets.atuin_key.path;
-        show_preview = true;
-        style = "compact";
-        #sync_frequency = "1h";
-        #sync_address = "https://api.atuin.sh";
-        update_check = false;
+        colors = {
+          high_battery_color = "green";
+          medium_battery_color = "yellow";
+          low_battery_color = "red";
+        };
+        disk_filter = {
+          is_list_ignored = true;
+          list = ["/dev/loop"];
+          regex = true;
+          case_sensitive = false;
+          whole_word = false;
+        };
+        flags = {
+          dot_marker = false;
+          enable_gpu_memory = true;
+          group_processes = true;
+          hide_table_gap = true;
+          mem_as_value = true;
+          tree = true;
+        };
       };
     };
   };

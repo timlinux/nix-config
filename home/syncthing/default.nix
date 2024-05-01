@@ -1,1 +1,1 @@
-{ config = { services.syncthing = { enable = true; }; }; }
+{config = {services.syncthing = {enable = true;};};}

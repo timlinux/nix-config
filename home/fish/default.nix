@@ -1,7 +1,21 @@
-{config, ...}: let
-  #str2Bool = (x: if x == "dark" then false else true);
-  #isLight = str2Bool config.theme.color;
-  isLight = false;
+{
+  config,
+  pkgs,
+  lib,
+  hostname,
+  desktop,
+  ...
+}: let
+  inherit (pkgs.stdenv) isDarwin isLinux;
+  isLima = builtins.substring 0 5 hostname == "lima-";
+  isWorkstation =
+    if (desktop != null)
+    then true
+    else false;
+  isTimMachine =
+    if (hostname == "crest" || hostname == "waterfall" || hostname == "valley")
+    then true
+    else false;
 in {
   config = {
     programs.fish = {
@@ -37,7 +51,6 @@ in {
         weather-home = "${pkgs.wthrr}/bin/wthrr basingstoke -u f,24h,c,mph -f d,w";
 
         ls = "eza --icons=always";
-        cat = "bat";
         find = "fd";
         l = "eza -alh --icons=always";
         ll = "eza -l --icons=always";

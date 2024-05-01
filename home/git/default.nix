@@ -1,8 +1,4 @@
-{config, ...}: let
-  #str2Bool = (x: if x == "dark" then false else true);
-  #isLight = str2Bool config.theme.color;
-  isLight = false;
-in {
+{config, ...}: {
   config = {
     programs.git = {
       signing.key = null;
@@ -13,8 +9,6 @@ in {
       # gpgKey = "/path/to/your/gpg/key";
       extraConfig = {
         core = {editor = "vim";};
-        pull = {rebase = "false";};
-        init = {defaultBranch = "main";};
         merge = {conflictstyle = "diff3";};
         diff = {colorMoved = "default";};
         add.interactive = {useBuiltin = false;};
@@ -22,6 +16,29 @@ in {
           pretty = ''
             Commit:  %C(yellow)%H%nAuthor:  %C(green)%aN
                   <%aE>%nDate: (%C(red)%ar%Creset) %ai%nSubject: %s%n%n%b'';
+        };
+        advice = {
+          statusHints = false;
+        };
+        color = {
+          branch = false;
+          diff = false;
+          interactive = true;
+          log = false;
+          status = true;
+          ui = false;
+        };
+        core = {
+          pager = "bat";
+        };
+        push = {
+          default = "matching";
+        };
+        pull = {
+          rebase = false;
+        };
+        init = {
+          defaultBranch = "main";
         };
       };
 
@@ -51,31 +68,7 @@ in {
         display = "side-by-side-show-both";
         enable = true;
       };
-      extraConfig = {
-        advice = {
-          statusHints = false;
-        };
-        color = {
-          branch = false;
-          diff = false;
-          interactive = true;
-          log = false;
-          status = true;
-          ui = false;
-        };
-        core = {
-          pager = "bat";
-        };
-        push = {
-          default = "matching";
-        };
-        pull = {
-          rebase = false;
-        };
-        init = {
-          defaultBranch = "main";
-        };
-      };
+
       ignores = [
         "*.log"
         "*.out"

@@ -1,7 +1,9 @@
-{config, ...}: let
-  #str2Bool = (x: if x == "dark" then false else true);
-  #isLight = str2Bool config.theme.color;
-  isLight = false;
+{
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (pkgs.stdenv) isDarwin isLinux;
 in {
   config = {
     programs.cava = {
