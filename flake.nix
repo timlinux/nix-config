@@ -142,6 +142,25 @@
     ##
     ######################################################
     nixosConfigurations = {
+      # Live iso Generation
+      # Please read: https://nixos.wiki/wiki/Creating_a_NixOS_live_CD
+      # nix build .#nixosConfigurations.live.config.system.build.isoImage
+      live = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+
+        modules =
+          [
+            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+            {
+              # Less compression for faster build
+              isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+            }
+          ]
+          #++ shared-modules
+          ++ [./hosts/iso-gnome.nix];
+      };
+
       # Tim's p14s thinkpad - love this machine!
       crest = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;

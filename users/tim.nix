@@ -1,4 +1,26 @@
-{pkgs, ...}: {
+{
+  config,
+  desktop,
+  hostname,
+  inputs,
+  lib,
+  outputs,
+  pkgs,
+  stateVersion,
+  username,
+  ...
+}: let
+  inherit (pkgs.stdenv) isDarwin isLinux;
+  isLima = builtins.substring 0 5 hostname == "lima-";
+  isWorkstation =
+    if (desktop != null)
+    then true
+    else false;
+  isTimMachine =
+    if (hostname == "crest" || hostname == "waterfall" || hostname == "valley")
+    then true
+    else false;
+in {
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
     echo "Hello from tim.nix"
@@ -49,10 +71,15 @@
         ../home/keybindings/gnome.nix
       ];
       # Set to null to let GnuPG decide what signing key to use depending on commit’s author.p
-      programs.git.signing.key = null;
-      programs.git.signing.signByDefault = true;
-      programs.git.userName = "Tim Sutton";
-      programs.git.userEmail = "tim@kartoza.com";
+
+      programs = {
+        aria2.enable = true;
+        git = {
+          userName = "Tim Sutton";
+          userEmail = "tim@kartoza.com";
+          # rest of git is configured in ../home/git..
+        };
+      };
     };
   };
 }

@@ -2,8 +2,11 @@
   config = {
     programs.direnv = {
       enable = true;
-      enableFishIntegration = true;
-      nix-direnv.enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      nix-direnv = {
+        enable = true;
+      };
     };
   };
 }

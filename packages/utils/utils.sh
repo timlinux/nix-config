@@ -311,7 +311,7 @@ system_menu() {
     "🦠 Virus scan your home")
         clamscan -i /home/"$(whoami)"
         prompt_to_continue
-        system_info_menu
+        system_menu
         ;;
     "💿️ Backup ZFS to USB disk")
         backup_zfs
@@ -467,6 +467,8 @@ test_vms_menu() {
 
     choice=$(
         gum choose \
+            "🏗️ Build Kartoza NixOS ISO" \
+            "❄️ Run Kartoza NixOS ISO" \
             "🖥️ Minimal Gnome VM" \
             "🖥️ Minimal KDE-5 VM" \
             "🖥️ Minimal KDE-6 VM" \
@@ -475,6 +477,16 @@ test_vms_menu() {
     )
 
     case $choice in
+    "🏗️ Build Kartoza NixOS ISO")
+        clear
+        nix build .#nixosConfigurations.live.config.system.build.isoImage
+        main_menu
+        ;;
+    "❄️ Run Kartoza NixOS ISO")
+        clear
+        nix-shell -p qemu --command "qemu-system-x86_64 -enable-kvm -m 4096 -cdrom result/iso/nixos-*.iso"
+        main_menu
+        ;;
     "🖥️ Minimal Gnome VM")
         clear
         run_gnome_test_vm

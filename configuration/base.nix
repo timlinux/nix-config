@@ -11,7 +11,7 @@
   system.stateVersion = "23.11";
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Enable networking
-  networking.networkmanager.enable = true;
+  #networking.networkmanager.enable = true;
 
   imports = [
     ../modules/cert.nix #TODO - automate config of cert
