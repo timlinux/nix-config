@@ -21,7 +21,6 @@
     ../modules/garbage-collection.nix
     ../modules/grub-theme.nix
     ../modules/harden.nix
-    ../modules/locale-pt-en.nix
     ../modules/ssh.nix
     ../modules/starship.nix
     ../modules/tailscale.nix
