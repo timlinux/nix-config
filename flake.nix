@@ -236,6 +236,21 @@
           ++ shared-modules
           ++ [./hosts/jeff.nix];
       };
+      # Dorahs's Laptop
+      atoll = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/atoll.nix];
+      };
       # Automated testbed - test gnome
       test-gnome = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
