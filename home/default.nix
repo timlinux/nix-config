@@ -28,7 +28,8 @@
     ./git/default.nix
     ./github/default.nix
     ./gitui/default.nix
-    ./powerline-go/default.nix
+    # competes with starship, so disabled
+    #./powerline-go/default.nix
     ./ripgrep/default.nix
     ./zoxide/default.nix
   ];
