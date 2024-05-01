@@ -255,10 +255,13 @@ list_partitions() {
     # Execute blkid command and store the output in a variable
     blkid_output=$(blkid)
 
+    # Execute lsblk command to get a list of block devices and their UUIDs
+    lsblk_output=$(lsblk -o NAME,UUID --noheadings --list)
+
     # Initialize Markdown table variable
     markdown_table="| Volume | Name | UUID |\n|--------|------|------|\n"
 
-    # Loop through each line of blkid output
+    # Process mounted partitions from blkid output
     while IFS= read -r line; do
         # Extract device, label, and UUID
         device=$(echo "$line" | awk -F ': ' '{print $1}' | cut -c1-20)
@@ -269,7 +272,22 @@ list_partitions() {
         markdown_table+="| $device | $label | $uuid |\n"
     done <<<"$blkid_output"
 
-    # Return Markdown table
+    # Process unmounted partitions from lsblk output
+    while IFS= read -r line; do
+        # Extract device and UUID
+        device=$(echo "$line" | awk '{print $1}')
+        uuid=$(echo "$line" | awk '{print $2}')
+
+        # Skip lines with no UUID
+        if [ -z "$uuid" ]; then
+            continue
+        fi
+
+        # Append device and UUID to Markdown table
+        markdown_table+="| $device | | $uuid |\n"
+    done <<<"$lsblk_output"
+
+    # Show the Markdown table
     echo -e "$markdown_table" | glow -
     set -e
 }
