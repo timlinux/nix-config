@@ -250,6 +250,30 @@ backup_zfs() {
     sudo udisksctl power-off -b /dev/sda
 }
 
+list_partitions() {
+    set +e
+    # Execute blkid command and store the output in a variable
+    blkid_output=$(blkid)
+
+    # Initialize Markdown table variable
+    markdown_table="| Volume | Name | UUID |\n|--------|------|------|\n"
+
+    # Loop through each line of blkid output
+    while IFS= read -r line; do
+        # Extract device, label, and UUID
+        device=$(echo "$line" | awk -F ': ' '{print $1}' | cut -c1-20)
+        label=$(echo "$line" | awk -F ' LABEL=' '{print $2}' | awk -F 'UUID=' '{print $1}' | sed 's/"//g')
+        uuid=$(echo "$line" | awk -F 'UUID="' '{print $2}' | awk -F '"' '{print $1}')
+
+        # Append device, label, and UUID to Markdown table
+        markdown_table+="| $device | $label | $uuid |\n"
+    done <<<"$blkid_output"
+
+    # Return Markdown table
+    echo -e "$markdown_table" | glow -
+    set -e
+}
+
 confirm_format() {
     echo "This tool is destructive! It will delete all your partitions on your hard drive. Do you want to continue?"
     DESTROY=$(gum choose "DESTROY" "CANCEL")
@@ -382,6 +406,7 @@ system_info_menu() {
         gum choose \
             "💻️ Generate your system hardware profile" \
             "🗃️ General system info" \
+            "💿️ List disk partitions" \
             "🏃🏽 Generate CPU Benchmark" \
             "🚢 Open ports - nmap" \
             "🚢 Open ports - netstat" \
@@ -402,6 +427,17 @@ system_info_menu() {
         ;;
     "🗃️ General system info")
         neofetch
+        prompt_to_continue
+        system_info_menu
+        ;;
+    "💿️ List disk partitions")
+        gum style \
+            'Mounts' "$(
+                sudo zfs list
+                sudo mount | grep NIXROOT
+                sudo mount | grep boot
+                list_partitions
+            )"
         prompt_to_continue
         system_info_menu
         ;;

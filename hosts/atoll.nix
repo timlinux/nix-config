@@ -6,7 +6,23 @@
   ...
 }: {
   imports = [
-    ../configuration/virtual-machine.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ../configuration/desktop-gnome-x11.nix
+    ../configuration/desktop-apps.nix
+    # I do it this way so that we use hand compiled QGIS with
+    # all the extra goodies I want like pyqtgraph
+    # rasterio, debug libs etc. available to the build of QGIS
+    # Note that it is mutually exclusive (for now) to the upstream
+    # QGIS binaries and also the build may take quite a while on
+    # your pc.   If you prefer to use the upstream built binary,
+    # you can comment out these next 4 lines and uncomment the
+    # unstable-apps entry above.
+    #../modules/qgis-sourcebuild.nix
+    ../modules/keepassxc-unstable.nix
+    #../modules/vscode-unstable.nix
+    #../modules/uxplay-unstable.nix
+    #../modules/sound-noise-suppression-unstable.nix
+    #../modules/tilemaker-sourcebuild.nix
     ../modules/locale-za-en.nix
     ../modules/zfs-encryption.nix
     ../users/guest.nix
@@ -31,7 +47,7 @@
   fileSystems."/boot" = {
     device = "/dev/vda1";
     #use uuid rather
-    #device = "/dev/disk/by-uuid/D7EC-2233";
+    #device = "/dev/disk/by-uuid/D7EC-2211";
     fsType = "vfat";
   };
 
