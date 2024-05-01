@@ -1,17 +1,6 @@
 # Tim's Nix Configuration
 
 ```
-                      ///             
-                  ///////////         
-                 ////     ////        
-                 ///       ///        
-                 ////      *//        
-              ,,, //// //////////     
-           ,,,,,   ////        /////  
-          ,,,         ,,,,        /// 
-          ,,,       ,,,,  /      //// 
-           ,,,,,,,,,,,   ///////////  
-              ,,,,           ///* 
 
 ██╗  ██╗ █████╗ ██████╗ ████████╗ ██████╗ ███████╗ █████╗             
 ██║ ██╔╝██╔══██╗██╔══██╗╚══██╔══╝██╔═══██╗╚══███╔╝██╔══██╗            
@@ -155,21 +144,85 @@ You will get something like this in the output (most likely changed since I made
 
 ## Setting up a new system
 
-If you do not already have a hardware-configuration.nix, you need to either:
+### Preparation
 
-* Run the standard NixOS installer on your system, setting up your disks etc,
-* Run the zfs command line installer provided in this flake which will scrub your disks and reformat them with zfs. This is the recommended way to set up your system for the first time.
+For our setup session, we are going to be wiping and reloading your laptop with the standard Kartoza software stack.
 
-Whether you use option 1 or 2 above, I *highly* recommend that you encrypt your system. Both options above provide easy workflows for doing that.
+**Before the session:** Please download the NixOS installer from [here](https://channels.nixos.org/nixos-23.11/latest-nixos-gnome-x86_64-linux.iso)
 
-I have written (based on great examples I found online) a handy dandy setup
-script that will completely set up new hosts with ZFS, encrytion, flakes and
-various other niceties. You can find this script in
-[``packages/setup-zfs-machine/``](packages/setup-zfs-machine/) - check the
-[README.md](packages/setup-zfs-machine/README.md) there first as it explains
-how to fetch the script when installing to a new maching. Each system added to
-this repo should be validated in the table below. Currently validation is
-manual, unfortunately.
+After you have downloaded the file, you need to image it onto a USB memory stick. You can use etcher for this, which you can download here: 
+https://etcher.balena.io/
+
+
+**During the session:**
+* We will be ⚠️wiping and reinstalling the kartoza laptop⚠️. 
+* Make sure you do not have any 👨🏽‍🏫 personal data on it. 
+* Until the laptop is has completed its initial setup, you will need ☎️ another device to talk to me on in our call if we are setting it up together. 
+* You will also need a good 🌐 internet connection as the total install downloads around 8GB of packages. 
+* You will also need to be on a reliable 🔌 power source since if you run out of power halfway through the install process, you will likely need to restart from the beginning. 
+* As for all Kartoza collaboration, please ensure you are in a 🔇 quiet place where you can hear and be heard clearly.
+
+
+### Wifi and browser
+
+If needed, connect your computer to the internet use the network and wifi options that can be found off the menu in the top right corner of the screen:
+
+![alt text](img/setup2.png)
+
+Once your computer is started from the USB disk, open a web browser and open this page so that you can cut and paste commands.
+
+### Launching the admin menu
+
+Then open a terminal window and paste this command:
+
+```
+nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config
+```
+
+The admin menu should appear after a few moments. From now on, when you see instructions preceded with 👉️, know that that is a menu option you should be chosing.
+
+📒 Note: If you drop out of the menu for some reason, simply restart it using the above command by pressing the up arrow on your keyboard, then press enter when you see the ``nix run`` command above.
+
+### Link your machine
+
+Before doing anything else, we will link your machine to the key / value store so that we can share data conveniently. We use a tool called "🛼 skate" for this.
+
+👉️ 🏠️ Kartoza NixOS :: Main Menu
+👉️ 🛼 Enter link
+
+At the prompt, enter the link, exactly as provided (case sensitive).
+
+### Format your disk
+
+⚠️ All data on your disk will be lost!!! ⚠️
+
+
+👉️ 🏠️ Kartoza NixOS :: Main Menu 
+👉️ 🚀 System management
+👉️ ⚠️ Format disk with ZFS ⚠️
+
+Now follow the prompts as directed. This will scrub your disks and reformat them with zfs. This is the recommended way to set up your system for the first time.
+
+I *highly* recommend that you encrypt your system. Non encrypted disks should only be used in special circumstances where unlocking the disk during boot up is not possible.
+
+>**💡 Technical notes on the ZFS setup script: ** The script is based on great examples I found online, though with substantial updates on my part.The script will completely set up new hosts with ZFS, encrytion, flakes and various other niceties. You can find this script in
+[``packages/setup-zfs-machine/``](packages/setup-zfs-machine/) - check the [README.md](packages/setup-zfs-machine/README.md) there first as it explains how to fetch the script when installing to a new maching. Each system added to this repo should be validated in the table further down in this document. Currently validation is manual, unfortunately.
+
+The setup process may take quite some time if you choose the flake install option that the script offers. Just be patient and wait while everything downloads.
+
+### Share your hardware config
+
+Once the hard disk partitioning is done, you need to go to the system info menu and generate a hardware configuration:
+
+👉️ 🏠️ Kartoza NixOS :: Main Menu 
+👉️❓️ System info
+👉️💻️ Generate your system hardware profile
+
+### Reboot
+
+After sharing your hardware configs, we may make some quick updates to your system configs. After that, you can reboot.
+
+
 
 ## Adding a new host to this flake
 

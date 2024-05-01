@@ -300,6 +300,12 @@ confirm_format() {
     fi
 }
 
+enter_skate_link() {
+    echo "🛼 Link a skate key to this machine."
+    KEY=$(gum input --prompt "What is linking key for this new machine?: ")
+    skate link "${KEY}"
+}
+
 main_menu() {
     gum style "🏠️ Kartoza NixOS :: Main Menu"
     choice=$(
@@ -308,6 +314,8 @@ main_menu() {
             "🚀 System management" \
             "❓️ System info" \
             "🖥️ Test VMs" \
+            "🛼 Create link" \
+            "🛼 Enter link" \
             "💡 About" \
             "🛑 Exit"
     )
@@ -317,6 +325,16 @@ main_menu() {
     "🚀 System management") system_menu ;;
     "❓️ System info") system_info_menu ;;
     "🖥️ Test VMs") test_vms_menu ;;
+    "🛼 Create link")
+        skate link
+        prompt_to_continue
+        main_menu
+        ;;
+    "🛼 Enter link")
+        enter_skate_link
+        prompt_to_continue
+        main_menu
+        ;;
     "💡 About") about ;;
     "🛑 Exit") exit 1 ;;
     *) echo "Invalid choice. Please select again." ;;
