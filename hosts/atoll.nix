@@ -5,6 +5,9 @@
   modulesPath,
   ...
 }: {
+  # Dell p172g bios linux
+  # Dell Inspiron 14 7430 2in1
+
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix

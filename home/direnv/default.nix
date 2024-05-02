@@ -8,5 +8,9 @@
         enable = true;
       };
     };
+    home.sessionVariables = {
+      #Disable spammy messages when direnv loads
+      DIRENV_LOG_FORMAT = "";
+    };
   };
 }

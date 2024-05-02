@@ -31,12 +31,14 @@ in pkgs.mkShell rec {
   # Now we can execute any commands within the virtual environment.
   # This is optional and can be left out to run pip manually.
   shellHook = ''
-    onefetch
-    ipfetch
-    cpufetch
-    ramfetch
-    starfetch
-    octofetch 
+    echo "Kartoza NixOS"
+    echo "_________________________________________________________"
+    echo "Command : Description"
+    echo "_________________________________________________________"
+    echo "🚀 nix run   : Open the management utilities menu"
+    echo "🆚 ./vscode  : Open VSCode ready to work on this flake"
+    echo "_________________________________________________________"
+    echo "Tim Sutton, 2024   https://github.com/timlinux/nix-config"
   '';
 
 

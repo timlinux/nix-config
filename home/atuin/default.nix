@@ -14,7 +14,7 @@
       ];
       package = pkgs.atuin;
       settings = {
-        auto_sync = true;
+        auto_sync = false;
         #dialect = "uk";
         #key_path = config.sops.secrets.atuin_key.path;
         show_preview = true;
