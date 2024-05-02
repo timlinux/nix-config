@@ -55,9 +55,9 @@ in {
       "lpadmin"
       "i2c"
     ];
-    #already set in fish module
-    #shell = pkgs.fish;
-    openssh.authorizedKeys.keys = [(builtins.readFile ./public-keys/id_ed25519_tim.pub)];
+    openssh.authorizedKeys.keys = [
+      (builtins.readFile ./public-keys/id_ed25519_tim.pub)
+    ];
     packages = with pkgs; [
       popcorntime
       freetube
@@ -68,12 +68,8 @@ in {
     users.timlinux = {
       imports = [
         ../home/default.nix
-        ../home/keybindings/gnome.nix
       ];
-      # Set to null to let GnuPG decide what signing key to use depending on commit’s author.p
-
       programs = {
-        aria2.enable = true;
         git = {
           userName = "Tim Sutton";
           userEmail = "tim@kartoza.com";

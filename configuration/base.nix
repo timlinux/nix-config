@@ -14,7 +14,6 @@
   #networking.networkmanager.enable = true;
 
   imports = [
-    ../modules/cert.nix #TODO - automate config of cert
     ../modules/console-apps.nix
     ../modules/bootsplash.nix
     ../modules/fish.nix
@@ -23,7 +22,6 @@
     ../modules/harden.nix
     ../modules/ssh.nix
     ../modules/starship.nix
-    ../modules/tailscale.nix
     ../modules/vim.nix
   ];
 }

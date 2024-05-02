@@ -10,27 +10,27 @@
     info.enable = true;
     jq.enable = true;
     nix-index.enable = true;
+    aria2.enable = true;
   };
+
   imports = [
     ./atuin/default.nix
     ./bat/default.nix
     ./bottom/default.nix
-    ./dircolors/default.nix
     ./cava/default.nix
+    ./dircolors/default.nix
+    ./direnv/default.nix
     ./eza/default.nix
     ./fish/default.nix
     ./fzf/default.nix
-    ./gtk/default.nix
-    ./keybindings/gnome.nix
-    ./kitty/default.nix
-    ./direnv/default.nix
-    ./xdg/default.nix
     ./git/default.nix
     ./github/default.nix
     ./gitui/default.nix
-    # competes with starship, so disabled
-    #./powerline-go/default.nix
+    ./gtk/default.nix
+    ./keybindings/gnome.nix
+    ./kitty/default.nix
     ./ripgrep/default.nix
+    ./xdg/default.nix
     ./zoxide/default.nix
   ];
 }

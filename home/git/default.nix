@@ -1,6 +1,7 @@
 {config, ...}: {
   config = {
     programs.git = {
+      # Set to null to let GnuPG decide what signing key to use depending on commit’s author.p
       signing.key = null;
       signing.signByDefault = true;
       enable = true;

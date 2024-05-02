@@ -8,7 +8,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
-    ../configuration/desktop-apps.nix
+    #../configuration/desktop-apps.nix
     # I do it this way so that we use hand compiled QGIS with
     # all the extra goodies I want like pyqtgraph
     # rasterio, debug libs etc. available to the build of QGIS
@@ -18,7 +18,7 @@
     # you can comment out these next 4 lines and uncomment the
     # unstable-apps entry above.
     #../modules/qgis-sourcebuild.nix
-    ../modules/keepassxc-unstable.nix
+    #../modules/keepassxc-unstable.nix
     #../modules/vscode-unstable.nix
     #../modules/uxplay-unstable.nix
     #../modules/sound-noise-suppression-unstable.nix
@@ -29,7 +29,13 @@
     ../users/dorah.nix
   ];
 
-  boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk"];
+  boot.initrd.availableKernelModules = [
+    "ahci"
+    "xhci_pci"
+    "virtio_pci"
+    "sr_mod"
+    "virtio_blk"
+  ];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
