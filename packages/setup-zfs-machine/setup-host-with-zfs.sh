@@ -145,7 +145,7 @@ CHOSEN_DEVICE=$(gum choose "${BLOCK_DEVICES}")
 # shellcheck disable=SC2154
 TARGET_DEVICE=/dev/"${CHOSEN_DEVICE}"
 
-echo "Got \`$(gum style --foreground "${BLUE}" "TARGET_DEVICE")=$(gum style --foreground "${CYAN}" "${TARGET_DEVICE}")\`"
+echo "Got \`$(gum style "TARGET_DEVICE")=$(gum style "${TARGET_DEVICE}")\`"
 
 sgdisk -O "$TARGET_DEVICE"
 
