@@ -13,9 +13,6 @@
         checkout.defaultRemote = "origin";
 
         pull.ff = "only";
-        push.default = "current";
-
-        init.defaultBranch = "main";
         submodule.recurse = "true";
 
         core = {editor = "vim";};
