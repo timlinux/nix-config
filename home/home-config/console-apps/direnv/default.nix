@@ -9,6 +9,7 @@
       };
     };
     home.sessionVariables = {
+      #Set any env vars here
       #Disable spammy messages when direnv loads
       DIRENV_LOG_FORMAT = "";
     };

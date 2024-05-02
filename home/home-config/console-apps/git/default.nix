@@ -9,6 +9,15 @@
       # Optionally, you can specify the path to your GPG key here
       # gpgKey = "/path/to/your/gpg/key";
       extraConfig = {
+        branch.autoSetupRebase = "always";
+        checkout.defaultRemote = "origin";
+
+        pull.ff = "only";
+        push.default = "current";
+
+        init.defaultBranch = "main";
+        submodule.recurse = "true";
+
         core = {editor = "vim";};
         merge = {conflictstyle = "diff3";};
         diff = {colorMoved = "default";};
@@ -69,12 +78,12 @@
         display = "side-by-side-show-both";
         enable = true;
       };
-
       ignores = [
+        ".direnv/"
         "*.log"
         "*.out"
         ".DS_Store"
-        "bin/"
+        #"bin/"
         "dist/"
         "result"
       ];

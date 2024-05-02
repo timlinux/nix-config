@@ -73,7 +73,6 @@ in {
       # Set to null to let GnuPG decide what signing key to use depending on commit’s author.p
 
       programs = {
-        aria2.enable = true;
         git = {
           userName = "Amogelang Dorah Matsho";
           userEmail = "dorah@kartoza.com";

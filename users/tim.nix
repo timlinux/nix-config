@@ -73,6 +73,10 @@ in {
         git = {
           userName = "Tim Sutton";
           userEmail = "tim@kartoza.com";
+          extraConfig = {
+            github.user = "timlinux";
+            gitlab.user = "tim@kartoza.com";
+          };
           # rest of git is configured in ../home/git..
         };
       };

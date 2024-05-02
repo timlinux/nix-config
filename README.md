@@ -520,3 +520,4 @@ I found some resouces particularly valuable in my learning journey, I will try t
 1. 📺️ [Chris McDonough's YouTube Channel](https://www.youtube.com/@ChrisMcDonough) - so many great videos that patiently walk through key activities in setting up different aspects of NixOS.
 2. 📝 [Determinate Systems Blog](https://determinate.systems/posts) - many interesting and useful hints and tips to get the most out of NixOS.
 3. 🎒 [Zero To Nix](https://zero-to-nix.com/) - nice learning resource for those starting out in NixOS.
+4. 📃 [Flakes Diagram](https://coggle.it/diagram/ZVZ3rq_HfWTHL4b3/t/nix-flakes/598940443cb9f2e50a4d9cee02eaa7822355d5248faa9dde969406fe9341103f) - A fantastic schematic describing what a flake is.

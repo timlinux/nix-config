@@ -11,7 +11,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
-    #../configuration/desktop-apps.nix
+    ../configuration/desktop-apps.nix
     # I do it this way so that we use hand compiled QGIS with
     # all the extra goodies I want like pyqtgraph
     # rasterio, debug libs etc. available to the build of QGIS
