@@ -118,24 +118,56 @@ EndOfText
     set -e
 }
 
+push_value_to_store() {
+    # This function will publish
+    # the supplied value to the skate
+    # distributed key/value store
+    # The key will automatically
+    # be prefixed with the hostname
+    # See other skate functions in this
+    # file to see how to access values
+    # and https://github.com/charmbracelet/skate
+
+    # Parse named parameters
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+        -key)
+            key="$2"
+            shift 2
+            ;;
+        -value)
+            value="$2"
+            shift 2
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+        esac
+    done
+
+    # Check if both parameters are provided
+    if [[ -z "$key" || -z "$value" ]]; then
+        echo "Error: Both parameters are required."
+        exit 1
+    fi
+
+    gum style 'Confirm:' "🛼 Would you like to store your the value for ${key} in 'our distributed key/value store'?"
+    STORE=$(gum choose "STORE" "FORGET")
+    if [ "$STORE" == "STORE" ]; then
+        # Store user's selection in a key based on hostname using skate
+        skate set "$(hostname)-${key}" "${value}"
+    fi
+}
+
 # Function to generate system hardware profile
 generate_hardware_profile() {
     echo "Generating system hardware profile..."
     # Add your commands to generate hardware profile here
     gum spin --spinner dot --title "Generating Hardware Profile" -- sleep 1
     CONFIG=$(nixos-generate-config --show-hardware-config)
-    gum style 'Confirm:' "Would you like to store your hardware profile in 'our distributed key/value store'?"
-    STORE=$(gum choose "STORE" "FORGET")
-    if [ "$STORE" == "STORE" ]; then
-        # Store user's selection in a key based on hostname using skate
-        skate set "$(hostname)" "$CONFIG"
-    fi
-}
 
-show_hardware_profile() {
-    gum spin --spinner dot --title "Fetching hardware profiles from distributed key/value store..." -- sleep 5 &
-    gum style 'Browse:' "Choose a hardware profile in 'skate' that you would like to see?"
-    skate list -k | gum filter | xargs skate get | gum style
+    push_value_to_store -key "hardware-config" -value "${CONFIG}"
 }
 
 start_syncthing() {
@@ -187,7 +219,6 @@ run_kde6_test_vm() {
     fi
     # #test-kde is the name of the host config as listed in flake.nix
     nixos-rebuild build-vm --flake .#test-kde6 && result/bin/run-test-vm
-
 }
 
 list_open_ports() {
@@ -213,10 +244,11 @@ list_open_ports() {
         # Add row to Markdown table
         markdown_table+="| $port | $service |\n"
     done <<<"$open_ports"
-
-    # Output Markdown table to a variable
+    # Output Markdown table
     # -e to render newlines
     echo -e "$markdown_table" | glow -
+
+    push_value_to_store -key "ports" -value "${markdown_table}"
     set -e
 }
 
@@ -288,7 +320,10 @@ list_partitions() {
     done <<<"$lsblk_output"
 
     # Show the Markdown table
+    # -e to render newlines
     echo -e "$markdown_table" | glow -
+
+    push_value_to_store -key "partitions" -value "${markdown_table}"
     set -e
 }
 
@@ -303,6 +338,7 @@ confirm_format() {
 enter_skate_link() {
     echo "🛼 Link a skate key to this machine."
     KEY=$(gum input --prompt "What is linking key for this new machine?: ")
+    gum spin --spinner dot --title "Linking to the distributed key/value store..." -- sleep 5 &
     skate link "${KEY}"
 }
 
@@ -316,6 +352,7 @@ main_menu() {
             "🖥️ Test VMs" \
             "🛼 Create link" \
             "🛼 Enter link" \
+            "🛼 Show value for key" \
             "💡 About" \
             "🛑 Exit"
     )
@@ -326,12 +363,26 @@ main_menu() {
     "❓️ System info") system_info_menu ;;
     "🖥️ Test VMs") test_vms_menu ;;
     "🛼 Create link")
+        gum spin --spinner dot --title "Getting link for the key/value store..." -- sleep 5 &
         skate link
         prompt_to_continue
         main_menu
         ;;
     "🛼 Enter link")
         enter_skate_link
+        prompt_to_continue
+        main_menu
+        ;;
+    "🛼 Show value for key")
+        echo "🛼 Skate key viewer."
+        gum spin --spinner dot --title "Getting key list from the key/value store..." -- sleep 5 &
+        KEYS=$(skate list -k)
+        # We need spaces expanded for this one so disable shellcheck
+        # shellcheck disable=SC2086
+        KEY=$(gum choose "🔑 Enter key name:" ${KEYS})
+        # shellcheck disable=SC2046
+        gum spin --spinner dot --title "Getting value for key: ${KEY} from the key/value store..." -- sleep 5 &
+        skate get "${KEY}"
         prompt_to_continue
         main_menu
         ;;
@@ -345,6 +396,7 @@ system_menu() {
     gum style "🚀 Kartoza NixOS :: System Menu"
     choice=$(
         gum choose \
+            "🏠️ Main menu" \
             "🏃🏽 Update system" \
             "🦠 Virus scan your home" \
             "💿️ Backup ZFS to USB disk" \
@@ -356,8 +408,7 @@ system_menu() {
             "🪪 Generate host id" \
             "👀 Watch dconf" \
             "🎬️ Mimetypes diff" \
-            "⚠️ Format disk with ZFS ⚠️" \
-            "🏠️ Main menu"
+            "⚠️ Format disk with ZFS ⚠️"
     )
 
     case $choice in
@@ -440,6 +491,7 @@ system_info_menu() {
     gum style "❓️ Kartoza NixOS :: System Info Menu:"
     choice=$(
         gum choose \
+            "🏠️ Main menu" \
             "💻️ Generate your system hardware profile" \
             "🗃️ General system info" \
             "💿️ List disk partitions" \
@@ -451,8 +503,7 @@ system_info_menu() {
             "🌐 Your ISP and IP" \
             "🐿️ CPU info" \
             "🐏 RAM info" \
-            "⭐️ Show me a star constellation" \
-            "🏠️ Main menu"
+            "⭐️ Show me a star constellation"
     )
 
     case $choice in
@@ -539,13 +590,13 @@ test_vms_menu() {
 
     choice=$(
         gum choose \
+            "🏠️ Main menu" \
             "🏗️ Build Kartoza NixOS ISO" \
             "❄️ Run Kartoza NixOS ISO" \
             "🖥️ Minimal Gnome VM" \
             "🖥️ Minimal KDE-5 VM" \
             "🖥️ Minimal KDE-6 VM" \
-            "🖥️ Complete Gnome VM (for screen recording)" \
-            "🏠️ Main menu"
+            "🖥️ Complete Gnome VM (for screen recording)"
     )
 
     case $choice in
@@ -586,9 +637,9 @@ help_menu() {
     gum style "💁🏽 Kartoza NixOS :: Help Menu:"
     choice=$(
         gum choose \
+            "🏠️ Main menu" \
             "📃 Documentation (in terminal)" \
-            "🌍️ Documentation (in browser)" \
-            "🏠️ Main menu"
+            "🌍️ Documentation (in browser)"
     )
 
     case $choice in
