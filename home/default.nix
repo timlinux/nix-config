@@ -15,5 +15,6 @@
 
   imports = [
     ./home-config
+    ./home-modules
   ];
 }

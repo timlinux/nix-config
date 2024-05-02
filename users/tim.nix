@@ -67,7 +67,7 @@ in {
     users.timlinux.home.stateVersion = "23.11";
     users.timlinux = {
       imports = [
-        ../home/default.nix
+        ../home
       ];
       programs = {
         git = {
