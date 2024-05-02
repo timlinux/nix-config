@@ -141,7 +141,15 @@ lsblk -o name,mountpoint,size,uuid,vendor
 echo ""
 echo "Confirm which to use:"
 BLOCK_DEVICES="$(lsblk -o NAME,SIZE,TYPE,MOUNTPOINT | grep 'disk' | awk '{print $1}')"
-CHOSEN_DEVICE=$(gum choose "${BLOCK_DEVICES}")
+# We ignore this shellcheck because we want block devices to be split on spaces
+# otherwise it is treated as one entry
+# shellcheck disable=SC2086
+CHOSEN_DEVICE=$(gum choose ${BLOCK_DEVICES} "Enter manually")
+
+if [ "$CHOSEN_DEVICE" == "Enter manually" ]; then
+  TARGET_DEVICE=$(gum input --prompt "What is the device you wish to format? Do not include the /dev/ prefix. e.g. nvme0n1 " --placeholder "nvme0n1")
+fi
+
 # shellcheck disable=SC2154
 TARGET_DEVICE=/dev/"${CHOSEN_DEVICE}"
 
