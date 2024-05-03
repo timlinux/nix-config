@@ -4,8 +4,11 @@
     url = "https://web.whatsapp.com";
     id = 3;
     # TODO: Softcode user
-    extraSettings = config.programs.firefox.profiles."timlinux".settings;
+    extraSettings = config.programs.firefox.profiles.${config.home.username}.settings;
 
     categories = ["Network" "InstantMessaging"];
   };
+  xdg.configFile."hello/world".text = ''
+    Hello, ${config.home.username}!
+  '';
 }
