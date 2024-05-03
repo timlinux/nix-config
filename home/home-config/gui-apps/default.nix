@@ -7,5 +7,6 @@
   imports = [
     ./kitty
     ./whatsapp
+    ./timesheets
   ];
 }
