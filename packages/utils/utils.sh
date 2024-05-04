@@ -466,6 +466,11 @@ system_menu() {
         system_menu
         ;;
     "👀 Watch dconf")
+        # See here for a way to cat and digg dconf
+        # https://heywoodlh.io/nixos-gnome-settings-and-keyboard-shortcuts
+        # dconf dump / > old-conf.txt
+        # dconf dump / > new-conf.txt
+        # diff old-conf.txt new-conf.txt    
         echo "Click around in gnome settings etc. to see what changes. Then propogate those changes to your nix configs."
         dconf watch /
         ;;

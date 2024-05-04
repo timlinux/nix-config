@@ -189,7 +189,8 @@ in {
             "${config.programs.firefox.package}/bin/firefox"
             "--class"
             "WebApp-${name}"
-            "-P"
+            #"-P"
+            "--profile"
             "${config.programs.firefox.profiles."home-manager-webapp-${name}".path}"
             "--no-remote"
           ]

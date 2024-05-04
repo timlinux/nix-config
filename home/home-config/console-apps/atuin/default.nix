@@ -15,10 +15,11 @@
       package = pkgs.atuin;
       settings = {
         auto_sync = false;
+        enter_accept = true; #immediately execute if enter pressed - use tab to edit first
         #dialect = "uk";
         #key_path = config.sops.secrets.atuin_key.path;
         show_preview = true;
-        style = "compact";
+        style = "full";
         #sync_frequency = "1h";
         #sync_address = "https://api.atuin.sh";
         update_check = false;

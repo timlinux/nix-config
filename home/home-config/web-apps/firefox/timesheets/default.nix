@@ -2,8 +2,8 @@
 {config, ...}: {
   programs.firefox.webapps.timesheets = {
     url = "https://timesheets.kartoza.com";
+    # Firefox profile to use
     id = 3;
-    # TODO: Softcode user
     extraSettings = config.programs.firefox.profiles.${config.home.username}.settings;
     # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
     categories = ["Office" "Utility"];
