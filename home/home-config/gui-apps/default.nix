@@ -6,7 +6,5 @@
 }: {
   imports = [
     ./kitty
-    ./whatsapp
-    ./timesheets
   ];
 }
