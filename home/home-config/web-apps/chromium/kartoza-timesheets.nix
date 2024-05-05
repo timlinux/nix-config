@@ -4,9 +4,9 @@
   ...
 }: {
   home.packages = with pkgs; let
-    teams-chromium = makeDesktopItem {
-      name = "Timesheets";
-      desktopName = "Timesheets";
+    kartoza-timesheets = makeDesktopItem {
+      name = "Kartoza Timesheets";
+      desktopName = "Kartoza Timesheets";
       genericName = "Kartoza Timesheets";
       exec = ''
         ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="https://timesheets.kartoza.com"'';
@@ -15,5 +15,5 @@
       categories = ["Network" "Office"];
       mimeTypes = ["x-scheme-handler/teams"];
     };
-  in [teams-chromium];
+  in [kartoza-timesheets];
 }

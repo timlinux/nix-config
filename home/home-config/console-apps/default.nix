@@ -19,5 +19,6 @@
     ./gitui
     ./ripgrep
     ./zoxide
+    ./kartoza-nixos-utils
   ];
 }

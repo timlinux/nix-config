@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; let
-    teams-chromium = makeDesktopItem {
+    kartoza-erp = makeDesktopItem {
       name = "Kartoza ERP";
       desktopName = "Kartoza ERP";
       genericName = "Kartoza ERP";
@@ -15,5 +15,5 @@
       categories = ["Network" "Office"];
       mimeTypes = ["x-scheme-handler/teams"];
     };
-  in [teams-chromium];
+  in [kartoza-erp];
 }

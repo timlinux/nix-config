@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; let
-    teams-chromium = makeDesktopItem {
+    mygeocommunity = makeDesktopItem {
       name = "MyGeoCommunity";
       desktopName = "MyGeoCommunity";
       genericName = "MyGeoCommunity";
@@ -15,5 +15,5 @@
       categories = ["Network" "Science"];
       mimeTypes = ["x-scheme-handler/teams"];
     };
-  in [teams-chromium];
+  in [mygeocommunity];
 }

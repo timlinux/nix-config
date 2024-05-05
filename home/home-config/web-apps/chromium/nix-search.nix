@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; let
-    teams-chromium = makeDesktopItem {
+    nix-search = makeDesktopItem {
       name = "Nix Packages";
       desktopName = "Nix Packages";
       genericName = "Nix Packages";
@@ -15,5 +15,5 @@
       categories = ["Network" "System"];
       mimeTypes = ["x-scheme-handler/teams"];
     };
-  in [teams-chromium];
+  in [nix-search];
 }

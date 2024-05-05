@@ -5,8 +5,8 @@
 }: {
   home.packages = with pkgs; let
     teams-chromium = makeDesktopItem {
-      name = "Teams";
-      desktopName = "Teams";
+      name = "Microsoft Teams";
+      desktopName = "Microsoft Teams";
       genericName = "Microsoft Teams";
       exec = ''
         ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="https://teams.live.com"'';
