@@ -13,7 +13,7 @@
       icon = "Timesheets";
       # See https://specifications.freedesktop.org/menu-spec/latest/apa.htmlOffice
       categories = ["Network" "Science"];
-      mimeTypes = ["x-scheme-handler/teams"];
+      #mimeTypes = ["x-scheme-handler/teams"];
     };
   in [mygeocommunity];
 }

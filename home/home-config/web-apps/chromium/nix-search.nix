@@ -13,7 +13,7 @@
       icon = "nix";
       # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
       categories = ["Network" "System"];
-      mimeTypes = ["x-scheme-handler/teams"];
+      #mimeTypes = ["x-scheme-handler/teams"];
     };
   in [nix-search];
 }

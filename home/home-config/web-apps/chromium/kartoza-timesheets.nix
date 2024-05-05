@@ -13,7 +13,7 @@
       icon = "Timesheets";
       # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
       categories = ["Network" "Office"];
-      mimeTypes = ["x-scheme-handler/teams"];
+      #mimeTypes = ["x-scheme-handler/teams"];
     };
   in [kartoza-timesheets];
 }
