@@ -15,5 +15,5 @@
       categories = ["Network" "Graphics"];
       mimeTypes = ["x-scheme-handler/teams"];
     };
-  in [nix-search];
+  in [svg-repo];
 }
