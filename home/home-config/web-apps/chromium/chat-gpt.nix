@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; let
-    teams-chromium = makeDesktopItem {
+    chat-gpt = makeDesktopItem {
       name = "Chat GPT";
       desktopName = "Chat GPT";
       genericName = "Chat GPT";
@@ -13,7 +13,7 @@
       icon = "ChatGPT";
       # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
       categories = ["Network" "InstantMessaging"];
-      mimeTypes = ["x-scheme-handler/teams"];
+      #mimeTypes = ["x-scheme-handler/teams"];
     };
-  in [teams-chromium];
+  in [chat-gpt];
 }

@@ -2,8 +2,8 @@
 {config, ...}: {
   programs.firefox.webapps.whatsapp = {
     url = "https://web.whatsapp.com";
+    # This is the profile to use
     id = 3;
-    # TODO: Softcode user
     extraSettings = config.programs.firefox.profiles.${config.home.username}.settings;
 
     categories = ["Network" "InstantMessaging"];

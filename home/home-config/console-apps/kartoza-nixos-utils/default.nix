@@ -11,13 +11,14 @@
       desktopName = "Kartoza NixOS Utils";
       genericName = "Kartoza NixOS Utils";
       exec = ''
-        ${config.programs.kitty.package}/bin/kitty
+        ${config.programs.kitty.package}/bin/kitty -e nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config
       '';
-      terminal = "true";
+      # We launch in kitty rather to disable
+      #terminal = true;
       icon = "Utils";
       # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
       categories = ["Network" "System"];
-      mimeTypes = ["x-scheme-handler/teams"];
+      #mimeTypes = ["x-scheme-handler/teams"];
     };
   in [kartoza-nixos-utils];
 }
