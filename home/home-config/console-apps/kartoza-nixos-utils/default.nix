@@ -3,6 +3,17 @@
   pkgs,
   ...
 }: {
+  home.file."copy_image" = {
+    # Specify the source path of the image file
+    source = "../../../../resources/kartoza-utils.png";
+
+    # Specify the target path where you want to copy the image file
+    target = "${config.home.homeDirectory}/.local/share/icons/kartoza-utils.svg";
+
+    # Specify whether to overwrite the file if it already exists
+    # (true by default)
+    overwrite = true;
+  };
   # Run our Nix flake utils package
   # in a terminal
   home.packages = with pkgs; let
@@ -15,7 +26,7 @@
       '';
       # We launch in kitty rather to disable
       #terminal = true;
-      icon = "Utils";
+      icon = "${config.home.homeDirectory}/.local/share/icons/kartoza-utils.svg";
       # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
       categories = ["Network" "System"];
       #mimeTypes = ["x-scheme-handler/teams"];
