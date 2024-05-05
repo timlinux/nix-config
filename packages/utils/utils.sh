@@ -415,7 +415,7 @@ system_menu() {
     "Help") help_menu ;;
     "🏃🏽 Update system")
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nix build --impure
-
+        sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure --flake .
         prompt_to_continue
         system_menu
         ;;
