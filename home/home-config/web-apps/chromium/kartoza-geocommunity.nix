@@ -4,8 +4,8 @@
   ...
 }: let
   siteUrl = "https://mygeocommunity.org";
-  appName = "My Geocommunity";
-  iconName = "kartoza-mygeocommunity.svg";
+  appName = "My Geo Community";
+  iconName = "kartoza-geocommunity.svg";
   iconPath = "${config.home.homeDirectory}/.local/share/icons/${iconName}";
 in {
   home.file."kartoza_mygeocommunity_image" = {
