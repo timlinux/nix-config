@@ -610,8 +610,8 @@ test_vms_menu() {
             "🏗️ Build Kartoza NixOS ISO" \
             "❄️ Run Kartoza NixOS ISO" \
             "🖥️ Minimal Gnome VM" \
-            "🖥️ Full Gnome VM" \ 
-        "🖥️ Minimal KDE-5 VM" \
+            "🖥️ Full Gnome VM" \
+            "🖥️ Minimal KDE-5 VM" \
             "🖥️ Minimal KDE-6 VM" \
             "🖥️ Complete Gnome VM (for screen recording)"
     )
