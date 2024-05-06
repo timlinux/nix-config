@@ -27,7 +27,7 @@ in {
       # You can find out the value to use by running
       # xprop and then clicking on the app window
       # Then set the value below to whatever WM_CLASS(STRING) is
-      startupWMClass = "kartoza.github.io__TheKartozaHandbook";         
+      startupWMClass = "mygeocommunity.org";
     };
   in [myGeocommunityApp];
 }

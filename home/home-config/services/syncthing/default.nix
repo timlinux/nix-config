@@ -1,1 +1,10 @@
-{config = {services.syncthing = {enable = true;};};}
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
+  services.syncthing = {
+    enable = true;
+  };
+}

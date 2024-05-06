@@ -63,6 +63,17 @@ in {
       freetube
     ];
   };
+
+  # Shameless hardcoding here for now
+  # We want this folder mounted in a location
+  # That will be the same for all users and hosts
+  # so that we can share OBS scene configs
+  fileSystems."/home/KartozaInternal" = {
+    device = "/home/timlinux/Syncthing/KartozaInternal";
+    fsType = "none";
+    options = ["bind" "rw"];
+  };
+
   home-manager = {
     users.timlinux.home.stateVersion = "23.11";
     users.timlinux = {
