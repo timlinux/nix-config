@@ -5,14 +5,14 @@
 }: {
   home.file."copy_image" = {
     # Specify the source path of the image file
-    source = "../../../../resources/kartoza-utils.png";
+    source = "./kartoza-utils.svg";
 
     # Specify the target path where you want to copy the image file
     target = "${config.home.homeDirectory}/.local/share/icons/kartoza-utils.svg";
 
     # Specify whether to overwrite the file if it already exists
     # (true by default)
-    overwrite = true;
+    #overwrite = true;
   };
   # Run our Nix flake utils package
   # in a terminal
