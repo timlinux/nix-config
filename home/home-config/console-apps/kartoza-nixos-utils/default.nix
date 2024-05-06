@@ -7,12 +7,12 @@
   iconName = "kartoza-utils.svg";
   iconPath = "${config.home.homeDirectory}/.local/share/icons/${iconName}";
 in {
-  home.file."kartoza_nixos_utils_image" = {
+  home.file."kartoza_utils_image" = {
     source = ./${iconName};
     target = iconPath;
   };
   home.packages = with pkgs; let
-    gmailApp = makeDesktopItem {
+    kartozaUtils = makeDesktopItem {
       name = appName;
       desktopName = appName;
       genericName = appName;
@@ -22,5 +22,5 @@ in {
       icon = iconPath;
       categories = ["Network" "System"];
     };
-  in [kartozaNixosUtils];
+  in [kartozaUtils];
 }

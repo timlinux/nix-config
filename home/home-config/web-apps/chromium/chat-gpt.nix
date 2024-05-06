@@ -13,7 +13,7 @@ in {
     target = iconPath;
   };
   home.packages = with pkgs; let
-    gmailApp = makeDesktopItem {
+    chatGptApp = makeDesktopItem {
       name = appName;
       desktopName = appName;
       genericName = appName;

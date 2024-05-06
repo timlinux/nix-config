@@ -20,6 +20,7 @@ in {
       exec = ''
         ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="${siteUrl}"'';
       icon = iconPath;
+      # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
       categories = ["Network" "Office"];
     };
   in [gmailApp];
