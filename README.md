@@ -500,7 +500,7 @@ Save as e.g. ``gverify.nix``
       owner = "timlinux";
       repo = "nix-config";
       # nix-shell -p nix-prefetch-git --command "nix-prefetch-git --url https://github.com/timlinux/nix-config" | grep "hash is"
-      rev = "0ah43vmdpjwl6s6vcd1kmfg8srhns5pmzd95a5iwavkn3qjlh4wm";
+      rev = "0wj7hvlg1gp8dj0prrx8332pbz57lfp7kbk7654czbis4wjh06j4";
       # Optionally, you can specify a specific subdirectory
       # subdir = "packages";
     }).gverify  # Replace `packageName` with the actual name of the package you want to include
