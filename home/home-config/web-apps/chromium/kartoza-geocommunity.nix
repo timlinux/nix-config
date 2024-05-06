@@ -2,18 +2,26 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  siteUrl = "https://mygeocommunity.org";
+  appName = "My Geocommunity";
+  iconName = "kartoza-mygeocommunity.svg";
+  iconPath = "${config.home.homeDirectory}/.local/share/icons/${iconName}";
+in {
+  home.file."kartoza_mygeocommunity_image" = {
+    source = ./${iconName};
+    target = iconPath;
+  };
   home.packages = with pkgs; let
-    mygeocommunity = makeDesktopItem {
-      name = "MyGeoCommunity";
-      desktopName = "MyGeoCommunity";
-      genericName = "MyGeoCommunity";
+    gmailApp = makeDesktopItem {
+      name = appName;
+      desktopName = appName;
+      genericName = appName;
       exec = ''
-        ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="https://mygeocommunity.org"'';
-      icon = "Timesheets";
-      # See https://specifications.freedesktop.org/menu-spec/latest/apa.htmlOffice
+        ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="${siteUrl}"'';
+      icon = iconPath;
+      # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
       categories = ["Network" "Science"];
-      #mimeTypes = ["x-scheme-handler/teams"];
     };
-  in [mygeocommunity];
+  in [myGeocommunityApp];
 }

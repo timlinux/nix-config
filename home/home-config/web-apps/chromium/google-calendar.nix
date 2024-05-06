@@ -2,18 +2,25 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  siteUrl = "https://calendar.google.com";
+  appName = "Google Calendar";
+  iconName = "google-calendar.svg";
+  iconPath = "${config.home.homeDirectory}/.local/share/icons/${iconName}";
+in {
+  home.file."google_calendar_image" = {
+    source = ./${iconName};
+    target = iconPath;
+  };
   home.packages = with pkgs; let
-    google-calendar = makeDesktopItem {
-      name = "Google Calendar";
-      desktopName = "Google Calendar";
-      genericName = "Google Calendar";
+    gmailApp = makeDesktopItem {
+      name = appName;
+      desktopName = appName;
+      genericName = appName;
       exec = ''
-        ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="https://calendar.google.com"'';
-      icon = "Calendar";
-      # See https://specifications.freedesktop.org/menu-spec/latest/apa.htmlOffice
+        ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="${siteUrl}"'';
+      icon = iconPath;
       categories = ["Network" "Office"];
-      #mimeTypes = ["x-scheme-handler/teams"];
     };
-  in [google-calendar];
+  in [googleCalendarApp];
 }

@@ -2,18 +2,25 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  siteUrl = "https://kartoza.github.io/TheKartozaHandbook/";
+  appName = "Kartoza Handbook";
+  iconName = "kartoza-handbook.svg";
+  iconPath = "${config.home.homeDirectory}/.local/share/icons/${iconName}";
+in {
+  home.file."kartoza_handbook_image" = {
+    source = ./${iconName};
+    target = iconPath;
+  };
   home.packages = with pkgs; let
-    kartoza-handbook = makeDesktopItem {
-      name = "Kartoza Handbook";
-      desktopName = "Kartoza Handbook";
-      genericName = "Kartoza Handbook";
+    gmailApp = makeDesktopItem {
+      name = appName;
+      desktopName = appName;
+      genericName = appName;
       exec = ''
-        ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="https://kartoza.github.io/TheKartozaHandbook/"'';
-      icon = "nix";
-      # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
+        ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="${siteUrl}"'';
+      icon = iconPath;
       categories = ["Network" "Office"];
-      #mimeTypes = ["x-scheme-handler/teams"];
     };
-  in [kartoza-handbook];
+  in [myKartozaHandbookApp];
 }
