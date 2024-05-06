@@ -185,16 +185,27 @@ prompt_to_continue() {
     echo "$key Continuing..."
     clear
 }
+run_minimal_gnome_test_vm() {
 
-run_gnome_test_vm() {
-
-    echo "🏃Running flake in a test GNOME vm"
+    echo "🏃Running flake in a test minimal GNOME vm"
 
     if ls test.qcow2 1>/dev/null 2>&1; then
         rm -f test.qcow2
     fi
     # #test-gnome is the name of the host config as listed in flake.nix
-    nixos-rebuild build-vm --flake .#test-gnome && result/bin/run-test-vm
+    nixos-rebuild build-vm --flake .#test-gnome-minimal && result/bin/run-test-vm
+
+}
+
+run_full_gnome_test_vm() {
+
+    echo "🏃Running flake in a test full GNOME vm"
+
+    if ls test.qcow2 1>/dev/null 2>&1; then
+        rm -f test.qcow2
+    fi
+    # #test-gnome is the name of the host config as listed in flake.nix
+    nixos-rebuild build-vm --flake .#test-gnome-full && result/bin/run-test-vm
 
 }
 
@@ -599,7 +610,8 @@ test_vms_menu() {
             "🏗️ Build Kartoza NixOS ISO" \
             "❄️ Run Kartoza NixOS ISO" \
             "🖥️ Minimal Gnome VM" \
-            "🖥️ Minimal KDE-5 VM" \
+            "🖥️ Full Gnome VM" \ 
+        "🖥️ Minimal KDE-5 VM" \
             "🖥️ Minimal KDE-6 VM" \
             "🖥️ Complete Gnome VM (for screen recording)"
     )
@@ -617,7 +629,12 @@ test_vms_menu() {
         ;;
     "🖥️ Minimal Gnome VM")
         clear
-        run_gnome_test_vm
+        run_minimal_gnome_test_vm
+        main_menu
+        ;;
+    "🖥️ Full Gnome VM")
+        clear
+        run_full_gnome_test_vm
         main_menu
         ;;
     "🖥️ Minimal KDE-5 VM")

@@ -252,7 +252,7 @@
           ++ [./hosts/atoll.nix];
       };
       # Automated testbed - test gnome
-      test-gnome = nixpkgs.lib.nixosSystem {
+      test-gnome-full = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
         modules =
@@ -264,7 +264,22 @@
             }: {nixpkgs.overlays = [overlay-unstable];})
           ]
           ++ shared-modules
-          ++ [./hosts/test-gnome.nix];
+          ++ [./hosts/test-gnome-full.nix];
+      };
+      # Automated testbed - test gnome
+      test-gnome-minimal = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/test-gnome-minimal.nix];
       };
       # Automated testbed - test kde
       test-kde6 = unstable.lib.nixosSystem {
