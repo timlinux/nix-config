@@ -21,6 +21,16 @@ in {
       '';
       icon = iconPath;
       categories = ["Network" "System"];
+      # Needed for the gnome panel icon to be correct
+      # and not to stack with other chrome apps
+      # You can find out the value to use by running
+      # xprop and then clicking on the app window
+      # Then set the value below to whatever WM_CLASS(STRING) is
+
+      #
+      # TODO - this works for browsers, not for kitty
+      #
+      startupWMClass = "kitty";          
     };
   in [kartozaUtils];
 }

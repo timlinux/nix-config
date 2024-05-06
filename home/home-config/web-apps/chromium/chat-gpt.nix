@@ -21,6 +21,12 @@ in {
         ${config.programs.chromium.package}/bin/chromium --ozone-platform-hint=auto --force-dark-mode --enable-features=WebUIDarkMode --app="${siteUrl}"'';
       icon = iconPath;
       categories = ["Network" "Office"];
+      # Needed for the gnome panel icon to be correct
+      # and not to stack with other chrome apps
+      # You can find out the value to use by running
+      # xprop and then clicking on the app window
+      # Then set the value below to whatever WM_CLASS(STRING) is
+      startupWMClass = "chatgpt.com";          
     };
   in [chatGptApp];
 }

@@ -14,6 +14,12 @@
       # See https://specifications.freedesktop.org/menu-spec/latest/apa.html
       categories = ["Network" "Graphics"];
       mimeTypes = ["x-scheme-handler/teams"];
+      # Needed for the gnome panel icon to be correct
+      # and not to stack with other chrome apps
+      # You can find out the value to use by running
+      # xprop and then clicking on the app window
+      # Then set the value below to whatever WM_CLASS(STRING) is
+      startupWMClass = "mail.google.com";
     };
   in [svg-repo];
 }
