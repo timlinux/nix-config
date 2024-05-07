@@ -9,5 +9,6 @@
     fishPlugins.forgit
     fishPlugins.hydro
     fzf
+    fishPlugins.github-copilot-cli-fish
   ];
 }

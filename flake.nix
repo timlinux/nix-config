@@ -263,6 +263,21 @@
           ++ shared-modules
           ++ [./hosts/atoll.nix];
       };
+      # Eli's Laptop
+      crater = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/crater.nix];
+      };
       # Automated testbed - test gnome
       test-gnome-full = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
