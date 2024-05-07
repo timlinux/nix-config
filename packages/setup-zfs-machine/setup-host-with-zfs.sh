@@ -130,9 +130,9 @@ EndOfText
 echo "$LOGO"
 set -e
 
-HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
-hostname "${HOSTNAME}"
-echo "Are you installing an existing flake profile for $HOSTNAME?"
+NEW_HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
+hostname "${NEW_HOSTNAME}"
+echo "Are you installing an existing flake profile for $NEW_HOSTNAME?"
 FLAKE=$(gum choose "YES" "NO")
 
 # Function to prompt user to select a block device
@@ -211,10 +211,12 @@ if [ "$DESTROY" == "DESTROY" ]; then
   # then manually assign it to boot after making the partition
 
   if [ "$FLAKE" == "YES" ]; then
-    BOOTUUID=$(curl -s https://raw.githubusercontent.com/timlinux/nix-config/main/hosts/"${HOSTNAME}".nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
+    BOOTUUID=$(curl -s https://raw.githubusercontent.com/timlinux/nix-config/main/hosts/"${NEW_HOSTNAME}".nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
+    gum style "Setting boot UUID to ${BOOTUUID}"
     # See https://superuser.com/a/1294893
     printf "\x%s\x%s\x%s\x%s" "${BOOTUUID:7:2}" "${BOOTUUID:5:2}" "${BOOTUUID:2:2}" "${BOOTUUID:0:2}" |
       dd bs=1 seek=67 count=4 conv=notrunc of="${FULL_TARGET_DEVICE}"1
+    lsblk -f
   fi
 
   # Create a partition for / using the remaining space
