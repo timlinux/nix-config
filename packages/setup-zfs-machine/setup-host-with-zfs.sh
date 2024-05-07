@@ -314,7 +314,7 @@ if [ "$FLAKE" == "YES" ]; then
   already configured, you need to add it to the hosts folder
   and the flake.nix file. Then (or if you already have the flake setup) run:
 
-  sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#${HOSTNAME}
+  sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#${NEW_HOSTNAME}
 "
   # We are done here....
   exit
@@ -354,7 +354,7 @@ read -r -d '\n' REPLACEMENT <<EndOfText
   boot.supportedFilesystems = ["zfs"]; 
   boot.zfs.requestEncryptionCredentials = ${ENCRYPT}; 
   ${VMCONFIG}boot.zfs.devNodes = "/dev/disk/by-path"; 
-  networking.hostName = "${HOSTNAME}"; # Define your hostname. 
+  networking.hostName = "${NEW_HOSTNAME}"; # Define your hostname. 
   # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId 
   # Generate using this: 
   # head -c 8 /etc/machine-id 
