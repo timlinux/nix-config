@@ -214,8 +214,8 @@ if [ "$DESTROY" == "DESTROY" ]; then
     BOOTUUID=$(curl -s https://raw.githubusercontent.com/timlinux/nix-config/main/hosts/"${NEW_HOSTNAME}".nix | grep -o "by-uuid/[A-Z0-9-]*" | grep -o "[A-Z0-9-]*" | tail -1)
     gum style "Setting boot UUID to ${BOOTUUID}"
     # See https://superuser.com/a/1294893
-    printf "\x%s\x%s\x%s\x%s" "${BOOTUUID:7:2}" "${BOOTUUID:5:2}" "${BOOTUUID:2:2}" "${BOOTUUID:0:2}" |
-      dd bs=1 seek=67 count=4 conv=notrunc of="${FULL_TARGET_DEVICE}"1
+    #printf "\x%s\x%s\x%s\x%s" "${BOOTUUID:7:2}" "${BOOTUUID:5:2}" "${BOOTUUID:2:2}" "${BOOTUUID:0:2}" |
+    printf "%s" "${BOOTUUID}" | sed -r 's/(..)(..)-(..)(..)/\4\3\2\1/' | xxd -r -plain | dd bs=1 seek=67 count=4 conv=notrunc of="${FULL_TARGET_DEVICE}"1
     lsblk -f
   fi
 
