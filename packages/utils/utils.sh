@@ -620,6 +620,7 @@ test_vms_menu() {
     "🏗️ Build Kartoza NixOS ISO")
         clear
         nix build .#nixosConfigurations.live.config.system.build.isoImage
+        qemu-system-x86_64 -m 2048M -cdrom result/iso/*.iso
         main_menu
         ;;
     "❄️ Run Kartoza NixOS ISO")
