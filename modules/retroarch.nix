@@ -8,7 +8,7 @@
       cores = with libretro; [
         genesis-plus-gx
         snes9x
-        zx-spectrum
+        fuse
       ];
     })
   ];

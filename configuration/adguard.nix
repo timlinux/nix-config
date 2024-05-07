@@ -1,9 +1,12 @@
 # See the NixOS manual (accessible by running ‘nixos-help’).
-{ config,pkgs,... }: 
 {
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./base.nix
     ../modules/adguard.nix
-    ../modules/zfs-encryption.nix
+    ../modules/zfs-no-encryption.nix
   ];
 }
