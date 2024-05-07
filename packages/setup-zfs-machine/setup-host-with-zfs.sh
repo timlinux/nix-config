@@ -216,6 +216,7 @@ if [ "$DESTROY" == "DESTROY" ]; then
     # See https://superuser.com/a/1294893
     #printf "\x%s\x%s\x%s\x%s" "${BOOTUUID:7:2}" "${BOOTUUID:5:2}" "${BOOTUUID:2:2}" "${BOOTUUID:0:2}" |
     printf "%s" "${BOOTUUID}" | sed -r 's/(..)(..)-(..)(..)/\4\3\2\1/' | xxd -r -plain | dd bs=1 seek=67 count=4 conv=notrunc of="${FULL_TARGET_DEVICE}"1
+    echo "At this point the boot UUID should be set to ${BOOTUUID}, but the listing below may still not reflect this"
     lsblk -f
   fi
 
@@ -302,6 +303,9 @@ gum style \
     sudo mount | grep NIXROOT
     sudo mount | grep boot
   )"
+
+echo "At this point the boot UUID should be set to ${BOOTUUID}, and the listing below should reflect this"
+lsblk -f
 
 nixos-generate-config --force --root /mnt
 
