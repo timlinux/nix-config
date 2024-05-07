@@ -8,8 +8,8 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/adguard.nix
-    ../modules/plex.nix
-    ../modules/steam.nix
+    #../modules/plex.nix
+    #../modules/steam.nix
     ../modules/xbox1-controller.nix
     ../users/tim-headless.nix
   ];
