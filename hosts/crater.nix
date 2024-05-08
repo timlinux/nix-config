@@ -20,6 +20,18 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+
+  # Enable swap on luks
+  boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".device = "/dev/disk/by-uuid/4a1f442c-e191-4f92-8b47-b580db36e463";
+  boot.initrd.luks.devices."luks-4a1f442c-e191-4f92-8b47-b580db36e463".keyFile = "/crypto_keyfile.bin";
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/101afe2e-df68-4aad-baf6-8a34f113f92b";
