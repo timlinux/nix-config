@@ -427,6 +427,7 @@ system_menu() {
     "🏃🏽 Update system")
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nix build --impure
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure --flake .
+        sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild --extra-experimental-features nix-command --extra-experimental-features flakes switch --impure --flake .
         prompt_to_continue
         system_menu
         ;;

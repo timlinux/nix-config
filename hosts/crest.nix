@@ -40,6 +40,10 @@
   # Use adguard for DNS on the valley NUC
   networking.nameservers = ["192.168.0.2"];
 
+  # For revolt
+  #networking.firewall.allowedTCPPorts = [80 443];
+  #networking.firewall.allowedUDPPorts = [80 443];
+
   fileSystems."/" = {
     device = "NIXROOT/root";
     fsType = "zfs";

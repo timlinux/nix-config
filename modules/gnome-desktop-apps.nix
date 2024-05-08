@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.dconf.enable = true;
   # This and the xgg-portal below fixes focus stealing e.g. in QGIS where file dialogs
   # appear behind the main window (I think it is this that cures it anyway)
@@ -13,10 +15,10 @@
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     wl-clipboard
-    xdg-desktop-portal   
+    xdg-desktop-portal
     xdg-desktop-portal-gtk
     adw-gtk3
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     recursive
     amberol
     celluloid
@@ -36,7 +38,7 @@
     emote # emoji picker
     # Currently not working
     #gnomeExtensions.draw-on-you-screen-2 # Start drawing with Super+Alt+D and save your beautiful work by taking a screenshot
-    # As work around you can follow the notes here to manually install: 
+    # As work around you can follow the notes here to manually install:
     # For GNOME 45+ users:
     # 1) In the terminal: git clone https://github.com/zhrexl/DrawOnYourScreen2 ~/.local/share/gnome-shell/extensions/draw-on-your-screen2@zhrexl.github.com
     # 2) restart gnome-shell: Xorg -> press Alt+F2 and r , Wayland: restart or re-login
@@ -78,27 +80,26 @@
     # gedit       # text editor
     # simple-scan # document scanner
     # totem       # video player
-    yelp        # help viewer
+    yelp # help viewer
     # evince      # document viewer
     # file-roller # archive manager
-    geary       # email client
+    geary # email client
     # seahorse    # password manager
     # these should be self explanatory
-    # gnome-calculator 
-    gnome-calendar 
-    # gnome-characters 
-    # gnome-clocks 
+    # gnome-calculator
+    gnome-calendar
+    # gnome-characters
+    # gnome-clocks
     gnome-contacts
-    # gnome-font-viewer 
-    # gnome-logs 
-    gnome-maps 
-    gnome-music 
+    # gnome-font-viewer
+    # gnome-logs
+    gnome-maps
+    gnome-music
     # gnome-screenshot
-    # gnome-system-monitor 
-    # gnome-weather 
-    # gnome-disk-utility 
+    # gnome-system-monitor
+    # gnome-weather
+    # gnome-disk-utility
     gnome-terminal
     pkgs.gnome-connections
   ];
-
 }
