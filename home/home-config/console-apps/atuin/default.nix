@@ -15,14 +15,13 @@
       package = pkgs.atuin;
       settings = {
         auto_sync = false;
-        enter_accept = true; #immediately execute if enter pressed - use tab to edit first
-        #dialect = "uk";
-        #key_path = config.sops.secrets.atuin_key.path;
+        #immediately execute if enter pressed - use tab to edit first
+        enter_accept = true;
         show_preview = true;
         style = "full";
-        #sync_frequency = "1h";
-        #sync_address = "https://api.atuin.sh";
         update_check = false;
+        sync_frequency = false; # Set sync_frequency to null to disable syncing
+        sync_address = false; # Set sync_address to null to disable syncing
       };
     };
   };
