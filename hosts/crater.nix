@@ -42,7 +42,6 @@
   # Generate using this:
   # head -c 8 /etc/machine-id
   networking.hostId = "598f6c07"; # needed for zfs
-  swapDevices = [];
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
