@@ -59,7 +59,6 @@
   # Generate using this:
   # head -c 8 /etc/machine-id
   networking.hostId = "69a880f0"; # needed for zfs
-  swapDevices = [];
 
   networking.useDHCP = lib.mkDefault true;
 
