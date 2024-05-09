@@ -7,10 +7,11 @@ result-man
 *.swp
 *.qcow2
 eoi.zip
-.vscodgit 
+.vscodgit
 dotfiles/obs-studio/updates/whatsnew.json
 dotfiles/obs-studio/plugin_config/
 dotfiles/obs-studio/profiler_data
 dotfiles/obs-studio/logs
 .vscode
 secrets
+history.mp4

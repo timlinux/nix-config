@@ -232,8 +232,8 @@ The admin menu should appear after a few moments. From now on, when you see inst
 
 Before doing anything else, we will link your machine to the key / value store so that we can share data conveniently. We use a tool called "🛼 skate" for this.
 
-👉️ 🏠️ Kartoza NixOS :: Main Menu
-👉️ 🛼 Enter link
+1. 👉️ 🏠️ Kartoza NixOS :: Main Menu
+2. 👉️ 🛼 Enter link
 
 At the prompt, enter the link, exactly as provided (case sensitive).
 
@@ -242,15 +242,15 @@ At the prompt, enter the link, exactly as provided (case sensitive).
 ⚠️ All data on your disk will be lost!!! ⚠️
 
 
-👉️ 🏠️ Kartoza NixOS :: Main Menu 
-👉️ 🚀 System management
-👉️ ⚠️ Format disk with ZFS ⚠️
+1. 👉️ 🏠️ Kartoza NixOS :: Main Menu 
+2. 👉️ 🚀 System management
+3. 👉️ ⚠️ Format disk with ZFS ⚠️
 
 Now follow the prompts as directed. This will scrub your disks and reformat them with zfs. This is the recommended way to set up your system for the first time.
 
 I *highly* recommend that you encrypt your system. Non encrypted disks should only be used in special circumstances where unlocking the disk during boot up is not possible.
 
->**💡 Technical notes on the ZFS setup script: ** The script is based on great examples I found online, though with substantial updates on my part.The script will completely set up new hosts with ZFS, encrytion, flakes and various other niceties. You can find this script in
+>💡 Technical notes on the ZFS setup script: ** The script is based on great examples I found online, though with substantial updates on my part.The script will completely set up new hosts with ZFS, encrytion, flakes and various other niceties. You can find this script in
 [``packages/setup-zfs-machine/``](packages/setup-zfs-machine/) - check the [README.md](packages/setup-zfs-machine/README.md) there first as it explains how to fetch the script when installing to a new maching. Each system added to this repo should be validated in the table further down in this document. Currently validation is manual, unfortunately.
 
 The setup process may take quite some time if you choose the flake install option that the script offers. Just be patient and wait while everything downloads.
@@ -259,9 +259,9 @@ The setup process may take quite some time if you choose the flake install optio
 
 Once the hard disk partitioning is done, you need to go to the system info menu and generate a hardware configuration:
 
-👉️ 🏠️ Kartoza NixOS :: Main Menu 
-👉️❓️ System info
-👉️💻️ Generate your system hardware profile
+1. 👉️ 🏠️ Kartoza NixOS :: Main Menu 
+2. 👉️❓️ System info
+3. 👉️💻️ Generate your system hardware profile
 
 ###  5.7. <a name='Reboot'></a>Reboot
 
@@ -291,7 +291,7 @@ There are a few edits you need to make to this file to provide:
 
 **A network id for your ZFS pool**
 
-See [this link](https://search.nixos.org/options?channel=unstable&show=networking.. hostId&query=networking.hostId). You can generate a unique host id using this:
+See [this link](https://search.nixos.org/options?channel=unstable&show=networking..hostId&query=networking.hostId). You can generate a unique host id using this:
 
 ```
 head -c 8 /etc/machine-id
@@ -370,8 +370,14 @@ Finally, your edits to the flake need to be upstreamed to our git repo. Follow n
 Simply call the script provided in the root of this flake directory to then apply the changes to your system:
 
 ```
-sudo ./update-system.sh
+nix run
 ```
+
+Then:
+
+1. 🚀 System management
+2. 🏃🏽 Update system
+
 
 Applying the flake may take some time depending on your internet connection and whether it needs to compile stuff.
 
@@ -528,8 +534,6 @@ Save as e.g. ``gverify.nix``
 Then in your ``configuration.nix`` add ``gverify.nix`` to your ``imports`` list.
 
 
-
-
 ##  13. <a name='Resources'></a>Resources
 
 I found some resouces particularly valuable in my learning journey, I will try to assemble them here:
@@ -539,3 +543,8 @@ I found some resouces particularly valuable in my learning journey, I will try t
 3. 🎒 [Zero To Nix](https://zero-to-nix.com/) - nice learning resource for those starting out in NixOS.
 4. ⭐️ [Wimpysworld](https://github.com/wimpysworld/nix-config) - An absolute goldmine of snippets and a beautifully written README.
 5. 📃 [Flakes Diagram](https://coggle.it/diagram/ZVZ3rq_HfWTHL4b3/t/nix-flakes/598940443cb9f2e50a4d9cee02eaa7822355d5248faa9dde969406fe9341103f) - A fantastic schematic describing what a flake is.
+
+Lastly, here is a little history of this repo:
+
+
+![History](img/history.gif)

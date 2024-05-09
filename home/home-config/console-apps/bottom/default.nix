@@ -1,5 +1,6 @@
 {config, ...}: {
   config = {
+    #btm in the terminal
     programs.bottom = {
       enable = true;
       settings = {

@@ -5,6 +5,8 @@
   modulesPath,
   ...
 }: {
+  # Lenovo Thinkpad P14s AMD Gen 1
+
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
