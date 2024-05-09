@@ -150,16 +150,10 @@
         system = system;
 
         label = "MyNixOS"; # Label for the ISO image
-        destination = "/path/to/output.iso"; # Output path for the ISO image
+        destination = "./output.iso"; # Output path for the ISO image
 
         # Example system configuration
         services.openssh.enable = true; # Enable SSH server
-        users.users.user1 = {
-          isNormalUser = true;
-          uid = 1000;
-          home = "/home/user1";
-          extraGroups = ["wheel"];
-        };
 
         modules =
           [
@@ -169,7 +163,7 @@
               isoImage.squashfsCompression = "gzip -Xcompression-level 1";
             }
           ]
-          #++ shared-modules
+          ++ shared-modules
           ++ [./hosts/iso-gnome.nix];
       };
 

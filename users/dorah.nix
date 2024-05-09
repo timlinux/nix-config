@@ -68,7 +68,6 @@ in {
     users.dorah = {
       imports = [
         ../home/default.nix
-        ../home/keybindings/gnome.nix
       ];
       # Set to null to let GnuPG decide what signing key to use depending on commit’s author.p
 
