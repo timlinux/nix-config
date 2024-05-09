@@ -63,16 +63,6 @@ in {
     ];
   };
 
-  # Shameless hardcoding here for now
-  # We want this folder mounted in a location
-  # That will be the same for all users and hosts
-  # so that we can share OBS scene configs
-  fileSystems."/home/KartozaInternal" = {
-    device = "/home/eli/Syncthing/KartozaInternal";
-    fsType = "none";
-    options = ["bind" "rw"];
-  };
-
   home-manager = {
     users.eli.home.stateVersion = "23.11";
     users.eli = {
