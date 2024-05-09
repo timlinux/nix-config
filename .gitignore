@@ -13,3 +13,4 @@ dotfiles/obs-studio/plugin_config/
 dotfiles/obs-studio/profiler_data
 dotfiles/obs-studio/logs
 .vscode
+secrets

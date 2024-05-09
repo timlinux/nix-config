@@ -13,6 +13,7 @@
     #../modules/biometrics.nix
     ../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
     ../users/eli.nix
+    ../users/tim.nix
   ];
   # Dell P157G Inspiron
 
