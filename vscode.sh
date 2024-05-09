@@ -8,6 +8,7 @@ code --extensions-dir=.vscode-extensions --install-extension foxundermoon.shell-
 code --extensions-dir=.vscode-extensions --install-extension github.copilot
 code --extensions-dir=.vscode-extensions --install-extension github.copilot-chat
 code --extensions-dir=.vscode-extensions --install-extension jeff-hykin.better-shellscript-syntax
+code --extensions-dir=.vscode-extensions --install-extension joffreykern.markdown-toc
 code --extensions-dir=.vscode-extensions --install-extension kamadorueda.alejandra
 code --extensions-dir=.vscode-extensions --install-extension mads-hartmann.bash-ide-vscode
 code --extensions-dir=.vscode-extensions --install-extension mkhl.direnv

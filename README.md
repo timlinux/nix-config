@@ -1,3 +1,4 @@
+
 # Tim's Nix Configuration
 
 ```
@@ -18,11 +19,55 @@
 
 ```
 
+
+<!-- vscode-markdown-toc -->
+* 1. [Background](#Background)
+* 2. [What this repo provides](#Whatthisrepoprovides)
+* 3. [Quickstart](#Quickstart)
+	* 3.1. [Help documentation](#Helpdocumentation)
+	* 3.2. [System management](#Systemmanagement)
+	* 3.3. [System info](#Systeminfo)
+	* 3.4. [Test VMS](#TestVMS)
+	* 3.5. [About](#About)
+* 4. [Listing this flake](#Listingthisflake)
+* 5. [Setting up a new system](#Settingupanewsystem)
+	* 5.1. [Preparation](#Preparation)
+	* 5.2. [Wifi and browser](#Wifiandbrowser)
+	* 5.3. [Launching the admin menu](#Launchingtheadminmenu)
+	* 5.4. [Link your machine](#Linkyourmachine)
+	* 5.5. [Format your disk](#Formatyourdisk)
+	* 5.6. [Share your hardware config](#Shareyourhardwareconfig)
+	* 5.7. [Reboot](#Reboot)
+* 6. [Adding a new host to this flake](#Addinganewhosttothisflake)
+	* 6.1. [The host file](#Thehostfile)
+	* 6.2. [The user file](#Theuserfile)
+	* 6.3. [The flake file](#Theflakefile)
+	* 6.4. [Submitting your change](#Submittingyourchange)
+	* 6.5. [Applying the flake to your system](#Applyingtheflaketoyoursystem)
+* 7. [Existing hosts](#Existinghosts)
+* 8. [Setting up a VM for testing](#SettingupaVMfortesting)
+* 9. [Updating flakes](#Updatingflakes)
+* 10. [Working with QGIS](#WorkingwithQGIS)
+	* 10.1. [Choosing a version](#Choosingaversion)
+	* 10.2. [Dynamically adding packages](#Dynamicallyaddingpackages)
+	* 10.3. [Viewing the available python packages in QGIS](#ViewingtheavailablepythonpackagesinQGIS)
+* 11. [The Utils Package](#TheUtilsPackage)
+* 12. [Using packages from your own systems](#Usingpackagesfromyourownsystems)
+* 13. [Resources](#Resources)
+
+<!-- vscode-markdown-toc-config
+	numbering=true
+	autoSave=true
+	/vscode-markdown-toc-config -->
+<!-- /vscode-markdown-toc -->
+
+
+
 📒 Note: Like most things in life, and in particular in open source, this work
 is highly derivative. I tried to credit upstream sources in the various
 configuration files provided here whenever possible.
 
-## Background
+##  1. <a name='Background'></a>Background
 
 I started using NixOS in April 2023. I like keeping notes and making my work
 repeatable, so NixOS is a good fit for my brain. This repository accumulates
@@ -31,7 +76,7 @@ continuous evolution. I am co-founder of a company called
 [Kartoza](https://kartoza.com). We use NixOS on our linux workstations and 
 this repository provides a canonical source of those configurations.
 
-## What this repo provides
+##  2. <a name='Whatthisrepoprovides'></a>What this repo provides
 
 It's easier to start with a few screenshots!
 
@@ -70,7 +115,7 @@ This repo provides:
 2. Some custom packages that I use.
 3. Many modules which may prove useful for setting up things like zfs, OBS, Headscale and many other niceties.
 
-## Quickstart
+##  3. <a name='Quickstart'></a>Quickstart
 
 I have made a lovely menu / terminal app with all the key functionality provided by this flake:
 
@@ -91,40 +136,40 @@ nix run .#
 
 From here you can perform tasks from the listed sub menus:
 
-### Help documentation
+###  3.1. <a name='Helpdocumentation'></a>Help documentation
 
 ![](img/menu2.png)
 
 Provides the documentation you are looking at on this page, either as console text or in your web browser.
 
-### System management
+###  3.2. <a name='Systemmanagement'></a>System management
 
 Provides tools for configuring your system, starting services, setting up your VPN etc.
 
 ![](img/menu3.png)
 
 
-### System info
+###  3.3. <a name='Systeminfo'></a>System info
 
 Provides informative diagnostic info for your system.
 
 ![](img/menu4.png)
 
-### Test VMS
+###  3.4. <a name='TestVMS'></a>Test VMS
 
 Provides test VMs that you can use to try out variants of this flake.
 
 ![](img/menu5.png)
 
 
-### About
+###  3.5. <a name='About'></a>About
 
 ![](img/menu6.png)
 
 
 📽️ Please see the [Video Walkthrough](https://youtu.be/kR54Gbr-ZP0) I made of the Utils menu for more details on the above.
 
-## Listing this flake
+##  4. <a name='Listingthisflake'></a>Listing this flake
 
 You can list the flakes like this:
 
@@ -142,9 +187,9 @@ You will get something like this in the output (most likely changed since I made
 
 ![](img/flake-show.png)
 
-## Setting up a new system
+##  5. <a name='Settingupanewsystem'></a>Setting up a new system
 
-### Preparation
+###  5.1. <a name='Preparation'></a>Preparation
 
 For our setup session, we are going to be wiping and reloading your laptop with the standard Kartoza software stack.
 
@@ -163,7 +208,7 @@ https://etcher.balena.io/
 * As for all Kartoza collaboration, please ensure you are in a 🔇 quiet place where you can hear and be heard clearly.
 
 
-### Wifi and browser
+###  5.2. <a name='Wifiandbrowser'></a>Wifi and browser
 
 If needed, connect your computer to the internet use the network and wifi options that can be found off the menu in the top right corner of the screen:
 
@@ -171,7 +216,7 @@ If needed, connect your computer to the internet use the network and wifi option
 
 Once your computer is started from the USB disk, open a web browser and open this page so that you can cut and paste commands.
 
-### Launching the admin menu
+###  5.3. <a name='Launchingtheadminmenu'></a>Launching the admin menu
 
 Then open a terminal window and paste this command:
 
@@ -183,7 +228,7 @@ The admin menu should appear after a few moments. From now on, when you see inst
 
 📒 Note: If you drop out of the menu for some reason, simply restart it using the above command by pressing the up arrow on your keyboard, then press enter when you see the ``nix run`` command above.
 
-### Link your machine
+###  5.4. <a name='Linkyourmachine'></a>Link your machine
 
 Before doing anything else, we will link your machine to the key / value store so that we can share data conveniently. We use a tool called "🛼 skate" for this.
 
@@ -192,7 +237,7 @@ Before doing anything else, we will link your machine to the key / value store s
 
 At the prompt, enter the link, exactly as provided (case sensitive).
 
-### Format your disk
+###  5.5. <a name='Formatyourdisk'></a>Format your disk
 
 ⚠️ All data on your disk will be lost!!! ⚠️
 
@@ -210,7 +255,7 @@ I *highly* recommend that you encrypt your system. Non encrypted disks should on
 
 The setup process may take quite some time if you choose the flake install option that the script offers. Just be patient and wait while everything downloads.
 
-### Share your hardware config
+###  5.6. <a name='Shareyourhardwareconfig'></a>Share your hardware config
 
 Once the hard disk partitioning is done, you need to go to the system info menu and generate a hardware configuration:
 
@@ -218,13 +263,13 @@ Once the hard disk partitioning is done, you need to go to the system info menu 
 👉️❓️ System info
 👉️💻️ Generate your system hardware profile
 
-### Reboot
+###  5.7. <a name='Reboot'></a>Reboot
 
 After sharing your hardware configs, we may make some quick updates to your system configs. After that, you can reboot.
 
 
 
-## Adding a new host to this flake
+##  6. <a name='Addinganewhosttothisflake'></a>Adding a new host to this flake
 
 There are a few steps when adding a new host for the first time:
 
@@ -232,7 +277,8 @@ There are a few steps when adding a new host for the first time:
 2. Create the user file 
 3. Add the host to the flake.nix
 
-### The host file
+
+###  6.1. <a name='Thehostfile'></a>The host file
 
 Create a new host file in hosts e.g.
 
@@ -243,7 +289,7 @@ The newly created file should exactly match the hostname. This starting point fo
 
 There are a few edits you need to make to this file to provide:
 
-#### A network id for your ZFS pool
+**A network id for your ZFS pool**
 
 See [this link](https://search.nixos.org/options?channel=unstable&show=networking.. hostId&query=networking.hostId). You can generate a unique host id using this:
 
@@ -258,7 +304,7 @@ networking.hostId = "d13e0d41"; # needed for zfs
 ```
   
 
-#### A hostname
+**A hostname**
 
 This should exactly match the hostname of your system. For example:
 
@@ -268,7 +314,7 @@ networking.hostName = "crest"; # Define your hostname.
 ```
   
 
-#### Additional imports to defined your desktop environment etc.
+**Additional imports to defined your desktop environment etc.**
 
 The scheme of this flake provides three main types of imports:
 
@@ -293,15 +339,14 @@ There is no "one size fits all" here, but a good starting point will be to look 
 
 See the next section for more details about the user file.
 
-### The user file
+###  6.2. <a name='Theuserfile'></a>The user file
 
 This file should be added into the ``users`` folder if needed. Name the file after the user's name e.g. ``tim.nix``. It is probably easiest to just copy one of the existing users and adapt it.
 
 The users file file configures your user name, home-manager modules and your user groups. For the most part, you can simply copy the existing user file and then replace all instances of the old user name with your user name.
 
 
-
-### The flake file
+###  6.3. <a name='Theflakefile'></a>The flake file
 
 You need to copy in a new entry for your host into ``flake.nix`` e.g.
 
@@ -316,11 +361,11 @@ You need to copy in a new entry for your host into ``flake.nix`` e.g.
 
 Then replace the comment and shared modules to reference the new host you have created.
 
-### Submitting your change
+###  6.4. <a name='Submittingyourchange'></a>Submitting your change
 
 Finally, your edits to the flake need to be upstreamed to our git repo. Follow normal git workflows for doing that. I recommend adding your host to the existing hosts list in the next section so the expected behaviour for that host is clear.
 
-### Applying the flake to your system
+###  6.5. <a name='Applyingtheflaketoyoursystem'></a>Applying the flake to your system
 
 Simply call the script provided in the root of this flake directory to then apply the changes to your system:
 
@@ -334,53 +379,23 @@ Once the installation completes, reboot and you should be experiencing a nice Ka
 
 If you experience any issues, remember that you can always select a previous generation at the initial start of your system and then boot into your old environment.
 
-## Existing hosts 
+##  7. <a name='Existinghosts'></a>Existing hosts 
 
-### Test
-
-The test environment for NixOS that can be used to 
-validate configuration changes etc. The text environment
-is created using the `nixos-rebuild build-vm` command and
-can be created by running `./vm-test-environment.sh` in
-the root of this repo.
-
-You can log in to this test environment using:
-
-User: guest
-Pass: guest
-
-| Host | Encryption | Flake | Works | Notes |
-|---|---|---|---|----|
-| valley | 🟢 | 🔴 | ⛔️ | Encryption not supported, no profile for this.|
-| valley | 🔴 | 🔴 | ⛔️ | Encryption not supported, no profile for this. |
-| valley | 🟢 | 🟢 | ⛔️ | Encryption not supported, no profile for this.|
-| valley | 🔴 | 🟢 | ✔️| | ❤️  Generic install created for testing. |
+| Host | Model | Ram | Encrypt | Flake | ZFS | Users | Pass | Works | Notes |
+|---|---|---|---|---|---|----|---|---|---|
+| nixos | qemu vm  | 2GB | 🔴 | 🟢 | 🔴 | guest | guest | ✔️ |  Generic install created for testing in VMS. |
+| rock| virtman vm   | 8GB | 🟢| 🟢| 🟢 | guest|guest| ✔️ | Production install for learning NixOS etc. |
+| valley| i3 Intel Nuc |16GB   | 🟢| 🟢|  🟢 | timlinux|-| ✔️ | Adguard and retroarch |
+| crest| Thinkpad P14S | 32GB   | 🟢| 🟢|  🟢 | timlinux|-| ✔️ | My daily workhorse |
+| atoll| Dell Inspiron 14 7430 2in1 | 16GB   | 🟢| 🟢|  🟢 | dorah |-| ✔️ | Dorah's laptop |
+| crater |  Dell P157G Inspiron | 16GB   | 🟢| 🟢|  🔴 | eli |-| ✔️ | Eli's laptop |
+| ??? |   | 16GB   | 🟢| 🟢|  🔴 | amy |-| ✔️ | Amy's laptop |
+| ??? |   | 16GB   | 🟢| 🟢|  🔴 | amy |-| ✔️ | Jeffs's laptop - running kde plasma |
 
 
-### Valley 
+##  8. <a name='SettingupaVMfortesting'></a>Setting up a VM for testing
 
-An i3 Intel NUC that I use as a home server.
-
-| Host | Encryption | Flake | Works | Notes |
-|---|---|---|---|----|
-| valley | 🟢 | 🔴 | ✔️ | Generic install |
-| valley | 🔴 | 🔴 | ✔️ | Generic install |
-| valley | 🟢 | 🟢 | ✔️ | ❤️  Production install for home server |
-| valley | 🔴 | 🟢 | ⛔️| No profile for this |
-
-### Rock
-
-A VM that you can use to test and experiment with things. To set up the VM,
-follow the steps below the table. Unlike the 'test' VM, rock is
-intended to be installed on a manually partitioned virtual disk
-with ZFS.
-
-|Host | Encryption | Flake | Works| Notes |
-|-----|------------|------|------|------| 
-|rock| 🟢| 🔴| ✔️| | Generic Install |
-|rock| 🔴| 🔴| ✔️| | Generic Install |
-|rock| 🟢| 🟢| ✔️ | ❤️  Production install for learning NixOS etc. |
-|rock| 🔴| 🟢| ⛔️ | No profile for this |
+Use the 'rock' profile described above and follow these steps:
 
 ![Step 1](img/vm-install1.png)
 ![Step 2](img/vm-install2.png)
@@ -397,7 +412,7 @@ with ZFS.
 
 
 
-## Updating flakes
+##  9. <a name='Updatingflakes'></a>Updating flakes
 
 If the flake has been modified in this repo, you can update it like this:
 
@@ -411,11 +426,10 @@ or for a git branch e.g. 'flakes' branch:
 nix flake update github:timlinux/nix-config/flakes
 ```
 
-## Other things you can do
 
-### Working with QGIS
+##  10. <a name='WorkingwithQGIS'></a>Working with QGIS
 
-#### Choosing a version
+###  10.1. <a name='Choosingaversion'></a>Choosing a version
 
 There are 3 options for installing QGIS:
 
@@ -457,12 +471,18 @@ customise it as wanted. To use it add include the ``modules/qgis-sourcebuild.nix
   ];
   ```
 
-## The Utils Package
-
-I have written a package called 'utils' which is a starting point for managing your system.
+###  10.2. <a name='Dynamicallyaddingpackages'></a>Dynamically adding packages
 
 
-#### Viewing the available python packages
+If you want more python packages to be available in your QGIS, you can either modify the custom version as indicated in the section above, or you can use an overlay when launching QGIS like this:
+
+```
+nix-shell -p \
+  'qgis.override { extraPythonPackages = (ps: [ ps.numpy ps.future ps.geopandas ps.rasterio ]);}' \
+  --command "qgis"
+```
+
+###  10.3. <a name='ViewingtheavailablepythonpackagesinQGIS'></a>Viewing the available python packages in QGIS
 
 You can view the packages in the QGIS Python console like this:
 
@@ -474,18 +494,15 @@ for package in installed_packages:
     print(f"{package.key}=={package.version}")
 ```
 
-#### Dynamically adding packages
 
 
-If you want more python packages to be available in your QGIS, you can either modify the custom version as indicated in the section above, or you can use an overlay when launching QGIS like this:
+##  11. <a name='TheUtilsPackage'></a>The Utils Package
 
-```
-nix-shell -p \
-  'qgis.override { extraPythonPackages = (ps: [ ps.numpy ps.future ps.geopandas ps.rasterio ]);}' \
-  --command "qgis"
-```
+I have written a package called 'utils' which is a starting point for managing your system.
 
-## Using packages from your own systems
+You can invoke it using ``nix run``
+
+##  12. <a name='Usingpackagesfromyourownsystems'></a>Using packages from your own systems
 
 You don't need to directly use this flake to benefit from the packages it defines. Here is an example of how you can use the package:
 
@@ -513,11 +530,12 @@ Then in your ``configuration.nix`` add ``gverify.nix`` to your ``imports`` list.
 
 
 
-## Resources
+##  13. <a name='Resources'></a>Resources
 
 I found some resouces particularly valuable in my learning journey, I will try to assemble them here:
 
 1. 📺️ [Chris McDonough's YouTube Channel](https://www.youtube.com/@ChrisMcDonough) - so many great videos that patiently walk through key activities in setting up different aspects of NixOS.
 2. 📝 [Determinate Systems Blog](https://determinate.systems/posts) - many interesting and useful hints and tips to get the most out of NixOS.
 3. 🎒 [Zero To Nix](https://zero-to-nix.com/) - nice learning resource for those starting out in NixOS.
-4. 📃 [Flakes Diagram](https://coggle.it/diagram/ZVZ3rq_HfWTHL4b3/t/nix-flakes/598940443cb9f2e50a4d9cee02eaa7822355d5248faa9dde969406fe9341103f) - A fantastic schematic describing what a flake is.
+4. ⭐️ [Wimpysworld](https://github.com/wimpysworld/nix-config) - An absolute goldmine of snippets and a beautifully written README.
+5. 📃 [Flakes Diagram](https://coggle.it/diagram/ZVZ3rq_HfWTHL4b3/t/nix-flakes/598940443cb9f2e50a4d9cee02eaa7822355d5248faa9dde969406fe9341103f) - A fantastic schematic describing what a flake is.
