@@ -15,7 +15,8 @@
     duf # Modern Unix `df`
     du-dust # Modern Unix `du`
     entr # Modern Unix `watch`
-    fastfetch # Modern Unix system info
+    # See home/home-config/console-apps/fastfetch/ for custom fastfetch
+    #fastfetch # Modern Unix system info
     fd # Modern Unix `find`
     gping # Modern Unix `ping`
     hr # Terminal horizontal rule

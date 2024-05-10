@@ -1,15 +1,18 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
+        "type": "chafa",
+        "source": "@iconPath@",
+        "chafa": {
+            "canvasMode": "TRUECOLOR",
+            "colorSpace": "RGB",
+            "ditherMode": "DIFFUSION"
+        },
         "padding": {
             "top": 2,
             "left": 1,
             "right": 1
         },
-        "type": "chafa",
-        "source": "${iconPath}",
-        "width": 20,
-        "height": 20
     },
     "display": {
         "separator": "",
@@ -30,7 +33,7 @@
         {
             "type": "title",
             "color": {
-                "user": "35",
+                "user": "37",
                 "host": "36"
             }
         },
@@ -165,11 +168,6 @@
             "key": "╰─",
             "format": "{3}",
             "keyColor": "33"
-        },
-        "break",
-        {
-            "type": "colors",
-            "symbol": "block"
         },
         "break"
     ]

@@ -19,6 +19,7 @@
 
 ```
 
+![](img/fastfetch.png)
 
 <!-- vscode-markdown-toc -->
 * 1. [Background](#Background)

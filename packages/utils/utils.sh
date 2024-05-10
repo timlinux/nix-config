@@ -551,6 +551,7 @@ system_info_menu() {
         ;;
     "🗃️ General system info")
         fastfetch
+        push_value_to_store -key "fastfetch" -value "$(fastfetch)"
         prompt_to_continue
         system_info_menu
         ;;
