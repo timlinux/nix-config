@@ -5,7 +5,11 @@
             "top": 2,
             "left": 1,
             "right": 1
-        }
+        },
+        "type": "chafa",
+        "source": "${iconPath}",
+        "width": 20,
+        "height": 20
     },
     "display": {
         "separator": "",

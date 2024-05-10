@@ -330,11 +330,11 @@ list_partitions() {
         markdown_table+="| $device | | $uuid |\n"
     done <<<"$lsblk_output"
 
+    push_value_to_store -key "partitions" -value "${markdown_table}"
     # Show the Markdown table
     # -e to render newlines
     echo -e "$markdown_table" | glow -
 
-    push_value_to_store -key "partitions" -value "${markdown_table}"
     set -e
 }
 
@@ -467,7 +467,13 @@ system_menu() {
         system_menu
         ;;
     "🕵🏽 Setup VPN")
-        gum style "VPN Setup" "Before you run this, you need to save your vpn configuration in ~/.wireguard/kartoza-vpn.conf"
+        gum style "VPN Setup" "Before you run this, your admin needs to save the key in $(hostname)-vpn. When this is done, press any key to continue."
+        prompt_to_continue
+        # check if dir exists, if not, create it
+        [ -d ~/.wireguard/ ] || mkdir ~/.wireguard/
+        # check if the file exists, if not, create it
+        skate set "${value}"
+        [ -f ~/.wireguard/kartoza-vpn.conf ] || skate get "$(hostname)-vpn" >~/.wireguard/kartoza-vpn.conf
         nmcli connection import type wireguard file ~/.wireguard/kartoza-vpn.conf
         nmcli connection show
         prompt_to_continue
@@ -528,6 +534,7 @@ system_info_menu() {
             "🏃🏽 Generate CPU Benchmark" \
             "🚢 Open ports - nmap" \
             "🚢 Open ports - netstat" \
+            "📃 Live system logs" \
             "😺 Git stats" \
             "👨🏽‍🏫 GitHub user info" \
             "🌐 Your ISP and IP" \
@@ -574,7 +581,11 @@ system_info_menu() {
         prompt_to_continue
         system_info_menu
         ;;
-
+    "📃 Live system logs")
+        journalctl --user -f
+        prompt_to_continue
+        system_info_menu
+        ;;
     "😺 Git stats")
         onefetch
         prompt_to_continue
