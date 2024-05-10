@@ -188,6 +188,14 @@ You will get something like this in the output (most likely changed since I made
 
 ![](img/flake-show.png)
 
+If you wish to just install one of the packages provided in this flake onto your own system you can do this:
+
+```
+nix build --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config#gverify
+nix profile install --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config#gverify
+```
+
+
 ##  5. <a name='Settingupanewsystem'></a>Setting up a new system
 
 ###  5.1. <a name='Preparation'></a>Preparation
