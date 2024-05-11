@@ -13,12 +13,29 @@
   # UEFI Boot
 
   imports = [
-    ../configuration/virtual-machine.nix
+    ../configuration/desktop-gnome-x11.nix
+    ../configuration/desktop-apps.nix
+    ../modules/locale-za-en.nix
     ../modules/locale-pt-en.nix
     ../modules/zfs-encryption.nix
     ../users/guest.nix
     ../users/tim.nix
   ];
+
+  #Extra bit of magic for vm
+  #Check if we can remove this?
+  boot.zfs.devNodes = "/dev/disk/by-path";
+
+  # Needed for vm screen resizing, clipboard etc
+  # -----------------------------------
+
+  services.xserver.videoDrivers = ["qxl"];
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
+  environment.systemPackages = with pkgs; [
+    spice-vdagent
+  ];
+  # -----------------------------------
 
   boot.initrd.availableKernelModules = ["ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk"];
   boot.initrd.kernelModules = [];
@@ -54,15 +71,8 @@
   networking.hostId = "0c83c5df"; # needed for zfs
   swapDevices = [];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp2s0f0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp7s0f3u1u1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
