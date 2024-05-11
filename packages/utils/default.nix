@@ -14,6 +14,8 @@ pkgs.writeShellApplication {
     pkgs.starfetch # Tell you interesing info about a star cluster
     pkgs.octofetch # Tell you about a github user e.g. octofetch timlinux
     pkgs.sysbench # CPU Benchmarking utility
+    pkgs.fastfetch # System info summary
+    pkgs.git
   ];
   text = builtins.readFile ./utils.sh;
 }

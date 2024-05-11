@@ -319,6 +319,8 @@ if [ "$FLAKE" == "YES" ]; then
   and the flake.nix file. Then (or if you already have the flake setup) run:
 
   sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#${NEW_HOSTNAME}
+
+  You can run the above command from the setup menu any time.
 "
   # We are done here....
   exit

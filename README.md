@@ -26,10 +26,11 @@
 * 2. [What this repo provides](#Whatthisrepoprovides)
 * 3. [Quickstart](#Quickstart)
 	* 3.1. [Help documentation](#Helpdocumentation)
-	* 3.2. [System management](#Systemmanagement)
-	* 3.3. [System info](#Systeminfo)
-	* 3.4. [Test VMS](#TestVMS)
-	* 3.5. [About](#About)
+  * 3.2. [System setup](#Systemsetup)
+	* 3.3. [System management](#Systemmanagement)
+	* 3.4. [System info](#Systeminfo)
+	* 3.5. [Test VMS](#TestVMS)
+	* 3.6. [About](#About)
 * 4. [Listing this flake](#Listingthisflake)
 * 5. [Setting up a new system](#Settingupanewsystem)
 	* 5.1. [Preparation](#Preparation)
@@ -132,40 +133,99 @@ Or from a local checkout:
 nix run .#
 ```
 
-![](img/menu1.png)
+* 🏠️ Kartoza NixOS :: Main            
+* Choose one:              
+* 👉️💁🏽 Help             
+  * 💿️ System setup      
+  * 🚀 System management  
+  * ❓️ System info       
+  * 🖥️ Test VMs           
+  * 🛼 Create link        
+  * 🛼 Enter link         
+  * 🛼 Show value for key 
+  * 🎬️ Make history video
+  * 💡 About              
+  * 🛑 Exit  
 
 
 From here you can perform tasks from the listed sub menus:
 
 ###  3.1. <a name='Helpdocumentation'></a>Help documentation
 
-![](img/menu2.png)
+* 👉️🏠️ Main menu                 
+  * 📃 Documentation (in terminal)
+  * 🌍️ Documentation (in browser)
 
 Provides the documentation you are looking at on this page, either as console text or in your web browser.
 
-###  3.2. <a name='Systemmanagement'></a>System management
+###  3.2. <a name='Systemsetup'></a>System setup
+
+* 👉️🏠️ Main menu               
+  * 🛼 Enter link               
+  * 🌐 Set up VPN               
+  * 🔑 Install Tim's SSH keys   
+  * 💿️ Checkout Nix flake      
+  * 🏠️ Show your VPN IP address
+  * 🪪 Generate host id          
+  * ⚠️ Format disk with ZFS ⚠️  
+  * 🖥️ Install system   
+
+Tools for setting up a new system from scratch. Assumes an 
+admin is available to provide you with VPN connection details
+etc. and to set up your skate link.
+
+Work through the items in sequence...
+
+###  3.3. <a name='Systemmanagement'></a>System management
+
+* 👉️🏠️ Main menu             
+  * 🏃🏽 Update system        
+  * 🦠 Virus scan your home   
+  * 💿️ Backup ZFS to USB disk
+  * 🧹 Clear disk space       
+  * 💻️ Update firmware       
+  * ❄️ Update flake lock      
+  * ⚙️ Start syncthing        
+  * 👀 Watch dconf            
+  * 🎬️ Mimetypes diff 
 
 Provides tools for configuring your system, starting services, setting up your VPN etc.
 
-![](img/menu3.png)
+###  3.4. <a name='Systeminfo'></a>System info
+
+* 👉️🏠️ Main menu                            
+  * 💻️ Generate your system hardware profile
+  * 🗃️ General system info                   
+  * 💿️ List disk partitions                 
+  * 🏃🏽 Generate CPU Benchmark              
+  * 🚢 Open ports - nmap                     
+  * 🚢 Open ports - netstat                  
+  * 📃 Live system logs                      
+  * 😺 Git stats                             
+  * 👨🏽‍🏫 GitHub user info                  
+  * 🌐 Your ISP and IP                       
+  * 🐿️ CPU info                              
+  * 🐏 RAM info                              
+  * ⭐️ Show me a star constellation 
+
+Provides diagnostic and informative information about your system.
 
 
-###  3.3. <a name='Systeminfo'></a>System info
+###  3.5. <a name='TestVMS'></a>Test VMS
 
-Provides informative diagnostic info for your system.
+* 👉️🏠️ Main menu                              
+  * 🏗️ Build Kartoza NixOS ISO                 
+  * ❄️ Run Kartoza NixOS ISO                   
+  * 🖥️ Minimal Gnome VM                        
+  * 🖥️ Full Gnome VM                           
+  * 🖥️ Minimal KDE-5 VM                        
+  * 🖥️ Minimal KDE-6 VM                        
+  * 🖥️ Complete Gnome VM (for screen recording)
 
-![](img/menu4.png)
-
-###  3.4. <a name='TestVMS'></a>Test VMS
-
-Provides test VMs that you can use to try out variants of this flake.
-
-![](img/menu5.png)
+Builds and provides test VMs that you can use to try out variants of this flake.
 
 
-###  3.5. <a name='About'></a>About
-
-![](img/menu6.png)
+###  3.6. <a name='About'></a>About
 
 
 📽️ Please see the [Video Walkthrough](https://youtu.be/kR54Gbr-ZP0) I made of the Utils menu for more details on the above.
@@ -184,9 +244,36 @@ Or if you want to refer to a git branch, add it to the end of the URL e.g. for a
 nix flake show github:timlinux/nix-config/flakes
 ```
 
-You will get something like this in the output (most likely changed since I made this screenshot):
+You will get something like this in the output (most likely changed since I write this):
 
-![](img/flake-show.png)
+```
+github:timlinux/nix-config/857473686683ca6b2b2ce713fa7807da470054c6
+├───devShells
+│   └───x86_64-linux
+│       └───default: development environment 'nix-shell'
+├───nixosConfigurations
+│   ├───atoll: NixOS configuration
+│   ├───crater: NixOS configuration
+│   ├───crest: NixOS configuration
+│   ├───jeff: NixOS configuration
+│   ├───live: NixOS configuration
+│   ├───rock: NixOS configuration
+│   ├───test-gnome-full: NixOS configuration
+│   ├───test-gnome-minimal: NixOS configuration
+│   ├───test-kde5: NixOS configuration
+│   ├───test-kde6: NixOS configuration
+│   ├───valley: NixOS configuration
+│   └───waterfall: NixOS configuration
+└───packages
+    └───x86_64-linux
+        ├───default: package 'utils'
+        ├───gverify: package 'gverify-1.0'
+        ├───qgis: package 'qgis-3.36.2'
+        ├───qgis-python-shell: package 'nix-shell'
+        ├───runme: package 'runme'
+        ├───setup-zfs-machine: package 'setup-host-with-zfs'
+        └───tilemaker: package 'tilemaker-master'
+```
 
 If you wish to just install one of the packages provided in this flake onto your own system you can do this:
 

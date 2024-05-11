@@ -358,6 +358,7 @@ main_menu() {
     choice=$(
         gum choose \
             "💁🏽 Help" \
+            "💿️ System setup" \
             "🚀 System management" \
             "❓️ System info" \
             "🖥️ Test VMs" \
@@ -371,6 +372,7 @@ main_menu() {
 
     case $choice in
     "💁🏽 Help") help_menu ;;
+    "💿️ System setup") setup_menu ;;
     "🚀 System management") system_menu ;;
     "❓️ System info") system_info_menu ;;
     "🖥️ Test VMs") test_vms_menu ;;
@@ -417,6 +419,102 @@ main_menu() {
     esac
 }
 
+setup_menu() {
+    gum style "🚀 Kartoza NixOS :: System Menu"
+    choice=$(
+        gum choose \
+            "🏠️ Main menu" \
+            "🛼 Enter link" \
+            "🌐 Set up VPN" \
+            "🔑 Install Tim's SSH keys" \
+            "💿️ Checkout Nix flake" \
+            "🏠️ Show your VPN IP address" \
+            "🪪 Generate host id" \
+            "⚠️ Format disk with ZFS ⚠️" \
+            "🖥️ Install system"
+    )
+
+    case $choice in
+    "🛼 Enter link")
+        # This connects the end user device to our
+        # distributed key/value store
+        # that lets me push content to their machine easily
+        # (like their vpn credentials)
+        # See also 'create link' from the main menu
+        enter_skate_link
+        prompt_to_continue
+        main_menu
+        ;;
+    "🌐 Set up VPN")
+        gum style "VPN Setup" "Before you run this, your admin needs to save the key in $(hostname)-vpn. When this is done, press any key to continue."
+        prompt_to_continue
+        # check if dir exists, if not, create it
+        [ -d ~/.wireguard/ ] || mkdir ~/.wireguard/
+        # check if the file exists, if not, create it
+        skate set "${value}"
+        [ -f ~/.wireguard/kartoza-vpn.conf ] || skate get "$(hostname)-vpn" >~/.wireguard/kartoza-vpn.conf
+        nmcli connection import type wireguard file ~/.wireguard/kartoza-vpn.conf
+        nmcli connection show
+        prompt_to_continue
+        system_menu
+        ;;
+    "🔑 Install Tim's SSH keys")
+        mkdir ~/.ssh
+        curl https://github.com/timlinux.keys >~/.ssh/authorized_keys
+        prompt_to_continue
+        system_menu
+        ;;
+    "💿️ Checkout Nix flake")
+        # This should usually not be needed furing initial setup
+        # since we run the flake remotely. But after the system
+        # or if we want to tweak things during setup, having this
+        # flake checked out can be handy...
+        cd ~
+        [ -d ~/dev/ ] || mkdir ~/dev
+        [ -d ~/dev/nix-config/ ] || git clone github.com/timlinux/nix-config.git ~/dev/nix-config
+        cd ~/dev/nix-config/
+        git pull
+        cd ~
+        prompt_to_continue
+        system_menu
+        ;;
+    "🏠️ Show your VPN IP address")
+        ip addr
+        prompt_to_continue
+        system_menu
+        ;;
+    "🪪 Generate host id")
+        echo "Your unique host ID is:"
+        head -c 8 /etc/machine-id
+        skate set "$(hostname)-machine-id" "$(head -c 8 /etc/machine-id)"
+        prompt_to_continue
+        system_menu
+        ;;
+    "⚠️ Format disk with ZFS ⚠️")
+        confirm_format
+        prompt_to_continue
+        system_menu
+        ;;
+    "🖥️ Install system")
+        gum style --foreground red "You are about to fully replace the operating system on this host!"
+        NEW_HOSTNAME=$(gum input --prompt "Confirm the hostname for this new machine?: " --placeholder "$(hostname)")
+        hostname "${NEW_HOSTNAME}"
+        echo "Are you sure you want to install with the flake profile for $NEW_HOSTNAME?"
+        FLAKE=$(gum choose "YES" "NO")
+        if [ "$FLAKE" == "YES" ]; then
+            sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#"${NEW_HOSTNAME}"
+        fi
+        prompt_to_continue
+        system_menu
+        ;;
+    "🏠️ Main menu")
+        clear
+        main_menu
+        ;;
+    *) echo "🛑 Invalid choice. Please select again." ;;
+    esac
+}
+
 system_menu() {
     gum style "🚀 Kartoza NixOS :: System Menu"
     choice=$(
@@ -427,13 +525,10 @@ system_menu() {
             "💿️ Backup ZFS to USB disk" \
             "🧹 Clear disk space" \
             "💻️ Update firmware" \
-            "🕵🏽 Setup VPN" \
             "❄️ Update flake lock" \
             "⚙️ Start syncthing" \
-            "🪪 Generate host id" \
             "👀 Watch dconf" \
-            "🎬️ Mimetypes diff" \
-            "⚠️ Format disk with ZFS ⚠️"
+            "🎬️ Mimetypes diff"
     )
 
     case $choice in
@@ -466,19 +561,6 @@ system_menu() {
         prompt_to_continue
         system_menu
         ;;
-    "🕵🏽 Setup VPN")
-        gum style "VPN Setup" "Before you run this, your admin needs to save the key in $(hostname)-vpn. When this is done, press any key to continue."
-        prompt_to_continue
-        # check if dir exists, if not, create it
-        [ -d ~/.wireguard/ ] || mkdir ~/.wireguard/
-        # check if the file exists, if not, create it
-        skate set "${value}"
-        [ -f ~/.wireguard/kartoza-vpn.conf ] || skate get "$(hostname)-vpn" >~/.wireguard/kartoza-vpn.conf
-        nmcli connection import type wireguard file ~/.wireguard/kartoza-vpn.conf
-        nmcli connection show
-        prompt_to_continue
-        system_menu
-        ;;
     "❄️ Update flake lock")
         gum style "Flake update" "Running flake update to update the lock file."
         nix flake update
@@ -487,12 +569,6 @@ system_menu() {
         ;;
     "⚙️ Start syncthing")
         start_syncthing
-        prompt_to_continue
-        system_menu
-        ;;
-    "🪪 Generate host id")
-        echo "Your unique host ID is:"
-        head -c 8 /etc/machine-id
         prompt_to_continue
         system_menu
         ;;
@@ -508,11 +584,6 @@ system_menu() {
     "🎬️ Mimetypes diff")
         echo "Use the file manager to open different file types, then see the diff here to add them to home/xdg/default.nix to make these the default for all users."
         echo "TODO: ls -lah ~/.config/mimeapps.list"
-        ;;
-    "⚠️ Format disk with ZFS ⚠️")
-        confirm_format
-        prompt_to_continue
-        system_menu
         ;;
     "🏠️ Main menu")
         clear
@@ -675,6 +746,10 @@ test_vms_menu() {
         main_menu
         ;;
     "🖥️ Complete Gnome VM (for screen recording)")
+        clear
+        main_menu
+        ;;
+    "🏠️ Main menu")
         clear
         main_menu
         ;;
