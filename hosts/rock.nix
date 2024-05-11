@@ -15,7 +15,8 @@
   imports = [
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
-    ../modules/locale-za-en.nix
+    # Only enable one locale at a time
+    #../modules/locale-za-en.nix
     ../modules/locale-pt-en.nix
     ../modules/zfs-encryption.nix
     ../users/guest.nix
