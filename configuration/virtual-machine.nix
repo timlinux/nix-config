@@ -15,6 +15,9 @@
   #Check if we can remove this?
   boot.zfs.devNodes = "/dev/disk/by-path";
 
+  # These should be moved to hosts
+  # -----------------------------------
+
   services.xserver.videoDrivers = ["qxl"];
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
@@ -24,6 +27,7 @@
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # -----------------------------------
 
   environment.systemPackages = with pkgs; [
     # needed for vm screen resizing, clipboard etc

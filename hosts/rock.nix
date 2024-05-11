@@ -5,6 +5,13 @@
   modulesPath,
   ...
 }: {
+  # A virtual machine used for testing and development.
+  # Create the machine in virtman with
+  # 8GB ram
+  # 8 cores
+  # 200GB disk
+  # UEFI Boot
+
   imports = [
     ../configuration/virtual-machine.nix
     ../modules/locale-pt-en.nix
