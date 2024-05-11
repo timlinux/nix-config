@@ -431,7 +431,8 @@ setup_menu() {
             "🏠️ Show your VPN IP address" \
             "🪪 Generate host id" \
             "⚠️ Format disk with ZFS ⚠️" \
-            "🖥️ Install system"
+            "🖥️ Install system" \
+            "⏰ Set nix ttl to 0"
     )
 
     case $choice in
@@ -504,6 +505,15 @@ setup_menu() {
         if [ "$FLAKE" == "YES" ]; then
             sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#"${NEW_HOSTNAME}"
         fi
+        prompt_to_continue
+        setup_menu
+        ;;
+
+    "⏰ Set nix ttl to 0")
+        # Untested, needs checking
+        sudo mkdir -p .config/nix
+        echo "tarball-ttl = 0" | sudo tee .config/nix/nix.conf
+        sudo nix-env --set-ttl 0
         prompt_to_continue
         setup_menu
         ;;
