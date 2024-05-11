@@ -471,7 +471,7 @@ setup_menu() {
         # flake checked out can be handy...
         cd ~
         [ -d ~/dev/ ] || mkdir ~/dev
-        [ -d ~/dev/nix-config/ ] || git clone git@github.com:timlinux/nix-config.git ~/dev/nix-config
+        [ -d ~/dev/nix-config/ ] || git clone https://github.com/timlinux/nix-config.git ~/dev/nix-config
         cd ~/dev/nix-config/
         git pull
         cd ~
