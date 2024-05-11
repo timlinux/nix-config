@@ -443,7 +443,7 @@ setup_menu() {
         # See also 'create link' from the main menu
         enter_skate_link
         prompt_to_continue
-        main_menu
+        setup_menu
         ;;
     "🌐 Set up VPN")
         gum style "VPN Setup" "Before you run this, your admin needs to save the key in $(hostname)-vpn. When this is done, press any key to continue."
@@ -456,13 +456,13 @@ setup_menu() {
         nmcli connection import type wireguard file ~/.wireguard/kartoza-vpn.conf
         nmcli connection show
         prompt_to_continue
-        system_menu
+        setup_menu
         ;;
     "🔑 Install Tim's SSH keys")
         mkdir ~/.ssh
         curl https://github.com/timlinux.keys >~/.ssh/authorized_keys
         prompt_to_continue
-        system_menu
+        setup_menu
         ;;
     "💿️ Checkout Nix flake")
         # This should usually not be needed furing initial setup
@@ -471,41 +471,41 @@ setup_menu() {
         # flake checked out can be handy...
         cd ~
         [ -d ~/dev/ ] || mkdir ~/dev
-        [ -d ~/dev/nix-config/ ] || git clone github.com/timlinux/nix-config.git ~/dev/nix-config
+        [ -d ~/dev/nix-config/ ] || git clone git@github.com:timlinux/nix-config.git ~/dev/nix-config
         cd ~/dev/nix-config/
         git pull
         cd ~
         prompt_to_continue
-        system_menu
+        setup_menu
         ;;
     "🏠️ Show your VPN IP address")
         ip addr
         prompt_to_continue
-        system_menu
+        setup_menu
         ;;
     "🪪 Generate host id")
         echo "Your unique host ID is:"
         head -c 8 /etc/machine-id
         skate set "$(hostname)-machine-id" "$(head -c 8 /etc/machine-id)"
         prompt_to_continue
-        system_menu
+        setup_menu
         ;;
     "⚠️ Format disk with ZFS ⚠️")
         confirm_format
         prompt_to_continue
-        system_menu
+        setup_menu
         ;;
     "🖥️ Install system")
         gum style --foreground red "You are about to fully replace the operating system on this host!"
         NEW_HOSTNAME=$(gum input --prompt "Confirm the hostname for this new machine?: " --placeholder "$(hostname)")
-        hostname "${NEW_HOSTNAME}"
+        sudo hostname "${NEW_HOSTNAME}"
         echo "Are you sure you want to install with the flake profile for $NEW_HOSTNAME?"
         FLAKE=$(gum choose "YES" "NO")
         if [ "$FLAKE" == "YES" ]; then
             sudo nixos-install --option eval-cache false --flake /mnt/etc/nixos#"${NEW_HOSTNAME}"
         fi
         prompt_to_continue
-        system_menu
+        setup_menu
         ;;
     "🏠️ Main menu")
         clear
