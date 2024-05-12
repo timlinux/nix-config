@@ -98,7 +98,14 @@ Innovation and Recruitment: Positioning your organization as one that uses cutti
 
 ## NixOS Falacies
 
-The one is to address fallacies about NixOS. So, for example, NixOS is often considered Linux in hard mode, but for practical purposes, once the user has a deployed system, laptop, or desktop, and in front of them, they've got a GNOME desktop environment and all their software provisioned, it's no different or more difficult to use than any other distribution. And if they have to be involved in package management related activities, I think NixOS package management tools are different, but equally easy to get to grips with. And plus, you've got three levels of abstraction for package management. So you can install things in your user space. You can install things in Nix shell environments. You can install things at the system level. So there's a lot of flexibility available there that you wouldn't get on other systems.
+We should also address fallacies about NixOS. 
+
+1. **NixOS is 'Hard':** NixOS is often considered Linux in hard mode, but for practical purposes, once the user has a deployed system, laptop, or desktop, and in front of them, they've got a GNOME desktop environment and all their software provisioned, it's no different or more difficult to use than any other distribution.
+2. **NixOS Package Management is confusing:** Yes there can be some confusion when you start out since a) there are a number of ways to install software on NixOS and b) it doesn't use deb or rpm packages so generic linux installation instructions for software often will not work. NixOS package management tools are different, but equally easy to get to grips with. And plus, you've got three levels of abstraction for package management. 
+    1. You can install things in your user space. 
+    2. You can install things in Nix shell environments. 
+    3. You can install things at the system level. 
+So there's a lot of flexibility available there that you wouldn't get on other systems. In addition, there are great options for 
 
 
 Here are a few additional arguments you could use to further debunk common fallacies and enhance your case:

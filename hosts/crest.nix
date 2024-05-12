@@ -32,6 +32,7 @@
     ../modules/tilemaker-sourcebuild.nix
     # R&D Package for Wolfgang
     ../modules/gverify-sourcebuild.nix
+    ../modules/distrobox.nix
     ../users/tim.nix
   ];
 
@@ -67,6 +68,11 @@
   # head -c 8 /etc/machine-id
   networking.hostId = "d13e0d41"; # needed for zfs
   swapDevices = [];
+
+  networking.extraHosts = ''
+    192.168.0.2 valley
+    192.168.0.1 router
+  '';
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
