@@ -1,45 +1,87 @@
 /* @theme WHITEPAPER-SLIDES.css */
+
 /* Define base and accent colors */
 :root {
     --color-primary: rgb(109, 148, 169);
     /* Dark grayish blue */
     --color-secondary: rgb(234, 175, 71);
     /* Light gold */
-    --color-background: rgb(1, 1, 1);
-    /* Very light gray */
-    --color-foreground: #ffffff;
-    /* White for text */
+    --color-background: #ffffff;
+    /* White background */
+    --color-foreground: #000000;
+    /* Black text for better contrast on white background */
 }
 
 /* Global settings */
 section {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-size: 42px;
+    padding: 40px;
+    position: relative;
+    /* Ensure proper stacking context */
+}
+
+/* Image styling to prevent overlap */
+section>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: calc(100% - 80px);
+    /* Adjust based on header and footer height */
+    z-index: 1;
+    /* Lower than text and overlays */
 }
 
 /* Custom header */
 header {
-    background-color: var(--color-primary);
+
     color: var(--color-foreground);
     padding: 10px;
     border-radius: 5px;
+    text-align: right;
+    /* Right align header text */
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    font-size: 22px;
+    z-index: 1000;
+    /* Ensure header is above all other elements */
 }
 
 /* Custom footer */
 footer {
-    background-color: var(--color-secondary);
+
     color: var(--color-foreground);
     padding: 10px;
     border-radius: 5px;
+    text-align: right;
+    /* Right align footer text */
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 22px;
+    z-index: 1000;
+    /* Ensure footer is above all other elements */
 }
 
 /* Slide specific styles */
 h1,
 h2 {
     color: var(--color-primary);
+    font-size: 66px;
+    /* Adjusted size for headings */
+    margin-top: 50px;
+    /* Adding padding above the heading */
 }
 
 h3,
 h4 {
     color: var(--color-secondary);
+    font-size: 84px;
+    /* Tripling the original size for subheadings */
 }

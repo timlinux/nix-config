@@ -1,49 +1,65 @@
+
 # Standardising on NixOS - A Kartoza White Paper
 
 Tim Sutton, May 2024
 
+
+
+
+
 ## Abstract:
 
-This document outlines the strategic benefits and operational enhancements proposed through the adoption of NixOS within our organization. It addresses key arguments supporting the transition, tackles common concerns through an FAQ section, and projects future initiatives to further standardize and secure our IT environment. The primary aim is to enhance efficiency, reduce variability, and ensure a secure, standardized IT infrastructure that supports remote work and scales effectively with organizational growth.
+This document outlines the strategic benefits and operational enhancements proposed through the adoption of NixOS within our company. It addresses key arguments supporting the transition, tackles common concerns through an FAQ section, and projects future initiatives to further standardize and secure our IT environment. 
+
+The primary aim is to provide a pleasant desktop experience, enhance efficiency, reduce variability, and ensure a secure, standardized IT infrastructure that supports remote work and scales effectively with organizational growth.
 
 
 
 ## Background
 
-Allowing users to choose their operating system can increase comfort and productivity, especially if they're accustomed to a specific environment. This flexibility can be great for user satisfaction but might introduce variability that complicates support and security management. Using VMs for mission-critical applications is a solid strategy to maintain control over those environments without imposing too much on users' personal preferences.
+Allowing users to choose their own operating system and customise their environment can increase their sense of self-agency and independence, especially if they're accustomed to a specific environment. This flexibility can be great for user satisfaction but might introduce variability that complicates support and security management. Additionally, it places a high onus on users to be their own sys admin - something that is often not feasible for users with less technical knowledge and a distraction from production work for those who are more technical.
 
-On the other hand, standardizing on a single operating system like NixOS across all user hardware can greatly simplify management, enhance security, and ensure consistency in the work environment. This approach can also leverage NixOS’s reproducibility and configuration management capabilities to streamline deployments and updates. However, it might require more training and support for users not familiar with NixOS.
+An alternative strategy has been proposed to use a standard Kartoza VM for mission-critical applications. However this approach has a number of shortcomings, key of which are:
 
-Each strategy has different implications for administration overhead, security, user flexibility, and resource allocation.
+* High system overhead (and battery consumption)
+* High congative friction: users need to work through two operating system layers to carry out their tasks.
+* Security: It does not address security in that the users are still running an unmanaged operating system to conduct Kartoza business.
+* Reduced support overhead: VM's introduce another support layer that needs to be dealt with (e.g virtual disk space management, memory allocation etc.)
+* Resources: The VM approach wastes resources, not giving the full power of the system to our staff.
+
+So while the VM suggestion is interesting, I don't feel it moves the needle sufficiently in our favour.
+
+On the other hand, standardizing on a single operating system like NixOS across all user hardware can greatly simplify management, enhance security, and ensure consistency in the work environment. This approach can also leverage NixOS’s reproducibility and configuration management capabilities to streamline deployments and updates. 
 
 Given these priorities, standardizing on NixOS for all user hardware will align better with our goals. It offers a high degree of control over the operating system environment, which can significantly reduce variability and risk. Also, NixOS’s configuration management capabilities ensure that all systems are compliant with our corporate policies right from the start.
 
 Standardization will also simplify the support process, especially for our team who are all remote workers. This will lead to fewer surprises in the system setups and fewer unique issues related to different operating systems.
 
-While it may require some initial training and adjustment for our team, the long-term benefits in terms of security and simplified support could outweigh these upfront costs.
+While it may require some initial training and adjustment for our team, the long-term benefits in terms of security and simplified support should outweigh these upfront costs.
 
 ## Standardisation Versus Individuality
 
-a system that balances the need for standardization with the potential for individual contributions and flexibility. By using a shared Git repository for your NixOS configurations, you're essentially allowing for a collaborative approach to system management. Users who are technically adept can directly contribute to the system's evolution, while those who are less technical still have a pathway to suggest changes that can be implemented by the more experienced team members. This can help mitigate feelings of restriction and loss of individuality, as it gives everyone a voice in the development of their work environment.
+Our NixOS approach offers a system that balances the need for standardization with the potential for individual contributions and flexibility. By using a shared Git repository for your NixOS configurations, we are allowing for a collaborative approach to system management. 
 
-This approach also keeps your configurations transparent and version-controlled, which is great for accountability and rollbacks in case something goes wrong. It might be helpful to establish clear guidelines on how changes are proposed, reviewed, and deployed, ensuring that updates are managed efficiently without compromising the system's stability or security.
+Users who are technically adept can directly contribute to the system's evolution, while those who are less technical still have a pathway to suggest changes that can be implemented by the more experienced team members. This can help mitigate feelings of restriction and loss of individuality, as it gives everyone a voice in the development of their work environment.
+
+This approach also keeps our configurations transparent and version-controlled, which is great for identifying when issues may have been introduced, and for providing rollbacks in case something goes wrong. 
+
+Changes can be proposed, reviewed, and deployed, using the standard Kartoza project board / PR / issue creation etc. workflows, ensuring that updates are managed in an organised way without compromising the system's stability or security.
 
 
 ## Branded Experience
 
+I want to creating a branded experience for our staff. Since we are all remote workers, our computer is essentially our office. When staff work in a desktop environment which has Kartoza branding, they are going to remember that they're 'work mode' rather than leisure time mode. 
 
-
-The next argument is about creating a branded experience. When people work in a desktop environment which has got corporate branding, they are going to remember that they're in a work mode rather than, for example, on a leisure time mode. And also, when they are sharing their screen with clients or taking screenshots for documentation, there'll be a consistency and branding that gets permeated into the materials that you produce just because of the way that all of our desktops have been standardized and include our branding elements into the desktop.
-
-
- Standardizing the desktop environment with corporate branding not only reinforces the professional context but also ensures consistency and a polished appearance in external communications, like client presentations or shared documentation. This can enhance your organization's professional image and ensure that employees are always presenting a unified front.
+Standardizing the desktop environment with Kartoza branding not only reinforces the professional context but also ensures consistency and a polished appearance in external communications - like client presentations or shared documentation. This can enhance your our professional image and ensure that employees are always presenting a unified front.
 
 Integrating branding elements into the desktop environment can also subtly reinforce company values and culture, which is particularly important in a remote work setting where physical office cues are absent. It can help maintain a sense of connection and identity among team members.
 
 
 ## Repeatable Development Environments
 
-So moving on from that is the idea of catering for repeatable development environments. So if people build their own desktops and use Nix, for example, in a VM machine, you create this highly inefficient setup where you basically build into your machine, you create a VM, you go into the VM, and then you go into your development environment. So you've got three abstraction layers. There's overhead of hardware, software, and mental cognitive friction. Whereas in my approach, if everything is done with the NixOS being on the base system, all of the projects that you set up, you'll standardize them to have Nix.shell or shell.nix during environments. For each project they go into, as they see in other projects, they will context switch automatically, and all the development tools and environment will automatically be provisioned to work on that project. It also means that it's easier for staff to come and go from projects, or new staff who are arriving in an organization, who quickly get up to speed to how to work on the different projects, because they don't have to spend a lot of time trying to replicate the development environment first.
+Aa key value proposition of this approach is the creation of repeatable development environments. If people build their own desktops and use Nix, for example, in a VM machine, you create this highly inefficient setup where you basically build into your machine, you create a VM, you go into the VM, and then you go into your development environment. So you've got three abstraction layers. There's overhead of hardware, software, and mental cognitive friction. Whereas in my approach, if everything is done with the NixOS being on the base system, all of the projects that you set up, you'll standardize them to have Nix.shell or shell.nix during environments. For each project they go into, as they see in other projects, they will context switch automatically, and all the development tools and environment will automatically be provisioned to work on that project. It also means that it's easier for staff to come and go from projects, or new staff who are arriving in an organization, who quickly get up to speed to how to work on the different projects, because they don't have to spend a lot of time trying to replicate the development environment first.
 
 Focusing on efficiency and ease of onboarding by using NixOS to manage development environments directly on the user's primary system. Eliminating the need for multiple abstraction layers not only streamlines the development process but also reduces the potential for errors and inconsistencies that can arise from having to manage and synchronize multiple environments. This can significantly decrease setup times and the cognitive load on developers, allowing them to focus more on coding and less on configuring their tools.
 

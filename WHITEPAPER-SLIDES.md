@@ -14,6 +14,7 @@ A plan to normalise our work environment.
 
 ![bg contain left](img/slide1.webp)
 
+
 ---
 
 # Standardized Environments
@@ -26,7 +27,11 @@ Standardization: Simplifying Support & Enhancing Security
 
 # Security and Compliance
 
-Built-in Security: Compliance with Corporate Policies
+Built-in Security: Compliance with Kartoza Standards
+* KeePassXC
+* Firewall
+* VPN
+* Disk encryption etc.
 
 
 
@@ -46,6 +51,9 @@ Reducing Variability: Consistent Systems Across the Board
 # Ease of Support
 
 Streamlined Support for Remote Workforce
+* Deploy fixes via GIT
+* Direct machine access when needed
+* Single support target
 
 ![bg contain left](img/slide5.webp)
 
@@ -54,7 +62,12 @@ Streamlined Support for Remote Workforce
 
 # Branding and Professionalism
 
-Corporate Branding: Maintaining Professionalism in Remote Settings
+Our branding will show on:
+* Screen shares
+* Training sessions
+* Screen captures
+
+Staff will sense they are 'at work'
 
 
 
@@ -62,10 +75,13 @@ Corporate Branding: Maintaining Professionalism in Remote Settings
 
 ---
 
-# Development Environment Efficiency
+# Efficiency
 
-Efficient Development: Direct on NixOS, No VM Needed
+Efficient development env.
 
+* Direct on NixOS, No VM needed for most cases
+* 'Out the box' developer tools (docker, vm, shells, direnv)
+* nix.shell & shell.nix is awesome!
 
 
 ![bg contain left](img/slide7.webp)
@@ -74,16 +90,20 @@ Efficient Development: Direct on NixOS, No VM Needed
 
 # Community and Flexibility
 
-Empowered by Community: Flexibility Through Collaboration
+We can establish and internal community around 'our' operating system.
+
+Staff can participate in shaping the environment we all use.
 
 
 ![bg contain left](img/slide8.webp)
 
 ---
 
-# Tackling Misconceptions
+# Misconceptions
 
-Demystifying NixOS: Accessible, Flexible, Powerful
+NixOS is no harder to use than any other distro.
+
+Most users will not even know they are using NixOS vs Ubuntu or another distro.
 
 
 ![bg contain left](img/slide9.webp)
@@ -92,7 +112,9 @@ Demystifying NixOS: Accessible, Flexible, Powerful
 
 # Remote Management
 
-Seamless Remote Management: Updates & Maintenance Made Easy
+Systems with ZFS can push encrypted backups to a remote NAS.
+
+We can support users remotely via VPN and SSH.
 
 ![bg contain left](img/slide10.webp)
 
@@ -109,7 +131,13 @@ Optimized for Media: Create and Innovate Effortlessly
 
 # Supporting Work Modalities
 
-Versatile Workstations: Tailored Environments for Every Role
+* Admin staff
+* Developers
+* GIS staff 
+* Devops
+* Interns
+* Training
+* Media creation
 
 
 
@@ -117,9 +145,12 @@ Versatile Workstations: Tailored Environments for Every Role
 
 ---
 
-# Conclusion and Call to Action
+# Conclusion
 
-Join Us in the Future of System Management with NixOS
+Another step in the growth and maturity of Kartoza following initives like:
+* ERP and efficient admin
+* Devops and carefully managed infrastructure
+* Training strategy overhaul
 
 
 ![bg contain left](img/slide13.webp)
