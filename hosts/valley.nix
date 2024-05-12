@@ -4,7 +4,9 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+# Intel NUC i3 with 250GB SSD and 16GB RAM
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/adguard.nix
@@ -21,6 +23,13 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+
+  # Disable the GNOME3/GDM auto-suspend feature that cannot be disabled in GUI!
+  # If no user is logged in, the machine will power down after 20 minutes.
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
 
   fileSystems."/" = {
     device = "NIXROOT/root";
