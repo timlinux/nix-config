@@ -21,7 +21,7 @@ jobs:
       - name: Generate Slide Deck with Marp using Nix
         run: |
           mkdir -p build  # Ensure the output directory exists
-          nix-shell -p marp-cli --run "marp WHITEPAPER-SLIDES.md -o build/WHITEPAPER-SLIDES.pdf"
+          nix-shell -p marp-cli --run "marp --allow-local-files WHITEPAPER-SLIDES.md -o build/WHITEPAPER-SLIDES.pdf"
         env:
           MARP_USER: root:root
 
