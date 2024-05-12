@@ -1,0 +1,44 @@
+/* Define base and accent colors */
+:root {
+    --color-primary: rgb(109, 148, 169);
+    /* Dark grayish blue */
+    --color-secondary: rgb(234, 175, 71);
+    /* Light gold */
+    --color-background: rgb(1, 1, 1);
+    /* Very light gray */
+    --color-foreground: #ffffff;
+    /* White for text */
+}
+
+/* Global settings */
+section {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+}
+
+/* Custom header */
+header {
+    background-color: var(--color-primary);
+    color: var(--color-foreground);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Custom footer */
+footer {
+    background-color: var(--color-secondary);
+    color: var(--color-foreground);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Slide specific styles */
+h1,
+h2 {
+    color: var(--color-primary);
+}
+
+h3,
+h4 {
+    color: var(--color-secondary);
+}

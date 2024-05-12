@@ -19,6 +19,7 @@ in
       skate # Distributed key/value store
       mods # AI in your shell
       gource # Software version control visualization
+      marp-cli # Markdown presentation tool
       pinnedPkgs.glow # terminal markdown viewer
       pinnedPkgs.onefetch
       pinnedPkgs.neofetch
