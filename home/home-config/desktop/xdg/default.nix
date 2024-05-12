@@ -1,7 +1,7 @@
 {config, ...}: let
   browser = "re.sonny.Junction.desktop";
   # spreadsheet = "libreoffice-calc.desktop";
-  pdf = "evince.desktop";
+  evince = "org.gnome.Evince.desktop";
   qgis = "org.qgis.qgis.desktop";
 in {
   config = {
@@ -23,8 +23,17 @@ in {
 
       mimeApps = {
         enable = true;
+        associations.added = {
+          "application/pdf" = evince;
+          "image/png" = evince;
+          "image/jpg" = evince;
+          "image/gif" = evince;
+        };
         defaultApplications = {
-          "application/pdf" = pdf;
+          "application/pdf" = evince;
+          "image/png" = evince;
+          "image/jpg" = evince;
+          "image/gif" = evince;
           "text/html" = browser;
           "x-scheme-handler/about" = browser;
           "x-scheme-handler/http" = browser;

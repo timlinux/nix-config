@@ -56,7 +56,7 @@ in {
           "org/gnome/desktop/interface".show-battery-percentage = true;
           "org/gnome/desktop/media-handling".automount = false;
           "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
-          "org/gnome/desktop/privacy".remember-recent-files = false;
+          "org/gnome/desktop/privacy".remember-recent-files = true;
           "org/gnome/desktop/screensaver".lock-enabled = false;
           "org/gnome/desktop/session".idle-delay = mkUint32 0;
           "org/gnome/desktop/wm/preferences".resize-with-right-button = true;

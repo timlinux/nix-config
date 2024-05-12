@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: custom
+theme: WHITEPAPER-SLIDES.css
 class: _lead
 header: 'NixOS at Kartoza'
 footer: 'Kartoza (Pty) Ltd. 2024'

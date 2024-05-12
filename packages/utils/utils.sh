@@ -372,7 +372,6 @@ main_menu() {
 
     case $choice in
     "💁🏽 Help") help_menu ;;
-    "💿️ System setup") setup_menu ;;
     "🚀 System management") system_menu ;;
     "❓️ System info") system_info_menu ;;
     "🖥️ Test VMs") test_vms_menu ;;
@@ -413,6 +412,7 @@ main_menu() {
         prompt_to_continue
         main_menu
         ;;
+    "💿️ System setup") setup_menu ;;
     "💡 About") about ;;
     "🛑 Exit") exit 1 ;;
     *) echo "Invalid choice. Please select again." ;;
