@@ -545,7 +545,11 @@ system_menu() {
     "Help") help_menu ;;
     "🏃🏽 Update system")
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nix build --impure
+        # Don't exit on errors
+        set +e
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --impure --flake .
+        # Re-enable exit on errors
+        set -e
         prompt_to_continue
         system_menu
         ;;

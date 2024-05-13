@@ -15,13 +15,10 @@
 
   imports = [
     ../software/console-apps
-    ../software/bootsplash.nix
-    ../software/fish.nix
-    ../software/garbage-collection.nix
-    ../software/grub-theme.nix
-    ../software/harden.nix
-    ../software/ssh.nix
-    ../software/starship.nix
-    ../software/vim.nix
+    ../software/system/bootsplash.nix
+    ../software/system/garbage-collection.nix
+    ../software/system/grub-theme.nix
+    ../software/system/harden.nix
+    ../software/system/ssh.nix
   ];
 }

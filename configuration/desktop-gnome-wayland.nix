@@ -5,6 +5,6 @@
 }: {
   imports = [
     ./desktop-gnome-base.nix
-    ../modules/gnome-desktop-wayland.nix
+    ../software/desktop-environments/gnome-desktop-wayland.nix
   ];
 }
