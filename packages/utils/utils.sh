@@ -358,7 +358,6 @@ main_menu() {
     choice=$(
         gum choose \
             "💁🏽 Help" \
-            "💿️ System setup" \
             "🚀 System management" \
             "❓️ System info" \
             "🖥️ Test VMs" \
@@ -366,6 +365,7 @@ main_menu() {
             "🛼 Enter link" \
             "🛼 Show value for key" \
             "🎬️ Make history video" \
+            "💿️ System setup" \
             "💡 About" \
             "🛑 Exit"
     )
