@@ -32,6 +32,7 @@
     ../modules/tilemaker-sourcebuild.nix
     # R&D Package for Wolfgang
     ../modules/gverify-sourcebuild.nix
+    ../modules/podman.nix
     ../modules/distrobox.nix
     ../users/tim.nix
   ];

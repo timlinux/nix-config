@@ -11,7 +11,6 @@
     ../configuration/desktop-apps.nix
     ../modules/locale-ke-en.nix
     ../modules/openvpn.nix
-    ../modules/jeff-grub.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
 
     # I do it this way so that we use hand compiled QGIS with
@@ -26,9 +25,12 @@
     ../modules/vscode.nix
     ../modules/uxplay.nix
     ../modules/qgis-sourcebuild.nix
-
     ../users/jeff.nix
   ];
+
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ehci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc"];
   boot.initrd.kernelModules = [];
