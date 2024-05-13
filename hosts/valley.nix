@@ -11,11 +11,10 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/adguard.nix
     ../configuration/desktop-gnome-x11.nix
-    ../modules/retroarch.nix
+    ../software/games/retroarch.nix
     #../modules/plex.nix
-    #../modules/steam.nix
-    ../modules/xbox1-controller.nix
-
+    ../software/games/steam.nix
+    ../software/system/xbox1-controller.nix
     ../users/tim-headless.nix
   ];
 
