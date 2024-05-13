@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  nixpkgs.overlays = [(import ../packages)];
+  nixpkgs.overlays = [(import ../../packages)];
   environment.systemPackages = with pkgs; [
     # taken from packages folder
     gverify

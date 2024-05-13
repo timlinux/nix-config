@@ -5,9 +5,9 @@
 }: {
   imports = [
     ./base.nix
-    ../modules/display-server.nix
-    ../modules/bluetooth.nix
-    ../modules/sound.nix
-    ../modules/plasma-desktop.nix
+    ../software/desktop-environments/display-server.nix
+    ../software/system/bluetooth.nix
+    ../software/system/sound.nix
+    ../software/desktop-environments/plasma-desktop.nix
   ];
 }

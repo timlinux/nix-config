@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.interactiveShellInit = ''
     eval "$(starship init bash)"
     eval "starship init fish| source"
@@ -8,7 +6,7 @@
 
   environment.etc."starship.toml" = {
     mode = "0555";
-    source = ../dotfiles/starship.toml;
+    source = ../../dotfiles/starship.toml;
   };
 
   environment.variables = {

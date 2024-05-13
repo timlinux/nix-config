@@ -24,7 +24,7 @@ in {
   # but it works for now...
   environment.etc."kartoza-start-button.png" = {
     mode = "0555";
-    source = ../resources/kartoza-start-button.png;
+    source = ../../resources/kartoza-start-button.png;
   };
 
   environment.systemPackages = with pkgs.gnomeExtensions; [

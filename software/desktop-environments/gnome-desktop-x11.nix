@@ -21,7 +21,7 @@
   # so only visible on new installs
   environment.etc."kartoza-wallpaper.png" = {
     mode = "0555";
-    source = ../resources/kartoza-wallpaper.png;
+    source = ../../resources/kartoza-wallpaper.png;
   };
   services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
     [org.gnome.desktop.background]
