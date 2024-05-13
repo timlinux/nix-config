@@ -79,6 +79,8 @@ in {
     users.timlinux = {
       imports = [
         ../home
+        # Not provisioned to all users...
+        ../home/home-config/web-apps/chromium/proton-mail.nix
       ];
       programs = {
         git = {
