@@ -14,7 +14,7 @@
     ../modules/retroarch.nix
     #../modules/plex.nix
     #../modules/steam.nix
-    #../modules/xbox1-controller.nix
+    ../modules/xbox1-controller.nix
 
     ../users/tim-headless.nix
   ];
