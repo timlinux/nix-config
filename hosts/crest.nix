@@ -11,9 +11,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
-    ../modules/locale-pt-en.nix
-    ../modules/biometrics.nix
-    ../modules/zfs-encryption.nix
+    ../software/system/locale-pt-en.nix
+    ../software/system/biometrics.nix
+    ../software/system/zfs-encryption.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
 
     # I do it this way so that we use hand compiled QGIS with
@@ -24,16 +24,16 @@
     # your pc.   If you prefer to use the upstream built binary,
     # you can comment out these next 4 lines and uncomment the
     # unstable-apps entry above.
-    ../modules/keepassxc-unstable.nix
-    ../modules/vscode-unstable.nix
-    ../modules/uxplay-unstable.nix
-    ../modules/qgis-sourcebuild.nix
-    ../modules/sound-noise-suppression-unstable.nix
-    ../modules/tilemaker-sourcebuild.nix
+    ../software/desktop-apps-unstable/keepassxc-unstable.nix
+    ../software/desktop-apps-unstable/vscode-unstable.nix
+    ../software/desktop-apps-unstable/uxplay-unstable.nix
+    ../software/gis/qgis-sourcebuild.nix
+    ../software/system/sound-noise-suppression-unstable.nix
+    ../software/gis/tilemaker-sourcebuild.nix
     # R&D Package for Wolfgang
-    ../modules/gverify-sourcebuild.nix
-    ../modules/podman.nix
-    ../modules/distrobox.nix
+    ../software/gis/gverify-sourcebuild.nix
+    ../software/system/podman.nix
+    ../software/system/distrobox.nix
     ../users/tim.nix
   ];
 

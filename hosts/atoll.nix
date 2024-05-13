@@ -12,12 +12,11 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
-    ../modules/zfs-encryption.nix
-    ../modules/locale-za-en.nix
-    ../modules/keepassxc-unstable.nix
-    ../modules/vscode-unstable.nix
-    ../modules/uxplay-unstable.nix
-    ../modules/locale-za-en.nix
+    ../software/system/zfs-encryption.nix
+    ../software/system/keepassxc-unstable.nix
+    ../software/system/vscode-unstable.nix
+    ../software/system/uxplay-unstable.nix
+    ../software/system/locale-za-en.nix
     ../users/tim.nix
     ../users/dorah.nix
   ];
