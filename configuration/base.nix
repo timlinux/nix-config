@@ -14,14 +14,14 @@
   #networking.networkmanager.enable = true;
 
   imports = [
-    ../modules/console-apps.nix
-    ../modules/bootsplash.nix
-    ../modules/fish.nix
-    ../modules/garbage-collection.nix
-    ../modules/grub-theme.nix
-    ../modules/harden.nix
-    ../modules/ssh.nix
-    ../modules/starship.nix
-    ../modules/vim.nix
+    ../software/console-apps
+    ../software/bootsplash.nix
+    ../software/fish.nix
+    ../software/garbage-collection.nix
+    ../software/grub-theme.nix
+    ../software/harden.nix
+    ../software/ssh.nix
+    ../software/starship.nix
+    ../software/vim.nix
   ];
 }

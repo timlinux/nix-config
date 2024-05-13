@@ -15,7 +15,7 @@
   } @ inputs: let
     system = "x86_64-linux";
     # See https://github.com/mcdonc/.nixconfig/blob/86254905e2d13fc42292ac47fd13310d0c778935/videos/oldpkgs/script.rst
-    # And the implementations referenced from modules/unstable-apps.nix
+    # And the implementations referenced from software/unstable-apps.nix
     overlay-unstable = final: prev: {
       unstable = import unstable {
         inherit system;

@@ -18,9 +18,4 @@ history.mp4
 output.ppm
 core
 resources/kartoza-logo.txt
-WHITEPAPER-SLIDES.css
-WHITEPAPER-SLIDES.md
 build/WHITEPAPER-SLIDES.pdf
-home/home-config/desktop/xdg/default.nix
-modules/gnome-desktop-extensions.nix
-packages/utils/utils.sh

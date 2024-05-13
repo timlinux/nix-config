@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./base.nix
-    ../modules/adguard.nix
-    ../modules/zfs-no-encryption.nix
+    ../software/system/adguard.nix
+    ../software/system/zfs-no-encryption.nix
   ];
 }

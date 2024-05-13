@@ -115,7 +115,7 @@ This repo provides:
 
 1. The flake that I use to set up a number of different systems that I manage.
 2. Some custom packages that I use.
-3. Many modules which may prove useful for setting up things like zfs, OBS, Headscale and many other niceties.
+3. Many software packages which may prove useful for setting up things like zfs, OBS, Headscale and many other niceties.
 
 ##  3. <a name='Quickstart'></a>Quickstart
 
@@ -415,7 +415,7 @@ networking.hostName = "crest"; # Define your hostname.
 The scheme of this flake provides three main types of imports:
 
 1. **configurations** - these are meta collections of components to e.g. set up your desktop environment or a suite of applications.
-2. **modules** - these are atomic units of functionality you can add to your system. Many of them will be added though your chosen configuration, but you may choose to add specific modules. For example locale, biometrics etc.
+2. **software** - these are atomic units of functionality you can add to your system. Many of them will be added though your chosen configuration, but you may choose to add specific software. For example locale, biometrics etc.
 3. **users** - This is a list of one or more users that you want to have accounts on your system.
 
 There is no "one size fits all" here, but a good starting point will be to look at other hosts and copy their config. For example, here is my list of imports for my system which has a fingerprint reader (needs to be a linux supported reader), a Portuguese keyboard and zfs with encryption enabled:
@@ -425,10 +425,10 @@ There is no "one size fits all" here, but a good starting point will be to look 
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome.nix
     ../configuration/desktop-apps.nix
-    ../modules/locale-pt-en.nix
-    ../modules/biometrics.nix
-    ../modules/zfs-encryption.nix
-    ../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+    ../software/locale-pt-en.nix
+    ../software/biometrics.nix
+    ../software/zfs-encryption.nix
+    ../software/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
     ../users/tim.nix
   ];
 ```
@@ -439,7 +439,7 @@ See the next section for more details about the user file.
 
 This file should be added into the ``users`` folder if needed. Name the file after the user's name e.g. ``tim.nix``. It is probably easiest to just copy one of the existing users and adapt it.
 
-The users file file configures your user name, home-manager modules and your user groups. For the most part, you can simply copy the existing user file and then replace all instances of the old user name with your user name.
+The users file file configures your user name, home-manager options and your user groups. For the most part, you can simply copy the existing user file and then replace all instances of the old user name with your user name.
 
 
 ###  6.3. <a name='Theflakefile'></a>The flake file
@@ -535,10 +535,10 @@ nix flake update github:timlinux/nix-config/flakes
 
 There are 3 options for installing QGIS:
 
-1. Install the nix cache stable version - no special setup is needed, just include the ``modules/qgis-stable.nix`` module.
-2. Install the nix cache  unstable version - no special setup is needed, just include the ``modules/qgis-unstable.nix`` module. This version is also provided by default in ``modules/unstable-apps.nix`` (see example below). Note that unstable does not speak to the quality of the QGIS release, only to the fact that the package is provided from the Nix unstable repository.
+1. Install the nix cache stable version - no special setup is needed, just include the ``software/qgis-stable.nix`` module.
+2. Install the nix cache  unstable version - no special setup is needed, just include the ``software/unstable-apps/qgis-unstable.nix`` module. This version is also provided by default in ``software/unstable-apps/default.nix`` (see example below). Note that unstable does not speak to the quality of the QGIS release, only to the fact that the package is provided from the Nix unstable repository.
 3. Install my custom QGIS version - I have made a custom QGIS build which bundles in extra pythoon packages and gives me a space to 
-customise it as wanted. To use it add include the ``modules/qgis-sourcebuild.nix`` module (see example below)
+customise it as wanted. To use it add include the ``software/qgis-sourcebuild.nix`` module (see example below)
 
 
 📒 Some notes
@@ -552,10 +552,10 @@ customise it as wanted. To use it add include the ``modules/qgis-sourcebuild.nix
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
-    ../modules/locale-pt-en.nix
-    ../modules/biometrics.nix
-    ../modules/zfs-encryption.nix
-    #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+    ../software/locale-pt-en.nix
+    ../software/biometrics.nix
+    ../software/zfs-encryption.nix
+    #../software/unstable-apps # qgis, keepasxc, vscode, uxplay
 
     # I do it this way so that we use hand compiled QGIS with
     # all the extra goodies I want like pyqtgraph
@@ -565,10 +565,10 @@ customise it as wanted. To use it add include the ``modules/qgis-sourcebuild.nix
     # your pc.   If you prefer to use the upstream built binary,
     # you can comment out these next 4 lines and uncomment the
     # unstable-apps entry above.
-    ../modules/keepassxc-unstable.nix
-    ../modules/vscode-unstable.nix
-    ../modules/uxplay-unstable.nix
-    ../modules/qgis-sourcebuild.nix
+    ../software/keepassxc-unstable.nix
+    ../software/vscode-unstable.nix
+    ../software/uxplay-unstable.nix
+    ../software/qgis-sourcebuild.nix
     ../users/tim.nix
   ];
   ```
