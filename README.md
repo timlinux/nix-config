@@ -21,6 +21,15 @@
 
 ![](img/fastfetch.png)
 
+| I know what I am here for, just give me the flake link!
+
+```
+nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config
+```
+
+Otherwise, please read on...
+
+
 <!-- vscode-markdown-toc -->
 * 1. [Background](#Background)
 * 2. [What this repo provides](#Whatthisrepoprovides)

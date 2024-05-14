@@ -15,6 +15,7 @@
     #../modules/plex.nix
     ../software/games/steam.nix
     ../software/system/xbox1-controller.nix
+    ../software/system/locale-pt-en.nix
     ../users/tim-headless.nix
   ];
 
