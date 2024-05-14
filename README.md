@@ -21,7 +21,7 @@
 
 ![](img/fastfetch.png)
 
-| I know what I am here for, just give me the flake link!
+✂️💩 I know what I am here for, just give me the ❄️flake 🔗link! 💩✂️
 
 ```
 nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config
@@ -35,10 +35,10 @@ Otherwise, please read on...
 * 2. [What this repo provides](#Whatthisrepoprovides)
 * 3. [Quickstart](#Quickstart)
 	* 3.1. [Help documentation](#Helpdocumentation)
-  * 3.2. [System setup](#Systemsetup)
-  * 3.3. [System management](#Systemmanagement)
-  * 3.4. [System info](#Systeminfo)
-  * 3.5. [Test VMS](#TestVMS)
+  * 3.2. [System management](#Systemmanagement)
+  * 3.3. [System info](#Systeminfo)
+  * 3.4. [Test VMS](#TestVMS)
+  * 3.5. [System setup](#Systemsetup)  
   * 3.6. [About](#About)
 * 4. [Listing this flake](#Listingthisflake)
 * 5. [Setting up a new system](#Settingupanewsystem)
@@ -48,7 +48,6 @@ Otherwise, please read on...
 	* 5.4. [Link your machine](#Linkyourmachine)
 	* 5.5. [Format your disk](#Formatyourdisk)
 	* 5.6. [Share your hardware config](#Shareyourhardwareconfig)
-	* 5.7. [Reboot](#Reboot)
 * 6. [Adding a new host to this flake](#Addinganewhosttothisflake)
 	* 6.1. [The host file](#Thehostfile)
 	* 6.2. [The user file](#Theuserfile)
@@ -144,8 +143,7 @@ nix run .#
 
 * 🏠️ Kartoza NixOS :: Main            
 * Choose one:              
-* 👉️💁🏽 Help             
-  * 💿️ System setup      
+* 👉️💁🏽 Help                  
   * 🚀 System management  
   * ❓️ System info       
   * 🖥️ Test VMs           
@@ -153,6 +151,7 @@ nix run .#
   * 🛼 Enter link         
   * 🛼 Show value for key 
   * 🎬️ Make history video
+  * 💿️ System setup   
   * 💡 About              
   * 🛑 Exit  
 
@@ -167,25 +166,10 @@ From here you can perform tasks from the listed sub menus:
 
 Provides the documentation you are looking at on this page, either as console text or in your web browser.
 
-###  3.2. <a name='Systemsetup'></a>System setup
-
-* 👉️🏠️ Main menu               
-  * 🛼 Enter link               
-  * 🌐 Set up VPN               
-  * 🔑 Install Tim's SSH keys   
-  * 💿️ Checkout Nix flake      
-  * 🏠️ Show your VPN IP address
-  * 🪪 Generate host id          
-  * ⚠️ Format disk with ZFS ⚠️  
-  * 🖥️ Install system   
-
-Tools for setting up a new system from scratch. Assumes an 
-admin is available to provide you with VPN connection details
-etc. and to set up your skate link.
 
 Work through the items in sequence...
 
-###  3.3. <a name='Systemmanagement'></a>System management
+###  3.2. <a name='Systemmanagement'></a>System management
 
 * 👉️🏠️ Main menu             
   * 🏃🏽 Update system        
@@ -200,7 +184,7 @@ Work through the items in sequence...
 
 Provides tools for configuring your system, starting services, setting up your VPN etc.
 
-###  3.4. <a name='Systeminfo'></a>System info
+###  3.3. <a name='Systeminfo'></a>System info
 
 * 👉️🏠️ Main menu                            
   * 💻️ Generate your system hardware profile
@@ -220,7 +204,7 @@ Provides tools for configuring your system, starting services, setting up your V
 Provides diagnostic and informative information about your system.
 
 
-###  3.5. <a name='TestVMS'></a>Test VMS
+###  3.4. <a name='TestVMS'></a>Test VMS
 
 * 👉️🏠️ Main menu                              
   * 🏗️ Build Kartoza NixOS ISO                 
@@ -233,6 +217,21 @@ Provides diagnostic and informative information about your system.
 
 Builds and provides test VMs that you can use to try out variants of this flake.
 
+###  3.5. <a name='Systemsetup'></a>System setup
+
+* 👉️🏠️ Main menu               
+  * 🛼 Enter link               
+  * 🌐 Set up VPN               
+  * 🔑 Install Tim's SSH keys   
+  * 💿️ Checkout Nix flake      
+  * 🏠️ Show your VPN IP address
+  * 🪪 Generate host id          
+  * ⚠️ Format disk with ZFS ⚠️  
+  * 🖥️ Install system   
+
+Tools for setting up a new system from scratch. Assumes an 
+admin is available to provide you with VPN connection details
+etc. and to set up your skate link.
 
 ###  3.6. <a name='About'></a>About
 
@@ -294,6 +293,10 @@ nix profile install --extra-experimental-features nix-command --extra-experiment
 
 ##  5. <a name='Settingupanewsystem'></a>Setting up a new system
 
+The workflow for setting up a new system is described in the following diagram:
+
+![](img/nix-config-workflow.drawio.png)
+
 ###  5.1. <a name='Preparation'></a>Preparation
 
 For our setup session, we are going to be wiping and reloading your laptop with the standard Kartoza software stack.
@@ -305,13 +308,13 @@ https://etcher.balena.io/
 
 
 **During the session:**
+
 * We will be ⚠️wiping and reinstalling the kartoza laptop⚠️. 
 * Make sure you do not have any 👨🏽‍🏫 personal data on it. 
 * Until the laptop is has completed its initial setup, you will need ☎️ another device to talk to me on in our call if we are setting it up together. 
 * You will also need a good 🌐 internet connection as the total install downloads around 8GB of packages. 
 * You will also need to be on a reliable 🔌 power source since if you run out of power halfway through the install process, you will likely need to restart from the beginning. 
 * As for all Kartoza collaboration, please ensure you are in a 🔇 quiet place where you can hear and be heard clearly.
-
 
 ###  5.2. <a name='Wifiandbrowser'></a>Wifi and browser
 
@@ -351,24 +354,28 @@ At the prompt, enter the link, exactly as provided (case sensitive).
 2. 👉️ 🚀 System management
 3. 👉️ ⚠️ Format disk with ZFS ⚠️
 
-Now follow the prompts as directed. This will scrub your disks and reformat them with zfs. This is the recommended way to set up your system for the first time.
+Now follow the prompts as directed. This will scrub your disks and reformat them with ZFS. This is the recommended way to set up your system for the first time.
 
-I *highly* recommend that you encrypt your system. Non encrypted disks should only be used in special circumstances where unlocking the disk during boot up is not possible.
+I *highly* recommend that you encrypt your system. Non-encrypted disks should only be used in special circumstances where unlocking the disk during boot up is not possible.
 
->💡 Technical notes on the ZFS setup script: ** The script is based on great examples I found online, though with substantial updates on my part.The script will completely set up new hosts with ZFS, encrytion, flakes and various other niceties. You can find this script in
-[``packages/setup-zfs-machine/``](packages/setup-zfs-machine/) - check the [README.md](packages/setup-zfs-machine/README.md) there first as it explains how to fetch the script when installing to a new maching. Each system added to this repo should be validated in the table further down in this document. Currently validation is manual, unfortunately.
+>💡 **Technical notes on the ZFS setup script:** The script is based on great examples I found online, though with substantial updates on my part. The script will completely set up new hosts with ZFS, encrytion, flakes and various other niceties. You can find this script in
+[``packages/setup-zfs-machine/``](packages/setup-zfs-machine/) - check the [README.md](packages/setup-zfs-machine/README.md) there first as it explains how the script can be used independently of this flake if you desire.
 
-The setup process may take quite some time if you choose the flake install option that the script offers. Just be patient and wait while everything downloads.
+Each system added to this repo should be validated in the table further down in this document. Currently validation is manual, unfortunately.
+
+⏰ The setup process may take quite some time. Just be patient and wait while everything downloads.
 
 ###  5.6. <a name='Shareyourhardwareconfig'></a>Share your hardware config
 
-Once the hard disk partitioning is done, you need to go to the system info menu and generate a hardware configuration:
+If your system is already described in the flake hosts folder, you do not need to do this step, you can skip down to [Existing hosts](#Existinghosts). If it is a first time deployment, you can share the hardware configuration with your technical support so that we can create a host config for you go to the system info menu and generate a hardware configuration:
 
 1. 👉️ 🏠️ Kartoza NixOS :: Main Menu 
 2. 👉️❓️ System info
 3. 👉️💻️ Generate your system hardware profile
 
-###  5.7. <a name='Reboot'></a>Reboot
+You will be prompted to share your configuration on the 🛼Skate key/value store.
+
+
 
 After sharing your hardware configs, we may make some quick updates to your system configs. After that, you can reboot.
 
@@ -376,11 +383,11 @@ After sharing your hardware configs, we may make some quick updates to your syst
 
 ##  6. <a name='Addinganewhosttothisflake'></a>Adding a new host to this flake
 
-There are a few steps when adding a new host for the first time:
+Since this is a new system  being added to our fleet, there are a few steps to perform when adding a new host to this flake:
 
-1. Create the host file
-2. Create the user file 
-3. Add the host to the flake.nix
+1. Create the **host** file e.g. ``hosts/mountain.nix``.
+2. Create the user file  e.g. ``users/tim.nix``
+3. Add the host to the ``flake.nix``
 
 
 ###  6.1. <a name='Thehostfile'></a>The host file
@@ -388,9 +395,17 @@ There are a few steps when adding a new host for the first time:
 Create a new host file in hosts e.g.
 
 ```
-touch hosts/waterfall.nix
+touch hosts/mountain.nix
 ```
-The newly created file should exactly match the hostname. This starting point for this file is the hardware-configuration.nix that a new nix installation would generate (see the previous section for more info). This file will normally be found in ``/etc/nixos/``.
+The newly created file should exactly match the hostname when you deploy the host. The hostname is configured during the ZFS formatting step. The easiest is to copy over an existing config from another host and then mix in the machine specific details found in the ``hardware-configuration.nix`` (see the previous section for more info). The hardware configuration can be retrieved from the menu system when running the flake:
+
+```
+nix run
+```
+
+* ❓️ System info
+* 👉️💻️ Generate your system hardware profile
+* 🛼 Would you like to store your the value for hardware-config in our distributed key/value store'? 
 
 There are a few edits you need to make to this file to provide:
 
@@ -398,16 +413,16 @@ There are a few edits you need to make to this file to provide:
 
 See [this link](https://search.nixos.org/options?channel=unstable&show=networking..hostId&query=networking.hostId). You can generate a unique host id using this:
 
-```
-head -c 8 /etc/machine-id
-```
 
-And then place the entry in your <hostname>.nix file. e.g.
+* 👉️🏠️ Main menu 
+* 👉️💿️ System setup
+* 👉️🪪 Generate host id
+
+It will automatically be saved as the 👉️<hostname>-machine-id  in the 🛼 Skate key value store. Place the entry in your <hostname>.nix file. e.g.
 
 ```
 networking.hostId = "d13e0d41"; # needed for zfs
 ```
-  
 
 **A hostname**
 
@@ -419,12 +434,28 @@ networking.hostName = "crest"; # Define your hostname.
 ```
   
 
-**Additional imports to defined your desktop environment etc.**
+**Additional imports to define your desktop environment etc.**
 
 The scheme of this flake provides three main types of imports:
 
 1. **configurations** - these are meta collections of components to e.g. set up your desktop environment or a suite of applications.
 2. **software** - these are atomic units of functionality you can add to your system. Many of them will be added though your chosen configuration, but you may choose to add specific software. For example locale, biometrics etc.
+
+The software is organised in categories:
+
+```
+tree -d -L1 software
+software
+├── console-apps # e.g. fish shell, vim etc.
+├── desktop-apps # e.g. gnome circle apps, any other gui apps
+├── desktop-apps-unstable # software from the unstable nix channel
+├── desktop-environments # a whole bunch to try: gnome, kde, budgie etc.
+├── developer # python and other developer specific software
+├── games # steam, retroarch and some games from Nix packages
+├── gis # QGIS and the like
+└── system # fonts, services etc.
+```
+
 3. **users** - This is a list of one or more users that you want to have accounts on your system.
 
 There is no "one size fits all" here, but a good starting point will be to look at other hosts and copy their config. For example, here is my list of imports for my system which has a fingerprint reader (needs to be a linux supported reader), a Portuguese keyboard and zfs with encryption enabled:
@@ -434,10 +465,10 @@ There is no "one size fits all" here, but a good starting point will be to look 
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome.nix
     ../configuration/desktop-apps.nix
-    ../software/locale-pt-en.nix
-    ../software/biometrics.nix
-    ../software/zfs-encryption.nix
-    ../software/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+    ../software/system/locale-pt-en.nix
+    ../software/system/biometrics.nix
+    ../software/system/zfs-encryption.nix
+    ../software/unstable-apps # qgis, keepasxc, vscode, uxplay
     ../users/tim.nix
   ];
 ```
@@ -448,7 +479,7 @@ See the next section for more details about the user file.
 
 This file should be added into the ``users`` folder if needed. Name the file after the user's name e.g. ``tim.nix``. It is probably easiest to just copy one of the existing users and adapt it.
 
-The users file file configures your user name, home-manager options and your user groups. For the most part, you can simply copy the existing user file and then replace all instances of the old user name with your user name.
+The users file file configures your user name, home-manager options and your user groups. For the most part, you can simply copy an existing user file and then replace all instances of the old user name with your user name.
 
 
 ###  6.3. <a name='Theflakefile'></a>The flake file
@@ -468,11 +499,29 @@ Then replace the comment and shared modules to reference the new host you have c
 
 ###  6.4. <a name='Submittingyourchange'></a>Submitting your change
 
-Finally, your edits to the flake need to be upstreamed to our git repo. Follow normal git workflows for doing that. I recommend adding your host to the existing hosts list in the next section so the expected behaviour for that host is clear.
+Finally, your edits to the flake and other file changes need to be upstreamed to our git repo. Follow normal git workflows for doing that. I recommend adding your host to the existing hosts list in the next section so the expected behaviour for that host is clear.
 
 ###  6.5. <a name='Applyingtheflaketoyoursystem'></a>Applying the flake to your system
 
-Simply call the script provided in the root of this flake directory to then apply the changes to your system:
+For new installations, make sure all of the steps above were done before the setup process begins on the user's pc and then run these tasks:
+
+* 🏠️ Kartoza NixOS :: Main Menu 
+* 👉️💿️ System setup
+*   💿️ Checkout Nix flake      
+* Ctrl-C
+
+```
+cd ~/dev/nix-config
+nix run
+```
+
+* 🏠️ Kartoza NixOS :: Main Menu 
+* 👉️💿️ System setup
+* 🖥️ Install system           
+
+
+
+If it is an existing installation, simply call the script provided in the root of this flake directory to then apply the changes to your system:
 
 ```
 nix run
@@ -501,7 +550,7 @@ If you experience any issues, remember that you can always select a previous gen
 | atoll| Dell Inspiron 14 7430 2in1 | 16GB   | 🟢| 🟢|  🟢 | dorah |-| ✔️ | Dorah's laptop |
 | crater |  Dell P157G Inspiron | 16GB   | 🟢| 🟢|  🔴 | eli |-| ✔️ | Eli's laptop |
 | ??? |   | 16GB   | 🟢| 🟢|  🔴 | amy |-| ✔️ | Amy's laptop |
-| ??? |   | 16GB   | 🟢| 🟢|  🔴 | amy |-| ✔️ | Jeffs's laptop - running kde plasma |
+| ??? |   | 16GB   | 🟢| 🟢|  🔴 | jeff |-| ✔️ | Jeffs's laptop - running kde plasma |
 
 
 ##  8. <a name='SettingupaVMfortesting'></a>Setting up a VM for testing
