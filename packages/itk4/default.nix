@@ -1,8 +1,4 @@
 {
-  version,
-  rev,
-  sourceSha256,
-}: {
   lib,
   stdenv,
   fetchFromGitHub,
@@ -20,7 +16,7 @@
   xz,
   vtk,
   zlib,
-  Cocoa,
+  #Cocoa,
 }: let
   itkGenericLabelInterpolatorSrc = fetchFromGitHub {
     owner = "InsightSoftwareConsortium";
@@ -51,7 +47,7 @@ in
       owner = "InsightSoftwareConsortium";
       repo = "ITK";
       rev = "v4.13.3";
-      sha256 = "";
+      sha256 = "sha256-lcoJ+H+nVlvleBqbmupu+yg+4iZQ4mTs9pt1mQac+xg=";
     };
 
     postPatch = ''
@@ -88,13 +84,12 @@ in
     ];
 
     nativeBuildInputs = [cmake xz];
-    buildInputs =
-      [
-        libX11
-        libuuid
-        vtk
-      ]
-      ++ lib.optionals stdenv.isDarwin [Cocoa];
+    buildInputs = [
+      libX11
+      libuuid
+      vtk
+    ];
+    #++ lib.optionals stdenv.isDarwin [Cocoa];
     # Due to ITKVtkGlue=ON and the additional dependencies needed to configure VTK 9
     # (specifically libGL and libX11 on Linux),
     # it's now seemingly necessary for packages that configure ITK to

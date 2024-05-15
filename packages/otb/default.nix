@@ -49,7 +49,7 @@ stdenv.mkDerivation rec {
     fftw
     gdal
     geos
-    itk
+    itk4
     #(pkgs.itk.overrideAttrs (oldAttrs: rec {
     #  # nix-shell -p nix-prefetch-git --command "nix-prefetch-git --url https://github.com/InsightSoftwareConsortium/ITK/ --rev v4.13.3" | grep "hash is"
     #  src = fetchFromGitHub {
