@@ -34,6 +34,10 @@
     ../software/gis/gverify-sourcebuild.nix
     ../software/system/podman.nix
     ../software/system/distrobox.nix
+    #../software/system/tty-font.nix
+    ../software/system/tailscale.nix
+    ../software/system/virt.nix
+    ../software/system/sanoid.nix
     ../users/tim.nix
   ];
 

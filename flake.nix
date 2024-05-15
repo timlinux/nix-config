@@ -136,6 +136,32 @@
     # nix profile uninstall .#gverify
     #
     packages.x86_64-linux.gverify = pkgs.callPackage ./packages/gverify {};
+    #
+    # Package ITK4 (ITK 5 is too recent for otb 9)
+    #
+    # Run with
+    # nix run .#itk4
+    # or
+    # nix run github:timlinux/nix-config#itk4
+    # or install by doing
+    # nix profile install .#itk4
+    # and uninstall:
+    # nix profile uninstall .#itk4
+    #
+    packages.x86_64-linux.itk4 = pkgs.callPackage ./packages/itk4 {};
+    #
+    # Package otb latest version
+    #
+    # Run with
+    # nix run .#otb
+    # or
+    # nix run github:timlinux/nix-config#otb
+    # or install by doing
+    # nix profile install .#otb
+    # and uninstall:
+    # nix profile uninstall .#otb
+    #
+    packages.x86_64-linux.otb = pkgs.callPackage ./packages/otb {};
     ######################################################
     ##
     ## Configurations for each host we manage

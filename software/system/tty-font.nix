@@ -16,7 +16,7 @@ in {
   # Enable and configure kmscon service
   services.kmscon = {
     enable = true;
-    enableTTYs = ["tty1" "tty2" "tty3" "tty4" "tty5" "tty6"];
+    #enableTTYs = ["tty1" "tty2" "tty3" "tty4" "tty5" "tty6"];
     font = ttfFontPath;
     fontSize = 24; # Set the desired font size
   };
