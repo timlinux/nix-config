@@ -238,7 +238,21 @@
           ++ shared-modules
           ++ [./hosts/valley.nix];
       };
-
+      # Vicky laptop
+      lagoon = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        system = system;
+        modules =
+          [
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+          ]
+          ++ shared-modules
+          ++ [./hosts/lagoon.nix];
+      };
       # Virtman manual testbed
       rock = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;

@@ -15,7 +15,7 @@
     ../users/eli.nix
     ../users/tim.nix
   ];
-  # Dell P157G Inspiron
+  # Dell P157G Inspiron - Eli
 
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];

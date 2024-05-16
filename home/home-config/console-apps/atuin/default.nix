@@ -15,6 +15,7 @@
       package = pkgs.atuin;
       settings = {
         auto_sync = false;
+        networkAccess = false;
         #immediately execute if enter pressed - use tab to edit first
         enter_accept = true;
         show_preview = true;

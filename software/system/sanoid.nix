@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.etc = {
     "sanoid/sanoid.conf".source = ./sanoid.conf;
   };
@@ -9,14 +7,14 @@
     interval = "*:0/15";
     commands = {
       "NIXROOT/home" = {
-      target = "b/home";
-      sendOptions = "w";
-      extraArgs = [ "--debug" ];
-    };
-    #localSourceAllow =
-    #   options.services.syncoid.localSourceAllow.default ++ [ "mount" ];
-    #localTargetAllow =
-    #   options.services.syncoid.localTargetAllow.default ++ [ "destroy" ];
+        target = "b/home";
+        sendOptions = "w";
+        extraArgs = ["--debug"];
+      };
+      #localSourceAllow =
+      #   options.services.syncoid.localSourceAllow.default ++ [ "mount" ];
+      #localTargetAllow =
+      #   options.services.syncoid.localTargetAllow.default ++ [ "destroy" ];
     };
   };
   environment.systemPackages = with pkgs; [
