@@ -19,3 +19,6 @@ output.ppm
 core
 resources/kartoza-logo.txt
 build/WHITEPAPER-SLIDES.pdf
+CMakeCache.txt
+CMakeFiles
+ITK
