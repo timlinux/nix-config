@@ -28,7 +28,7 @@
     ../software/desktop-apps-unstable/vscode-unstable.nix
     ../software/desktop-apps-unstable/uxplay-unstable.nix
     ../software/gis/qgis-sourcebuild.nix
-    ../software/system/sound-noise-suppression-unstable.nix
+    #../software/system/sound-noise-suppression-unstable.nix
     ../software/gis/tilemaker-sourcebuild.nix
     # R&D Package for Wolfgang
     ../software/gis/gverify-sourcebuild.nix
