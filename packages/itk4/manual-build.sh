@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
 # For manualy building ITK 4.13.1
-nix develop
+nix develop .#itk4
 git clone git@github.com:InsightSoftwareConsortium/ITK.git
 git checkout v4.13.3
 cd ITK
+rpl '#  error "Dunno about this gcc"' "#   define VCL_GCC_90" Modules/ThirdParty/VNL/src/vxl/vcl/vcl_compiler.h
 mkdir build
 cd build
 #You make need to adjust the path of libminc below
