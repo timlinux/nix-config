@@ -447,15 +447,16 @@ setup_menu() {
         setup_menu
         ;;
     "🌐 Set up VPN")
-        gum style "VPN Setup" "Before you run this, your admin needs to save the key in $(hostname)-vpn. When this is done, press any key to continue."
-        prompt_to_continue
         NEW_HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
+        gum style "VPN Setup" "Before you run this, your admin needs to save the key in ${NEW_HOSTNAME}-wireguard. When this is done, press any key to continue."
+        prompt_to_continue
         sudo hostname "${NEW_HOSTNAME}"
         # check if dir exists, if not, create it
         [ -d ~/.wireguard/ ] || mkdir ~/.wireguard/
         # check if the file exists, if not, create it
-        [ -f ~/.wireguard/kartoza-vpn.conf ] || skate get "$(hostname)-wireguard" >~/.wireguard/kartoza-vpn.conf
+        [ -f ~/.wireguard/kartoza-vpn.conf ] || skate get "${NEW_HOSTNAME}-wireguard" >~/.wireguard/kartoza-vpn.conf
         nmcli connection import type wireguard file ~/.wireguard/kartoza-vpn.conf
+
         nmcli connection show
         prompt_to_continue
         setup_menu
