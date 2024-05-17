@@ -1,5 +1,6 @@
 {
   pkgs,
+  self,
   stdenv,
   fetchFromGitHub,
   cmake,
@@ -10,7 +11,6 @@
   fftw,
   gdal,
   geos,
-  itk,
   hdf4,
   hdf5,
   libgeotiff,
@@ -49,23 +49,7 @@ stdenv.mkDerivation rec {
     fftw
     gdal
     geos
-    itk4
-    #(pkgs.itk.overrideAttrs (oldAttrs: rec {
-    #  # nix-shell -p nix-prefetch-git --command "nix-prefetch-git --url https://github.com/InsightSoftwareConsortium/ITK/ --rev v4.13.3" | grep "hash is"
-    #  src = fetchFromGitHub {
-    #    owner = "InsightSoftwareConsortium";
-    #    repo = "ITK";
-    #    rev = "v4.13.3";
-    #    sha256 = "sha256-lcoJ+H+nVlvleBqbmupu+yg+4iZQ4mTs9pt1mQac+xg=";
-    #  };
-    #  cmakeFlags =
-    #    oldAttrs.cmakeFlags
-    #    or []
-    #    ++ [
-    #      "-DModule_ITKNeuralNetworks:BOOL=ON"
-    #      "-DITK_USE_REVIEW=ON"
-    #    ];
-    #}))
+    self.packages."x86_64-linux".itk4 # defined in packages for this flake
     hdf4
     hdf5
     libgeotiff

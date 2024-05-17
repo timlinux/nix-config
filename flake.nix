@@ -161,7 +161,7 @@
     # and uninstall:
     # nix profile uninstall .#otb
     #
-    packages.x86_64-linux.otb = pkgs.callPackage ./packages/otb {};
+    packages.x86_64-linux.otb = pkgs.callPackage ./packages/otb {self = self;};
     ######################################################
     ##
     ## Configurations for each host we manage
