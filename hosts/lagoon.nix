@@ -19,7 +19,7 @@
     #../software/system/distrobox.nix
     #../software/system/virt.nix
     #../software/system/sanoid.nix
-    #../users/vicky.nix
+    ../users/vicky.nix
     #../users/tim.nix
   ];
 
