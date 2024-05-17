@@ -454,8 +454,7 @@ setup_menu() {
         # check if dir exists, if not, create it
         [ -d ~/.wireguard/ ] || mkdir ~/.wireguard/
         # check if the file exists, if not, create it
-        skate set "${value}"
-        [ -f ~/.wireguard/kartoza-vpn.conf ] || skate get "$(hostname)-vpn" >~/.wireguard/kartoza-vpn.conf
+        [ -f ~/.wireguard/kartoza-vpn.conf ] || skate get "$(hostname)-wireguard" >~/.wireguard/kartoza-vpn.conf
         nmcli connection import type wireguard file ~/.wireguard/kartoza-vpn.conf
         nmcli connection show
         prompt_to_continue
