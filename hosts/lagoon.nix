@@ -33,6 +33,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."/nix" = {
+    device = "NIXROOT/nix";
+    fsType = "zfs";
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/EB5C-D827";
     fsType = "vfat";
