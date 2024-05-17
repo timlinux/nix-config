@@ -14,7 +14,7 @@
     ../software/system/locale-pt-en.nix
     ../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
-    ../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+    ../software/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
     ../software/system/podman.nix
     ../software/system/distrobox.nix
     ../software/system/virt.nix
