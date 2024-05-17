@@ -73,7 +73,7 @@ in {
       programs = {
         git = {
           userName = "Victoria Neema";
-          userEmail = "vicky@kartoza.com";
+          userEmail = "victoria@kartoza.com";
           extraConfig = {
             github.user = "vikineema";
             gitlab.user = "vicky@kartoza.com";
