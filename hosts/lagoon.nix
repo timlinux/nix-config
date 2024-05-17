@@ -6,7 +6,7 @@
   ...
 }: {
   # Vicky Laptop HP envy x360 2-in-1 laptop 14-es0033dx
-
+  nixpkgs.config.cudaSupport = false;
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
