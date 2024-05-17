@@ -14,7 +14,7 @@ fjord | ||
 geyser | ||
 glacier | ||
 hill | ||
-lagoon |Vicky| | Mobile workstation
+lagoon |Vicky| HP envy x360 2-in-1 laptop 14-es0033dx  | Mobile workstation
 mesa | ||
 mountain | ||
 peninsula | ||

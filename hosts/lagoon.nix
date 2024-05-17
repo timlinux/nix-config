@@ -5,7 +5,7 @@
   modulesPath,
   ...
 }: {
-  # Vicky Laptop
+  # Vicky Laptop HP envy x360 2-in-1 laptop 14-es0033dx
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")

@@ -449,6 +449,8 @@ setup_menu() {
     "🌐 Set up VPN")
         gum style "VPN Setup" "Before you run this, your admin needs to save the key in $(hostname)-vpn. When this is done, press any key to continue."
         prompt_to_continue
+        NEW_HOSTNAME=$(gum input --prompt "What is hostname for this new machine?: " --placeholder "ROCK")
+        sudo hostname "${NEW_HOSTNAME}"
         # check if dir exists, if not, create it
         [ -d ~/.wireguard/ ] || mkdir ~/.wireguard/
         # check if the file exists, if not, create it
