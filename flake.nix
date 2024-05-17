@@ -162,6 +162,7 @@
     # nix profile uninstall .#otb
     #
     packages.x86_64-linux.otb = pkgs.callPackage ./packages/otb {self = self;};
+    packages.x86_64-linux.distrobox = pkgs.callPackage ./packages/distrobox {};
     ######################################################
     ##
     ## Configurations for each host we manage

@@ -38,6 +38,7 @@
     ../software/system/tailscale.nix
     ../software/system/virt.nix
     ../software/system/sanoid.nix
+    #../software/system/lima.nix
     ../users/tim.nix
   ];
 
