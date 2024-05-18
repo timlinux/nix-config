@@ -1,7 +1,7 @@
 
 # Kartoza OS - A Kartoza White Paper
 
-
+!
 
 Tim Sutton, May 2024
 
@@ -60,6 +60,7 @@ Our company has a diverse set of requirements:
 * **Devops and Sysadmin:** We administer many servers via automation tools like Kubernetes or 'the old fashioned way' using SSH and linux command line tools.
 * **Training:** We provide training services, both in person and remotely. We develop training resources on our Moodle platform or as standalone worksheets and media resources.
 * **Productivity:** We use spreadsheets and word documents to colloborate with our clients and each other, prepare proposals and develop ideas.
+* **R&D:** We need to be able to create ad hoc environments for prototyping ideas and 'figuring stuff out'. When we do this, the changes we make should not 'pollute' our systems which also have production environments on them.
 
 
 Our team is diverse and distributed:
@@ -82,7 +83,27 @@ The value proposition of this document is this to provide a solution that:
 This document only targets desktop workloads. Future iterations will target standardising hardware in our company, container workloads, and potentially the servers running containers.
 
 
-## Standardisation Versus Individuality
+## The solution
+
+The solution provided will consist of:
+
+* **Level 0**: The underlying file system. We will use ZFS with encryption. ZFS provides 4 key features which interest us:
+    * copy on write: this provides grately enhanced data integrity in case of e.g. sudden power outage.
+    * encryption: the root and home environments can be securely encrypted.
+    * snapshots: with sanoid, the system will be setup to provide regular snapshots that provide another level of data integrity and point-in-time recovery
+    * remote replication: we will be providing access to a NAS where our staff can back up their home partition using encrypted, efficient remote backups
+* **Level 1**: The underlying operating system, NixOS, tracking the current stable release. NixOS releases are at 6 monthly intervals which provides a nice cadence of being 'fresh' without needing continual change management.
+* **Level 2**: The Kartoza NixOS flake (as provided in this repository) that provides a default installation of applications, hardens the system, provides application and desktop environment defaults and generally defines the broad set of standard functionaly that all users will have available to them.
+* **Level 3**: shell.nix and direnv environments for each customer and internal project that provide seamless transition into each project's development environment.
+* **Level 4**: distrobox / lima or similar interactive environments based on popular linux distributions for the few edge cases where a specific distro is needed to carry out your work.
+* **Level 5**: virtualman / qemu etc for when a 'full blown' virtual machine is needed to carry out your work. These will be uncommon exceptions rather than common practice.
+* **Level 6**: physical hardware e.g. a mac laptop for those few cases where work simply cannot be carried out in the environment we provide.
+
+
+
+## Concerns and considerations
+
+### Standardisation Versus Individuality
 
 Our NixOS approach offers a system that balances the need for standardization with the potential for individual contributions and flexibility. By using a shared Git repository for your NixOS configurations, we are allowing for a collaborative approach to system management. 
 
@@ -93,7 +114,7 @@ This approach also keeps our configurations transparent and version-controlled, 
 Changes can be proposed, reviewed, and deployed, using the standard Kartoza project board / PR / issue creation etc. workflows, ensuring that updates are managed in an organised way without compromising the system's stability or security.
 
 
-## Branded Experience
+### Branded Experience
 
 We want to create a branded experience for our staff. Since we are all remote workers, our computer is essentially our office.
 
@@ -104,7 +125,7 @@ Standardizing the desktop environment with Kartoza branding not only reinforces 
 Integrating branding elements into the desktop environment can also subtly reinforce company values and culture, which is particularly important in a remote work setting where physical office cues are absent. It can help maintain a sense of connection and identity among team members.
 
 
-## Repeatable Development Environments
+### Repeatable Development Environments
 
 📒 **Note:** We refer to development environments in the broadest sense  here - these could be used by non-developers to e.g. write documentation or develop a GIS processing workflow.
 
@@ -117,7 +138,7 @@ By standardizing the development environments using shell.nix, you ensure that a
 This setup could also facilitate better collaboration and troubleshooting among team members, as everyone would be working within the same system parameters. It sounds like a robust plan that could greatly enhance productivity and collaboration within your team.
 
 
-## Trope Benefits of NixOS
+### Trope Benefits of NixOS
 
 So the next point I'd like to raise is that I haven't even mentioned any of the sort of standard trope benefits of MixOS, which are about having a repeatable platform, a declarative platform, and having an environment where we always have a known working base system, and also that everything that we do to change, we can track and iterate and roll back and deal with poor choices as equally well as we do with good choices.
 
@@ -131,7 +152,7 @@ These capabilities not only boost the operational efficiency but also enhance th
 This approach aligns well with best practices in modern IT management, emphasizing automation, consistency, and minimal manual intervention.
 
 
-## Additional Arguments
+### Additional Arguments
 
 
 Security Enhancements: Emphasize NixOS's unique model for handling packages and dependencies, which can lead to fewer security vulnerabilities. The isolated nature of its packages prevents the cascading security issues common in other distributions.
@@ -145,7 +166,7 @@ Eco-system Compatibility: While focusing on the benefits, it’s also good to ad
 Innovation and Recruitment: Positioning your organization as one that uses cutting-edge technology like NixOS can be attractive to potential new hires, particularly those who are looking for innovative and technically challenging environments.
 
 
-## NixOS Falacies
+### NixOS Falacies
 
 We should also address fallacies about NixOS. 
 
@@ -166,31 +187,6 @@ Customization and Control: Stress the unparalleled level of control and customiz
 Integration Capabilities: Point out how well NixOS plays with other tools and technologies, especially in containerization and virtualization, which are pivotal in modern development environments. NixOS's ability to seamlessly integrate with Docker, for instance, can be a strong point in its favor.
 
 Community and Innovation: Mention the vibrant and innovative NixOS community, which is continually developing new solutions and improvements. This community not only ensures that NixOS stays at the cutting edge but also provides a resource for users seeking advice or collaboration.
-
-
-## Remote Management
-
-Bullet number one is remote management and maintenance and upgrading of machines. 
-
-## Media creation
-
-## Work modalities that we can support
-
-* media workstation, 
-* GIS workstation, 
-* developer workstation, 
-* administration workstation, 
-* content creation for training 
-* training workstation
-* administration user workstation
-* DevOps workstation.
-
-All of those are the different modalities you can support on the one platform.
-
-## Mac Users
-
-Mac Transition Strategy: Clearly outline the phased approach for transitioning Mac users to NixOS. This could include providing training and resources tailored for Mac users to get accustomed to NixOS gradually. Emphasize the long-term benefits of this switch, such as enhanced security, reduced variability, and the robust, unified environment that NixOS offers.
-
 
 
 ## After this
@@ -218,6 +214,10 @@ FAQ Section
 * Option Two: Utilize Wine, which allows you to run many Windows applications directly on Linux systems without needing a full Windows OS.
 * Option Three: Employ Bottles, a containerized version of Wine that simplifies the management of Windows applications, enhancing both security and ease of use.
 (Additional Common Questions)
+
+### What if I need to run a macOS application?
+
+For the limited cases where a mac is imperitive (e.g. to prepare and publish apps to the Apple App Store), we will be supportive of users having a second machine for this purpose.
 
 ### How does NixOS handle updates and system changes?
 
