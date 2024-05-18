@@ -627,6 +627,7 @@ system_info_menu() {
             "🏃🏽 Generate CPU Benchmark" \
             "🚢 Open ports - nmap" \
             "🚢 Open ports - netstat" \
+            "👨🏽‍🍳 Running Services" \
             "📃 Live system logs" \
             "😺 Git stats" \
             "👨🏽‍🏫 GitHub user info" \
@@ -666,6 +667,13 @@ system_info_menu() {
         ;;
     "🚢 Open ports - netstat")
         list_open_ports
+        prompt_to_continue
+        system_info_menu
+        ;;
+    "👨🏽‍🍳 Running Services")
+        SERVICES=$(systemctl list-units --type=service --all)
+        echo -e "${SERVICES}"
+        push_value_to_store -key "systemd" -value "${SERVICES}"
         prompt_to_continue
         system_info_menu
         ;;
