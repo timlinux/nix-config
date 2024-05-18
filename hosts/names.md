@@ -14,11 +14,11 @@ fjord | ||
 geyser | ||
 glacier | ||
 hill | ||
-lagoon |Vicky| HP envy x360 2-in-1 laptop 14-es0033dx  | Mobile workstation
+lagoon |Vicky| HP envy x360 2-in-1 laptop 14-es0033dx  | Mobile Workstation
 mesa | ||
 mountain | ||
 peninsula | ||
-plain | ||
+plain | Marina || Mobile Workstation
 plateau | ||
 sinkhole | ||
 valley | Tim | Intel Nuc | Adguard |
