@@ -16,5 +16,6 @@
     #./ms-teams.nix
     ./nix-search.nix
     ./svg-repo.nix
+    ./whatsapp.nix
   ];
 }
