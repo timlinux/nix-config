@@ -8,7 +8,7 @@
   iconName = "svg-repo.svg";
   iconPath = "${config.home.homeDirectory}/.local/share/icons/${iconName}";
 in {
-  home.file."whatsapp_image" = {
+  home.file."svgrepo_image" = {
     source = ./${iconName};
     target = iconPath;
   };
