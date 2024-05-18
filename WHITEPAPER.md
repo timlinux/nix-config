@@ -99,7 +99,60 @@ The solution provided will consist of:
 * **Level 5**: virtualman / qemu etc for when a 'full blown' virtual machine is needed to carry out your work. These will be uncommon exceptions rather than common practice.
 * **Level 6**: physical hardware e.g. a mac laptop for those few cases where work simply cannot be carried out in the environment we provide.
 
+```mermaid
+graph TB
+    subgraph A1["Level 6: Physical Hardware"]
+        G1["Mac Laptop"]
+        G2["Special Cases"]
+    end
 
+    subgraph A2["Level 5: Virtual Machines"]
+        F1["virtualman"]
+        F2["qemu"]
+        F3["Full Blown VMs"]
+    end
+
+    subgraph A3["Level 4: Interactive Environments"]
+        E1["distrobox"]
+        E2["lima"]
+        E3["Specific Distro Requirements"]
+    end
+
+    subgraph A4["Level 3: Project Environments"]
+        D1["shell.nix"]
+        D2["direnv"]
+        D3["Seamless Transition"]
+    end
+
+    subgraph A5["Level 2: Kartoza NixOS Flake"]
+        C1["Default Application Installation"]
+        C2["System Hardening"]
+        C3["Desktop Environment Defaults"]
+        C4["Standard Functionality"]
+    end
+
+    subgraph A6["Level 1: Operating System (NixOS)"]
+        B1["Current Stable Release"]
+        B2["6-monthly Releases"]
+    end
+
+    subgraph A7["Level 0: File System (ZFS with Encryption)"]
+        X1["Copy on Write"]
+        X2["Encryption"]
+        X3["Snapshots"]
+        X4["Remote Replication"]
+    end
+
+    A1 --> A2
+    A2 --> A3
+    A3 --> A4
+    A4 --> A5
+    A5 --> A6
+    A6 --> A7
+
+
+
+```
 
 ## Concerns and considerations
 
