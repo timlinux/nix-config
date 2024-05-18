@@ -151,10 +151,13 @@ push_value_to_store() {
         echo "Error: Both parameters are required."
         exit 1
     fi
-
-    gum style 'Confirm:' "🛼 Would you like to store your the value for ${key} in 'our distributed key/value store'?"
-    STORE=$(gum choose "STORE" "FORGET")
-    if [ "$STORE" == "STORE" ]; then
+    prompt_to_continue
+    clear
+    echo "🛼 Skate key publisher."
+    gum style '❓️ Confirm:' \
+        "🛼 Would you like to store your the data for 🔑$(hostname)-${key} in our distributed key/value store?"
+    STORE=$(gum choose "YES" "NO")
+    if [ "$STORE" == "YES" ]; then
         # Store user's selection in a key based on hostname using skate
         skate set "$(hostname)-${key}" "${value}"
     fi
@@ -164,9 +167,9 @@ push_value_to_store() {
 generate_hardware_profile() {
     echo "Generating system hardware profile..."
     # Add your commands to generate hardware profile here
-    gum spin --spinner dot --title "Generating Hardware Profile" -- sleep 1
-    CONFIG=$(nixos-generate-config --show-hardware-config)
-
+    gum spin --spinner dot --title "Generating Hardware Profile..." -- sleep 1
+    CONFIG=$(nixos-generate-config --show-hardware-config | grep -v '^  #' | grep -v '^#')
+    echo -e "$CONFIG" | glow -
     push_value_to_store -key "hardware-config" -value "${CONFIG}"
 }
 
@@ -181,8 +184,10 @@ start_syncthing() {
 prompt_to_continue() {
     echo ""
     echo "Press any key to continue..."
-    read -n 1 -s -r key
-    echo "$key Continuing..."
+    # Dont call this key - it will make side effects
+    # elsewhere in this script
+    read -n 1 -s -r keystroke
+    echo "$keystroke Continuing..."
     clear
 }
 run_minimal_gnome_test_vm() {
@@ -329,12 +334,13 @@ list_partitions() {
         # Append device and UUID to Markdown table
         markdown_table+="| $device | | $uuid |\n"
     done <<<"$lsblk_output"
-
-    push_value_to_store -key "partitions" -value "${markdown_table}"
+    markdown_table+="\nZFS Datasets:\n"
+    markdown_table+=$(zfs list)
     # Show the Markdown table
     # -e to render newlines
+    clear
     echo -e "$markdown_table" | glow -
-
+    push_value_to_store -key "partitions" -value "${markdown_table}"
     set -e
 }
 
@@ -456,7 +462,7 @@ setup_menu() {
         # check if the file exists, if not, create it
         [ -f ~/.wireguard/kartoza-vpn.conf ] || skate get "${NEW_HOSTNAME}-wireguard" >~/.wireguard/kartoza-vpn.conf
         nmcli connection import type wireguard file ~/.wireguard/kartoza-vpn.conf
-
+        nmcli connection up wg0
         nmcli connection show
         prompt_to_continue
         setup_menu
@@ -643,13 +649,7 @@ system_info_menu() {
         system_info_menu
         ;;
     "💿️ List disk partitions")
-        gum style \
-            'Mounts' "$(
-                sudo zfs list
-                sudo mount | grep NIXROOT
-                sudo mount | grep boot
-                list_partitions
-            )"
+        list_partitions
         prompt_to_continue
         system_info_menu
         ;;
@@ -686,6 +686,7 @@ system_info_menu() {
         ;;
     "🌐 Your ISP and IP")
         ipfetch
+        ip addr | grep "inet "
         prompt_to_continue
         system_info_menu
         ;;
