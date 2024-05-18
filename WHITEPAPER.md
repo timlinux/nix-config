@@ -1,5 +1,5 @@
 
-# Standardising on NixOS - A Kartoza White Paper
+# Kartoza OS - A Kartoza White Paper
 
 
 
@@ -11,73 +11,75 @@ Tim Sutton, May 2024
 
 ## Abstract:
 
-This document outlines the strategic benefits and operational enhancements proposed through the adoption of NixOS within Kartoza. It addresses key arguments supporting the transition to NixOS as a standard for our user desktop environments, tackles common concerns through an FAQ section, and projects future initiatives to further standardize, improve and secure our IT environment. 
+This document outlines the strategic benefits and operational enhancements proposed through the adoption of a standardised Operating System within Kartoza (henceforth referred to as "Kartoza OS"). It addresses key arguments supporting the transition to Kartoza OS as a standard environment for our user desktop environments, tackles common concerns through an FAQ section, and projects future initiatives to further standardize, improve and secure our IT environment. 
 
-The primary aims of this initiative are to to:
-    * provide a pleasant desktop experience, 
-    * enhance efficiency, 
-    * reduce variability, 
-    * ensure a secure, standardized IT infrastructure framework,
-    * supports remote work and provide remote support,
-    * and scale effectively as Kartoza grows.
+The primary aims of this initiative are to:
+
+* provide a pleasant desktop experience, 
+* enhance efficiency, 
+* reduce variability, 
+* ensure a secure, standardized IT infrastructure framework,
+* supports remote work and provide remote support,
+* and, scale effectively as Kartoza grows.
 
 This document outlines the rationale for the eventual transition of all staff to a managed desktop environment and the looks ahead to the future of next steps we might take once we have achieved this.
 
-| "The electric light did not come from the continuous improvement of candles." - Oren Harari
-| "If I had asked people what they wanted, they would have said faster horses." - Henry Ford
-| "Any sufficiently advanced technology is indistinguishable from magic." - Arthur C. Clarke
+    "The electric light did not come from 
+     the continuous improvement of candles." 
+     - Oren Harari
+
+
+    "If I had asked people what they wanted, 
+     they would have said faster horses." 
+     - Henry Ford
+
+
+    "Any sufficiently advanced technology 
+     is indistinguishable from magic." 
+     - Arthur C. Clarke
 
 ## Background
 
 Allowing users to choose their own operating system and customise their environment can increase their sense of self-agency and independence, especially if they're accustomed to a specific environment. This flexibility can be great for user satisfaction but might introduce variability that complicates support and security management, causes organisational friction, and misses opportunities to promote our deep technical skills in new and innovative ways.
 
-Additionally, it places a high onus on users to be their own sys admin - something that is often not feasible for users with less technical knowledge and a distraction from production work for those who are more technical.
+Additionally, it places a high burden on users to be their own sys admin - something that is often not feasible for users with less technical knowledge and a distraction from production work for those who are more technical.
 
-In this document, I am proposing that we standardise on NixOS for all user desktop machines align better with our goals. It offers a high degree of control over the operating system environment, which can significantly reduce variability and risk. Also, NixOS’s configuration management capabilities ensure that all systems are compliant with our corporate policies right from the start.
+In this document, I am proposing a standardized Kartoza OS, implemented using a NixOS 'flake' based linux distribution. The eventual goal will be to make it provisioned to all staff for use as their desktop machines. This document will explore the benefits of this approach and specifically NixOS as a choice for this platform.
 
-Standardization will also simplify the support process, especially for our team who are all remote workers. This will lead to fewer surprises in the system setups and fewer unique issues related to different operating systems.
+## Value Proposition
 
-While it may require some initial training and adjustment for our team, the long-term benefits in terms of security and simplified support should outweigh these upfront costs.
+
+Linux in general, and NixOS specifically offers a high degree of control over the operating system environment, which can significantly reduce variability and risk. Also, NixOS’s configuration management capabilities will help to ensure that all systems are equipped with all the software they are expected to have installed (inline with our company policies) right from the start.
+
+Our company has a diverse set of requirements:
+
+* **Admin activities:** Billing, time tracking, accounting, client management, business management.
+* **GIS Practice:** Using tools like QGIS, GDAL, PostGIS, Python, R, bash scripts etc. to support our customers with their GIS needs.
+* **Developers:** Our developers target web, desktop and mobile development. They use docker and either PyCharm Pro or VSCode.
+* **Media:** We do things like hosting the QGIS Open Day each month, creating tutorials and screencasts, making flyers, banners, logos, web and desktop wireframes and many other creative things. We use tools like OBS, Gimp, Kdenlive, Draw.io, Synfig and many more.
+* **Devops and Sysadmin:** We administer many servers via automation tools like Kubernetes or 'the old fashioned way' using SSH and linux command line tools.
+* **Training:** We provide training services, both in person and remotely. We develop training resources on our Moodle platform or as standalone worksheets and media resources.
+* **Productivity:** We use spreadsheets and word documents to colloborate with our clients and each other, prepare proposals and develop ideas.
+
+
+Our team is diverse and distributed:
+
+* We are spread around the world, everyone works remotely.
+* There is no central office. We do have some centralised infrastructure to provide our back office environment. This is hosted on VPS instances.
+* The ICT skills of our team range from 'serious guru' to 'capable'.
+
+The value proposition of this document is this to provide a solution that:
+
+* caters to individualised preferences (e.g. I need package xyz that nobody else needs)
+* provides everything staff need to get their work done, with minimal friction
+* provides a good level of security, catering for best practices like using password managers 'out the box'
+* provides the ability to remotely manage and support staff PCs
+* minimizes the cost (time and money) of supporting our users in the transition to a standardised work platform
+* uses automation and declarative principles to ensure that the experience we provide each staff member is repeatable
+* offers a great user experience with a performant, rich desktop environment
+
 
 This document only targets desktop workloads. Future iterations will target standardising hardware in our company, container workloads, and potentially the servers running containers.
-
-## Why not provide the standard environment in a VM?
-
-First, some terms:
-
----
-
-+ **Host** - The general purpuse operating system that runs on the bare metal of your PC or laptop.
-+ **Guest** - A single purpose operating system running inside a virtual machine. e.g. to provide the development environment needed for a client project.
-
----
-
-
-An alternative strategy to the one outlined in this document been proposed: 
-
-    "Use a standard Kartoza VM (Virtual Machine) which 
-    contains a complete set of required Kartoza applications. 
-    Allow each team member the freedom of choosing their host
-    Operating System and configuring it themselves." 
-
-
-
-After much contemplation, I do not support this approach. I present here an outline of what I see to be the downsides of this approach here, and why I think a standarised host with guest VM's when needed is a better approach. For this section, we do not consider whether the Kartoza work environment is based on NixOS or not since that is not relative to the broader idea of having a stan
-
-
-* **High system overhead:** When delegating the business environment to a container, CPU and battery consumption will be much higher since you essentially need to run two operating systems all the time. Conversely, when NixOS is the host, VM's can be used on an *ad hoc* basis if needed, but for most users, most of the time they will not need to be conducting work inside a VM.
-* **High cognative friction:** users need to work through two operating system layers to carry out their tasks. You need to keep track of which files are in the host vs the guest, or share files across host and guest. You need to deal with obstacles in networking, disk space management etc. Undoubtedly, using NixOS will also have some 'newness' to contend with, though the fact that they are even using NixOS as opposed to another Linux distribution will be transparent to most users. Additionally, by providing a host env
-* **Security:** Although the container can be set up securely, the underlying operating system and its security status is left to the whim of the user.The users are still running an unmanaged operating system to conduct Kartoza business and it is more likely for someone who gains access to the underlying host to be able to access content in containers that the reverse situation where Kartoza NixOS is on the host and VM's are occationally needed to conduct client business.
-* **Reduced support overhead:** VM's introduce another support layer that needs to be dealt with (e.g virtual disk space management, memory allocation etc., heterogenity of platforms)
-* **Resources:** The VM approach wastes resources, not giving the full power of the system to our staff.
-* **Too many abstraction layers:** If staff build and manage their own desktops and use the Kartoza VM on top of another OS, you create this highly inefficient setup where a staff mem basically logs into their machine, leave that underlying host up to into your machine, you create a VM, you go into the VM, and then you go into your development environment or production work environment
-
-So while the VM suggestion is interesting, I don't feel it moves the needle sufficiently in our favour.
-
-On the other hand, standardizing on a single operating system like NixOS across all user hardware can greatly simplify management, enhance security, and ensure consistency in the work environment. This approach can also leverage NixOS’s reproducibility and configuration management capabilities to streamline deployments and updates. 
-
-
-
 
 
 ## Standardisation Versus Individuality
@@ -93,7 +95,9 @@ Changes can be proposed, reviewed, and deployed, using the standard Kartoza proj
 
 ## Branded Experience
 
-We want to create a branded experience for our staff. Since we are all remote workers, our computer is essentially our office. When staff work in a desktop environment which has Kartoza branding, they are going to remember that they're 'work mode' rather than leisure time mode. 
+We want to create a branded experience for our staff. Since we are all remote workers, our computer is essentially our office.
+
+![Desktop](img/boot-desktop.png)
 
 Standardizing the desktop environment with Kartoza branding not only reinforces the professional context but also ensures consistency and a polished appearance in external communications - like client presentations or shared documentation. This can enhance your our professional image and ensure that employees are always presenting a unified front.
 
@@ -101,6 +105,8 @@ Integrating branding elements into the desktop environment can also subtly reinf
 
 
 ## Repeatable Development Environments
+
+📒 **Note:** We refer to development environments in the broadest sense  here - these could be used by non-developers to e.g. write documentation or develop a GIS processing workflow.
 
 A key value proposition of this approach is the creation of repeatable development environments. Whereas in my approach, if everything is done with the NixOS being on the base system, all of the projects that you set up, you'll standardize them to have Nix.shell or shell.nix during environments. For each project they go into, as they see in other projects, they will context switch automatically, and all the development tools and environment will automatically be provisioned to work on that project. It also means that it's easier for staff to come and go from projects, or new staff who are arriving in an organization, who quickly get up to speed to how to work on the different projects, because they don't have to spend a lot of time trying to replicate the development environment first.
 
@@ -185,6 +191,8 @@ All of those are the different modalities you can support on the one platform.
 
 Mac Transition Strategy: Clearly outline the phased approach for transitioning Mac users to NixOS. This could include providing training and resources tailored for Mac users to get accustomed to NixOS gradually. Emphasize the long-term benefits of this switch, such as enhanced security, reduced variability, and the robust, unified environment that NixOS offers.
 
+
+
 ## After this
 
 What's Next: Enhancing Our IT Ecosystem Post-Transition
@@ -204,41 +212,86 @@ These initial changes are just the beginning of a broader initiative aimed at en
 
 FAQ Section
 
-Question: What if I need to run Windows applications?
-
-Answer:
+###  What if I need to run Windows applications?
 
 * Option One: Use a Virtual Machine to run a full Windows environment. This approach provides the most compatibility for Windows-specific applications and is best for users who need extensive Windows functionality.
 * Option Two: Utilize Wine, which allows you to run many Windows applications directly on Linux systems without needing a full Windows OS.
 * Option Three: Employ Bottles, a containerized version of Wine that simplifies the management of Windows applications, enhancing both security and ease of use.
 (Additional Common Questions)
 
-Question: How does NixOS handle updates and system changes?
+### How does NixOS handle updates and system changes?
 
-Answer: NixOS update are atomic and transactional which allows for safe updates and easy rollbacks, ensuring system stability.
+NixOS update are atomic and transactional which allows for safe updates and easy rollbacks, ensuring system stability.
 
-Question: Can I customize my NixOS environment if it's standardized?
-Answer: Users can propose changes or additions to the system configurations via the shared Git repository, allowing for controlled customization and innovation.
+### Can I customize my NixOS environment if it's standardized?
 
-Question: What support is available for new users unfamiliar with NixOS?
+Users can propose changes or additions to the system configurations via the shared Git repository, allowing for controlled customization and innovation.
 
-Answer: Detail the training resources, community forums, and internal support structures that are in place to help new users get up to speed.
+### What support is available for new users unfamiliar with NixOS?
 
-
-Question: What about Mac users in our organization?
-Answer: Mac users can continue using their current devices. However, once these devices reach their end-of-life, the organization will transition to a managed NixOS environment rather than replacing old Macs. This ensures a smooth transition and allows time for users to familiarize themselves with the new system through dual-use or training.
+Detail the training resources, community forums, and internal support structures that are in place to help new users get up to speed.
 
 
+### What about Mac users?
 
-Mac Users:
+Mac users can continue using their current devices. However, once these devices reach their end-of-life, the organization will transition to a managed NixOS environment rather than replacing old Macs. This ensures a smooth transition and allows time for users to familiarize themselves with the new system through dual-use or training.
 
-Current Mac users will continue with their existing systems until end-of-life, after which they will transition to NixOS.
-Updates and System Changes:
+
+
+### How will we manage updates and system changes
 
 NixOS handles updates atomically and transactionally, allowing for easy rollbacks and minimal downtime.
-Customization Capabilities:
+
+### What if I want to customization my workspace?
 
 Despite standardization, users can propose system modifications or additions through a managed repository, allowing controlled customization.
-Support for New Users:
 
-Extensive support and training will be available to ensure all users are comfortable and proficient with NixOS.
+### Who will support us?
+
+NixOS is just linux. Most of the same skill you already know will be applicable here. The main difference is with package management whic is not hard to learn for most ise cases. There are many online resources and most questions are easily resolved with a with ChatGPT or Google query. We will build Kartoza OS collaboratively and staff members will be encouraged to share their learnings with each other. We will designate a few staff members to build up a deeper knowledge of the system so that we can have redundancy in our team in terms of knowing how the system works. The NixOS flake system is highly discoverable and the way that I have organised our flake is intended to provide as short an onramping process as possible.
+
+### Why not base this on XXX Linux?
+
+There are many linux distributions but few are as readily adaptable to our needs as NixOS. Some key factors are:
+
+* NixOS is not corporately owned, so we do not need to be so worried about corporate U-turns in how that distribution is managed and evolves.
+* The declarative nature of NixOS is extremely compelling. Tools like Ansible and Puppet are not equivalent since they do not offer a byte-for-byte guarantee of the deployed configuration.
+* NixOS is extremely to customise.
+* The NixOS approach of hash based composition of packages 
+
+
+### Why not provide the standard environment in a VM?
+
+First, some terms:
+
+---
+
++ **Host** - The general purpuse operating system that runs on the bare metal of your PC or laptop.
++ **Guest** - A single purpose operating system running inside a virtual machine. e.g. to provide the development environment needed for a client project.
+
+---
+
+
+An alternative strategy to the one outlined in this document been proposed: 
+
+    "Use a standard Kartoza VM (Virtual Machine) which 
+    contains a complete set of required Kartoza applications. 
+    Allow each team member the freedom of choosing their host
+    Operating System and configuring it themselves." 
+
+
+I present here an outline of what I see to be the downsides of this approach here, and why I think a standarised host with guest VM's when needed is a better approach. For this discussion, we do not consider whether the Kartoza work environment is based on NixOS or not since that is not relative to the broader idea of having a standardised 'Kartoza OS'. 
+
+
+* **High system overhead:** When delegating the business environment to a container, CPU and battery consumption will be much higher since you essentially need to run two operating systems all the time. Conversely, when NixOS is the host, VM's can be used on an *ad hoc* basis if needed, but for most users, most of the time they will not need to be conducting work inside a VM.
+* **High cognative friction:** Users need to work through two operating system layers to carry out their tasks. You need to keep track of which files are in the host vs the guest, or share files across host and guest. You need to deal with obstacles in networking, disk space management etc. Undoubtedly, using NixOS will also have some 'newness' to contend with, though the fact that they are even using Kartoza OS as opposed to another Linux distribution will be transparent to most users. Additionally, by providing a host environment with everything set up and 'ready to go', users will not have to spend brain energy figuring out how to get their system compliant with our needs. Later on, we will see that in particular, NixOS provides more opportunities to reduce cognative friction as users task switch from one project to another.
+* **Security:** Although we can set up a container securely, the underlying operating system and its security status is left to the whim of the user.The users are still running an unmanaged operating system to conduct Kartoza business. It is more likely for someone who gains access to the underlying host to be able to access content in containers that the reverse situation where Kartoza OS is on the host and VM's are occationally needed to conduct client business.
+* **Reduced support overhead:** VM's introduce another support layer that needs to be dealt with. Virtual disk space needs management in context of the host disk space, memory allocation needs to be done in a way to try to give a good experience in both the host and the guest. Different hosts will have quirks about how VMs behave and are managed. By making the host OS the Kartoza OS, we reduce the pool of machines that actually need VM's to a small subset. In addition we can manage the VM runtime environment centrally and bring in niceties like running VM's on ZFS which provide block level versioning and roll backs of changes. See for example this [Video by Jim Salter](https://www.youtube.com/watch?v=748FOodxCYg).
+* **Resources:** The VM approach wastes resources, not giving the full power of the system to our staff. Our approach of having a dedicated Kartoza OS as the host is especially import for e.g. GIS processing where our staff need to have all the power of the system available for data processing.
+* **Too many abstraction layers:** If staff build and manage their own desktops and use the Kartoza VM on top of another OS, you create this highly inefficient setup where a staff mem basically logs into their machine, leave that underlying host up to into your machine, you create a VM, you go into the VM, and then you go into your development environment or production work environment
+
+So while the VM suggestion is interesting, I don't feel it moves the needle sufficiently in our favour.
+
+On the other hand, standardizing on a single operating system like NixOS across all user hardware can greatly simplify management, enhance security, and ensure consistency in the work environment. This approach can also leverage NixOS’s reproducibility and configuration management capabilities to streamline deployments and updates. 
+
+
