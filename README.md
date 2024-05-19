@@ -86,6 +86,10 @@ continuous evolution. I am co-founder of a company called
 [Kartoza](https://kartoza.com). We use NixOS on our linux workstations and 
 this repository provides a canonical source of those configurations.
 
+    👓️ Read the whitepaper that accompanies this flake to 
+    understand why we even made this in the first place. 
+[📰 WhitePaper](WHITEPAPER.md)
+
 ##  2. <a name='Whatthisrepoprovides'></a>What this repo provides
 
 It's easier to start with a few screenshots!
