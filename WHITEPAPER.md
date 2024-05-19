@@ -101,27 +101,16 @@ The solution provided will consist of:
 
 ```mermaid
 graph TB
-    subgraph A1["Level 6: Physical Hardware"]
-        G1["Mac Laptop"]
-        G2["Special Cases"]
+    subgraph A7["Level 0: File System (ZFS with Encryption)"]
+        X1["Copy on Write"]
+        X2["Encryption"]
+        X3["Snapshots"]
+        X4["Remote Replication"]
     end
 
-    subgraph A2["Level 5: Virtual Machines"]
-        F1["virtualman"]
-        F2["qemu"]
-        F3["Full Blown VMs"]
-    end
-
-    subgraph A3["Level 4: Interactive Environments"]
-        E1["distrobox"]
-        E2["lima"]
-        E3["Specific Distro Requirements"]
-    end
-
-    subgraph A4["Level 3: Project Environments"]
-        D1["shell.nix"]
-        D2["direnv"]
-        D3["Seamless Transition"]
+    subgraph A6["Level 1: Operating System (NixOS)"]
+        B1["Current Stable Release"]
+        B2["6-monthly Releases"]
     end
 
     subgraph A5["Level 2: Kartoza NixOS Flake"]
@@ -131,26 +120,50 @@ graph TB
         C4["Standard Functionality"]
     end
 
-    subgraph A6["Level 1: Operating System (NixOS)"]
-        B1["Current Stable Release"]
-        B2["6-monthly Releases"]
+    subgraph A4["Level 3: Project Environments"]
+        D1["shell.nix"]
+        D2["direnv"]
+        D3["Seamless Transition"]
     end
 
-    subgraph A7["Level 0: File System (ZFS with Encryption)"]
-        X1["Copy on Write"]
-        X2["Encryption"]
-        X3["Snapshots"]
-        X4["Remote Replication"]
+    subgraph A3["Level 4: Interactive Environments"]
+        E1["distrobox"]
+        E2["lima"]
+        E3["Specific Distro Requirements"]
     end
 
-    A1 --> A2
-    A2 --> A3
-    A3 --> A4
-    A4 --> A5
-    A5 --> A6
-    A6 --> A7
+    subgraph A2["Level 5: Virtual Machines"]
+        F1["virtualman"]
+        F2["qemu"]
+        F3["Full Blown VMs"]
+    end
 
+    subgraph A1["Level 6: Physical Hardware"]
+        G1["Mac Laptop"]
+        G2["Special Cases"]
+    end
 
+    A7 -.-> A6
+    A6 -.-> A5
+    A5 -.-> A4
+    A4 -.-> A3
+    A3 -.-> A2
+    A2 -.-> A1
+
+    style A1 fill:#34A853,stroke:#333,stroke-width:2px
+    style A2 fill:#FBBC05,stroke:#333,stroke-width:2px
+    style A3 fill:#EA4335,stroke:#333,stroke-width:2px
+    style A4 fill:#4285F4,stroke:#333,stroke-width:2px
+    style A5 fill:#A5D6A7,stroke:#333,stroke-width:2px
+    style A6 fill:#FFF9C4,stroke:#333,stroke-width:2px
+    style A7 fill:#FFCDD2,stroke:#333,stroke-width:2px
+
+    linkStyle 0 stroke-width:4px,stroke:#333,fill:none
+    linkStyle 1 stroke-width:4px,stroke:#333,fill:none
+    linkStyle 2 stroke-width:4px,stroke:#333,fill:none
+    linkStyle 3 stroke-width:4px,stroke:#333,fill:none
+    linkStyle 4 stroke-width:4px,stroke:#333,fill:none
+    linkStyle 5 stroke-width:4px,stroke:#333,fill:none
 
 ```
 
@@ -223,43 +236,42 @@ Innovation and Recruitment: Positioning your organization as one that uses cutti
 
 We should also address fallacies about NixOS. 
 
-1. **NixOS is 'Hard':** NixOS is often considered Linux in hard mode, but for practical purposes, once the user has a deployed system, laptop, or desktop, and in front of them, they've got a GNOME desktop environment and all their software provisioned, it's no different or more difficult to use than any other distribution.
+1. **NixOS is 'Hard':** NixOS is often considered Linux in 'hard mode', but for practical purposes, once the user has a deployed system, laptop, or desktop, and in front of them, they've got a GNOME desktop environment and all their software provisioned, it's no different or more difficult to use than any other distribution.
 2. **NixOS Package Management is confusing:** Yes there can be some confusion when you start out since a) there are a number of ways to install software on NixOS and b) it doesn't use deb or rpm packages so generic linux installation instructions for software often will not work. NixOS package management tools are different, but equally easy to get to grips with. And plus, you've got three levels of abstraction for package management. 
+
     1. You can install things in your user space. 
     2. You can install things in Nix shell environments. 
     3. You can install things at the system level. 
-So there's a lot of flexibility available there that you wouldn't get on other systems. In addition, there are great options for 
 
+So there's a lot of flexibility available there that you wouldn't get on other systems. Tools like FlatPak are also supported, as is experimental support for snaps.
 
-Here are a few additional arguments you could use to further debunk common fallacies and enhance your case:
+**Learning Curve vs. Long-Term Benefits:** While NixOS may have a steeper learning curve, the long-term benefits of stability, reproducibility, and security outweigh the initial investment in learning the system. Highlighting the comprehensive documentation and community support can also reassure users that help is readily available.
 
-Learning Curve vs. Long-Term Benefits: While NixOS may have a steeper learning curve, the long-term benefits of stability, reproducibility, and security outweigh the initial investment in learning the system. Highlighting the comprehensive documentation and community support can also reassure users that help is readily available.
+**Customization and Control:** Stress the unparalleled level of control and customization that NixOS offers, which can be a significant advantage for developers and IT professionals. This flexibility allows users to create highly tailored environments that suit specific project needs without affecting the global system state.
 
-Customization and Control: Stress the unparalleled level of control and customization that NixOS offers, which can be a significant advantage for developers and IT professionals. This flexibility allows users to create highly tailored environments that suit specific project needs without affecting the global system state.
+**Integration Capabilities:** Point out how well NixOS plays with other tools and technologies, especially in containerization and virtualization, which are pivotal in modern development environments. NixOS's ability to seamlessly integrate with Docker, for instance, can be a strong point in its favor.
 
-Integration Capabilities: Point out how well NixOS plays with other tools and technologies, especially in containerization and virtualization, which are pivotal in modern development environments. NixOS's ability to seamlessly integrate with Docker, for instance, can be a strong point in its favor.
-
-Community and Innovation: Mention the vibrant and innovative NixOS community, which is continually developing new solutions and improvements. This community not only ensures that NixOS stays at the cutting edge but also provides a resource for users seeking advice or collaboration.
+**Community and Innovation:** Mention the vibrant and innovative NixOS community, which is continually developing new solutions and improvements. This community not only ensures that NixOS stays at the cutting edge but also provides a resource for users seeking advice or collaboration.
 
 
 ## After this
 
-What's Next: Enhancing Our IT Ecosystem Post-Transition
+**What's Next:** Enhancing Our IT Ecosystem Post-Transition
 
-Continued Standardization: After successfully transitioning to NixOS, our focus will shift towards further standardizing security practices across the organization. This includes mandatory use of password managers to enhance security and streamline access management.
+**Continued Standardization:** After successfully transitioning to NixOS, our focus will shift towards further standardizing security practices across the organization. This includes mandatory use of password managers to enhance security and streamline access management.
 
-Development of Best Practice Materials: We will create comprehensive guidelines that outline the norms and practices for security best practices. These materials will serve as a resource for all team members to ensure everyone is aligned with our security standards.
+**Development of Best Practice Materials:** We will create comprehensive guidelines that outline the norms and practices for security best practices. These materials will serve as a resource for all team members to ensure everyone is aligned with our security standards.
 
-Provenance and Security of Code: Emphasizing the importance of code provenance, we will implement measures to ensure that all code used within our systems is secure, traceable, and compliant with our organizational standards. This will involve rigorous vetting processes and possibly the integration of tools that enhance transparency and security in code deployment.
+**Provenance and Security of Code:** Emphasizing the importance of code provenance, we will implement measures to ensure that all code used within our systems is secure, traceable, and compliant with our organizational standards. This will involve rigorous vetting processes and possibly the integration of tools that enhance transparency and security in code deployment.
 
-Training and Support: Recognize the need for ongoing training and support to help all team members adapt to the new systems and practices. This will include specific sessions focused on security practices, the use of new tools, and best practices for maintaining a secure and efficient work environment.
+**Training and Support:** Recognize the need for ongoing training and support to help all team members adapt to the new systems and practices. This will include specific sessions focused on security practices, the use of new tools, and best practices for maintaining a secure and efficient work environment.
 
-These initial changes are just the beginning of a broader initiative aimed at enhancing operational efficiency, security, and compliance. It will also help in setting the stage for the continuous evolution of your IT infrastructure, aligning with industry best practices and technological advancements.
+These initial changes are just the beginning of a broader initiative aimed at enhancing operational efficiency, security, and compliance. 
 
 
 ## FAQ
 
-FAQ Section
+
 
 ###  What if I need to run Windows applications?
 
