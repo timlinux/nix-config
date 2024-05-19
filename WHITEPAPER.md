@@ -221,15 +221,15 @@ This approach aligns well with best practices in modern IT management, emphasizi
 ### Additional Arguments
 
 
-Security Enhancements: Emphasize NixOS's unique model for handling packages and dependencies, which can lead to fewer security vulnerabilities. The isolated nature of its packages prevents the cascading security issues common in other distributions.
+**Security Enhancements:** NixOS's unique model for handling packages and dependencies, which can lead to fewer security vulnerabilities. The isolated nature of its packages prevents the cascading security issues common in other distributions.
 
-Cost Efficiency: Highlight potential cost savings from reduced need for IT support and troubleshooting due to the standardized environments. This can lead to lower operational costs over time as the system becomes more streamlined and less prone to user-induced errors.
+**Cost Efficiency:** We can realise potential cost savings from reduced need for IT support and troubleshooting due to the standardized environments. This can lead to lower operational costs over time as the system becomes more streamlined and less prone to user-induced errors.
 
-Scalability: Discuss how NixOS's configuration management system can easily scale with the organization, supporting environments from a few machines to thousands without significant changes to the infrastructure management practices.
+**Scalability:** NixOS's configuration management system can easily scale with the organization, supporting environments from a few machines to thousands without significant changes to the infrastructure management practices.
 
-Eco-system Compatibility: While focusing on the benefits, it’s also good to address how NixOS fits within the broader ecosystem of tools your organization uses. Compatibility with popular DevOps tools and workflows can be a persuasive point if relevant.
+**Ecosystem Compatibility:** NixOS works with most of the tools you are already familiar with.
 
-Innovation and Recruitment: Positioning your organization as one that uses cutting-edge technology like NixOS can be attractive to potential new hires, particularly those who are looking for innovative and technically challenging environments.
+**Innovation and Recruitment:** Kartoza using cutting-edge technology like NixOS can be attractive to potential new hires, particularly those who are looking for innovative and technically interesting environments.
 
 
 ### NixOS Falacies
@@ -237,6 +237,7 @@ Innovation and Recruitment: Positioning your organization as one that uses cutti
 We should also address fallacies about NixOS. 
 
 1. **NixOS is 'Hard':** NixOS is often considered Linux in 'hard mode', but for practical purposes, once the user has a deployed system, laptop, or desktop, and in front of them, they've got a GNOME desktop environment and all their software provisioned, it's no different or more difficult to use than any other distribution.
+
 2. **NixOS Package Management is confusing:** Yes there can be some confusion when you start out since a) there are a number of ways to install software on NixOS and b) it doesn't use deb or rpm packages so generic linux installation instructions for software often will not work. NixOS package management tools are different, but equally easy to get to grips with. And plus, you've got three levels of abstraction for package management. 
 
     1. You can install things in your user space. 
@@ -245,13 +246,13 @@ We should also address fallacies about NixOS.
 
 So there's a lot of flexibility available there that you wouldn't get on other systems. Tools like FlatPak are also supported, as is experimental support for snaps.
 
-**Learning Curve vs. Long-Term Benefits:** While NixOS may have a steeper learning curve, the long-term benefits of stability, reproducibility, and security outweigh the initial investment in learning the system. Highlighting the comprehensive documentation and community support can also reassure users that help is readily available.
+3. **Learning Curve vs. Long-Term Benefits:** While NixOS may have a steeper learning curve, the long-term benefits of stability, reproducibility, and security outweigh the initial investment in learning the system. Highlighting the comprehensive documentation and community support can also reassure users that help is readily available.
 
-**Customization and Control:** Stress the unparalleled level of control and customization that NixOS offers, which can be a significant advantage for developers and IT professionals. This flexibility allows users to create highly tailored environments that suit specific project needs without affecting the global system state.
+4. **NixOS is hard to customise** There is an unparalleled level of control and customization when you use NixOS. This can be a significant advantage for developers and IT professionals. This flexibility allows users to create highly tailored environments that suit specific project needs without affecting the global system state.
 
-**Integration Capabilities:** Point out how well NixOS plays with other tools and technologies, especially in containerization and virtualization, which are pivotal in modern development environments. NixOS's ability to seamlessly integrate with Docker, for instance, can be a strong point in its favor.
+5. **It won't work in container workflows:** NixOS plays well with other tools and technologies, especially in containerization and virtualization, which are pivotal in modern development environments. NixOS's ability to seamlessly integrate with Docker, for instance, is a strong point in its favor.
 
-**Community and Innovation:** Mention the vibrant and innovative NixOS community, which is continually developing new solutions and improvements. This community not only ensures that NixOS stays at the cutting edge but also provides a resource for users seeking advice or collaboration.
+6. **NixOS is largely unheard of:** It's existed as a project and there are many organisations using it for mission critical applications. There is a vibrant and innovative NixOS community, which is continually developing new solutions and improvements. This community not only ensures that NixOS stays at the cutting edge but also provides a resource for users seeking advice or collaboration.
 
 
 ## After this
@@ -264,7 +265,7 @@ So there's a lot of flexibility available there that you wouldn't get on other s
 
 **Provenance and Security of Code:** Emphasizing the importance of code provenance, we will implement measures to ensure that all code used within our systems is secure, traceable, and compliant with our organizational standards. This will involve rigorous vetting processes and possibly the integration of tools that enhance transparency and security in code deployment.
 
-**Training and Support:** Recognize the need for ongoing training and support to help all team members adapt to the new systems and practices. This will include specific sessions focused on security practices, the use of new tools, and best practices for maintaining a secure and efficient work environment.
+**Training and Support:** We eecognize the need for ongoing training and support to help all team members adapt to the new systems and practices. This will include specific sessions focused on security practices, the use of new tools, and best practices for maintaining a secure and efficient work environment.
 
 These initial changes are just the beginning of a broader initiative aimed at enhancing operational efficiency, security, and compliance. 
 
@@ -280,50 +281,55 @@ These initial changes are just the beginning of a broader initiative aimed at en
 * Option Three: Employ Bottles, a containerized version of Wine that simplifies the management of Windows applications, enhancing both security and ease of use.
 (Additional Common Questions)
 
+Existing Windows users can continue using their current devices, or we can migrate their device to Kartoza OS (our preference). However, once these devices reach their end-of-life, the user will transition to a managed NixOS environment rather than having their old windows machine replaced. Users who need to use windows for e.g. training or screencast creation will be asked to do this in a virtual machine - we will provision a license if needed. This ensures a smooth transition and allows time for users to familiarize themselves with the new system through dual-use or training.
+
 ### What if I need to run a macOS application?
 
 For the limited cases where a mac is imperitive (e.g. to prepare and publish apps to the Apple App Store), we will be supportive of users having a second machine for this purpose.
 
-### How does NixOS handle updates and system changes?
+Existing Mac users can continue using their current devices. However, once these devices reach their end-of-life, the user will transition to a managed NixOS environment rather than having their old Mac replaced. This ensures a smooth transition and allows time for users to familiarize themselves with the new system through dual-use or training.
 
-NixOS update are atomic and transactional which allows for safe updates and easy rollbacks, ensuring system stability.
 
 ### Can I customize my NixOS environment if it's standardized?
 
-Users can propose changes or additions to the system configurations via the shared Git repository, allowing for controlled customization and innovation.
+Users can make local changes to their devices including changing e.g. to light or dark theme, adding new applications etc. However, the spirit of this initiative is to build a declarative environement. As such we as our staff to rather propose changes or additions to the system configurations via the shared Git repository, allowing for controlled customization and innovation. These can then be deployed to everyone if they are of broad interest, or to specific users if they satisfy the needs of certain individuals only.
 
 ### What support is available for new users unfamiliar with NixOS?
 
-Detail the training resources, community forums, and internal support structures that are in place to help new users get up to speed.
+1. We will support each other.
+2. Google and ChatGPT provide good avenues for 'self help'.
+3. We will try to set things up that for the most part, you don't need help.
+4. Worst case, we will hire in support as we would do for any other project or initiative.
 
 
-### What about Mac users?
-
-Mac users can continue using their current devices. However, once these devices reach their end-of-life, the organization will transition to a managed NixOS environment rather than replacing old Macs. This ensures a smooth transition and allows time for users to familiarize themselves with the new system through dual-use or training.
-
-
+NixOS is just linux. Most of the same skill you already know will be applicable here. The main difference is with package management whic is not hard to learn for most ise cases. There are many online resources and most questions are easily resolved with a with ChatGPT or Google query. We will build Kartoza OS collaboratively and staff members will be encouraged to share their learnings with each other. We will designate a few staff members to build up a deeper knowledge of the system so that we can have redundancy in our team in terms of knowing how the system works. The NixOS flake system is highly discoverable and the way that I have organised our flake is intended to provide as short an onramping process as possible.
 
 ### How will we manage updates and system changes
 
-NixOS handles updates atomically and transactionally, allowing for easy rollbacks and minimal downtime.
-
-### What if I want to customization my workspace?
-
-Despite standardization, users can propose system modifications or additions through a managed repository, allowing controlled customization.
-
-### Who will support us?
-
-NixOS is just linux. Most of the same skill you already know will be applicable here. The main difference is with package management whic is not hard to learn for most ise cases. There are many online resources and most questions are easily resolved with a with ChatGPT or Google query. We will build Kartoza OS collaboratively and staff members will be encouraged to share their learnings with each other. We will designate a few staff members to build up a deeper knowledge of the system so that we can have redundancy in our team in terms of knowing how the system works. The NixOS flake system is highly discoverable and the way that I have organised our flake is intended to provide as short an onramping process as possible.
+* We will track the 6 monthly NixOS release cycle.
+* The system will continuously evolve in terms of improvements to the configuration it provides and the software offered.
+* In the short term, users will manually update their systems as and when needed (there is a user friendly shortcut and menu for doing this - see [the README](README.md)).
+* In the longer term, my intention is to set up automation so that each host will fetch the latest flake updates and apply them on a daily basis if relevant.
+* NixOS update are atomic and transactional which allows for safe updates and easy rollbacks, ensuring system stability.
 
 ### Why not base this on XXX Linux?
 
 There are many linux distributions but few are as readily adaptable to our needs as NixOS. Some key factors are:
 
+* I have long experience (25+ years) of using redhat and debian based distributions, in particular in more recent times, Fedora and Ubuntu.
 * NixOS is not corporately owned, so we do not need to be so worried about corporate U-turns in how that distribution is managed and evolves.
 * The declarative nature of NixOS is extremely compelling. Tools like Ansible and Puppet are not equivalent since they do not offer a byte-for-byte guarantee of the deployed configuration.
 * NixOS is extremely to customise.
-* The NixOS approach of hash based composition of packages 
+* The NixOS approach of hash based composition of packages means that the desired configuration is repeatable.
 
+
+## Why not base this on Windows or macOS
+
+We are an open source company and while I don't have an problem with proprietary software or the existance of proprietary operating systems, it is nice to set an example of how open source can be productively to run a company. This is commonly called 'dog fooding' where we lead by example in using the products we promote to our customers. I have extensive experience with both Windows and macOS. If Linux was not an option, I would gravitate towards macOS as our standard environment since it's Unix underpinnings provide a nicer architecture in my opinion.
+
+## Why not base our desktop environment on KDE Plasma / Pops Cosmic desktop etc.
+
+Which desktop environment is best is a subjective choice. I have pretty much tried them all (and you will see recipes for many others in my flake). KDE Plasma is probably the other leading contender, but it is in my opinion, overly complex and I always find too many rough edges in which ever release is current to be able to consider it as a good candidate for being default. I am contemplating making a similar them / experience to that which I have created for Gnome so that if our users decide they prefer to use KDE rather, it has the same general appearance as our standard 'Kartoza OS' desktop (i.e. with our custom launcher button bottom left, similar dock arrangements etc.). That is an execise for the future though.
 
 ### Why not provide the standard environment in a VM?
 
