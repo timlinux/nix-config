@@ -1,0 +1,32 @@
+name: Generate PDF and Deploy using Nix
+
+on:
+  push:
+    branches:
+      - main  # This will trigger the workflow on push events to the main branch
+  workflow_dispatch:  # This will allow manual triggering of the workflow
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v13
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Generate Slide Deck with Marp using Nix
+        run: |
+          mkdir -p build  # Ensure the output directory exists
+          nix-shell -p marp-cli --run "marp --allow-local-files WHITEPAPER-SLIDES.md -o build/WHITEPAPER-SLIDES.pdf"
+        env:
+          MARP_USER: root:root
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build  # This should match the directory where the PDF is generated
