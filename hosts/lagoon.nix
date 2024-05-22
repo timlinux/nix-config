@@ -28,6 +28,11 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
   fileSystems."/" = {
     device = "NIXROOT/root";
     fsType = "zfs";
