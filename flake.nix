@@ -163,6 +163,7 @@
     #
     packages.x86_64-linux.otb = pkgs.callPackage ./packages/otb {self = self;};
     packages.x86_64-linux.distrobox = pkgs.callPackage ./packages/distrobox {};
+    packages.x86_64-linux.whitebox-tools = pkgs.callPackage ./packages/whitebox-tools {};
     ######################################################
     ##
     ## Configurations for each host we manage

@@ -30,6 +30,8 @@
     ../software/gis/qgis-sourcebuild.nix
     #../software/system/sound-noise-suppression-unstable.nix
     ../software/gis/tilemaker-sourcebuild.nix
+    ../software/gis/whitebox-tools.nix
+    ../software/gis/saga.nix
     # R&D Package for Wolfgang
     ../software/gis/gverify-sourcebuild.nix
     ../software/system/podman.nix
