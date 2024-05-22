@@ -5,7 +5,7 @@ pkgs.stdenv.mkDerivation rec {
 
   src = builtins.fetchTarball {
     url = "https://github.com/timlinux/kartoza-plymouth-themes/tarball/master";
-    sha256 = "sha256:0ixf3fxik27bgfqwym4mqpns25w59iq61g5ygxl4m3c71dwhqq62";
+    sha256 = "sha256:0lwpvklgw632q8r2fvxq28a85pyxiizhlrfigkc0h50hndp6725k";
   };
 
   buildInputs = [
