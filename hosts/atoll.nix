@@ -16,7 +16,7 @@
     ../software/desktop-apps-unstable/keepassxc-unstable.nix
     ../software/desktop-apps-unstable/vscode-unstable.nix
     #../software/gis/qgis-unstable.nix
-    ../software/gis/qgis.nix
+    ../software/gis/qgis-stable.nix
     ../software/desktop-apps-unstable/uxplay-unstable.nix
     ../software/system/locale-za-en.nix
     ../users/tim.nix
