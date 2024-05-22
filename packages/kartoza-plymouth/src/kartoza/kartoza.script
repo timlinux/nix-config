@@ -1,107 +1,34 @@
-## Author : Tim Sutton (@timlinux)
-## Mail : tim@kartoza.com
-## Github : @timlinux
-
-// Screen size
-screen.w = Window.GetWidth(0);
-screen.h = Window.GetHeight(0);
-screen.half.w = Window.GetWidth(0) / 2;
-screen.half.h = Window.GetHeight(0) / 2;
-
-// Question prompt
-question = null;
-answer = null;
-
-// Message
-message = null;
-
-// Password prompt
-bullets = null;
-prompt = null;
-bullet.image = Image.Text("*", 1, 1, 1);
-
-// Flow
-state.status = "play";
-state.time = 0.0;
-
-//--------------------------------- Refresh (Logo animation) --------------------------
-
-# cycle through all images
-for (i = 0; i < 301; i++)
-  kartoza_image[i] = Image("kartoza-synfig-bootsplash." + i + ".png");
-kartoza_sprite = Sprite();
-
-# set image position
-kartoza_sprite.SetX(Window.GetX() + (Window.GetWidth(0) / 2 - kartoza_image[0].GetWidth() / 2)); # Place images in the center
-kartoza_sprite.SetY(Window.GetY() + (Window.GetHeight(0) / 2 - kartoza_image[0].GetHeight() / 2));
-
-progress = 0;
-
-fun refresh_callback ()
-  {
-    kartoza_sprite.SetImage(kartoza_image[Math.Int(progress / 2) % 301]);
-    progress++;
-  }
-  
-Plymouth.SetRefreshFunction (refresh_callback);
-
-//------------------------------------- Password prompt -------------------------------
-fun DisplayQuestionCallback(prompt, entry) {
-    question = null;
-    answer = null;
-
-    if (entry == "")
-        entry = "<answer>";
-
-    question.image = Image.Text(prompt, 1, 1, 1);
-    question.sprite = Sprite(question.image);
-    question.sprite.SetX(screen.half.w - question.image.GetWidth() / 2);
-    question.sprite.SetY(screen.h - 4 * question.image.GetHeight());
-
-    answer.image = Image.Text(entry, 1, 1, 1);
-    answer.sprite = Sprite(answer.image);
-    answer.sprite.SetX(screen.half.w - answer.image.GetWidth() / 2);
-    answer.sprite.SetY(screen.h - 2 * answer.image.GetHeight());
-}
-Plymouth.SetDisplayQuestionFunction(DisplayQuestionCallback);
-
 //------------------------------------- Password prompt -------------------------------
 fun DisplayPasswordCallback(nil, bulletCount) {
     state.status = "pause";
     totalWidth = bulletCount * bullet.image.GetWidth();
     startPos = screen.half.w - totalWidth / 2;
 
-    prompt.image = Image.Text("Enter Password", 1, 1, 1);
+    // Calculate dimensions for the dark background rounded rectangle
+    int backgroundWidth = (totalWidth > prompt.image.GetWidth() ? totalWidth : prompt.image.GetWidth()) + 40; // Add padding
+    int backgroundHeight = prompt.image.GetHeight() * 6 + 40; // Adjust height to cover prompt and bullets with padding
+    int backgroundX = screen.half.w - backgroundWidth / 2;
+    int backgroundY = screen.half.h - prompt.image.GetHeight() * 2 - 20;
+
+    // Draw the dark background rounded rectangle
+    background.image = Image.RoundedRectangle(backgroundWidth, backgroundHeight, 20, 0, 0, 0); // Black color rectangle with 20px radius
+    background.sprite = Sprite(background.image);
+    background.sprite.SetX(backgroundX);
+    background.sprite.SetY(backgroundY);
+
+    // Make the prompt text bigger by increasing the font size
+    prompt.image = Image.Text("Enter Password", 2, 2, 2); // Increased font size
     prompt.sprite = Sprite(prompt.image);
     prompt.sprite.SetX(screen.half.w - prompt.image.GetWidth() / 2);
-    prompt.sprite.SetY(screen.h - 4 * prompt.image.GetHeight());
+    prompt.sprite.SetY(screen.half.h - prompt.image.GetHeight() * 2); // Adjusted to center vertically
 
     // Clear all bullets (user might hit backspace)
-    bullets = null;
+    bullets = arrayOfNulls(bulletCount);
     for (i = 0; i < bulletCount; i++) {
-        bullets[i].sprite = Sprite(bullet.image);
-        bullets[i].sprite.SetX(startPos + i * bullet.image.GetWidth());
-        bullets[i].sprite.SetY(screen.h - 2 * bullet.image.GetHeight());
+        // Make the bullet images bigger by increasing the font size
+        bullets[i] = Sprite(Image.Text("*", 2, 2, 2)); // Increased font size
+        bullets[i]?.SetX(startPos + i * bullets[i].GetWidth());
+        bullets[i]?.SetY(screen.half.h + bullets[i].GetHeight()); // Adjusted to center vertically below the prompt
     }
 }
 Plymouth.SetDisplayPasswordFunction(DisplayPasswordCallback);
-
-//--------------------------- Normal display (unset all text) ----------------------
-fun DisplayNormalCallback() {
-    state.status = "play";
-    bullets = null;
-    prompt = null;
-    message = null;
-    question = null;
-    answer = null;
-}
-Plymouth.SetDisplayNormalFunction(DisplayNormalCallback);
-
-//----------------------------------------- Message --------------------------------
-fun MessageCallback(text) {
-    message.image = Image.Text(text, 1, 1, 1);
-    message.sprite = Sprite(message.image);
-    message.sprite.SetPosition(screen.half.w - message.image.GetWidth() / 2, message.image.GetHeight());
-}
-Plymouth.SetMessageFunction(MessageCallback);
-
