@@ -516,7 +516,6 @@ setup_menu() {
         prompt_to_continue
         setup_menu
         ;;
-
     "🗑️ Purge nix cache")
         # Untested, needs checking
         rm -rf ~/.cache/nix/*
@@ -561,7 +560,6 @@ system_menu() {
         system_menu
         ;;
     "🦠 Virus scan your home")
-        https://meet.google.com/tyy-igqn-bnz?authuser=0
         clamscan -i /home/"$(whoami)"
         prompt_to_continue
         system_menu
