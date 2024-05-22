@@ -438,7 +438,7 @@ setup_menu() {
             "🪪 Generate host id" \
             "⚠️ Format disk with ZFS ⚠️" \
             "🖥️ Install system" \
-            "⏰ Set nix ttl to 0"
+            "🗑️ Purge nix cache"
     )
 
     case $choice in
@@ -474,8 +474,8 @@ setup_menu() {
         setup_menu
         ;;
     "💿️ Checkout Nix flake")
-        # This should usually not be needed furing initial setup
-        # since we run the flake remotely. But after the system
+        # This should usually not be needed during initial setup
+        # since we run the flake remotely. But after the system is installed
         # or if we want to tweak things during setup, having this
         # flake checked out can be handy...
         cd ~
@@ -517,11 +517,10 @@ setup_menu() {
         setup_menu
         ;;
 
-    "⏰ Set nix ttl to 0")
+    "🗑️ Purge nix cache")
         # Untested, needs checking
-        sudo mkdir -p .config/nix
-        echo "tarball-ttl = 0" | sudo tee .config/nix/nix.conf
-        sudo nix-env --set-ttl 0
+        rm -rf ~/.cache/nix/*
+        sudo rm -rf ~/.cache/nix/*
         prompt_to_continue
         setup_menu
         ;;
@@ -562,6 +561,7 @@ system_menu() {
         system_menu
         ;;
     "🦠 Virus scan your home")
+        https://meet.google.com/tyy-igqn-bnz?authuser=0
         clamscan -i /home/"$(whoami)"
         prompt_to_continue
         system_menu
