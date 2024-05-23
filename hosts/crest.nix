@@ -87,6 +87,8 @@
   networking.extraHosts = ''
     192.168.0.2 valley
     192.168.0.1 router
+    10.100.0.242 vicky
+    100.100.0.237 dorah
   '';
 
   networking.useDHCP = lib.mkDefault true;
