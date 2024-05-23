@@ -15,6 +15,7 @@
     #../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
     ../software/desktop-apps-unstable # qgis, keepasxc, vscode, uxplay
+    ../software/gis/qgis-sourcebuild.nix
     #../software/system/podman.nix
     #../software/system/distrobox.nix
     ../software/system/virt.nix
@@ -28,10 +29,10 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  systemd.targets.sleep.enable = false;
-  systemd.targets.suspend.enable = false;
-  systemd.targets.hibernate.enable = false;
-  systemd.targets.hybrid-sleep.enable = false;
+  #systemd.targets.sleep.enable = false;
+  #systemd.targets.suspend.enable = false;
+  #systemd.targets.hibernate.enable = false;
+  #systemd.targets.hybrid-sleep.enable = false;
 
   fileSystems."/" = {
     device = "NIXROOT/root";
