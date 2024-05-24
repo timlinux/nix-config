@@ -164,6 +164,7 @@
     packages.x86_64-linux.otb = pkgs.callPackage ./packages/otb {self = self;};
     packages.x86_64-linux.distrobox = pkgs.callPackage ./packages/distrobox {};
     packages.x86_64-linux.kartoza-plymouth = pkgs.callPackage ./packages/kartoza-plymouth {};
+    packages.x86_64-linux.atuin = pkgs.callPackage ./packages/atuin {};
     #packages.x86_64-linux.whitebox-tools = pkgs.callPackage ./packages/whitebox-tools {};
     ######################################################
     ##

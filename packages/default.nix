@@ -1,4 +1,5 @@
 self: super: {
+  atuin = super.callPackage ./atuin/default.nix {};
   kartoza-plymouth = super.callPackage ./kartoza-plymouth {};
   qgis-latest = super.callPackage ./qgis {};
   tilemaker = super.callPackage ./tilemaker/default.nix {};

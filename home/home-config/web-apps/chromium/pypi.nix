@@ -3,17 +3,17 @@
   pkgs,
   ...
 }: let
-  siteUrl = "https://mail.proton.me";
-  appName = "Proton Mail";
-  iconName = "proton-mail.svg";
+  siteUrl = "https://pypi.org/";
+  appName = "PyPi";
+  iconName = "pypi.svg";
   iconPath = "${config.home.homeDirectory}/.local/share/icons/${iconName}";
 in {
-  home.file."proton_mail_image" = {
+  home.file."pypi_image" = {
     source = ./${iconName};
     target = iconPath;
   };
   home.packages = with pkgs; let
-    protonMailApp = makeDesktopItem {
+    pypiApp = makeDesktopItem {
       name = appName;
       desktopName = appName;
       genericName = appName;
@@ -27,7 +27,7 @@ in {
       # You can find out the value to use by running
       # xprop and then clicking on the app window
       # Then set the value below to whatever WM_CLASS(STRING) is
-      startupWMClass = "mail.proton.me";
+      startupWMClass = "pypi.org";
     };
-  in [protonMailApp];
+  in [pypiApp];
 }
