@@ -11,10 +11,11 @@
     ./kartoza-erp.nix
     ./kartoza-geocommunity.nix
     ./kartoza-handbook.nix
+    ./nix-search.nix
+    ./pipy.nix
     ./kartoza-timesheets.nix
     ./kartoza-training.nix
     #./ms-teams.nix
-    ./nix-search.nix
     ./svg-repo.nix
     ./whatsapp.nix
   ];
