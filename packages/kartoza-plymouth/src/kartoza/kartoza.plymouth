@@ -5,5 +5,5 @@ Comment=created By Tim Sutton (@timlinux)
 ModuleName=script
 
 [script]
-ImageDir=/usr/share/plymouth/themes/kartoza
+ImageDir=/usr/share/plymouth/themes/kartoza/images
 ScriptFile=/usr/share/plymouth/themes/kartoza/kartoza.script
