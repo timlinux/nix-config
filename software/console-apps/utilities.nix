@@ -1,8 +1,9 @@
 {pkgs, ...}: {
+  #TODO move this init somewhere else - its not appropriate here
   environment.interactiveShellInit = ''
     # Add anything that must be in bashrc here
     echo "Nix environment with setup configs by Tim."
-    neofetch
+    fastfetch
   '';
 
   # Add system wide packages
@@ -35,7 +36,6 @@
     mdcat # render markdown in your shell
     ranger # console file manager
     ncdu # understand disk usage. Use dua rather, it is much faster
-    neofetch # show stats of your system in terminal
     nethogs # see what apps are using up your bandwidth
     nix-direnv # see https://github.com/nix-community/nix-direnv
     nix-prefetch-github # see https://github.com/seppeljordan/nix-prefetch-github

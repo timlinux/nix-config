@@ -71,10 +71,10 @@
         dshow = "!f() { GIT_EXTERNAL_DIFF=difft git show --ext-diff $@; }; f";
         fucked = "reset --hard";
       };
-      difftastic = {
-        display = "side-by-side-show-both";
-        enable = true;
-      };
+      #difftastic = {
+      #  display = "side-by-side-show-both";
+      #  enable = true;
+      #};
       ignores = [
         ".direnv/"
         "*.log"

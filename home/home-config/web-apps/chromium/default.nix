@@ -12,7 +12,7 @@
     ./kartoza-geocommunity.nix
     ./kartoza-handbook.nix
     ./nix-search.nix
-    ./pipy.nix
+    ./pypi.nix
     ./kartoza-timesheets.nix
     ./kartoza-training.nix
     #./ms-teams.nix
