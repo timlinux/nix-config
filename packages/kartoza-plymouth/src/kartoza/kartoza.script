@@ -18,19 +18,19 @@ fun debug(text) {
 #           graphical elements.
 
 // Background color components
-BG_COLOR.red = 0.06666;
-BG_COLOR.green = 0.06666;
-BG_COLOR.blue = 0.06666;
+BG_COLOR.red = 1.00000;
+BG_COLOR.green = 1.00000;
+BG_COLOR.blue = 1.00000;
 
 // Main theme color components
-MAIN_COLOR.red = 0.74509;
-MAIN_COLOR.green = 0.19215;
-MAIN_COLOR.blue = 0.26666;
+MAIN_COLOR.red = 0.87450;
+MAIN_COLOR.green = 0.61960;
+MAIN_COLOR.blue = 0.18431;
 
 // Secondary color components
-SECONDARY_COLOR.red = 0.25490;
-SECONDARY_COLOR.green = 0.25490;
-SECONDARY_COLOR.blue = 0.25490;
+SECONDARY_COLOR.red = 0.33725;
+SECONDARY_COLOR.green = 0.62352;
+SECONDARY_COLOR.blue = 0.77647;
 
 
 # ----------------------------- Configuration ---------------------------------
@@ -39,7 +39,7 @@ SECONDARY_COLOR.blue = 0.25490;
 MAIN_FONT = "NotoSans Bold 22";
 
 // Font for password prompt
-SECONDARY_FONT = "NotoSans Regular 16";
+SECONDARY_FONT = "NotoSans Regular 14";
 
 // Position of the animation in percentage of the screen dimensions
 LOGO.center.x = 0.5;
@@ -47,29 +47,29 @@ LOGO.center.y = 0.5;
 
 // Position of the boot message in percentage of the screen dimensions
 BOOT_MESSAGE.center.x = 0.5;
-BOOT_MESSAGE.center.y = 0.65;
+BOOT_MESSAGE.center.y = 0.8;
 
 // Position of the progress bar in percentage of the screen dimensions
 BAR.center.x = 0.5;
-BAR.center.y = 0.7;
+BAR.center.y = 0.9;
 
 // Position of the status message in percentage of the screen dimensions
 STATUS.center.x = 0.5;
-STATUS.center.y = 0.75;
+STATUS.center.y = 0.85;
 
 // Position of the lock icon in percentage of the screen dimensions
 LOCK.center.x = 0.5;
-LOCK.center.y = 0.5;
+LOCK.center.y = 0.7;
 
 // Position of the password prompt in percentage of the screen dimensions
 PROMPT.center.x = 0.5;
-PROMPT.center.y = 0.65;
+PROMPT.center.y = 0.9;
 
 // Placeholder in password prompt
-PROMPT.placeholder = "Password";
+PROMPT.placeholder = "ZFS Password";
 
 // Character used to obfuscate password 
-PROMPT.bullet = "•";
+PROMPT.bullet = "҉";
 
 
 # ------------------------------ Initialization -------------------------------
@@ -110,7 +110,7 @@ while (1) {
 }
 
 fun hide_animation() {
-    animation.sprite.SetOpacity(0);
+    animation.sprite.SetOpacity(0.3);
 }
 
 fun show_animation() {
