@@ -22,13 +22,14 @@ pkgs.stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
-    #cp -r kartoza/kartoza-synfig-bootsplash.0.png $out/share/plymouth/themes/kartoza
+    cp -r kartoza/images $out/share/plymouth/themes/kartoza
     cp kartoza/kartoza.script $out/share/plymouth/themes/kartoza
     cat kartoza/kartoza.plymouth | sed  "s@\/usr\/@$out\/@" > $out/share/plymouth/themes/kartoza/kartoza.plymouth
   '';
 
   # Make it easy to get to the source dir when you run
   # nix develop .#kartoza-plymouth
+  # Actually you can just do "cd $src" to get to the source directory
   shellHook = ''
     export SRC_DIR=$src
     echo "Source directory is set to: $SRC_DIR"
