@@ -5,6 +5,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     unstable.url = "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
+    # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -12,6 +17,7 @@
     home-manager,
     nixpkgs,
     unstable,
+    nixos-generators,
   } @ inputs: let
     system = "x86_64-linux";
     # See https://github.com/mcdonc/.nixconfig/blob/86254905e2d13fc42292ac47fd13310d0c778935/videos/oldpkgs/script.rst
@@ -48,6 +54,14 @@
           withSerialPort = true;
         };
       };
+    };
+    # This is used for creating ISO images, see iso section below
+    isoBase = {
+      isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+      systemd.services.sshd.wantedBy = nixpkgs.lib.mkForce ["multi-user.target"];
+      users.users.root.openssh.authorizedKeys.keys = [
+        (builtins.readFile ./users/public-keys/id_ed25519_tim.pub)
+      ];
     };
   in {
     ######################################################
@@ -165,6 +179,26 @@
     packages.x86_64-linux.distrobox = pkgs.callPackage ./packages/distrobox {};
     packages.x86_64-linux.kartoza-plymouth = pkgs.callPackage ./packages/kartoza-plymouth {};
     #packages.x86_64-linux.whitebox-tools = pkgs.callPackage ./packages/whitebox-tools {};
+    packages.x86_64-linux.iso = nixos-generators.nixosGenerate {
+      system = "x86_64-linux";
+      modules = [
+        # you can include your own nixos configuration here, i.e.
+        #./hosts/iso-gnome.nix
+      ];
+      format = "vmware";
+
+      # optional arguments:
+      # explicit nixpkgs and lib:
+      # pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      # lib = nixpkgs.legacyPackages.x86_64-linux.lib;
+      # additional arguments to pass to modules:
+      # specialArgs = { myExtraArg = "foobar"; };
+
+      # you can also define your own custom formats
+      # customFormats = { "myFormat" = <myFormatModule>; ... };
+      # format = "myFormat";
+    };
+
     ######################################################
     ##
     ## Configurations for each host we manage
@@ -173,29 +207,26 @@
     nixosConfigurations = {
       # Live iso Generation
       # Please read: https://nixos.wiki/wiki/Creating_a_NixOS_live_CD
+      # To build:
       # nix build .#nixosConfigurations.live.config.system.build.isoImage
+      # To run:
+      # qemu-system-x86_64 -enable-kvm -m 8096 -cdrom result/iso/nixos-*.iso
       live = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
-
-        label = "MyNixOS"; # Label for the ISO image
-        destination = "./output.iso"; # Output path for the ISO image
-
-        # Example system configuration
-        services.openssh.enable = true; # Enable SSH server
-
         modules =
           [
-            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
-            {
-              # Less compression for faster build
-              isoImage.squashfsCompression = "gzip -Xcompression-level 1";
-            }
+            ({
+              config,
+              pkgs,
+              ...
+            }: {nixpkgs.overlays = [overlay-unstable];})
+            "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+            isoBase
           ]
           ++ shared-modules
           ++ [./hosts/iso-gnome.nix];
       };
-
       # Tim's p14s thinkpad - love this machine!
       crest = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
@@ -316,6 +347,7 @@
           ++ [./hosts/crater.nix];
       };
       # Automated testbed - test gnome
+      # do nix run then launch from the VM menu
       test-gnome-full = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
@@ -331,6 +363,7 @@
           ++ [./hosts/test-gnome-full.nix];
       };
       # Automated testbed - test gnome
+      # do nix run then launch from the VM menu
       test-gnome-minimal = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
@@ -345,6 +378,7 @@
           ++ shared-modules
           ++ [./hosts/test-gnome-minimal.nix];
       };
+      # do nix run then launch from the VM menu
       # Automated testbed - test kde
       test-kde6 = unstable.lib.nixosSystem {
         specialArgs = specialArgs;

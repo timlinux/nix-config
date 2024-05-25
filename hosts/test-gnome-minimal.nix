@@ -8,6 +8,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
+    ../software/system/locale-pt-en.nix
     ../users/guest.nix
     ../users/tim.nix
   ];
