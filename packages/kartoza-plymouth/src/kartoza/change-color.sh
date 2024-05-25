@@ -1,4 +1,8 @@
-#! /bin/bash
+#! /usr/bin/env bash
+
+# Script kindly taken from https://github.com/Hugopikachu/plymouth-theme-kartoza
+# and adapted from there
+
 # If the bash locale has another decimal seperator as '.' there would be an error (i.e. de_DE.utf8)
 LC_ALL=C
 
@@ -51,7 +55,6 @@ normalize_rgb() {
     printf "%1.5f" $(echo "scale=5; $1 / 255" | bc)
 }
 
-
 ########## FUNCTIONS ##########
 
 change_background() {
@@ -69,9 +72,9 @@ change_background() {
     blue=$(normalize_rgb $blue)
 
     # Update main script with RGB values
-    sed -i "s/^BG_COLOR.RED = .*;$/BG_COLOR.RED = $red;/" chain.script
-    sed -i "s/^BG_COLOR.GREEN = .*;$/BG_COLOR.GREEN = $green;/" chain.script
-    sed -i "s/^BG_COLOR.BLUE = .*;$/BG_COLOR.BLUE = $blue;/" chain.script
+    sed -i "s/^BG_COLOR.RED = .*;$/BG_COLOR.RED = $red;/" kartoza.script
+    sed -i "s/^BG_COLOR.GREEN = .*;$/BG_COLOR.GREEN = $green;/" kartoza.script
+    sed -i "s/^BG_COLOR.BLUE = .*;$/BG_COLOR.BLUE = $blue;/" kartoza.script
 }
 
 change_main() {
@@ -84,7 +87,7 @@ change_main() {
     # Change colors in PNGs
     convert images/bar-progress.png -channel RGB -fuzz 100% -fill $color -opaque $color images/bar-progress.png
     convert images/lock.png -channel RGB -fuzz 100% -fill $color -opaque $color images/lock.png
-    find ./images/animation -type f -name "*.png" -exec convert {} -channel RGB -fuzz 100% -fill $color -opaque $color {} \;
+    #find ./images/animation -type f -name "*.png" -exec convert {} -channel RGB -fuzz 100% -fill $color -opaque $color {} \;
 
     # Store RGB components in vars $red $green and $blue
     read -r red green blue < <(hex_to_rgb $color)
@@ -94,9 +97,9 @@ change_main() {
     blue=$(normalize_rgb $blue)
 
     # Update main script with RGB values
-    sed -i "s/^MAIN_COLOR.RED = .*;$/MAIN_COLOR.RED = $red;/" chain.script
-    sed -i "s/^MAIN_COLOR.GREEN = .*;$/MAIN_COLOR.GREEN = $green;/" chain.script
-    sed -i "s/^MAIN_COLOR.BLUE = .*;$/MAIN_COLOR.BLUE = $blue;/" chain.script
+    sed -i "s/^MAIN_COLOR.RED = .*;$/MAIN_COLOR.RED = $red;/" kartoza.script
+    sed -i "s/^MAIN_COLOR.GREEN = .*;$/MAIN_COLOR.GREEN = $green;/" kartoza.script
+    sed -i "s/^MAIN_COLOR.BLUE = .*;$/MAIN_COLOR.BLUE = $blue;/" kartoza.script
 }
 
 change_secondary() {
@@ -118,9 +121,9 @@ change_secondary() {
     blue=$(normalize_rgb $blue)
 
     # Update main script with RGB values
-    sed -i "s/^SECONDARY_COLOR.RED = .*;$/SECONDARY_COLOR.RED = $red;/" chain.script
-    sed -i "s/^SECONDARY_COLOR.GREEN = .*;$/SECONDARY_COLOR.GREEN = $green;/" chain.script
-    sed -i "s/^SECONDARY_COLOR.BLUE = .*;$/SECONDARY_COLOR.BLUE = $blue;/" chain.script
+    sed -i "s/^SECONDARY_COLOR.RED = .*;$/SECONDARY_COLOR.RED = $red;/" kartoza.script
+    sed -i "s/^SECONDARY_COLOR.GREEN = .*;$/SECONDARY_COLOR.GREEN = $green;/" kartoza.script
+    sed -i "s/^SECONDARY_COLOR.BLUE = .*;$/SECONDARY_COLOR.BLUE = $blue;/" kartoza.script
 }
 
 ########## MAIN SCRIPT ##########
@@ -130,16 +133,16 @@ change_secondary() {
 
 # Parse mode
 case $1 in
-    background)
-        change_background $2
-        ;;
-    main)
-        change_main $2
-        ;;
-    secondary)
-        change_secondary $2
-        ;;
-    *)
-        usage
-        ;;
+background)
+    change_background $2
+    ;;
+main)
+    change_main $2
+    ;;
+secondary)
+    change_secondary $2
+    ;;
+*)
+    usage
+    ;;
 esac

@@ -1,3 +1,6 @@
+# Script kindly taken from https://github.com/Hugopikachu/plymouth-theme-chain
+# and adapted from there
+
 # --------------------------------- Debug -------------------------------------
 
 debugsprite = Sprite();

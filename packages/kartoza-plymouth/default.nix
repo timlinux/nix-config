@@ -22,7 +22,7 @@ pkgs.stdenv.mkDerivation rec {
   '';
 
   installPhase = ''
-    cp -r kartoza/kartoza-synfig-bootsplash.0.png $out/share/plymouth/themes/kartoza
+    #cp -r kartoza/kartoza-synfig-bootsplash.0.png $out/share/plymouth/themes/kartoza
     cp kartoza/kartoza.script $out/share/plymouth/themes/kartoza
     cat kartoza/kartoza.plymouth | sed  "s@\/usr\/@$out\/@" > $out/share/plymouth/themes/kartoza/kartoza.plymouth
   '';
