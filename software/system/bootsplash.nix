@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   nixpkgs.overlays = [(import ../../packages)];
-
   # Boot splash stuff
   boot.initrd.systemd.enable = true;
   boot.kernelParams = ["quiet"]; # suppresses console text before the pwd prompt

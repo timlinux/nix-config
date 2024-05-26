@@ -48,9 +48,30 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  # Use adguard for DNS on the valley NUC
-  networking.nameservers = ["192.168.0.2"];
 
+  # Needs NixOS 24.05
+  # Set up a dns proxy so that we can use AdGuard Home as a DNS server
+  # and use our internal DNS server for some domains.
+  #services.dnsproxy = {
+  #  enable = true;
+  #  extraConfig = ''
+  #    [general]
+  #    upstream = ["192.168.0.2"]
+  #
+  #    [[rules]]
+  #    network = ["10.100.0.0/24", "10.31.0.0/24", "10.12.0.0/24", "10.20.0.0/24"]
+  #    upstream = ["10.31.0.5"]
+  #
+  #    [[rules]]
+  #    domain = ["*.kartoza.com"]
+  #    upstream = ["10.31.0.5"]
+  #  '';
+  #};
+  # Use DNS Proxy for DNS resolution
+  #networking.nameservers = ["127.0.0.1"];
+  networking.nameservers = ["192.168.0.2"];
+  #networking.firewall.allowedTCPPorts = [53];
+  #networking.firewall.allowedUDPPorts = [53];
   # For revolt
   #networking.firewall.allowedTCPPorts = [80 443];
   #networking.firewall.allowedUDPPorts = [80 443];
