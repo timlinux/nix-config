@@ -59,7 +59,7 @@ STATUS.center.y = 0.85;
 
 // Position of the lock icon in percentage of the screen dimensions
 LOCK.center.x = 0.5;
-LOCK.center.y = 0.7;
+LOCK.center.y = 0.8;
 
 // Position of the password prompt in percentage of the screen dimensions
 PROMPT.center.x = 0.5;
@@ -69,7 +69,7 @@ PROMPT.center.y = 0.9;
 PROMPT.placeholder = "ZFS Password";
 
 // Character used to obfuscate password 
-PROMPT.bullet = "҉";
+PROMPT.bullet = "*";
 
 
 # ------------------------------ Initialization -------------------------------
@@ -102,7 +102,7 @@ animation.sprite = Sprite();
 // hold the count of frames loaded. Eventually, the while loop breaks 
 // as soon as it fails to load the next PNG.
 while (1) {
-    local.image = Image("animation/kartoza-synfig-bootsplash." + animation.length + ".png");
+    local.image = Image("animation/kartoza-plymouth." + animation.length + ".png");
 
     if (!image) break;
 
@@ -139,9 +139,9 @@ fun update_animation() {
 # Set up and display a message containing the nature of the boot sequence 
 #
 
-if (process == "boot") boot_message.text = "Booting up";
-if (process == "reboot") boot_message.text = "Rebooting";
-if (process == "shutdown") boot_message.text = "Shutting down";
+if (process == "boot") boot_message.text = "Kartoza NixOS Starting ...";
+if (process == "reboot") boot_message.text = "Kartoza NixOS Restarting ...";
+if (process == "shutdown") boot_message.text = "Kartoza NixOS Shutting Down ...";
 
 boot_message.sprite = Sprite();
 boot_message.image = Image.Text(boot_message.text, MAIN_COLOR.red, MAIN_COLOR.green, MAIN_COLOR.blue, 1, MAIN_FONT);
