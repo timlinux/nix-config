@@ -32,9 +32,9 @@ rustPlatform.buildRustPackage rec {
     (lib.optional stdenv.isDarwin Security)
   ];
 
-  patches = [
-    ./ceil.patch
-  ];
+  #patches = [
+  #  ./ceil.patch
+  #];
 
   doCheck = false;
 

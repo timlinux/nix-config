@@ -1,5 +1,5 @@
---- num-bigint/src/biguint/convert.rs
-+++ num-bigint/src/biguint/convert.rs
+--- whitebox_tools-2.2.0-vendor.tar.gz/num-bigint/src/biguint/convert.rs
++++ whitebox_tools-2.2.0-vendor.tar.gz/num-bigint/src/biguint/convert.rs
 @@ -67,7 +67,7 @@
          .iter()
          .rev()
