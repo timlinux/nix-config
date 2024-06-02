@@ -7,8 +7,8 @@
   i18n.defaultLocale = "en_ZA.UTF-8";
   # Configure keymap in X11
   services.xserver = {
-    layout = "za";
-    xkbVariant = "";
+    xkb.layout = "za";
+    xkb.variant = "";
   };
 
   # Configure console keymap

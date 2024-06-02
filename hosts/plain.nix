@@ -11,7 +11,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
-    ../software/system/locale-ke-en.nix
+    ../software/system/locale-za-en.nix
     #../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
     ../software/desktop-apps-unstable # qgis, keepasxc, vscode, uxplay

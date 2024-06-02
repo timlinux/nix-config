@@ -21,6 +21,7 @@ in {
     programs.fish = {
       enable = true;
       shellAliases = {
+        gedit = "gnome-text-editor";
         banner = lib.mkIf isLinux "${pkgs.figlet}/bin/figlet";
         banner-color = lib.mkIf isLinux "${pkgs.figlet}/bin/figlet $argv | ${pkgs.dotacat}/bin/dotacat";
         brg = "${pkgs.bat-extras.batgrep}/bin/batgrep";

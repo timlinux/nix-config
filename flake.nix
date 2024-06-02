@@ -2,9 +2,9 @@
   description = "Kartoza NixOS Flakes";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -63,6 +63,14 @@
         (builtins.readFile ./users/public-keys/id_ed25519_tim.pub)
       ];
     };
+    # Import the mkHost function
+    make-host = import ./functions/make-host.nix {
+      nixpkgs = nixpkgs;
+      overlay-unstable = overlay-unstable;
+      shared-modules = shared-modules;
+      specialArgs = specialArgs;
+      system = system;
+    };
   in {
     ######################################################
     ##
@@ -99,12 +107,13 @@
     packages.x86_64-linux.otb = pkgs.callPackage ./packages/otb {self = self;};
     packages.x86_64-linux.distrobox = pkgs.callPackage ./packages/distrobox {};
     packages.x86_64-linux.kartoza-plymouth = pkgs.callPackage ./packages/kartoza-plymouth {};
+    packages.x86_64-linux.kartoza-grub = pkgs.callPackage ./packages/kartoza-grub {};
     packages.x86_64-linux.whitebox-tools = pkgs.callPackage ./packages/whitebox-tools {};
     # Example of how to deploy a simple script
     packages.x86_64-linux.runme = pkgs.writeScriptBin "runme" ''
       echo "Tim nix-config default package"
     '';
-    # WIP
+
     packages.x86_64-linux.iso = nixos-generators.nixosGenerate {
       system = "x86_64-linux";
       modules = [
@@ -154,187 +163,31 @@
           ++ [./hosts/iso-gnome.nix];
       };
       # Tim's p14s thinkpad - love this machine!
-      crest = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/crest.nix];
-      };
+      crest = make-host "crest";
       # Tim Tuxedo desktop box
-      waterfall = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/waterfall.nix];
-      };
+      waterfall = make-host "waterfall";
       # Tim headless box
-      valley = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/valley.nix];
-      };
+      valley = make-host "valley";
       # Vicky laptop
-      lagoon = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/lagoon.nix];
-      };
+      plain = make-host "lagoon";
+      # Marina laptop
+      lagoon = make-host "plain";
       # Virtman manual testbed
-      rock = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/rock.nix];
-      };
-      jeff = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/jeff.nix];
-      };
-      # Dorahs's Laptop
-      atoll = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/atoll.nix];
-      };
+      rock = make-host "rock";
+      # Jeff - running plasma
+      jeff = make-host "jeff";
+      # Dorah's Laptop
+      atoll = make-host "atoll";
       # Eli's Laptop
-      crater = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/crater.nix];
-      };
+      crater = make-host "crater";
       # Automated testbed - test gnome
-      # do nix run then launch from the VM menu
-      test-gnome-full = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/test-gnome-full.nix];
-      };
+      test-gnome-full = make-host "test-gnome-full";
       # Automated testbed - test gnome
-      # do nix run then launch from the VM menu
-      test-gnome-minimal = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/test-gnome-minimal.nix];
-      };
-      # do nix run then launch from the VM menu
-      # Automated testbed - test kde
-      test-kde6 = unstable.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/test-kde6.nix];
-      };
+      test-gnome-minimal = make-host "test-gnome-minimal";
+      # Automated testbed - test kde6
+      test-kde6 = make-host "test-kde6";
       # Automated testbed - test kde5
-      test-kde5 = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        system = system;
-        modules =
-          [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
-          ]
-          ++ shared-modules
-          ++ [./hosts/test-kde5.nix];
-      };
+      test-kde5 = make-host "test-kde5";
     };
 
     ######################################################

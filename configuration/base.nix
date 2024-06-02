@@ -15,9 +15,9 @@
 
   imports = [
     ../software/console-apps
-    ../software/system/bootsplash.nix
+    ../software/system/kartoza-plymouth.nix
+    ../software/system/kartoza-grub.nix
     ../software/system/garbage-collection.nix
-    ../software/system/grub-theme.nix
     ../software/system/harden.nix
     ../software/system/ssh.nix
   ];

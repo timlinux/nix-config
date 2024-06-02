@@ -2,8 +2,8 @@
 {
   # Configure keymap in X11
   services.xserver = {
-    layout = "pt";
-    xkbVariant = "";
+    xkb.layout = "pt";
+    xkb.variant = "";
   };
 
   # Configure console keymap

@@ -57,7 +57,7 @@
     # clinfo
     # vdpauinfo
     # libva-utils
-    nvtop # nvidia gpu monitor
+    #nvtop # nvidia gpu monitor ## XXX Disabled to avoid pulling in cuda which takes ages to build
     dig # dns lookup
     speedtest-rs # speedtest
   ];
