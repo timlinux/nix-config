@@ -59,7 +59,7 @@
     gnome.gnome-sound-recorder
     shortwave # Internet streaming radio player
     eyedropper # nice simple colour picker
-    gaphor # Uml diagramming app
+    #gaphor # Uml diagramming app
     #lorem
     solanum
     warp

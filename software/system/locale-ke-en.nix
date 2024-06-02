@@ -22,7 +22,7 @@
   # Configure keymap in X11
   services.xserver = {
     layout = lib.mkForce "us";
-    xkbVariant = "";
+    xkb.variant = "";
   };
 
   # Configure console keymap

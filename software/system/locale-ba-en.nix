@@ -3,7 +3,7 @@
   # Configure keymap in X11
   services.xserver = {
     layout = "ba";
-    xkbVariant = "";
+    xkb.variant = "";
   };
 
   # Configure console keymap

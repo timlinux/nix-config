@@ -8,7 +8,7 @@
   # Configure keymap in X11
   services.xserver = {
     layout = "za";
-    xkbVariant = "";
+    xkb.variant = "";
   };
 
   # Configure console keymap

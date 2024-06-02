@@ -2,9 +2,9 @@
   description = "Kartoza NixOS Flakes";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
