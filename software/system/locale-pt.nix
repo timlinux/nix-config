@@ -2,7 +2,7 @@
 {
   # Configure keymap in X11
   services.xserver = {
-    layout = "pt";
+    xkb.layout = "pt";
     xkb.variant = "";
   };
 

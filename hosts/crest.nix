@@ -99,10 +99,10 @@
   };
   # Special mount point 
   # See https://github.com/atuinsh/atuin/issues/952#issuecomment-1802376251
-  fileSystems."/home/timlinux/.local/share/atuin" = {
-    device = "NIXROOT/atuin";
-    fsType = "zfs";
-  };
+  #fileSystems."/home/timlinux/.local/share/atuin" = {
+  #  device = "NIXROOT/atuin";
+  #  fsType = "zfs";
+  #};
   networking.hostName = "crest"; # Define your hostname.
   # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId
   # Generate using this:
