@@ -15,7 +15,7 @@ stdenv.mkDerivation {
 
     mkdir -p $out/
     ls -lah $src
-    cp -r $src/kartoza $out/
+    cp -r $src/kartoza/* $out/
 
     runHook postInstall
   '';
