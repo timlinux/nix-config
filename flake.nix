@@ -63,7 +63,7 @@
         (builtins.readFile ./users/public-keys/id_ed25519_tim.pub)
       ];
     };
-    # Import the make-host function
+    # Import the mkHost function
     make-host = import ./functions/make-host.nix {
       nixpkgs = nixpkgs;
       overlay-unstable = overlay-unstable;
@@ -186,7 +186,9 @@
     packages.x86_64-linux.otb = pkgs.callPackage ./packages/otb {self = self;};
     packages.x86_64-linux.distrobox = pkgs.callPackage ./packages/distrobox {};
     packages.x86_64-linux.kartoza-plymouth = pkgs.callPackage ./packages/kartoza-plymouth {};
-    #packages.x86_64-linux.whitebox-tools = pkgs.callPackage ./packages/whitebox-tools {};
+    packages.x86_64-linux.kartoza-grub = pkgs.callPackage ./packages/kartoza-grub {};
+
+    #packages.x86_64-linux.whitebox-tools = pkgsmkHost.callPackage ./packages/whitebox-tools {};
     packages.x86_64-linux.iso = nixos-generators.nixosGenerate {
       system = "x86_64-linux";
       modules = [
@@ -242,9 +244,9 @@
       # Tim headless box
       valley = make-host "valley";
       # Vicky laptop
-      lagoon = make-host "lagoon";
+      plain = make-host "lagoon";
       # Marina laptop
-      plain = make-host "plain";
+      lagoon = make-host "plain";
       # Virtman manual testbed
       rock = make-host "rock";
       # Jeff - running plasma

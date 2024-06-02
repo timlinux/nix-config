@@ -22,3 +22,4 @@ build/WHITEPAPER-SLIDES.pdf
 CMakeCache.txt
 CMakeFiles
 ITK
+.$*
