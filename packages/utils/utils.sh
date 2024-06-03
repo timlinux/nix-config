@@ -163,6 +163,39 @@ push_value_to_store() {
     fi
 }
 
+ntfy_error() {
+    ERROR_CHANNEL=$(skate get "ntfy-error")
+    # check if the value is "Key not found"
+    if [ "$ERROR_CHANNEL" == "Key not found" ]; then
+        echo "No ntfy-error channel found. Please set one up."
+        exit 1
+    fi
+    # Check this function received at least one parameter
+    if [ -z "$1" ]; then
+        echo "Error: At least one parameter is required."
+        exit 1
+    fi
+    # Send the error message to the ntfy-error channel
+    ntfy send "$ERROR_CHANNEL" "$(hostname): $1"
+
+}
+
+ntfy_message() {
+    MESSAGE_CHANNEL=$(skate get "ntfy-message")
+    # check if the value is "Key not found"
+    if [ "$MESSAGE_CHANNEL" == "Key not found" ]; then
+        echo "No ntfy-message channel found. Please set one up."
+        exit 1
+    fi
+    # Check this function received at least one parameter
+    if [ -z "$1" ]; then
+        echo "Error: At least one parameter is required."
+        exit 1
+    fi
+    # Send the info message to the ntfy-message channel
+    ntfy send "$MESSAGE_CHANNEL" "$(hostname): $1"
+}
+
 # Function to generate system hardware profile
 generate_hardware_profile() {
     echo "Generating system hardware profile..."
@@ -438,6 +471,7 @@ setup_menu() {
             "🪪 Generate host id" \
             "⚠️ Format disk with ZFS ⚠️" \
             "🖥️ Install system" \
+            "🛟 Rescue System" \
             "🗑️ Purge nix cache"
     )
 
@@ -499,6 +533,28 @@ setup_menu() {
         prompt_to_continue
         setup_menu
         ;;
+    "🛟 Rescue System")
+        echo "Make sure you are booted off the live CD"
+        echo "Here are the commands to run to rebuild your system."
+        echo "Modify as needed..."
+        echo """
+        sudo zpool import -f NIXROOT
+        sudo zfs load-key NIXROOT
+        sudo mkdir /mnt/boot
+        sudo mkdir /mnt/home
+        sudo mkdir /mnt/nix    
+        sudo mount /dev/nvme0n1p1 /mnt/boot
+        sudo mount -t zfs NIXROOT/root /mnt
+        sudo mount -t zfs NIXROOT/home /mnt/home
+        sudo mount -t zfs NIXROOT/nix /mnt/nix
+        sudo nixos enter
+        # see https://discourse.nixos.org/t/nixos-rebuild-failing-while-chrooted/40176/5
+        unset SUDO_USER
+        NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --show-trace --impure --option sandbox false --flake .#crest
+        """
+        prompt_to_continue
+        setup_menu
+        ;;
     "⚠️ Format disk with ZFS ⚠️")
         confirm_format
         prompt_to_continue
@@ -536,7 +592,7 @@ system_menu() {
     choice=$(
         gum choose \
             "🏠️ Main menu" \
-            "🏃🏽 Update system" \
+            "🏃 Update system" \
             "🦠 Virus scan your home" \
             "💿️ Backup ZFS to USB disk" \
             "🧹 Clear disk space" \
@@ -549,11 +605,13 @@ system_menu() {
 
     case $choice in
     "Help") help_menu ;;
-    "🏃🏽 Update system")
+    "🏃 Update system")
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nix build --impure
         # Don't exit on errors
         set +e
+        ntfy_message "Running nixos-rebuild switch"
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --show-trace --impure --flake .
+        ntfy_message "System updated"
         # Re-enable exit on errors
         set -e
         prompt_to_continue

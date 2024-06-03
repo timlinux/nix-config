@@ -2,6 +2,8 @@
 pkgs.writeShellApplication {
   name = "utils";
   runtimeInputs = [
+    pkgs.ntfy-sh # for sending notifications
+    pkgs.scrot # command line screenshot tool
     pkgs.bash
     pkgs.gum # UX for TUIs
     pkgs.glow # For reading markdown in terminal

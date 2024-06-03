@@ -27,7 +27,7 @@
     ../software/desktop-apps-unstable/keepassxc-unstable.nix
     ../software/desktop-apps-unstable/vscode-unstable.nix
     ../software/desktop-apps-unstable/uxplay-unstable.nix
-    #../software/gis/qgis-sourcebuild.nix
+    ../software/gis/qgis-sourcebuild.nix
     #../software/system/sound-noise-suppression-unstable.nix
     #../software/gis/tilemaker-sourcebuild.nix
     #../software/gis/whitebox-tools.nix
