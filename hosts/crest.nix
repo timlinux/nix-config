@@ -83,10 +83,10 @@
 
   # If you installed using my zfs installer script, you will have a /nix
   # too so uncomment this...
-  #fileSystems."/nix" = {
-  #  device = "NIXROOT/nix";
-  #  fsType = "zfs";
-  #};
+  fileSystems."/nix" = {
+    device = "NIXROOT/nix";
+    fsType = "zfs";
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/EA5C-D827";
