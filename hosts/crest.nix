@@ -69,7 +69,8 @@
   #};
   # Use DNS Proxy for DNS resolution
   #networking.nameservers = ["127.0.0.1"];
-  networking.nameservers = ["192.168.0.2"];
+  networking.nameservers = ["10.100.0.236"];
+  #networking.nameservers = ["192.168.0.2"];
   #networking.firewall.allowedTCPPorts = [53];
   #networking.firewall.allowedUDPPorts = [53];
   # For revolt
@@ -97,7 +98,7 @@
     device = "NIXROOT/home";
     fsType = "zfs";
   };
-  # Special mount point 
+  # Special mount point
   # See https://github.com/atuinsh/atuin/issues/952#issuecomment-1802376251
   #fileSystems."/home/timlinux/.local/share/atuin" = {
   #  device = "NIXROOT/atuin";
@@ -111,7 +112,8 @@
   swapDevices = [];
 
   networking.extraHosts = ''
-    192.168.0.2 valley
+    10.100.0.236 valley
+    192.168.0.2 valley-local
     192.168.0.1 router
     10.100.0.242 vicky
     100.100.0.237 dorah
