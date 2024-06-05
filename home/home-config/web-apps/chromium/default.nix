@@ -15,6 +15,7 @@
     ./pypi.nix
     ./kartoza-timesheets.nix
     ./kartoza-sentry.nix
+    ./kartoza-ntfy.nix
     ./kartoza-training.nix
     #./ms-teams.nix
     ./svg-repo.nix
