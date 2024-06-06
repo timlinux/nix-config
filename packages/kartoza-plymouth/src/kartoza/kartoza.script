@@ -23,9 +23,9 @@ BG_COLOR.green = 1.00000;
 BG_COLOR.blue = 1.00000;
 
 // Main theme color components
-MAIN_COLOR.red = 0.87450;
-MAIN_COLOR.green = 0.61960;
-MAIN_COLOR.blue = 0.18431;
+MAIN_COLOR.red = 0.54117;
+MAIN_COLOR.green = 0.54509;
+MAIN_COLOR.blue = 0.54509;
 
 // Secondary color components
 SECONDARY_COLOR.red = 0.33725;
