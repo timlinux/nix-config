@@ -113,25 +113,24 @@
     packages.x86_64-linux.runme = pkgs.writeScriptBin "runme" ''
       echo "Tim nix-config default package"
     '';
-
+    # Build our custom ISO
+    # nix build .#iso
+    # Test with
+    # qemu-system-x86_64 -enable-kvm -m 8096 -cdrom result/iso/nixos-*.iso
     packages.x86_64-linux.iso = nixos-generators.nixosGenerate {
-      system = "x86_64-linux";
+      inherit pkgs;
       modules = [
-        # you can include your own nixos configuration here, i.e.
-        #./hosts/iso-gnome.nix
+        ./installer-configuration.nix
+        ./software/system/kartoza-plymouth.nix
+        ./software/system/kartoza-grub.nix
+        ./software/system/ssh.nix
       ];
-      format = "vmware";
-
-      # optional arguments:
-      # explicit nixpkgs and lib:
-      # pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      # lib = nixpkgs.legacyPackages.x86_64-linux.lib;
-      # additional arguments to pass to modules:
-      # specialArgs = { myExtraArg = "foobar"; };
-
-      # you can also define your own custom formats
-      # customFormats = { "myFormat" = <myFormatModule>; ... };
-      # format = "myFormat";
+      format =
+        {
+          x86_64-linux = "install-iso";
+          aarch64-linux = "sd-aarch64-installer";
+        }
+        .${system};
     };
 
     ######################################################
