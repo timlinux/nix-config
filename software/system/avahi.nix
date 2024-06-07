@@ -4,7 +4,7 @@
   # To enable network-discovery
   services.avahi = {
     enable = true;
-    nssmdns = true;  # printing
+    nssmdns = true;
     publish = {
       enable = true;
       addresses = true;
