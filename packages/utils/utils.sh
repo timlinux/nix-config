@@ -311,6 +311,15 @@ backup_zfs() {
     # Then unmount it before running this script
     # zpool export NIXBACKUPS
 
+
+    # Clearing old snapshots and restarting the snapshot sync process:
+    # Run all these steps as root
+    # zfs list -H -o name -t snapshot | xargs -n1 zfs destroy
+    # zfs snapshot NIXROOT/home@baseline
+    # zfs send NIXROOT/home@baseline | zfs receive -F NIXBACKUPS/home
+    # zpool export NIXBACKUPS
+
+
     DATE=$(date '+%Y-%m-%d.%Hh-%M')
     echo "🐴 Mounting NIXBACKUPS volume from USB drive"
     sudo zpool import NIXBACKUPS
