@@ -39,6 +39,7 @@
     #../software/system/tty-font.nix
     ../software/system/tailscale.nix
     ../software/system/virt.nix
+    ../software/system/printing.nix
     ../software/system/sanoid.nix
     #../software/system/lima.nix
     ../users/tim.nix
@@ -100,10 +101,10 @@
   };
   # Special mount point
   # See https://github.com/atuinsh/atuin/issues/952#issuecomment-1802376251
-  #fileSystems."/home/timlinux/.local/share/atuin" = {
-  #  device = "NIXROOT/atuin";
-  #  fsType = "zfs";
-  #};
+  fileSystems."/home/timlinux/.local/share/atuin" = {
+    device = "/dev/zvol/NIXROOT/atuin";
+    fsType = "ext4";
+  };
   networking.hostName = "crest"; # Define your hostname.
   # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId
   # Generate using this:
@@ -113,6 +114,7 @@
 
   networking.extraHosts = ''
     10.100.0.236 valley
+    10.100.0.234 waterfall
     192.168.0.2 valley-local
     192.168.0.1 router
     10.100.0.242 vicky

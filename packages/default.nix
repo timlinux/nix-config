@@ -1,7 +1,8 @@
 self: super: {
   kartoza-plymouth = super.callPackage ./kartoza-plymouth {};
   kartoza-grub = super.callPackage ./kartoza-grub {};
-  qgis-latest = super.callPackage ./qgis {};
+  qgis-latest = super.callPackage ./qgis {
+  };
   tilemaker = super.callPackage ./tilemaker/default.nix {};
   gverify = super.callPackage ./gverify/default.nix {};
   whitebox-tools = super.callPackage ./whitebox-tools/default.nix {};

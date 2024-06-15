@@ -9,4 +9,7 @@
     gutenprint
     hplip
   ];
+  environment.systemPackages = with pkgs; [
+    hplip
+  ];
 }

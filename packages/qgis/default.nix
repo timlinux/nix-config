@@ -6,7 +6,10 @@
   libsForQt5,
 }:
 with lib; let
-  qgis-latest = libsForQt5.callPackage ./unwrapped.nix {};
+  qgis-latest = libsForQt5.callPackage ./unwrapped.nix {
+    withGrass = true;
+    withWebKit = true;
+  };
 in
   symlinkJoin rec {
     inherit (qgis-latest) version;
