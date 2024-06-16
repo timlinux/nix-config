@@ -20,7 +20,17 @@
     if (hostname == "crest" || hostname == "waterfall" || hostname == "valley")
     then true
     else false;
+  username = "timlinux";
+  # copy over desktop monitor config to gdm for log in
+  # see https://discourse.nixos.org/t/gdm-monitor-configuration/6356/4
+  monitorsXmlContent = builtins.readFile /home/${username}/.config/monitors.xml;
+  monitorsConfig = pkgs.writeText "gdm_monitors.xml" monitorsXmlContent;
 in {
+  # copy over desktop monitor config to gdm for log in
+  # see https://discourse.nixos.org/t/gdm-monitor-configuration/6356/4
+  systemd.tmpfiles.rules = [
+    "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}"
+  ];
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
     echo "Hello from tim.nix"
@@ -32,9 +42,9 @@ in {
     starship init fish | source
   '';
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.timlinux = {
+  users.users.${username} = {
     isNormalUser = true;
-    initialPassword = "timlinux";
+    initialPassword = "${username}";
     description = "Tim Sutton";
     extraGroups = [
       "wheel"
@@ -69,14 +79,16 @@ in {
   # That will be the same for all users and hosts
   # so that we can share OBS scene configs
   fileSystems."/home/KartozaInternal" = {
-    device = "/home/timlinux/Syncthing/KartozaInternal";
+    device = "/home/${username}/Syncthing/KartozaInternal";
     fsType = "none";
     options = ["bind" "rw"];
   };
 
   home-manager = {
-    users.timlinux.home.stateVersion = "23.11";
-    users.timlinux = {
+    # Set backup file extension - any config file collisions will be backed up
+    backupFileExtension = ".bak";
+    users.${username} = {
+      home.stateVersion = "23.11";
       imports = [
         ../home
         # Not provisioned to all users...
