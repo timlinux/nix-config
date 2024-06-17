@@ -19,6 +19,7 @@ let
     glide-shift=0.0
     glide-scale=0.85
   '';
+  custom-dash-to-panel = pkgs.callPackage ../../packages/dash-to-panel {};
 in {
   # I know this isnt the best place to put the image
   # but it works for now...
@@ -26,16 +27,17 @@ in {
     mode = "0555";
     source = ../../resources/kartoza-start-button.png;
   };
-
   environment.systemPackages = with pkgs.gnomeExtensions; [
     user-themes
     tray-icons-reloaded
     blur-my-shell
     burn-my-windows
-    dash-to-panel
     date-menu-formatter
     desktop-cube
     runcat
+    #dash-to-panel
+    # Use custom-dash-to-panel instead of the default
+    #custom-dash-to-panel
   ];
   programs.dconf.profiles = {
     user.databases = [

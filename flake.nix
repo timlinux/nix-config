@@ -109,6 +109,8 @@
     packages.x86_64-linux.kartoza-plymouth = pkgs.callPackage ./packages/kartoza-plymouth {};
     packages.x86_64-linux.kartoza-grub = pkgs.callPackage ./packages/kartoza-grub {};
     packages.x86_64-linux.whitebox-tools = pkgs.callPackage ./packages/whitebox-tools {};
+    packages.x86_64-linux.dash-to-panel = pkgs.callPackage ./packages/dash-to-panel {};
+    packages.x86_64-linux.kartoza-cron = pkgs.callPackage ./packages/kartoza-cron {};
     # Example of how to deploy a simple script
     packages.x86_64-linux.runme = pkgs.writeScriptBin "runme" ''
       echo "Tim nix-config default package"
