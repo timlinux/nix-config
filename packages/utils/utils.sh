@@ -301,6 +301,16 @@ list_open_ports() {
     set -e
 }
 
+change_zfs_passphrase() {
+    # First list keys on NIXROOT
+    echo "🔑 Listing ZFS keys"
+    sudo zfs get keylocation NIXROOT
+    echo "🔑 Changing ZFS passphrase"
+    sudo zfs change-key -i NIXROOT
+    echo "🔁 Rebooting the system"
+    sudo reboot -h now
+}
+
 backup_zfs() {
 
     # Based partly on logic described here:
@@ -311,14 +321,12 @@ backup_zfs() {
     # Then unmount it before running this script
     # zpool export NIXBACKUPS
 
-
     # Clearing old snapshots and restarting the snapshot sync process:
     # Run all these steps as root
     # zfs list -H -o name -t snapshot | xargs -n1 zfs destroy
     # zfs snapshot NIXROOT/home@baseline
     # zfs send NIXROOT/home@baseline | zfs receive -F NIXBACKUPS/home
     # zpool export NIXBACKUPS
-
 
     DATE=$(date '+%Y-%m-%d.%Hh-%M')
     echo "🐴 Mounting NIXBACKUPS volume from USB drive"
@@ -603,6 +611,7 @@ system_menu() {
             "🏠️ Main menu" \
             "🏃 Update system" \
             "🦠 Virus scan your home" \
+            "🔑 Change ZFS Passphrase for NIXROOT" \
             "💿️ Backup ZFS to USB disk" \
             "🧹 Clear disk space" \
             "💻️ Update firmware" \
@@ -633,6 +642,11 @@ system_menu() {
         ;;
     "💿️ Backup ZFS to USB disk")
         backup_zfs
+        prompt_to_continue
+        system_menu
+        ;;
+    "🔑 Change ZFS Passphrase for NIXROOT")
+        change_zfs_passphrase
         prompt_to_continue
         system_menu
         ;;
