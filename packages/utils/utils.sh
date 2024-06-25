@@ -306,7 +306,7 @@ change_zfs_passphrase() {
     echo "🔑 Listing ZFS keys"
     sudo zfs get keylocation NIXROOT
     echo "🔑 Changing ZFS passphrase"
-    sudo zfs change-key -i NIXROOT
+    sudo zfs change-key NIXROOT
     echo "🔁 Rebooting the system"
     sudo reboot -h now
 }
