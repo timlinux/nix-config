@@ -176,7 +176,10 @@ ntfy_error() {
         exit 1
     fi
     # Send the error message to the ntfy-error channel
-    ntfy send "$ERROR_CHANNEL" "$(hostname): $1"
+    # shellcheck disable=SC2034
+    MESSAGE="🔴 📝 ERROR NOTE\nHost: $(hostname) Task: $(1)\n Date/Time: $(date)\n"
+    # Send the info message to the ntfy-message channel
+    ntfy send "$ERROR_CHANNEL" "$(hostname): $MESSAGE"
 
 }
 
@@ -192,8 +195,16 @@ ntfy_message() {
         echo "Error: At least one parameter is required."
         exit 1
     fi
+    set +e
+    read -r -d '\n' MESSAGE <<EndOfText
+        ❄️ **NIX FLAKE NOTE:**
+        **Host:** $(hostname) 
+        **Task:** $(1)
+        **Date/Time:** $(date)
+EndOfText
+    set -e
     # Send the info message to the ntfy-message channel
-    ntfy send "$MESSAGE_CHANNEL" "$(hostname): $1"
+    ntfy send "$MESSAGE_CHANNEL" "$MESSAGE"
 }
 
 # Function to generate system hardware profile

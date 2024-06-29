@@ -5,6 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     unstable.url = "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
+    # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,11 +14,10 @@
 
   outputs = {
     self,
+    home-manager,
     nixpkgs,
     unstable,
-    home-manager,
     nixos-generators,
-    ...
   } @ inputs: let
     system = "x86_64-linux";
 
@@ -26,12 +26,16 @@
       unstable = import unstable {
         inherit system;
         config.allowUnfree = true;
-        config.permittedInsecurePackages = ["qtwebkit-5.212.0-alpha4"];
+        config.permittedInsecurePackages = [
+          "qtwebkit-5.212.0-alpha4"
+        ];
       };
     };
 
     # Importing packages from nixpkgs
-    pkgs = import nixpkgs {inherit system;};
+    pkgs = import nixpkgs {
+      inherit system;
+    };
 
     # Special arguments used across packages and configurations
     specialArgs = inputs // {inherit system;};
@@ -51,7 +55,7 @@
     # Base configuration for ISO image generation
     isoBase = {
       isoImage.squashfsCompression = "gzip -Xcompression-level 1";
-      systemd.services.sshd.wantedBy = nixpkgs.lib.mkForce ["multi-user.target"];
+      systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
       users.users.root.openssh.authorizedKeys.keys = [
         (builtins.readFile ./users/public-keys/id_ed25519_tim.pub)
       ];
@@ -72,10 +76,28 @@
     ##
     ######################################################
 
+    # Default package - utilities to help you prepare for setting up a new machine.
+    #
+    # Run with:
+    # "nix run"
+    # or
+    # nix run github:timlinux/nix-config
+    # or
+    # nix run github:timlinux/nix-config#default
+    #
+    # to include in a config do:
+    #
+    # { pkgs, ... }: {
+    #   nixpkgs.overlays = [(import ../../packages)];
+    #   environment.systemPackages = with pkgs; [
+    #     qgis
+    #   ];
+    # }
+
     packages.x86_64-linux = {
       default = pkgs.callPackage ./packages/utils {};
       setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine {};
-      qgis = pkgs.qgis.overrideAttrs (oldAttrs: rec {
+      qgis-custom = pkgs.qgis.overrideAttrs (oldAttrs: rec {
         pythonBuildInputs =
           oldAttrs.pythonBuildInputs
           ++ [pkgs.numpy pkgs.requests pkgs.debugpy pkgs.future pkgs.matplotlib pkgs.pandas pkgs.geopandas pkgs.plotly pkgs.pyqt5_with_qtwebkit pkgs.pyqtgraph pkgs.rasterio pkgs.sqlalchemy];
@@ -107,7 +129,13 @@
     ######################################################
 
     nixosConfigurations = {
-      live = nixpkgs.lib.nixosSystem {
+      # Live iso Generation
+      # Please read: https://nixos.wiki/wiki/Creating_a_NixOS_live_CD
+      # To build:
+      # nix build .#nixosConfigurations.live.config.system.build.isoImage
+      # To run:
+      # qemu-system-x86_64 -enable-kvm -m 8096 -cdrom result/iso/nixos-*.iso
+      live = pkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
         modules =
@@ -123,19 +151,19 @@
           ++ shared-modules
           ++ [./hosts/iso-gnome.nix];
       };
-      crest = make-host "crest";
-      waterfall = make-host "waterfall";
-      valley = make-host "valley";
-      plain = make-host "lagoon";
-      lagoon = make-host "plain";
-      rock = make-host "rock";
-      jeff = make-host "jeff";
-      atoll = make-host "atoll";
-      crater = make-host "crater";
-      test-gnome-full = make-host "test-gnome-full";
-      test-gnome-minimal = make-host "test-gnome-minimal";
-      test-kde6 = make-host "test-kde6";
-      test-kde5 = make-host "test-kde5";
+      crest = make-host "crest"; # Tim's p14s thinkpad - love this machine!
+      waterfall = make-host "waterfall"; # Tim Tuxedo desktop box
+      valley = make-host "valley"; # Tim headless box
+      plain = make-host "lagoon"; # Vicky laptop
+      lagoon = make-host "plain"; # Marina laptop
+      rock = make-host "rock"; # Virtman manual testbed
+      jeff = make-host "jeff"; # Jeff - running plasma
+      atoll = make-host "atoll"; # Dorah's Laptop
+      crater = make-host "crater"; # Eli's Laptop
+      test-gnome-full = make-host "test-gnome-full"; # Automated testbed - test gnome
+      test-gnome-minimal = make-host "test-gnome-minimal"; # Automated testbed - test gnome
+      test-kde6 = make-host "test-kde6"; # Automated testbed - test kde6
+      test-kde5 = make-host "test-kde5"; # Automated testbed - test kde5
     };
   };
 }

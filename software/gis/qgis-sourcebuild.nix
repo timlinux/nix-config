@@ -1,11 +1,26 @@
-##
-## For hints on how to set up python deps with QGIS
-## see the top level README.md in this repo
-##
-{pkgs, ...}: {
-  nixpkgs.overlays = [(import ../../packages)];
+{
+  config,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
-    # taken from packages folder
-    qgis
+    (qgis.override {
+      extraPythonPackages = ps:
+        with ps; [
+          numpy
+          requests
+          debugpy
+          future
+          matplotlib
+          pandas
+          geopandas
+          plotly
+          pyqt5_with_qtwebkit
+          pyqtgraph
+          rasterio
+          sqlalchemy
+        ];
+    })
+    # other packages
   ];
 }
