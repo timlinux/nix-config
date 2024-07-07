@@ -154,8 +154,8 @@
       crest = make-host "crest"; # Tim's p14s thinkpad - love this machine!
       waterfall = make-host "waterfall"; # Tim Tuxedo desktop box
       valley = make-host "valley"; # Tim headless box
-      plain = make-host "lagoon"; # Vicky laptop
-      lagoon = make-host "plain"; # Marina laptop
+      lagoon = make-host "lagoon"; # Vicky laptop
+      plain = make-host "plain"; # Marina laptop
       rock = make-host "rock"; # Virtman manual testbed
       jeff = make-host "jeff"; # Jeff - running plasma
       atoll = make-host "atoll"; # Dorah's Laptop

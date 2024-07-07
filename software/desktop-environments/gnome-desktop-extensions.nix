@@ -28,6 +28,7 @@ in {
     source = ../../resources/kartoza-start-button.png;
   };
   environment.systemPackages = with pkgs.gnomeExtensions; [
+    fly-pie
     user-themes
     tray-icons-reloaded
     blur-my-shell

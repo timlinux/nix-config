@@ -21,6 +21,7 @@
           sqlalchemy
         ];
     })
-    # other packages
+    grass
+    saga
   ];
 }

@@ -18,6 +18,7 @@ in
       gum # UX for TUIs
       skate # Distributed key/value store
       mods # AI in your shell
+      ntfy-sh # Send notifications to your mobile
       gource # Software version control visualization
       marp-cli # Markdown presentation tool
       pinnedPkgs.glow # terminal markdown viewer

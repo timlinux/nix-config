@@ -195,13 +195,14 @@ ntfy_message() {
         echo "Error: At least one parameter is required."
         exit 1
     fi
+
     set +e
-    read -r -d '\n' MESSAGE <<EndOfText
+    read -r -d '\n' MESSAGE <<EndOfMessageText
         ❄️ **NIX FLAKE NOTE:**
         **Host:** $(hostname) 
-        **Task:** $(1)
+        **Task:** ${1}
         **Date/Time:** $(date)
-EndOfText
+EndOfMessageText
     set -e
     # Send the info message to the ntfy-message channel
     ntfy send "$MESSAGE_CHANNEL" "$MESSAGE"
