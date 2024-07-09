@@ -20,7 +20,7 @@
     ../software/desktop-apps-unstable/uxplay-unstable.nix
     ../software/system/locale-za-en.nix
     ../users/tim.nix
-    ../users/dorah.nix
+    ../users/michelle.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod"];
