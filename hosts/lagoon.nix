@@ -24,6 +24,7 @@
     ../users/vicky.nix
     ../users/tim.nix
     ../software/developer/aws.nix
+    ../software/system/docker.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
