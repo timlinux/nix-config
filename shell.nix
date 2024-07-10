@@ -29,6 +29,7 @@ in
       pinnedPkgs.ramfetch
       pinnedPkgs.starfetch
       pinnedPkgs.octofetch
+      pinnedPkgs.ntfy-sh
     ];
 
     # Now we can execute any commands within the virtual environment.
