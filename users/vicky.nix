@@ -76,7 +76,7 @@ in {
           userEmail = "victoria@kartoza.com";
           extraConfig = {
             github.user = "vikineema";
-            gitlab.user = "vicky@kartoza.com";
+            gitlab.user = "victoria@kartoza.com";
           };
           # rest of git is configured in ../home/git..
         };
