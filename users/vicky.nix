@@ -77,6 +77,12 @@ in {
           extraConfig = {
             github.user = "vikineema";
             gitlab.user = "victoria@kartoza.com";
+            branch.autoSetupRebase = lib.mkForce "never";
+            pull.ff = lib.mkForce "true";
+            push = {
+              default = lib.mkForce "current";
+              autoSetupRemote = lib.mkForce true;
+            };
           };
           # rest of git is configured in ../home/git..
         };
