@@ -77,12 +77,6 @@ in {
           extraConfig = {
             github.user = "vikineema";
             gitlab.user = "victoria@kartoza.com";
-            branch.autoSetupRebase = "never";
-            pull.ff = "true";
-            push = {
-              default = "current";
-              autoSetupRemote = true;
-            };
           };
           # rest of git is configured in ../home/git..
         };
