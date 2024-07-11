@@ -17,29 +17,29 @@
   username = "timlinux";
   # copy over desktop monitor config to gdm for log in
   # see https://discourse.nixos.org/t/gdm-monitor-configuration/6356/4
-  monitorsXmlContent = if isTimMachine then builtins.readFile "/home/${username}/.config/monitors.xml" else "";
-  monitorsConfig = if isTimMachine then pkgs.writeText "gdm_monitors.xml" monitorsXmlContent else null;
+  #monitorsXmlContent = if isTimMachine then builtins.readFile "/home/${username}/.config/monitors.xml" else "";
+  #monitorsConfig = if isTimMachine then pkgs.writeText "gdm_monitors.xml" monitorsXmlContent else null;
 in {
-  _module.args.hostname = hostname;
+  #_module.args.hostname = hostname;
 
   # copy over desktop monitor config to gdm for log in
   # see https://discourse.nixos.org/t/gdm-monitor-configuration/6356/4
-  systemd.tmpfiles.rules = if isTimMachine then [
-    "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}"
-  ] else [];
-  
+  #systemd.tmpfiles.rules = if isTimMachine then [
+  #  "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}"
+  #] else [];
+
   # These lines will be added to global bashrc
   environment.interactiveShellInit = ''
     echo "Hello from tim.nix"
   '';
-  
+
   # I tried just adding this in the fish module
   # but it doesn't work so we need to add it
   # for each user
   programs.fish.interactiveShellInit = ''
     starship init fish | source
   '';
-  
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;

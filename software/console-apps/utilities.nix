@@ -47,5 +47,6 @@
     unzip # unzip stuff
     usbutils # lsusb etc
     wget # fetch files over http
+    zellij # terminal multiplexer
   ];
 }

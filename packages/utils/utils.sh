@@ -360,6 +360,15 @@ backup_zfs() {
     sudo udisksctl power-off -b /dev/sda
 }
 
+unmount_backup_disk() {
+    # Stop zfs looking for this pool
+    echo "🔌Unplugging the backup zpool"
+    sudo zpool export NIXBACKUPS
+    # Power off the  USB drive:
+    echo "⚡️Powering off the USB drive"
+    sudo udisksctl power-off -b /dev/sda
+}
+
 list_partitions() {
     set +e
     # Execute blkid command and store the output in a variable
@@ -625,6 +634,7 @@ system_menu() {
             "🦠 Virus scan your home" \
             "🔑 Change ZFS Passphrase for NIXROOT" \
             "💿️ Backup ZFS to USB disk" \
+            "💿️ Unmount ZFS USB disk" \
             "🧹 Clear disk space" \
             "💻️ Update firmware" \
             "❄️ Update flake lock" \
@@ -654,6 +664,11 @@ system_menu() {
         ;;
     "💿️ Backup ZFS to USB disk")
         backup_zfs
+        prompt_to_continue
+        system_menu
+        ;;
+    "💿️ Unmount ZFS USB disk")
+        unmount_backup_disk
         prompt_to_continue
         system_menu
         ;;
