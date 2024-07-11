@@ -6,4 +6,5 @@ self: super: {
   gverify = super.callPackage ./gverify/default.nix {};
   itk4 = super.callPackage ./itk4/default.nix {};
   otb = super.callPackage ./otb/default.nix {};
+  qgis-conda = super.callPackage ./qgis-conda/default.nix {};
 }

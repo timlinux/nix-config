@@ -42,6 +42,7 @@
     ../software/system/virt.nix
     ../software/system/printing.nix
     ../software/system/sanoid.nix
+    ../software/gis/qgis-conda.nix
     #../software/system/lima.nix
     ../users/tim.nix
   ];

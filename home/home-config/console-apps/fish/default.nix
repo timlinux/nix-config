@@ -16,7 +16,7 @@
     if (hostname == "crest" || hostname == "waterfall" || hostname == "valley")
     then true
     else false;
-  qgiscondanixfile = ../../../../software/gis/qgis-conda.nix;
+  #qgiscondanixfile = ../../../../software/gis/qgis-conda.nix;
 in {
   config = {
     programs.fish = {
@@ -42,7 +42,7 @@ in {
         more = "${pkgs.bat}/bin/bat";
         checkip = "${pkgs.curlMinimal}/bin/curl -s ifconfig.me/ip";
         parrot = "${pkgs.terminal-parrot}/bin/terminal-parrot -delay 50 -loops 7";
-        qgis-conda = "nix-shell ${qgiscondanixfile}";
+        #qgis-conda = "nix-shell ${qgiscondanixfile}";
         ruler = ''${pkgs.hr}/bin/hr "╭─³⁴⁵⁶⁷⁸─╮"'';
         screenfetch = "${pkgs.fastfetch}/bin/fastfetch";
         speedtest = "${pkgs.speedtest-go}/bin/speedtest-go";
