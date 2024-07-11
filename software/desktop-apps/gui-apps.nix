@@ -33,6 +33,7 @@
     # {"spellcheck":{"dictionaries":["en-GB","pt"],"dictionary":""}}
     # TODO is to automate this with home manager....
     logseq
+    marktext # nice markdown editor
     mpv # videa player
     nextcloud-client
     obs-studio
