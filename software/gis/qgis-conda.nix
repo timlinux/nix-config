@@ -28,7 +28,7 @@
       micromamba activate qgis-conda-env
 
       # Always update to the latest
-      micromamba update
+      # micromamba update
 
       set +e
     '';
