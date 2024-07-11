@@ -27,13 +27,12 @@
       # Activate the environment.
       micromamba activate qgis-conda-env
 
-      # Always update packages in the environment to the latest.
-      # micromamba update
+      # Always update to the latest
+      micromamba update
 
-      # Start qgis
-      # qgis
       set +e
     '';
+    runScript = "qgis";
   };
 in
   fhs.env
