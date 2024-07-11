@@ -36,7 +36,7 @@ in {
     date-menu-formatter
     desktop-cube
     runcat
-    #dash-to-panel
+    dash-to-panel
     # Use custom-dash-to-panel instead of the default
     #custom-dash-to-panel
   ];
