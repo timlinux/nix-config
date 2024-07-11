@@ -23,7 +23,7 @@
     ../software/system/sanoid.nix
     ../users/vicky.nix
     ../users/tim.nix
-    ../software/developer/aws.nix
+    ../software/developer/awscli.nix
     ../software/system/docker.nix
   ];
 
