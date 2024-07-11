@@ -34,8 +34,9 @@
     ../software/gis/saga.nix
     # R&D Package for Wolfgang
     ../software/gis/gverify-sourcebuild.nix
-    ../software/system/podman.nix
-    ../software/system/distrobox.nix
+    #../software/system/docker.nix
+    #../software/system/podman.nix
+    #../software/system/distrobox.nix
     #../software/system/tty-font.nix
     ../software/system/tailscale.nix
     ../software/system/virt.nix
@@ -118,7 +119,7 @@
     192.168.0.2 valley-local
     192.168.0.1 router
     10.100.0.242 vicky
-    100.100.0.237 dorah
+    100.100.0.237 michelle
   '';
 
   networking.useDHCP = lib.mkDefault true;
