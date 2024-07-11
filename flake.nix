@@ -110,6 +110,7 @@
       kartoza-plymouth = pkgs.callPackage ./packages/kartoza-plymouth {};
       kartoza-grub = pkgs.callPackage ./packages/kartoza-grub {};
       kartoza-cron = pkgs.callPackage ./packages/kartoza-cron {};
+      qgis-conda = pkgs.callPackage ./packages/qgis-conda {};
       iso = nixos-generators.nixosGenerate {
         inherit pkgs;
         modules = [./installer-configuration.nix ./software/system/kartoza-plymouth.nix ./software/system/kartoza-grub.nix ./software/system/ssh.nix];
