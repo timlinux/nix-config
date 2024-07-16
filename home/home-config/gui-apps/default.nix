@@ -6,5 +6,6 @@
 }: {
   imports = [
     ./kitty
+    ./qgis-conda
   ];
 }
