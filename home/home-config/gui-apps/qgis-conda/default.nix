@@ -17,7 +17,7 @@ in {
       desktopName = appName;
       genericName = appName;
       exec = ''
-        nix run --extra-experimental-features nix-command --extra-experimental-features flakes github:timlinux/nix-config#qgis-conda
+        nix run --extra-experimental-features nix-command --extra-experimental-features flakes "github:timlinux/nix-config#qgis-conda"
       '';
       icon = iconPath;
       categories = ["Network" "System"];
