@@ -5,10 +5,6 @@
   modulesPath,
   ...
 }: {
-  # Lenovo Ideapad Flex5
-  # No ZFS and using cryptfs
-  # Amy Laptop
-
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
@@ -22,6 +18,13 @@
     ../users/amz.nix
     ../users/tim.nix
   ];
+  # Lenovo Ideapad Flex5
+  # No ZFS and using cryptfs
+  # Amy Laptop
+  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   # Non ZFS hosts only for this section
   # Bootloader.
@@ -34,13 +37,8 @@
   };
 
   # Enable swap on luks
-  #boot.initrd.luks.devices."luks-f4166935-5b7d-4a27-9b61-0d751d324ce9".device = "/dev/disk/by-uuid/f4166935-5b7d-4a27-9b61-0d751d32   4ce9";
-  #boot.initrd.luks.devices."luks-f4166935-5b7d-4a27-9b61-0d751d324ce9".keyFile = "/crypto_keyfile.bin";
-
-  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot.initrd.luks.devices."luks-f4166935-5b7d-4a27-9b61-0d751d324ce9".device = "/dev/disk/by-uuid/f4166935-5b7d-4a27-9b61-0d751d324ce9";
+  boot.initrd.luks.devices."luks-f4166935-5b7d-4a27-9b61-0d751d324ce9".keyFile = "/crypto_keyfile.bin";
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/1e2cefdd-8e4f-4208-81e8-8bbcd2719d64";
@@ -55,7 +53,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/f4166935-5b7d-4a27-9b61-0d751d324ce9";}
+    {device = "/dev/disk/by-uuid/48a6044f-90ea-4bd1-b6b4-f192abee085d";}
   ];
 
   networking.hostName = "delta"; # Define your hostname.
