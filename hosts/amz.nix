@@ -24,9 +24,18 @@
   ];
 
   # Non ZFS hosts only for this section
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/nvme0n1p1";
-  boot.loader.grub.useOSProber = true;
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Setup keyfile
+  boot.initrd.secrets = {
+    "/crypto_keyfile.bin" = null;
+  };
+
+  # Enable swap on luks
+  #boot.initrd.luks.devices."luks-f4166935-5b7d-4a27-9b61-0d751d324ce9".device = "/dev/disk/by-uuid/f4166935-5b7d-4a27-9b61-0d751d32   4ce9";
+  #boot.initrd.luks.devices."luks-f4166935-5b7d-4a27-9b61-0d751d324ce9".keyFile = "/crypto_keyfile.bin";
 
   boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
@@ -38,8 +47,7 @@
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-04990889-c093-4272-9ca5-0bed5e068a7e".device = "/dev/disk/by-uuid/04990889-c093-4272-9ca5-0bed5e068a7e
-";
+  boot.initrd.luks.devices."luks-04990889-c093-4272-9ca5-0bed5e068a7e".device = "/dev/disk/by-uuid/04990889-c093-4272-9ca5-0bed5e068a7e";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/0397-B13C";
@@ -47,7 +55,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/48a6044f-90ea-4bd1-b6b4-f192abee085d";}
+    {device = "/dev/disk/by-uuid/f4166935-5b7d-4a27-9b61-0d751d324ce9";}
   ];
 
   networking.hostName = "delta"; # Define your hostname.
