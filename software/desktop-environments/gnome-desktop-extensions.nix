@@ -268,7 +268,7 @@ in {
           "org/gnome/shell/extensions/burn-my-windows".active-profile = "${burnMyWindowsProfile}";
           "org/gnome/shell/extensions/date-menu-formatter" = {
             pattern = "hh:mm a EEEE, dd MMMM, yyyy ";
-            apply-all-panels = true};
+            apply-all-panels = true; };
           "org/gnome/shell/extensions/desktop-cube" = {
             last-first-gap = false;
             window-parallax = 0.75;
