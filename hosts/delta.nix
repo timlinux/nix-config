@@ -19,7 +19,7 @@
     ../software/gis/qgis-stable.nix
     #../software/desktop-apps-unstable/uxplay-unstable.nix
     ../software/system/locale-za-en.nix
-    ../users/amy.nix
+    ../users/amz.nix
     ../users/tim.nix
   ];
 
