@@ -2,7 +2,7 @@
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
     starship init fish | source
-    echo "Hello from amz.nix"
+    echo "Hello from amy.nix"
   '';
   # I tried just adding this in the fish module
   # but it doesnt work so we need to add it
@@ -11,7 +11,7 @@
     starship init fish | source
   '';
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.amz = {
+  users.users.amy = {
     isNormalUser = true;
     description = "Amy Ternent";
     extraGroups = ["wheel" "disk" "libvirtd" "dialout" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" "adbusers" "scanner" "lp"];

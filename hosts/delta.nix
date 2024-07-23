@@ -5,65 +5,74 @@
   modulesPath,
   ...
 }: {
+  # Lenovo for Amy
+
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
+    ../modules/locale-za-en.nix
+    ../software/system/zfs-encryption.nix
     ../software/desktop-apps-unstable/keepassxc-unstable.nix
     ../software/desktop-apps-unstable/vscode-unstable.nix
-    #../software/gis/qgis-unstable.nix
-    ../software/gis/qgis-stable.nix
-    #../software/desktop-apps-unstable/uxplay-unstable.nix
-    ../software/system/locale-za-en.nix
-    ../users/amz.nix
+    ../software/desktop-apps-unstable/uxplay-unstable.nix
+    ../software/gis/qgis-sourcebuild.nix
+    ../software/gis/whitebox-tools.nix
+    ../software/gis/saga.nix
+    ../software/system/tailscale.nix
+    ../software/system/virt.nix
+    ../software/system/printing.nix
+    ../software/system/sanoid.nix
+    ../users/amy.nix
     ../users/tim.nix
   ];
-  # Lenovo Ideapad Flex5
-  # No ZFS and using cryptfs
-  # Amy Laptop
-  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "vmd" "nvme" "usb_storage" "sd_mod"];
+
+  boot.initrd.availableKernelModules = ["nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  # Non ZFS hosts only for this section
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
-
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-f4166935-5b7d-4a27-9b61-0d751d324ce9".device = "/dev/disk/by-uuid/f4166935-5b7d-4a27-9b61-0d751d324ce9";
-  boot.initrd.luks.devices."luks-f4166935-5b7d-4a27-9b61-0d751d324ce9".keyFile = "/crypto_keyfile.bin";
+  #networking.nameservers = ["10.100.0.236"];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/1e2cefdd-8e4f-4208-81e8-8bbcd2719d64";
-    fsType = "ext4";
+    device = "NIXROOT/root";
+    fsType = "zfs";
   };
-
-  boot.initrd.luks.devices."luks-04990889-c093-4272-9ca5-0bed5e068a7e".device = "/dev/disk/by-uuid/04990889-c093-4272-9ca5-0bed5e068a7e";
-
+  fileSystems."/nix" = {
+    device = "NIXROOT/nix";
+    fsType = "zfs";
+  };
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/0397-B13C";
+    device = "/dev/disk/by-uuid/EA5C-D827";
     fsType = "vfat";
   };
-
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/48a6044f-90ea-4bd1-b6b4-f192abee085d";}
-  ];
-
+  fileSystems."/home" = {
+    device = "NIXROOT/home";
+    fsType = "zfs";
+  };
+  # Special mount point
+  # See https://github.com/atuinsh/atuin/issues/952#issuecomment-1802376251
+  #fileSystems."/home/amy/.local/share/atuin" = {
+  #  device = "/dev/zvol/NIXROOT/atuin";
+  #  fsType = "ext4";
+  #};
   networking.hostName = "delta"; # Define your hostname.
   # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId
   # Generate using this:
   # head -c 8 /etc/machine-id
   networking.hostId = "69a88099"; # needed for zfs
+  swapDevices = [];
+
+  networking.extraHosts = ''
+    10.100.0.236 valley
+    10.100.0.234 waterfall
+    192.168.0.2 valley-local
+    192.168.0.1 router
+    10.100.0.242 vicky
+    100.100.0.237 michelle
+  '';
 
   networking.useDHCP = lib.mkDefault true;
-
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
