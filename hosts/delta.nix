@@ -6,28 +6,28 @@
   ...
 }: {
   # Lenovo for Amy
-
+  nixpkgs.config.cudaSupport = false;
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
-    ../modules/locale-za-en.nix
+    ../software/system/locale-ke-en.nix
+    #../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
-    ../software/desktop-apps-unstable/keepassxc-unstable.nix
-    ../software/desktop-apps-unstable/vscode-unstable.nix
-    ../software/desktop-apps-unstable/uxplay-unstable.nix
-    ../software/gis/qgis-sourcebuild.nix
-    ../software/gis/whitebox-tools.nix
-    ../software/gis/saga.nix
-    ../software/system/tailscale.nix
+    ../software/desktop-apps-unstable # keepasxc, vscode, uxplay
+    ../software/gis/qgis-stable.nix
+    #../software/gis/qgis-sourcebuild.nix
+    #../software/system/podman.nix
+    #../software/system/distrobox.nix
     ../software/system/virt.nix
-    ../software/system/printing.nix
     ../software/system/sanoid.nix
     ../users/amy.nix
     ../users/tim.nix
+    ../software/developer/awscli.nix
+    ../software/system/docker.nix
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
+  boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
@@ -38,14 +38,17 @@
     device = "NIXROOT/root";
     fsType = "zfs";
   };
+
   fileSystems."/nix" = {
     device = "NIXROOT/nix";
     fsType = "zfs";
   };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/EA5C-D827";
     fsType = "vfat";
   };
+
   fileSystems."/home" = {
     device = "NIXROOT/home";
     fsType = "zfs";
