@@ -29,5 +29,5 @@ in {
       # Then set the value below to whatever WM_CLASS(STRING) is
       startupWMClass = "chat.google.com";
     };
-  in [googleCalendarApp];
+  in [googleChatApp];
 }
