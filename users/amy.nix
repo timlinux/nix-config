@@ -1,7 +1,28 @@
-{pkgs, ...}: {
+{
+  config,
+  desktop,
+  hostname,
+  inputs,
+  lib,
+  outputs,
+  pkgs,
+  stateVersion,
+  username,
+  ...
+}: let
+  inherit (pkgs.stdenv) isDarwin isLinux;
+  isLima = builtins.substring 0 5 hostname == "lima-";
+  isWorkstation =
+    if (desktop != null)
+    then true
+    else false;
+  isTimMachine =
+    if (hostname == "crest" || hostname == "waterfall" || hostname == "valley")
+    then true
+    else false;
+in {
   # These lines will be added to global  bashrc
   environment.interactiveShellInit = ''
-    starship init fish | source
     echo "Hello from amy.nix"
   '';
   # I tried just adding this in the fish module
@@ -13,11 +34,57 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.amy = {
     isNormalUser = true;
-    description = "Amy Ternent";
-    extraGroups = ["wheel" "disk" "libvirtd" "dialout" "docker" "audio" "video" "input" "systemd-journal" "networkmanager" "network" "davfs2" "adbusers" "scanner" "lp"];
-
-    packages = with pkgs; [
-      hugo
+    initialPassword = "amy";
+    description = "Amy Burness";
+    extraGroups = [
+      "wheel"
+      "disk"
+      "libvirtd"
+      "dialout" # needed for arduino
+      "docker"
+      "audio"
+      "video"
+      "input"
+      "systemd-journal"
+      "networkmanager"
+      "network"
+      "davfs2"
+      "adbusers"
+      "scanner"
+      "lp"
+      "lpadmin"
+      "i2c"
     ];
+    openssh.authorizedKeys.keys = [
+      (builtins.readFile ./public-keys/id_ed25519_tim.pub)
+    ];
+    packages = with pkgs; [
+    ];
+  };
+
+  home-manager = {
+    users.amy.home.stateVersion = "24.05";
+    users.amy = {
+      imports = [
+        ../home
+      ];
+      programs = {
+        git = {
+          userName = "Amy Ternent";
+          userEmail = "amy@kartoza.com";
+          extraConfig = {
+            github.user = "amyburness";
+            gitlab.user = "amy@kartoza.com";
+            branch.autoSetupRebase = lib.mkForce "never";
+            pull.ff = lib.mkForce "true";
+            push = {
+              default = lib.mkForce "current";
+              autoSetupRemote = lib.mkForce true;
+            };
+          };
+          # rest of git is configured in ../home/git..
+        };
+      };
+    };
   };
 }
