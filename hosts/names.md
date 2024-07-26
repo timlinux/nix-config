@@ -1,14 +1,14 @@
 Name | Owned by | Hardware | Notes
 -----|----------|---------|--------
 archipelago | | |
-atoll  | Dorah | Dell Inspiron 14 7430 2in1  | Mobile Workstation 
+atoll  | Michelle | Dell Inspiron 14 7430 2in1  | Mobile Workstation 
 basin | | | 
 butte | || 
 canyon | ||
 cliff | ||
 crater  | Eli |Dell P157G Inspiron | Mobile Workstation
 crest  | Tim  | ThinkPad P14s | Mobile Workstation
-delta | ||
+delta | Amy | Lenovo Ideapad Flex5 LNVNB161216 | Mobile Workstation
 dune | ||
 fjord |Amy ||
 geyser | ||

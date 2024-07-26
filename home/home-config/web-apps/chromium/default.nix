@@ -7,6 +7,7 @@
   imports = [
     ./chat-gpt.nix
     ./google-calendar.nix
+    ./google-chat.nix
     ./google-mail.nix
     ./kartoza-erp.nix
     ./kartoza-geocommunity.nix
