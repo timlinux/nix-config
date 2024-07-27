@@ -11,6 +11,7 @@
     copyq # Clipboard history manager with image support
     dbeaver-bin
     deja-dup
+    discord
     drawio
     firefox
     flameshot
