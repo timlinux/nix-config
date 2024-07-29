@@ -24,6 +24,7 @@
     figlet # make text banners for your console
     git # well we all know what this is right?
     gh # github command line tool - see https://cli.github.com/
+    gnumake
     gping # a better ping implementation
     gotop # system resource utilization console ui
     iftop # see what bandwidth is used on each network interface
