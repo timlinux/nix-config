@@ -116,7 +116,7 @@
     192.168.0.2 valley-local
     192.168.0.1 router
     10.100.0.242 vicky
-    100.100.0.237 michelle
+    10.100.0.237 michelle
     10.100.0.243 amy
   '';
 
