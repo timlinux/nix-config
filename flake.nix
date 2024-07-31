@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    unstable.url = "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
@@ -16,21 +15,9 @@
     self,
     home-manager,
     nixpkgs,
-    unstable,
     nixos-generators,
   } @ inputs: let
     system = "x86_64-linux";
-
-    # Overlay for unstable packages
-    overlay-unstable = final: prev: {
-      unstable = import unstable {
-        inherit system;
-        config.allowUnfree = true;
-        config.permittedInsecurePackages = [
-          "qtwebkit-5.212.0-alpha4"
-        ];
-      };
-    };
 
     # Importing packages from nixpkgs
     pkgs = import nixpkgs {
@@ -64,7 +51,6 @@
     # Function to create NixOS configurations for each host
     make-host = import ./functions/make-host.nix {
       nixpkgs = nixpkgs;
-      overlay-unstable = overlay-unstable;
       shared-modules = shared-modules;
       specialArgs = specialArgs;
       system = system;
@@ -141,11 +127,6 @@
         system = system;
         modules =
           [
-            ({
-              config,
-              pkgs,
-              ...
-            }: {nixpkgs.overlays = [overlay-unstable];})
             "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
             isoBase
           ]

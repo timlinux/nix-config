@@ -1,6 +1,5 @@
 {
   nixpkgs,
-  overlay-unstable,
   shared-modules,
   specialArgs,
   system,
@@ -10,11 +9,6 @@ nixpkgs.lib.nixosSystem {
   system = system;
   modules =
     [
-      ({
-        config,
-        pkgs,
-        ...
-      }: {nixpkgs.overlays = [overlay-unstable];})
     ]
     ++ shared-modules
     ++ [../hosts/${hostName}.nix];

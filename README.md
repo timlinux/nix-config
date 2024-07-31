@@ -627,9 +627,6 @@ customise it as wanted. To use it add include the ``software/qgis-sourcebuild.ni
     # your pc.   If you prefer to use the upstream built binary,
     # you can comment out these next 4 lines and uncomment the
     # unstable-apps entry above.
-    ../software/keepassxc-unstable.nix
-    ../software/vscode-unstable.nix
-    ../software/uxplay-unstable.nix
     ../software/qgis-sourcebuild.nix
     ../users/tim.nix
   ];

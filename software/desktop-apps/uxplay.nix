@@ -15,8 +15,7 @@
     ux = "uxplay -m -reset 5 -nohold -n Nixos -nh -p";
   };
   environment.systemPackages = with pkgs; [
-    # Unstable defined in flake.nix and overlaid to be available here
-    unstable.uxplay
+    uxplay
   ];
   # Open network ports
   networking.firewall.allowedTCPPorts = [7000 7001 7100];
