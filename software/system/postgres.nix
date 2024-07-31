@@ -1,12 +1,14 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_16;
-    extraPlugins = [ (pkgs.postgis.override { postgresql = pkgs.postgresql_15; }) ];  
+    extraPlugins = [(pkgs.postgis.override {postgresql = pkgs.postgresql_16;})];
     enableTCPIP = true;
-    authentication = pkgs.lib.mkOverride 15 ''
+    authentication = pkgs.lib.mkOverride 16 ''
       local all all trust
       host all all 127.0.0.1/32 trust
       host all all ::1/128 trust
@@ -18,8 +20,7 @@
     '';
   };
   environment.systemPackages = with pkgs; [
-	#pgadmin
-        #pgadmin4-desktopmode
+    #pgadmin
+    #pgadmin4-desktopmode
   ];
-
 }
