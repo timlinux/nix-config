@@ -7,6 +7,7 @@
 }: {
   # Dell p172g bios linux
   # Dell Inspiron 14 7430 2in1
+  # Michelle
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -19,6 +20,7 @@
     ../software/gis/qgis-stable.nix
     ../software/desktop-apps-unstable/uxplay-unstable.nix
     ../software/system/locale-za-en.nix
+    ../software/system/postgres.nix
     ../users/tim.nix
     ../users/michelle.nix
   ];
