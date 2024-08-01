@@ -6,9 +6,12 @@
 }: {
   imports = [
     ./chat-gpt.nix
+    ./drawdb.nix
     ./google-calendar.nix
+    ./google-drive.nix
     ./google-chat.nix
     ./google-mail.nix
+    ./google-meet.nix
     ./kartoza-erp.nix
     ./kartoza-geocommunity.nix
     ./kartoza-handbook.nix
