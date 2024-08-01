@@ -12,7 +12,6 @@
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
     ../software/system/zfs-encryption.nix
-    ../software/desktop-apps-unstable/keepassxc-unstable.nix
     ../software/system/locale-za-en.nix
     ../users/tim.nix
     ../users/marisa.nix

@@ -14,11 +14,8 @@
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
     ../software/system/zfs-encryption.nix
-    ../software/desktop-apps-unstable/keepassxc-unstable.nix
-    ../software/desktop-apps-unstable/vscode-unstable.nix
     #../software/gis/qgis-unstable.nix
     ../software/gis/qgis-stable.nix
-    ../software/desktop-apps-unstable/uxplay-unstable.nix
     ../software/system/locale-za-en.nix
     ../software/system/postgres.nix
     ../users/tim.nix

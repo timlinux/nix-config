@@ -22,11 +22,8 @@
     # Note that it is mutually exclusive (for now) to the upstream
     # QGIS binaries and also the build may take quite a while on
     # your pc.   If you prefer to use the upstream built binary,
-    # you can comment out these next 4 lines and uncomment the
+    # you can comment out these next line and uncomment the
     # unstable-apps entry above.
-    ../software/desktop-apps-unstable/keepassxc-unstable.nix
-    ../software/desktop-apps-unstable/vscode-unstable.nix
-    ../software/desktop-apps-unstable/uxplay-unstable.nix
     ../software/gis/qgis-sourcebuild.nix
     #../software/system/sound-noise-suppression-unstable.nix
     #../software/gis/tilemaker-sourcebuild.nix
@@ -119,7 +116,7 @@
     192.168.0.2 valley-local
     192.168.0.1 router
     10.100.0.242 vicky
-    100.100.0.237 michelle
+    10.100.0.237 michelle
     10.100.0.243 amy
   '';
 

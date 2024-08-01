@@ -15,6 +15,7 @@ in
   pkgs.mkShell rec {
     allowUnfree = true;
     buildInputs = [
+      vscode
       gum # UX for TUIs
       skate # Distributed key/value store
       mods # AI in your shell

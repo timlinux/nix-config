@@ -9,6 +9,6 @@
   # Add system wide packages
   environment.systemPackages = with pkgs; [
     # Unstable defined in flake.nix and overlaid to be available here
-    unstable.keepassxc
+    keepassxc
   ];
 }

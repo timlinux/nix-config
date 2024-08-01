@@ -91,20 +91,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixos-generators": "nixos-generators",
-        "nixpkgs": "nixpkgs_2",
-        "unstable": "unstable"
-      }
-    },
-    "unstable": {
-      "locked": {
-        "lastModified": 1722141560,
-        "narHash": "sha256-Ul3rIdesWaiW56PS/Ak3UlJdkwBrD4UcagCmXZR9Z7Y=",
-        "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/tarball/nixpkgs-unstable"
+        "nixpkgs": "nixpkgs_2"
       }
     }
   },

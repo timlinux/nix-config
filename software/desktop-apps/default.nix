@@ -12,5 +12,8 @@
     ./iphone.nix
     ./nixos-conf-editor.nix
     ./screen-control.nix
+    ./keepassxc.nix
+    ./vscode.nix
+    ./uxplay.nix
   ];
 }
