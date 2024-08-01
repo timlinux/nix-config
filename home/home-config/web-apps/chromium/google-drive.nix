@@ -13,7 +13,7 @@ in {
     target = iconPath;
   };
   home.packages = with pkgs; let
-    googleChatApp = makeDesktopItem {
+    googleDriveApp = makeDesktopItem {
       name = appName;
       desktopName = appName;
       genericName = appName;
