@@ -17,6 +17,8 @@
     ../software/desktop-apps/iphone.nix
     ../software/desktop-apps/localsend.nix
     ../software/desktop-apps/obs.nix
+    ../software/desktop-apps/keepassxc.nix
+    ../software/desktop-apps/uxplay.nix
     #../software/system/postgres.nix
     ../software/developer/python.nix
     ../software/system/quickemu.nix
