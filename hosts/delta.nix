@@ -11,20 +11,20 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
-    ../software/system/locale-ke-en.nix
+    ../software/system/locale-za-en.nix
     #../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
-    ../software/desktop-apps-unstable # keepasxc, vscode, uxplay
+    #../software/desktop-apps-unstable # keepasxc, vscode, uxplay
     ../software/gis/qgis-stable.nix
     #../software/gis/qgis-sourcebuild.nix
     #../software/system/podman.nix
     #../software/system/distrobox.nix
-    ../software/system/virt.nix
+    #../software/system/virt.nix
     ../software/system/sanoid.nix
     ../users/amy.nix
     ../users/tim.nix
-    ../software/developer/awscli.nix
-    ../software/system/docker.nix
+    #../software/developer/awscli.nix
+    #../software/system/docker.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
