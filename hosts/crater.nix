@@ -9,9 +9,8 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
-    ../modules/locale-za-en.nix
-    #../modules/biometrics.nix
-    ../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
+    ../software/system/locale-za-en.nix
+    ../software/gis/qgis-stable.nix
     ../users/eli.nix
     ../users/tim.nix
   ];
