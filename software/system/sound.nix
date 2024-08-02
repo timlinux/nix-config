@@ -10,9 +10,6 @@
   security.rtkit.enable = true;
   environment.systemPackages = with pkgs; [
     pipewire
-    pipewire-alsa
-    pipewire-pulse
-    pipewire-jack
     jack2
   ];
   services.pipewire = {
