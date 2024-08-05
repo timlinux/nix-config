@@ -118,6 +118,7 @@
     10.100.0.242 vicky
     10.100.0.237 michelle
     10.100.0.243 amy
+    10.100.0.246 eli
   '';
 
   networking.useDHCP = lib.mkDefault true;
