@@ -10,7 +10,9 @@
     ./obs.nix
     ./scrcpy.nix
     ./iphone.nix
-    ./nixos-conf-editor.nix
+    # Temporarily disabled due to issue
+    # https://github.com/snowfallorg/nixos-conf-editor/issues/24
+    # ./nixos-conf-editor.nix
     ./screen-control.nix
     ./keepassxc.nix
     ./vscode.nix
