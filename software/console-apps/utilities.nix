@@ -11,6 +11,7 @@
     asciinema # record your console as ascii movies
     asciinema-agg # record your console as ascii movies
     asciinema-scenario # record your console as ascii movies
+    aws-vault # securely store AWS credentials
     bat # beter implementation of cat
     btop # another system monitor ui for console
     byobu # terminal multiplexer
@@ -30,6 +31,7 @@
     iftop # see what bandwidth is used on each network interface
     imagemagickBig # manipulate images on the command line see e.g. convert command
     kitty # nicer terminal emulator with a lot of cool features
+    kubectl # Kubernetes command-line tool
     lazydocker # docker cli ui
     lazygit # git cli UI
     lftp # for remote backups
