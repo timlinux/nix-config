@@ -15,6 +15,7 @@
     drawio
     firefox
     flameshot
+    floorp
     gimp-with-plugins
     #nonfree
     #gitkraken # nice UI for Git

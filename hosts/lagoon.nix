@@ -14,7 +14,7 @@
     ../software/system/locale-ke-en.nix
     #../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
-    ../software/desktop-apps-unstable # keepasxc, vscode, uxplay
+    ../software/desktop-apps
     ../software/gis/qgis-stable.nix
     #../software/gis/qgis-sourcebuild.nix
     #../software/system/podman.nix
@@ -25,6 +25,7 @@
     ../users/tim.nix
     ../software/developer/awscli.nix
     ../software/system/docker.nix
+    ../software/developer/pycharm-professional.nix
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
