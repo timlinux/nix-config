@@ -179,7 +179,9 @@ ntfy_error() {
     # shellcheck disable=SC2034
     MESSAGE="🔴 📝 ERROR NOTE\nHost: $(hostname) Task: $(1)\n Date/Time: $(date)\n"
     # Send the info message to the ntfy-message channel
+    set -e
     ntfy send "$ERROR_CHANNEL" "$(hostname): $MESSAGE"
+    set +e
 
 }
 
@@ -203,9 +205,9 @@ ntfy_message() {
         **Task:** ${1}
         **Date/Time:** $(date)
 EndOfMessageText
-    set -e
     # Send the info message to the ntfy-message channel
     ntfy send "$MESSAGE_CHANNEL" "$MESSAGE"
+    set -e
 }
 
 # Function to generate system hardware profile

@@ -53,22 +53,35 @@
   # and use our internal DNS server for some domains.
   #services.dnsproxy = {
   #  enable = true;
-  #  extraConfig = ''
-  #    [general]
-  #    upstream = ["192.168.0.2"]
+  #  settings = ''
+  #        {
+  #      bootstrap = [
+  #        "8.8.8.8:53"
+  #      ];
+  #      listen-addrs = [
+  #        "0.0.0.0"
+  #      ];
+  #      listen-ports = [
+  #        53
+  #      ];
+  #      upstream = [
+  #        "192.168.0.2:53"
+  #      ];
+  #    }
+  #        #  [[rules]]
+  #        #  network = ["10.100.0.0/24", "10.31.0.0/24", "10.12.0.0/24", "10.20.0.0/24"]
+  #        #  upstream = ["10.31.0.5"]
   #
-  #    [[rules]]
-  #    network = ["10.100.0.0/24", "10.31.0.0/24", "10.12.0.0/24", "10.20.0.0/24"]
-  #    upstream = ["10.31.0.5"]
-  #
-  #    [[rules]]
-  #    domain = ["*.kartoza.com"]
-  #    upstream = ["10.31.0.5"]
+  #        #  [[rules]]
+  #        #  domain = ["*.kartoza.com"]
+  #        #  upstream = ["10.31.0.5"]
   #  '';
   #};
   # Use DNS Proxy for DNS resolution
   #networking.nameservers = ["127.0.0.1"];
+  # Or use our internal DNS server
   networking.nameservers = ["10.100.0.236"];
+
   #networking.nameservers = ["192.168.0.2"];
   #networking.firewall.allowedTCPPorts = [53];
   #networking.firewall.allowedUDPPorts = [53];
