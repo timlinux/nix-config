@@ -9,7 +9,8 @@
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../configuration/desktop-gnome-x11.nix
+    #../configuration/desktop-gnome-x11.nix
+    ../configuration/desktop-kde6.nix
     ../configuration/desktop-apps.nix
     ../software/system/locale-pt-en.nix
     ../software/system/biometrics.nix

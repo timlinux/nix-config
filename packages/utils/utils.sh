@@ -325,6 +325,12 @@ change_zfs_passphrase() {
     sudo reboot -h now
 }
 
+delete_zfs_snapshots() {
+    # Delete all snapshots
+    echo "🗑️ Deleting all ZFS snapshots"
+    sudo zfs list -H -o name -t snapshot | xargs -n1 sudo zfs destroy
+}
+
 backup_zfs() {
 
     # Based partly on logic described here:
@@ -638,6 +644,7 @@ system_menu() {
             "💿️ Backup ZFS to USB disk" \
             "💿️ Unmount ZFS USB disk" \
             "🧹 Clear disk space" \
+            "🧹 Delete ZFS Snapshots" \
             "💻️ Update firmware" \
             "❄️ Update flake lock" \
             "⚙️ Start syncthing" \
@@ -681,6 +688,11 @@ system_menu() {
         ;;
     "🧹 Clear disk space")
         sudo nix-collect-garbage -d
+        prompt_to_continue
+        system_menu
+        ;;
+    "🧹 Delete ZFS Snapshots")
+        delete_zfs_snapshots
         prompt_to_continue
         system_menu
         ;;
