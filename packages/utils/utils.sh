@@ -200,14 +200,28 @@ ntfy_message() {
 
     set +e
     read -r -d '\n' MESSAGE <<EndOfMessageText
-        ❄️ **NIX FLAKE NOTE:**
         **Host:** $(hostname) 
-        **Task:** ${1}
+        **Task:** 
+        ---
+        \`\`\`
+        ${1}
+        \`\`\`
+        ---
         **Date/Time:** $(date)
 EndOfMessageText
     # Send the info message to the ntfy-message channel
-    ntfy send "$MESSAGE_CHANNEL" "$MESSAGE"
+    curl \
+        -H "Title: ❄️ Kartoza Flake Notice" \
+        -H "Markdown: yes" \
+        -d "$MESSAGE" \
+        "ntfy.sh/$MESSAGE_CHANNEL"
     set -e
+}
+
+list_generations() {
+    echo "📃 Listing system generations..."
+    generations=$(nixos-rebuild list-generations)
+    ntfy_message "$generations"
 }
 
 # Function to generate system hardware profile
@@ -639,6 +653,7 @@ system_menu() {
         gum choose \
             "🏠️ Main menu" \
             "🏃 Update system" \
+            "📃 List generations" \
             "🦠 Virus scan your home" \
             "🔑 Change ZFS Passphrase for NIXROOT" \
             "💿️ Backup ZFS to USB disk" \
@@ -664,6 +679,11 @@ system_menu() {
         ntfy_message "System updated"
         # Re-enable exit on errors
         set -e
+        prompt_to_continue
+        system_menu
+        ;;
+    "📃 List generations")
+        list_generations
         prompt_to_continue
         system_menu
         ;;
