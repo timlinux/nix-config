@@ -2,8 +2,8 @@
   description = "Kartoza NixOS Flakes";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-23.11";
     # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -86,7 +86,7 @@
       qgis-custom = pkgs.qgis.overrideAttrs (oldAttrs: rec {
         pythonBuildInputs =
           oldAttrs.pythonBuildInputs
-          ++ [pkgs.numpy pkgs.requests pkgs.debugpy pkgs.future pkgs.matplotlib pkgs.pandas pkgs.geopandas pkgs.plotly pkgs.pyqt5_with_qtwebkit pkgs.pyqtgraph pkgs.rasterio pkgs.sqlalchemy];
+          ++ [pkgs.numpy pkgs.requests pkgs.future pkgs.matplotlib pkgs.pandas pkgs.geopandas pkgs.plotly pkgs.pyqt5_with_qtwebkit pkgs.pyqtgraph pkgs.rasterio pkgs.sqlalchemy];
       });
       tilemaker = pkgs.callPackage ./packages/tilemaker {};
       gverify = pkgs.callPackage ./packages/gverify {};

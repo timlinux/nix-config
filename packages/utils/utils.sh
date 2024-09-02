@@ -659,6 +659,7 @@ system_menu() {
         # Don't exit on errors
         set +e
         ntfy_message "Running nixos-rebuild switch"
+        sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild test --show-trace --impure --flake .
         sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --show-trace --impure --flake .
         ntfy_message "System updated"
         # Re-enable exit on errors

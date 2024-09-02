@@ -9,7 +9,7 @@
         with ps; [
           numpy
           requests
-          debugpy
+          #debugpy
           future
           matplotlib
           pandas

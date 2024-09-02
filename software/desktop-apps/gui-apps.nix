@@ -9,7 +9,7 @@
     bluefish # pretty basic html editing app
     brave
     copyq # Clipboard history manager with image support
-    dbeaver-bin
+    #dbeaver-bin
     deja-dup
     discord
     drawio

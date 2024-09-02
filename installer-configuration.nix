@@ -1,6 +1,6 @@
 # Kindly copied from https://github.com/oddlama/nix-config/blob/main/nix/installer-configuration.nix
 {pkgs, ...}: {
-  system.stateVersion = "24.05";
+  system.stateVersion = "23.11";
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
