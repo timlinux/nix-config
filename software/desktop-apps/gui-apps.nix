@@ -36,6 +36,7 @@
     # TODO is to automate this with home manager....
     logseq
     marktext # nice markdown editor
+    meld # Visual diff and merge tool
     mpv # videa player
     nextcloud-client
     obs-studio
