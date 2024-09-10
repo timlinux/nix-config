@@ -19,6 +19,7 @@
           pyqtgraph
           rasterio
           sqlalchemy
+          pyqtwebengine
         ];
     })
     grass

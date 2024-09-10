@@ -17,6 +17,7 @@
     ../software/system/locale-pt-en.nix
     ../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
+    ../software/gis/qgis-stable.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
 
     # I do it this way so that we use hand compiled QGIS with
@@ -38,7 +39,7 @@
     #../software/system/podman.nix
     #../software/system/distrobox.nix
     #../software/system/tty-font.nix
-    #../software/system/tailscale.nix
+    ../software/system/tailscale.nix
     #../software/system/virt.nix
     #../software/system/printing.nix
     ../software/system/sanoid.nix
