@@ -23,6 +23,7 @@
     amberol
     celluloid
     eyedropper
+    element-desktop
     fractal-next # matrix chat app
     gnome.dconf-editor
     gnome.gnome-calculator
