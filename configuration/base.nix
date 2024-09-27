@@ -9,6 +9,7 @@
     home-manager
   ];
   system.stateVersion = "23.11";
+  systemd.coredump.enable = false;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Enable networking
   #networking.networkmanager.enable = true;
