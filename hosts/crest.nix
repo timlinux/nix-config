@@ -35,7 +35,7 @@
     #../software/gis/saga.nix
     # R&D Package for Wolfgang
     #../software/gis/gverify-sourcebuild.nix
-    #../software/system/docker.nix
+    ../software/system/docker.nix
     #../software/system/podman.nix
     #../software/system/distrobox.nix
     #../software/system/tty-font.nix
