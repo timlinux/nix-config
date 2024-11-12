@@ -50,7 +50,7 @@
     slack
     synfigstudio
     tdesktop
-    thunderbirdPackages.thunderbird-115 # Email and calendar desktop app
+    #thunderbirdPackages.thunderbird-115 # Email and calendar desktop app
     tmux # needed by byobu
     xournalpp
     zap #Java application for web penetration testing

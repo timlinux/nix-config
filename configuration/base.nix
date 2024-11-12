@@ -12,8 +12,8 @@
   systemd.coredump.enable = false;
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Enable networking
-  #networking.networkmanager.enable = true;
-
+  networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
   imports = [
     ../software/console-apps
     ../software/system/kartoza-plymouth.nix
