@@ -32,9 +32,9 @@ in {
     starship init fish | source
   '';
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.amy = {
+  users.users.lene = {
     isNormalUser = true;
-    initialPassword = "amy";
+    initialPassword = "lene";
     description = "Lené van Jaarsveld";
     extraGroups = [
       "wheel"
