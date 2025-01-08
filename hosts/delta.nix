@@ -5,7 +5,7 @@
   modulesPath,
   ...
 }: {
-  # Lenovo for Amy
+  # Lenovo for Lene
   nixpkgs.config.cudaSupport = false;
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -21,6 +21,7 @@
     #../software/system/distrobox.nix
     #../software/system/virt.nix
     ../software/system/sanoid.nix
+    ../users/lene.nix
     ../users/amy.nix
     ../users/tim.nix
     #../software/developer/awscli.nix
