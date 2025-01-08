@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   # Add system wide packages
   environment.systemPackages = with pkgs; [
-    adapta-kde-theme
+    #adapta-kde-theme
     archi # CASE Modelling tool for db and system architecture design
     audacity
     barrier # Share the same keyboard and mouse on two computers

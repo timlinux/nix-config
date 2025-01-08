@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./bluesky.nix
     ./chat-gpt.nix
     ./drawdb.nix
     ./google-calendar.nix

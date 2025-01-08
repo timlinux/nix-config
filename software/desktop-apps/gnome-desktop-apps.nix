@@ -25,13 +25,13 @@
     eyedropper
     element-desktop
     fractal-next # matrix chat app
-    gnome.dconf-editor
-    gnome.gnome-calculator
-    gnome.gnome-system-monitor
-    gnome.gnome-weather
-    gnome.nautilus
-    gnome.sushi
-    adapta-gtk-theme
+    #gnome.dconf-editor
+    #gnome.gnome-calculator
+    #gnome.gnome-system-monitor
+    #gnome.gnome-weather
+    #gnome.nautilus
+    #gnome.sushi
+    #adapta-gtk-theme
     qgnomeplatform # make Qt apps look like Gtk if they do not specifiy their own theme
     dialect # gnome ui for google translate
     blanket # creates ambient white noise for focussed working
@@ -51,13 +51,13 @@
     drawing # gnome native drawing app
     gnome-decoder # Scan and Generate QR Codes
     newsflash # rss feed reader
-    gnome.gnome-power-manager # run as gnome-power-statistics on CLI - gives charts of battery performance
+    #gnome.gnome-power-manager # run as gnome-power-statistics on CLI - gives charts of battery performance
     junction # Lets you choose which browser to use to open links
     # broken in 23.11 upgrade
     #citations # Manage your bibliographies using the BibTeX format
     emblem
-    gnome.gnome-tweaks
-    gnome.gnome-sound-recorder
+    #gnome.gnome-tweaks
+    #gnome.gnome-sound-recorder
     shortwave # Internet streaming radio player
     eyedropper # nice simple colour picker
     #gaphor # Uml diagramming app
@@ -81,26 +81,26 @@
     # gedit       # text editor
     # simple-scan # document scanner
     # totem       # video player
-    yelp # help viewer
+    #yelp # help viewer
     # evince      # document viewer
     # file-roller # archive manager
-    geary # email client
+    #geary # email client
     # seahorse    # password manager
     # these should be self explanatory
     # gnome-calculator
-    gnome-calendar
+    #gnome-calendar
     # gnome-characters
     # gnome-clocks
-    gnome-contacts
+    #gnome-contacts
     # gnome-font-viewer
     # gnome-logs
-    gnome-maps
-    gnome-music
+    #gnome-maps
+    #gnome-music
     # gnome-screenshot
     # gnome-system-monitor
     # gnome-weather
     # gnome-disk-utility
-    gnome-terminal
-    pkgs.gnome-connections
+    #gnome-terminal
+    #pkgs.gnome-connections
   ];
 }

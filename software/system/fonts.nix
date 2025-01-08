@@ -29,7 +29,7 @@
       (nerdfonts.override {fonts = ["Meslo"];})
       noto-fonts
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       open-dyslexic
       open-sans

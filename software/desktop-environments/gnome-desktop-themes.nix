@@ -1,11 +1,14 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   # See also home/gtk
   # Add system wide packages
   environment.systemPackages = with pkgs; [
-    xdg-desktop-portal   
+    xdg-desktop-portal
     xorg.xcursorthemes
-    theme-obsidian2
+    #theme-obsidian2
     #adementary-theme
     #lounge-gtk-theme
     #zuki-themes
@@ -42,6 +45,6 @@
     #numix-icon-theme-square
     #numix-icon-theme-circle
     #numix-icon-theme
-    #numix-gtk-theme 
+    #numix-gtk-theme
   ];
 }

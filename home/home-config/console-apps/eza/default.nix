@@ -2,6 +2,7 @@
   config = {
     programs.eza = {
       enable = true;
+      icons = "auto";
       #conflicts with fish config
       #enableAliases = true;
       extraOptions = [
@@ -9,7 +10,6 @@
         "--header"
       ];
       git = true;
-      icons = true;
     };
   };
 }

@@ -21,7 +21,7 @@
     du-dust # another better du command - run as 'dust'
     eza # better ls command
     fd # a modern find implementation
-    ffmpeg_5-full # create movies from the command line
+    ffmpeg_6-full # create movies from the command line
     figlet # make text banners for your console
     git # well we all know what this is right?
     gh # github command line tool - see https://cli.github.com/

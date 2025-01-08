@@ -8,7 +8,7 @@
     ./atuin
     ./bat
     ./bottom
-    ./cava
+    #./cava
     ./dircolors
     ./direnv
     ./eza

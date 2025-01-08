@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.vim.defaultEditor = true;
-
+  programs.vim.enable = true;
   environment.systemPackages = with pkgs; [
     alejandra # nix code formatter do :%!alejandra -qq
     ((vim_configurable.override {}).customize {

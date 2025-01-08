@@ -8,8 +8,8 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Obsidian-2-Aqua";
-      package = pkgs.theme-obsidian2;
+      name = "Adwaita";
+      #package = pkgs.theme-obsidian2;
     };
     iconTheme = {
       name = "Adwaita";
@@ -23,5 +23,5 @@
       extraConfig.gtk-application-prefer-dark-theme = true;
     };
   };
-  home.sessionVariables.GTK_THEME = "Obsidian-2-Aqua";
+  home.sessionVariables.GTK_THEME = "Adwaita";
 }
