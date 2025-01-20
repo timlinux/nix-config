@@ -1,0 +1,9 @@
+nix run - you can point it directly at the source tree and run that version
+
+https://geospatial-nix.today/ - project to make the running of GIS apps in nix
+
+nixpkgs/pkgs/by-name/qg - standalone apps e.g. snaphu
+nixpkgs/pkgs/development/python-modules - python libs
+
+Read latest build python package documentation before contributing e.g. dependencies field
+

@@ -5,6 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Use the same nixpkgs as NixOS
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
     # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -17,6 +18,7 @@
     home-manager,
     nixpkgs,
     nixos-generators,
+    nixos-cosmic,
   } @ inputs: let
     system = "x86_64-linux";
 
@@ -36,6 +38,7 @@
           useGlobalPkgs = true;
           useUserPackages = true;
           extraSpecialArgs = specialArgs;
+          backupFileExtension = "backup";
         };
       }
     ];
