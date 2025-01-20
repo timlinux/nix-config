@@ -20,10 +20,11 @@
     #../software/system/podman.nix
     #../software/system/distrobox.nix
     #../software/system/virt.nix
+    ../software/system/wine.nix
     ../software/system/sanoid.nix
     ../users/lene.nix
-    ../users/amy.nix
     ../users/tim.nix
+
     #../software/developer/awscli.nix
     #../software/system/docker.nix
   ];

@@ -73,7 +73,7 @@ in {
           userName = "Lene van Jaarsveld";
           userEmail = "lene@kartoza.com";
           extraConfig = {
-            github.user = "lene";
+            github.user = "LenevJ";
             gitlab.user = "lene@kartoza.com";
             branch.autoSetupRebase = lib.mkForce "never";
             pull.ff = lib.mkForce "true";
