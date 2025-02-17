@@ -25,5 +25,5 @@
   networking.firewall.interfaces."eth0".allowedUDPPorts = [5353 6000 6001 7011];
 
   # To enable network-discovery
-  # see config/avahi.nix
+  # see software/system/avahi.nix
 }

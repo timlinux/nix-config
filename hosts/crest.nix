@@ -9,14 +9,15 @@
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    #../configuration/desktop-gnome-x11.nix
-    ../configuration/desktop-kde6.nix
+    ../configuration/desktop-gnome-x11.nix
+    #../configuration/desktop-kde6.nix
     #../software/desktop-environments/pantheon-desktop.nix
     ../configuration/desktop-apps.nix
     ../software/system/locale-pt-en.nix
     ../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
     ../software/gis/qgis-stable.nix
+    ../software/system/wine.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
 
     # I do it this way so that we use hand compiled QGIS with

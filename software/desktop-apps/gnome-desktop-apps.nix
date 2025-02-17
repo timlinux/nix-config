@@ -53,6 +53,7 @@
     newsflash # rss feed reader
     #gnome.gnome-power-manager # run as gnome-power-statistics on CLI - gives charts of battery performance
     junction # Lets you choose which browser to use to open links
+    pomodoro-gtk
     # broken in 23.11 upgrade
     #citations # Manage your bibliographies using the BibTeX format
     emblem
