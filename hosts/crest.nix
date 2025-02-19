@@ -44,6 +44,7 @@
     ../software/system/printing.nix
     ../software/system/sanoid.nix
     #../software/system/lima.nix
+    ../software/desktop-apps/google-earth-pro.nix
     ../users/tim.nix
   ];
 

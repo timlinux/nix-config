@@ -21,8 +21,8 @@
   networking.firewall.allowedTCPPorts = [7000 7001 7100];
   networking.firewall.allowedUDPPorts = [5353 6000 6001 7011];
   # Example of doing it for a specific interface
-  networking.firewall.interfaces."eth0".allowedTCPPorts = [7000 7001 7100];
-  networking.firewall.interfaces."eth0".allowedUDPPorts = [5353 6000 6001 7011];
+  #networking.firewall.interfaces."eth0".allowedTCPPorts = [7000 7001 7100];
+  #networking.firewall.interfaces."eth0".allowedUDPPorts = [5353 6000 6001 7011];
 
   # To enable network-discovery
   # see software/system/avahi.nix
