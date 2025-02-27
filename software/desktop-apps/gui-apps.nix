@@ -37,7 +37,7 @@
     logseq
     marktext # nice markdown editor
     mpv # videa player
-    nextcloud-client
+    #nextcloud-client
     obs-studio
     paperwork
     pdfarranger # handy tool to rotate, join etc pdfs. Then use xournal++ to edit

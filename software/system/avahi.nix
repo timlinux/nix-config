@@ -1,4 +1,8 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 # Config courtesy of https://github.com/TechsupportOnHold/uxplay/blob/main/uxplay.nix
 {
   # To enable network-discovery
@@ -15,4 +19,3 @@
     };
   };
 }
-

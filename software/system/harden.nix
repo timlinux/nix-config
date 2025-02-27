@@ -11,9 +11,9 @@
   lib,
   ...
 }: {
- # imports = [
- #   <nixpkgs/nixos/modules/profiles/hardened.nix>
- # ];
+  # imports = [
+  #   <nixpkgs/nixos/modules/profiles/hardened.nix>
+  # ];
 
   config = {
     # Ignore ICMP broadcasts to avoid participating in Smurf attacks

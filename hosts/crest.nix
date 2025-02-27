@@ -40,7 +40,7 @@
     #../software/system/distrobox.nix
     #../software/system/tty-font.nix
     ../software/system/tailscale.nix
-    #../software/system/virt.nix
+    ../software/system/virt.nix
     ../software/system/printing.nix
     ../software/system/sanoid.nix
     #../software/system/lima.nix
