@@ -10,6 +10,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
+    ../software/desktop-environments/gnome-desktop-remote-desktop.nix
     #../configuration/desktop-kde6.nix
     #../software/desktop-environments/pantheon-desktop.nix
     ../configuration/desktop-apps.nix
