@@ -123,7 +123,7 @@
       # nix build .#nixosConfigurations.live.config.system.build.isoImage
       # To run:
       # qemu-system-x86_64 -enable-kvm -m 8096 -cdrom result/iso/nixos-*.iso
-      live = pkgs.lib.nixosSystem {
+      live = nixpkgs.lib.nixosSystem {
         specialArgs = specialArgs;
         system = system;
         modules =
