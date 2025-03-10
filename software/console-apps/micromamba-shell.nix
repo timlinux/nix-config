@@ -1,8 +1,5 @@
-{ config, pkgs, ... }: 
-let
-	micromamba-shell = pkgs.callPackage ../../packages/micromamba-shell/default.nix { };
-in
-{
+{pkgs, ...}: {
+  nixpkgs.overlays = [(import ../../packages)];
    environment.systemPackages = with pkgs; [
     micromamba-shell
   ];
