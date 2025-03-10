@@ -86,6 +86,12 @@ in {
           };
           # rest of git is configured in ../home/git..
         };
+        fish = {
+          # Folder to store custom executable scripts.
+          shellInit = ''
+            set -gx PATH $HOME/.local/bin $PATH
+          '';
+        };
       };
     };
   };
