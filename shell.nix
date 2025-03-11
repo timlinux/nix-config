@@ -40,8 +40,11 @@ in
       echo "_________________________________________________________"
       echo "Command : Description"
       echo "_________________________________________________________"
-      echo "🚀 nix run   : Open the management utilities menu"
-      echo "🆚 ./vscode  : Open VSCode ready to work on this flake"
+      echo "🚀 nix run          : Open the management utilities menu"
+      echo "👀 nix flake show . : Show all the flake details"
+      echo "🔍 nix flake update  : Update the flake"
+      echo "🩻 nix flake check   : Check the flake"
+      echo "🆚 ./vscode         : Open VSCode ready to work on this flake"
       echo "_________________________________________________________"
       echo "Tim Sutton, 2024   https://github.com/timlinux/nix-config"
     '';

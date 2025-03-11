@@ -84,10 +84,22 @@
     packages.x86_64-linux = {
       default = pkgs.callPackage ./packages/utils {};
       setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine {};
-      qgis-custom = pkgs.qgis.overrideAttrs (oldAttrs: rec {
+      qgis-with-custom-python-packages = pkgs.qgis.overrideAttrs (oldAttrs: rec {
         pythonBuildInputs =
-          oldAttrs.pythonBuildInputs
-          ++ [pkgs.numpy pkgs.requests pkgs.future pkgs.matplotlib pkgs.pandas pkgs.geopandas pkgs.plotly pkgs.pyqt5_with_qtwebkit pkgs.pyqtgraph pkgs.rasterio pkgs.sqlalchemy];
+          (oldAttrs.pythonBuildInputs or [])
+          ++ [
+            pkgs.python312Packages.numpy
+            pkgs.python312Packages.requests
+            pkgs.python312Packages.future
+            pkgs.python312Packages.matplotlib
+            pkgs.python312Packages.pandas
+            pkgs.python312Packages.geopandas
+            pkgs.python312Packages.plotly
+            #pkgs.python312Packages.pyqt5_with_qtwebkit
+            pkgs.python312Packages.pyqtgraph
+            pkgs.python312Packages.rasterio
+            pkgs.python312Packages.sqlalchemy
+          ];
       });
       tilemaker = pkgs.callPackage ./packages/tilemaker {};
       gverify = pkgs.callPackage ./packages/gverify {};
