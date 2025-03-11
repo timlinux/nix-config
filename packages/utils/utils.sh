@@ -271,7 +271,7 @@ run_full_gnome_test_vm() {
         rm -f test.qcow2
     fi
     # #test-gnome is the name of the host config as listed in flake.nix
-    nixos-rebuild build-vm --flake .#test-gnome-full && result/bin/run-test-vm
+    NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild build-vm --flake .#test-gnome-full && result/bin/run-test-vm
 
 }
 
