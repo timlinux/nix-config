@@ -26,10 +26,27 @@ desktopItem = pkgs.makeDesktopItem {
     exec = "jupyterlab-desktop";
     desktopName = "Jupyterlab Desktop";
     terminal = false;
-    icon = "${toString ./jupyterlab-desktop.png}";
+    icon = "${jupyterlab-desktop-raw}/usr/share/icons/hicolor/512x512/apps/jupyterlab-desktop.png";
   };
-micromambaInitRun = pkgs.writeText "micromamba-init-run.sh" (builtins.readFile ../micromamba-shell/micromamba-init-run.sh);
-micromambaInitProfile = pkgs.writeText "micromamba-init-profile.sh" (builtins.readFile ../micromamba-shell/micromamba-init-profile.sh);
+micromamba-setup = pkgs.writeText
+  "micromamba-setup"
+  ''
+  # Set up the required variables
+  export MAMBA_ROOT_PREFIX="$HOME/micromamba"
+  export MAMBA_EXE="${pkgs.micromamba}/bin/micromamba"
+  export CONDA_EXE="${pkgs.micromamba}/bin/micromamba"
+
+  # Use conda as micromamba command
+  alias conda='micromamba'
+
+  # Initialize the shell
+  eval "$($MAMBA_EXE shell hook --shell=posix --root-prefix=$MAMBA_ROOT_PREFIX)"
+
+  # Configure an exclusive conda set up
+  micromamba config append channels conda-forge
+  micromamba config append channels nodefaults
+  micromamba config set channel_priority strict
+  '';
 in 
 pkgs.buildFHSEnv {
   name = "jupyterlab-desktop";
@@ -64,25 +81,10 @@ pkgs.buildFHSEnv {
 ];
 profile = ''
     set -ex
-    
-    CONDA_ENV_NAME="default-jupyterlab-env"
 
     # Source micromamba initialization script
-    source ${micromambaInitProfile}
+    source ${micromamba-setup}
 
-    # Configure an exclusive conda set up
-    micromamba config append channels conda-forge
-    micromamba config append channels nodefaults
-    micromamba config set channel_priority strict
-
-    # Create the required environment:
-    if ! test -d $MAMBA_ROOT_PREFIX/envs/$CONDA_ENV_NAME; then
-        micromamba create --yes -n $CONDA_ENV_NAME python jupyterlab
-    fi
-
-    # Update micromamba environment
-    # micromamba run --prefix $MAMBA_ROOT_PREFIX/envs/$CONDA_ENV_NAME micromamba update --all -y
-        
     set +e
 
     '';
@@ -92,8 +94,32 @@ profile = ''
   '';
 
   runScript = ''
-  # Source the micromamba initialization before running the app
-  source ${micromambaInitRun}
-  ${jupyterlab-desktop-raw}/bin/jupyterlab-desktop
+  
+  # Source micromamba initialization script
+  source ${micromamba-setup}
+
+  # Source the bashrc file.
+  source ~/.bashrc
+
+  ## Set up global config
+  shopt -s expand_aliases  # Enable alias expansion in scripts
+  alias jlab=${jupyterlab-desktop-raw}/bin/jupyterlab-desktop
+
+  # Path to conda
+  jlab config set condaPath $HOME/.config/jupyterlab-desktop/jlab_server/bin/conda
+
+  # set checkForUpdatesAutomatically to false
+  jlab config set checkForUpdatesAutomatically True
+  jlab config set installUpdatesAutomatically True
+  jlab config set updateBundledEnvAutomatically True
+
+  # Python environment
+  jlab config set pythonEnvsPath $MAMBA_ROOT_PREFIX/envs
+  jlab config set  systemPythonPath $HOME/.config/jupyterlab-desktop/jlab_server/bin/python
+  
+  # set theme to "dark"
+  jlab config set theme "dark"
+ ju
+  jlab "$@"
   '';
 }
