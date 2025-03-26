@@ -44,6 +44,7 @@
     nix-prefetch-github # see https://github.com/seppeljordan/nix-prefetch-github
     pgcli # better psql client for postgres
     powertop # swee what apps use the most power on your machine
+    poppler_utils # for manipulating PDF files and converting them to other formats.
     restic # for local backups
     rpl # search and replace strings in files
     s3cmd # for backup of our devops s3 buckets
