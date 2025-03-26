@@ -1,14 +1,14 @@
 { pkgs ? import <nixpkgs> {}}:
 let 
+homeDir = builtins.getEnv "HOME";
+mambaRoot = "${homeDir}/micromamba";
 desktopItem = pkgs.makeDesktopItem {
     name = "qgis-conda";
     exec = "qgis-conda";
     desktopName = "QGIS (conda)";
     terminal = false;
-    icon = "${toString ./qgis.svg}";
+    icon = "${mambaRoot}/envs/qgis-conda-env/share/icons/hicolor/512x512/apps/qgis.png";
   };
-  micromambaInitRun = pkgs.writeText "micromamba-init-run.sh" (builtins.readFile ../micromamba-shell/micromamba-init-run.sh);
-  micromambaInitProfile = pkgs.writeText "micromamba-init-profile.sh" (builtins.readFile ../micromamba-shell/micromamba-init-profile.sh);
 in
 pkgs.buildFHSEnv {
     name = "qgis-conda";
@@ -23,8 +23,16 @@ pkgs.buildFHSEnv {
         
         CONDA_ENV_NAME="qgis-conda-env"
                 
-        # Source micromamba initialization script
-        source ${micromambaInitProfile}
+        # Set up the required variables
+        export MAMBA_ROOT_PREFIX="${mambaRoot}"
+        export MAMBA_EXE=$(which micromamba)
+        export CONDA_EXE=$(which micromamba)
+
+        # Use conda as micromamba command
+        alias conda='micromamba'
+
+        # Initialize the shell
+        eval "$($MAMBA_EXE shell hook --shell=posix --root-prefix=$MAMBA_ROOT_PREFIX)"
 
         # Configure an exclusive conda set up
         micromamba config append channels conda-forge
