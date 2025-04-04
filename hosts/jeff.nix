@@ -9,8 +9,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-kde5.nix
     ../configuration/desktop-apps.nix
-    ../modules/locale-ke-en.nix
-    ../modules/openvpn.nix
+    ../software/system/locale-ke-en.nix
+    ../software/system/openvpn.nix
+    ../software/system/docker.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
 
     # I do it this way so that we use hand compiled QGIS with
@@ -21,10 +22,11 @@
     # your pc. If you prefer to use the upstream built binary,
     # you can comment out these next 4 lines and uncomment the
     # unstable-apps entry above.
-    ../modules/keepassxc.nix
-    ../modules/vscode.nix
-    ../modules/uxplay.nix
-    ../modules/qgis-sourcebuild.nix
+    #../software/desktop-apps-unstable/keepassxc-unstable.nix
+    #../software/desktop-apps-unstable/vscode-unstable.nix
+    #../software/desktop-apps-unstable/uxplay-unstable.nix
+    #../software/gis/qgis-sourcebuild.nix
+    ../software/gis/qgis-stable.nix
     ../users/jeff.nix
   ];
 
