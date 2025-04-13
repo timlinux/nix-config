@@ -26,6 +26,8 @@
     ../software/developer/awscli.nix
     ../software/system/docker.nix
     ../software/developer/pycharm-professional.nix
+    ../software/console-apps/duplicity.nix
+    ../software/bookreaders
   ];
 
   boot.initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];

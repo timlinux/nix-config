@@ -11,6 +11,7 @@
   editor = "org.gnome.TextEditor.desktop";
   slack = "slack.desktop";
   matrix = "io.element.element.desktop";
+  vscode = "code.desktop"; # VS Code desktop entry
 in {
   config = {
     xdg = {
@@ -33,6 +34,7 @@ in {
         enable = true;
         associations.added = {
           "application/pdf" = [evince];
+          "application/x-ipynb+json" = [vscode]; # Jupyter Notebook MIME type
         };
         defaultApplications = {
           "x-scheme-handler/webcals" = [mail];
@@ -130,6 +132,7 @@ in {
           "application/vnd.oasis.opendocument.presentation" = [mail];
           "application/pdf" = [evince];
           "application/octet-stream" = [qgis];
+          "application/x-ipynb+json" = [vscode]; # Jupyter Notebook MIME type
         };
       };
     };

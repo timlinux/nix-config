@@ -7,4 +7,6 @@ self: super: {
   itk4 = super.callPackage ./itk4/default.nix {};
   otb = super.callPackage ./otb/default.nix {};
   qgis-conda = super.callPackage ./qgis-conda/default.nix {};
+  jupyterlab-desktop = super.callPackage ./jupyterlab-desktop/default.nix {};
+  micromamba-shell = super.callPackage ./micromamba-shell/default.nix {};
 }
