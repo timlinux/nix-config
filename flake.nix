@@ -5,6 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Use the same nixpkgs as NixOS
+    geospatial-nix.url = "github:imincik/geospatial-nix.repo";
     # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -16,6 +17,7 @@
     self,
     home-manager,
     nixpkgs,
+    geospatial-nix,
     nixos-generators,
   } @ inputs: let
     system = "x86_64-linux";
@@ -23,6 +25,8 @@
     # Importing packages from nixpkgs
     pkgs = import nixpkgs {
       inherit system;
+      # Doesnt work...need to check with Ivan
+      #overlays = [geospatial-nix.overlays.geonix];
     };
 
     # Special arguments used across packages and configurations
@@ -52,6 +56,7 @@
     # Function to create NixOS configurations for each host
     make-host = import ./functions/make-host.nix {
       nixpkgs = nixpkgs;
+      geospatial-nix = geospatial-nix;
       shared-modules = shared-modules;
       specialArgs = specialArgs;
       system = system;

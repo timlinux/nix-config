@@ -345,6 +345,29 @@ delete_zfs_snapshots() {
     sudo zfs list -H -o name -t snapshot | xargs -n1 sudo zfs destroy
 }
 
+force_backup_zfs() {
+    # This function is used to force a backup of the ZFS filesystem
+    # It will delete any previous snapshots
+    # Use this when your local disk and the backup are out of sync
+    # Prompt the user to confirm the action
+    gum style "⚠️ WARNING" "This will delete all previous snapshots on the backup disk. Are you sure you want to continue?"
+    DESTROY=$(gum choose "DESTROY" "CANCEL")
+    if [ "$DESTROY" == "CANCEL" ]; then
+        echo "❌ Cancelled. No changes made."
+        return
+    fi
+    DATE=$(date '+%Y-%m-%d.%Hh-%M')
+    echo "🔌 Mounting NIXBACKUPS volume from USB drive"
+    sudo zpool import NIXBACKUPS
+    echo "🗓️ Preparing a snapshot for $DATE"
+    echo "📸 Taking a snapshot"
+    sudo zfs snapshot NIXROOT/home@"$DATE"-Home
+    echo "📨 Force sending the snapshots to the external USB disk"
+    sudo syncoid --force-delete NIXROOT/home NIXBACKUPS/home
+    echo "📝Listing the snapshots now that it is copied to the USB disk"
+    zfs list -t snapshot
+}
+
 backup_zfs() {
 
     # Based partly on logic described here:
@@ -657,6 +680,7 @@ system_menu() {
             "🦠 Virus scan your home" \
             "🔑 Change ZFS Passphrase for NIXROOT" \
             "💿️ Backup ZFS to USB disk" \
+            "💿️ FORCE Backup ZFS to USB disk" \
             "💿️ Unmount ZFS USB disk" \
             "🧹 Clear disk space" \
             "🧹 Delete ZFS Snapshots" \
@@ -694,6 +718,11 @@ system_menu() {
         ;;
     "💿️ Backup ZFS to USB disk")
         backup_zfs
+        prompt_to_continue
+        system_menu
+        ;;
+    "💿️ FORCE Backup ZFS to USB disk")
+        force_backup_zfs
         prompt_to_continue
         system_menu
         ;;

@@ -1,5 +1,6 @@
 {
   nixpkgs,
+  geospatial-nix,
   shared-modules,
   specialArgs,
   system,
