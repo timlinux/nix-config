@@ -3,11 +3,16 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Use the same nixpkgs as NixOS
-    geospatial.url = "github:imincik/geospatial-nix.repo";
-    geospatial.inputs.nixpkgs.follows = "nixpkgs"; # align nixpkgs for consistency
-
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs"; # Use the same nixpkgs as NixOS
+    };
+    # See https://geospatial-nix.today/
+    # and https://github.com/imincik/geospatial-nix.repo
+    geospatial = {
+      url = "github:imincik/geospatial-nix.repo";
+      inputs.nixpkgs.follows = "nixpkgs"; # align nixpkgs for consistency
+    };
     # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -27,9 +32,7 @@
     # Importing packages from nixpkgs
     pkgs = import nixpkgs {
       inherit system;
-    };
-    pkgsWithoutQgis = import nixpkgs {
-      inherit system;
+      # See below for qgisWithExtras definition
       overlays = [
         (final: prev: {
           qgis = throw "Use qgisWithExtras instead of pkgs.qgis";
@@ -42,7 +45,6 @@
       // {
         inherit system geospatial;
         qgisWithExtras = self.packages.${system}.qgisWithExtras;
-        pkgsWithoutQgis = pkgsWithoutQgis;
       };
     # Shared modules for Home Manager and other configurations
     shared-modules = [
@@ -101,27 +103,6 @@
     packages.x86_64-linux = {
       default = pkgs.callPackage ./packages/utils {};
       setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine {};
-      # Pull in QGIS from geospatial with extra Python packages
-      qgisWithExtras = geospatial.packages.${system}.qgis.override {
-        extraPythonPackages = ps: [
-          ps.pyqtwebengine
-          ps.jsonschema
-          ps.debugpy
-          ps.future
-          ps.psutil
-          ps.numpy
-          ps.requests
-          ps.future
-          ps.matplotlib
-          ps.pandas
-          ps.geopandas
-          ps.plotly
-          #ps.pyqt5_with_qtwebkit
-          ps.pyqtgraph
-          ps.rasterio
-          ps.sqlalchemy
-        ];
-      };
       tilemaker = pkgs.callPackage ./packages/tilemaker {};
       gverify = pkgs.callPackage ./packages/gverify {};
       itk4 = pkgs.callPackage ./packages/itk4 {};
