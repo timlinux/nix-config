@@ -1,10 +1,11 @@
 {
   config,
   pkgs,
-  geospatial-nix,
+  pkgsWithoutQgis,
+  qgisWithExtras,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgsWithoutQgis; [
     qgisWithExtras
   ];
 }

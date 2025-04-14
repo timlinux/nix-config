@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  geospatial-nix,
+  geospatial,
   modulesPath,
   ...
 }: {
@@ -18,7 +18,8 @@
     ../software/system/locale-pt-en.nix
     ../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
-    ../software/gis/qgis-stable.nix
+    #../software/gis/qgis-stable.nix
+    ../software/gis/qgis-geospatialnix.nix
     ../software/system/wine.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
 

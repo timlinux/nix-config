@@ -5,7 +5,9 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Use the same nixpkgs as NixOS
-    geospatial-nix.url = "github:imincik/geospatial-nix.repo";
+    geospatial.url = "github:imincik/geospatial-nix.repo";
+    geospatial.inputs.nixpkgs.follows = "nixpkgs"; # align nixpkgs for consistency
+
     # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
@@ -17,7 +19,7 @@
     self,
     home-manager,
     nixpkgs,
-    geospatial-nix,
+    geospatial,
     nixos-generators,
   } @ inputs: let
     system = "x86_64-linux";
@@ -25,13 +27,23 @@
     # Importing packages from nixpkgs
     pkgs = import nixpkgs {
       inherit system;
-      # Doesnt work...need to check with Ivan
-      #overlays = [geospatial-nix.overlays.geonix];
     };
-
+    pkgsWithoutQgis = import nixpkgs {
+      inherit system;
+      overlays = [
+        (final: prev: {
+          qgis = throw "Use qgisWithExtras instead of pkgs.qgis";
+        })
+      ];
+    };
     # Special arguments used across packages and configurations
-    specialArgs = inputs // {inherit system;};
-
+    specialArgs =
+      inputs
+      // {
+        inherit system geospatial;
+        qgisWithExtras = self.packages.${system}.qgisWithExtras;
+        pkgsWithoutQgis = pkgsWithoutQgis;
+      };
     # Shared modules for Home Manager and other configurations
     shared-modules = [
       home-manager.nixosModules.home-manager
@@ -56,7 +68,7 @@
     # Function to create NixOS configurations for each host
     make-host = import ./functions/make-host.nix {
       nixpkgs = nixpkgs;
-      geospatial-nix = geospatial-nix;
+      geospatial = geospatial;
       shared-modules = shared-modules;
       specialArgs = specialArgs;
       system = system;
@@ -89,23 +101,27 @@
     packages.x86_64-linux = {
       default = pkgs.callPackage ./packages/utils {};
       setup-zfs-machine = pkgs.callPackage ./packages/setup-zfs-machine {};
-      qgis-with-custom-python-packages = pkgs.qgis.overrideAttrs (oldAttrs: rec {
-        pythonBuildInputs =
-          (oldAttrs.pythonBuildInputs or [])
-          ++ [
-            pkgs.python312Packages.numpy
-            pkgs.python312Packages.requests
-            pkgs.python312Packages.future
-            pkgs.python312Packages.matplotlib
-            pkgs.python312Packages.pandas
-            pkgs.python312Packages.geopandas
-            pkgs.python312Packages.plotly
-            #pkgs.python312Packages.pyqt5_with_qtwebkit
-            pkgs.python312Packages.pyqtgraph
-            pkgs.python312Packages.rasterio
-            pkgs.python312Packages.sqlalchemy
-          ];
-      });
+      # Pull in QGIS from geospatial with extra Python packages
+      qgisWithExtras = geospatial.packages.${system}.qgis.override {
+        extraPythonPackages = ps: [
+          ps.pyqtwebengine
+          ps.jsonschema
+          ps.debugpy
+          ps.future
+          ps.psutil
+          ps.numpy
+          ps.requests
+          ps.future
+          ps.matplotlib
+          ps.pandas
+          ps.geopandas
+          ps.plotly
+          #ps.pyqt5_with_qtwebkit
+          ps.pyqtgraph
+          ps.rasterio
+          ps.sqlalchemy
+        ];
+      };
       tilemaker = pkgs.callPackage ./packages/tilemaker {};
       gverify = pkgs.callPackage ./packages/gverify {};
       itk4 = pkgs.callPackage ./packages/itk4 {};
