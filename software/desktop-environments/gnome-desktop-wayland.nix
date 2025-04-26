@@ -44,4 +44,9 @@
   #};
   # Required for ssh-askpass.
   programs.seahorse.enable = true;
+
+  # Ensure GNOME's power daemon is running properly
+  # this is needed for power management so that we can
+  # suspend the system if battery is low
+  services.gnome.gnome-settings-daemon.enable = true;
 }

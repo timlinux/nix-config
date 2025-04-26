@@ -21,6 +21,8 @@
     #../software/gis/qgis-stable.nix
     ../software/gis/qgis-geospatialnix.nix
     ../software/system/wine.nix
+    # Enable power management
+    ../software/system/power.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
 
     # I do it this way so that we use hand compiled QGIS with
