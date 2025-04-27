@@ -108,6 +108,8 @@
       itk4 = pkgs.callPackage ./packages/itk4 {};
       otb = pkgs.callPackage ./packages/otb {self = self;};
       distrobox = pkgs.callPackage ./packages/distrobox {};
+      timos-plymouth = pkgs.callPackage ./packages/kartoza-plymouth {};
+      timos-grub = pkgs.callPackage ./packages/kartoza-grub {};
       kartoza-plymouth = pkgs.callPackage ./packages/kartoza-plymouth {};
       kartoza-grub = pkgs.callPackage ./packages/kartoza-grub {};
       kartoza-cron = pkgs.callPackage ./packages/kartoza-cron {};

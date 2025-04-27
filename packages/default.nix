@@ -1,4 +1,6 @@
 self: super: {
+  timos-plymouth = super.callPackage ./timos-plymouth {};
+  timos-grub = super.callPackage ./timos-grub {};
   kartoza-plymouth = super.callPackage ./kartoza-plymouth {};
   kartoza-grub = super.callPackage ./kartoza-grub {};
   kartoza-cron = super.callPackage ./kartoza-cron/default.nix {};
