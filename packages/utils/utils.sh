@@ -341,13 +341,31 @@ change_zfs_passphrase() {
 
 delete_zfs_snapshots() {
     # Delete all snapshots
-    echo "🗑️ Deleting all ZFS snapshots"
-    sudo zfs list -H -o name -t snapshot | xargs -n1 sudo zfs destroy
+    gum style "⚠️ WARNING" "This will delete all previous snapshots on the your host disk. Are you sure you want to continue?"
+    DESTROY=$(gum choose "DESTROY" "CANCEL")
+    if [ "$DESTROY" == "CANCEL" ]; then
+        echo "❌ Cancelled. No changes made."
+        return
+    fi   
+
+    echo "🚩 Deletion of old snapshots confirmed..." 
+    DATE=$(date '+%Y-%m-%d.%Hh-%M')
+    echo "📸 Creating new snapshot for current state"
+    sudo zfs snapshot NIXROOT/home@"$DATE"-Home
+
+    echo "🔖 Creating bookmarks for old snapshots before deletion"
+    OLD_SNAPSHOTS=$(sudo zfs list -H -o name -t snapshot -r NIXROOT/home | grep -v "$DATE-Home")
+    for SNAP in $OLD_SNAPSHOTS; do
+        BOOKMARK=${SNAP//@/#}
+        sudo zfs bookmark "$SNAP" "$BOOKMARK"
+        sudo zfs destroy "$SNAP"
+    done
+    echo "🗑️ Old snapshots deleted and replaced with bookmarks"
 }
 
 force_backup_zfs() {
     # This function is used to force a backup of the ZFS filesystem
-    # It will delete any previous snapshots
+    # It will delete any previous snapshots on the backup device
     # Use this when your local disk and the backup are out of sync
     # Prompt the user to confirm the action
     gum style "⚠️ WARNING" "This will delete all previous snapshots on the backup disk. Are you sure you want to continue?"
@@ -386,22 +404,39 @@ backup_zfs() {
     # zpool export NIXBACKUPS
 
     DATE=$(date '+%Y-%m-%d.%Hh-%M')
+
     echo "🐴 Mounting NIXBACKUPS volume from USB drive"
     sudo zpool import NIXBACKUPS
     echo "🗓️ Preparing a snapshot for $DATE"
-    echo "📸 Taking a snapshot"
-    sudo zfs snapshot NIXROOT/home@"$DATE"-Home
+    echo "📸 Creating local snapshot: NIXROOT/home@$DATE-Home"
+    sudo zfs snapshot NIXROOT/home@"$DATE-Home"
     zfs list -t snapshot
     zfs list
-    echo "📨Sending the snapshot to the external USB disk"
-    sudo syncoid NIXROOT/home NIXBACKUPS/home
-    echo "📝Listing the snapshots now that it is copied to the USB disk"
-    zfs list -t snapshot
-    # Stop zfs looking for this pool
-    echo "🔌Unplugging the backup zpool"
+
+    echo "🔖 Creating bookmarks for snapshots older than 7 days and deleting snapshots"
+    OLD_SNAPSHOTS=$(zfs list -H -o name -t snapshot -S creation | grep NIXROOT/home | tail -n +8)
+    for SNAP in $OLD_SNAPSHOTS; do
+        # shellcheck disable=SC2001
+        BOOKMARK=$(echo "$SNAP" | sed 's/@/#/')
+        sudo zfs bookmark "$SNAP" "$BOOKMARK"
+        sudo zfs destroy "$SNAP"
+    done
+
+    echo "📨 Sending snapshots incrementally to backup disk"
+    sudo syncoid --create-bookmark NIXROOT/home NIXBACKUPS/home
+
+    echo "♻️ Pruning old snapshots on backup disk (keeping monthly archives)"
+    sudo zfs list -H -o name -t snapshot NIXBACKUPS/home | \
+    grep -vE "$(date '+%Y-%m')|$(date -d '-1 month' '+%Y-%m')|$(date -d '-2 month' '+%Y-%m')" | \
+    xargs -r -n1 sudo zfs destroy
+
+    echo "📝 Listing snapshots on backup after pruning:"
+    zfs list -t snapshot NIXBACKUPS/home
+
+    echo "🔌 Exporting the backup zpool"
     sudo zpool export NIXBACKUPS
-    # Power off the  USB drive:
-    echo "⚡️Powering off the USB drive"
+
+    echo "⚡️ Powering off the USB drive"
     sudo udisksctl power-off -b /dev/sda
 }
 
