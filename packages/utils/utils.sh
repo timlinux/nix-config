@@ -404,9 +404,13 @@ backup_zfs() {
     # zpool export NIXBACKUPS
 
     DATE=$(date '+%Y-%m-%d.%Hh-%M')
-
-    echo "🐴 Mounting NIXBACKUPS volume from USB drive"
-    sudo zpool import NIXBACKUPS
+    echo "🐴 Checking if NIXBACKUPS is already imported..."
+    if ! zpool list | grep -q "^NIXBACKUPS"; then
+        echo "🔌 Importing NIXBACKUPS volume from USB drive"
+        sudo zpool import NIXBACKUPS
+    else
+        echo "✅ NIXBACKUPS is already imported"
+    fi
     echo "🗓️ Preparing a snapshot for $DATE"
     echo "📸 Creating local snapshot: NIXROOT/home@$DATE-Home"
     sudo zfs snapshot NIXROOT/home@"$DATE-Home"
