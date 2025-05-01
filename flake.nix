@@ -45,7 +45,12 @@
       // {
         inherit system geospatial;
         qgisWithExtras = self.packages.${system}.qgisWithExtras;
+        kartozaThemes = {
+          plymouth = ./software/system/kartoza-plymouth.nix; # Correct path to the plymouth theme
+          grub = ./software/system/kartoza-grub.nix; # Correct path to the grub theme
+        };
       };
+
     # Shared modules for Home Manager and other configurations
     shared-modules = [
       home-manager.nixosModules.home-manager
