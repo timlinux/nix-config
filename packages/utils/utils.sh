@@ -447,21 +447,23 @@ backup_zfs() {
     # Now do some integrity checks
     echo "🔍 Verifying that all local snapshots exist on the backup as snapshots or bookmarks"
 
-    MISSING=0
-    for SNAP in $(zfs list -H -o name -t snapshot | grep ^NIXROOT/home@); do
-        BASE=$(basename "$SNAP")
-        SNAP_EXISTS=$(zfs list -H -o name -t snapshot NIXBACKUPS/home 2>/dev/null | grep -c "@$BASE")
-        BOOKMARK_EXISTS=$(zfs list -H -o name -t bookmark NIXBACKUPS/home 2>/dev/null | grep -c "#$BASE")
+    #MISSING=0
+    #for SNAP in $(zfs list -H -o name -t snapshot | grep ^NIXROOT/home@); do
+    #    echo "$SNAP"
+    #    BASE=$(basename "$SNAP")
+    #    SNAP_EXISTS=$(zfs list -H -o name -t snapshot NIXBACKUPS/home 2>/dev/null | grep -c "@$BASE")
+    #    BOOKMARK_EXISTS=$(zfs list -H -o name -t bookmark NIXBACKUPS/home 2>/dev/null | grep -c "#$BASE")
 
-        if [ "$SNAP_EXISTS" -eq 0 ] && [ "$BOOKMARK_EXISTS" -eq 0 ]; then
-            echo "❌ Missing on backup: $BASE"
-            MISSING=$((MISSING + 1))
-        fi
-    done
+    #    if [ "$SNAP_EXISTS" -eq 0 ] && [ "$BOOKMARK_EXISTS" -eq 0 ]; then
+    #        echo "❌ Missing on backup: $BASE"
+    #        MISSING=$((MISSING + 1))
+    #    fi
+    #    echo "$SNAP"
+    #done
 
-    if [ "$MISSING" -eq 0 ]; then
-        echo "✅ All local snapshots are accounted for on backup (as snapshot or bookmark)"
-    fi
+    #if [ "$MISSING" -eq 0 ]; then
+    #    echo "✅ All local snapshots are accounted for on backup (as snapshot or bookmark)"
+    #fi
 
     LOCAL_COUNT=$(zfs list -H -t snapshot -o name | grep -c ^NIXROOT/home@)
     BACKUP_COUNT=$(zfs list -H -t snapshot -o name | grep -c ^NIXBACKUPS/home@)

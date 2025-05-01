@@ -45,6 +45,7 @@ in
       echo "🔍 nix flake update  : Update the flake"
       echo "🩻 nix flake check   : Check the flake"
       echo "🆚 ./vscode         : Open VSCode ready to work on this flake"
+      echo " sudo NIXPKGS_ALLOW_INSECURE=1 NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch --show-trace --impure --flake . : Update your system"
       echo "_________________________________________________________"
       echo "Tim Sutton, 2024   https://github.com/timlinux/nix-config"
     '';
