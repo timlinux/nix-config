@@ -85,6 +85,11 @@
                " Shortcut to format a .nix file using alejandra
                " Do this to format: :%!alejandra -qq
                :nnoremap <C-=> :%!alejandra -qq<CR>
+	" Tab sizes
+        set expandtab     " use spaces instead of tabs
+	set shiftwidth=4  " number of spaces to use for each level of indentation
+	set softtabstop=4 " number of spaces a <Tab> feels like
+	set tabstop=4     " number of spaces a tab counts for in file
       '';
     })
   ];

@@ -417,22 +417,98 @@ backup_zfs() {
     zfs list -t snapshot
     zfs list
 
-    echo "🔖 Creating bookmarks for snapshots older than 7 days and deleting snapshots"
-    OLD_SNAPSHOTS=$(zfs list -H -o name -t snapshot -S creation | grep NIXROOT/home | tail -n +8)
-    for SNAP in $OLD_SNAPSHOTS; do
-        # shellcheck disable=SC2001
-        BOOKMARK=$(echo "$SNAP" | sed 's/@/#/')
-        sudo zfs bookmark "$SNAP" "$BOOKMARK"
-        sudo zfs destroy "$SNAP"
-    done
-
     echo "📨 Sending snapshots incrementally to backup disk"
     sudo syncoid --create-bookmark NIXROOT/home NIXBACKUPS/home
 
-    echo "♻️ Pruning old snapshots on backup disk (keeping monthly archives)"
-    sudo zfs list -H -o name -t snapshot NIXBACKUPS/home | \
-    grep -vE "$(date '+%Y-%m')|$(date -d '-1 month' '+%Y-%m')|$(date -d '-2 month' '+%Y-%m')" | \
-    xargs -r -n1 sudo zfs destroy
+    echo "🔖 Creating bookmarks for snapshots older than 7 days and deleting snapshots"
+    OLD_LOCAL_SNAPSHOTS=$(zfs list -H -o name -t snapshot -S creation | grep NIXROOT/home | tail -n +8)
+
+    for SNAP in $OLD_LOCAL_SNAPSHOTS; do
+        BOOKMARK="${SNAP//@/#}"
+        echo "🔖 Bookmarking $SNAP as $BOOKMARK"
+        sudo zfs bookmark "$SNAP" "$BOOKMARK"
+        echo "❌ Deleting $SNAP"
+        sudo zfs destroy "$SNAP"
+    done
+
+    echo "🧹 Pruning old snapshots on backup disk (keeping monthly archives)"
+    MONTH_KEEP_REGEX="$(date '+%Y-%m')|$(date -d '-1 month' '+%Y-%m')|$(date -d '-2 month' '+%Y-%m')"
+
+    zfs list -H -o name -t snapshot NIXBACKUPS/home | while read -r SNAP; do
+        if ! echo "$SNAP" | grep -qE "$MONTH_KEEP_REGEX"; then
+            BOOKMARK="${SNAP//@/#}"
+            echo "🔖 Bookmarking $SNAP as $BOOKMARK"
+            sudo zfs bookmark "$SNAP" "$BOOKMARK"
+            echo "❌ Deleting $SNAP"
+            sudo zfs destroy "$SNAP"
+        fi
+    done
+
+    # Now do some integrity checks
+    echo "🔍 Verifying that all local snapshots exist on the backup as snapshots or bookmarks"
+
+    MISSING=0
+    for SNAP in $(zfs list -H -o name -t snapshot | grep ^NIXROOT/home@); do
+        BASE=$(basename "$SNAP")
+        SNAP_EXISTS=$(zfs list -H -o name -t snapshot NIXBACKUPS/home 2>/dev/null | grep -c "@$BASE")
+        BOOKMARK_EXISTS=$(zfs list -H -o name -t bookmark NIXBACKUPS/home 2>/dev/null | grep -c "#$BASE")
+
+        if [ "$SNAP_EXISTS" -eq 0 ] && [ "$BOOKMARK_EXISTS" -eq 0 ]; then
+            echo "❌ Missing on backup: $BASE"
+            MISSING=$((MISSING + 1))
+        fi
+    done
+
+    if [ "$MISSING" -eq 0 ]; then
+        echo "✅ All local snapshots are accounted for on backup (as snapshot or bookmark)"
+    fi
+
+    LOCAL_COUNT=$(zfs list -H -t snapshot -o name | grep -c ^NIXROOT/home@)
+    BACKUP_COUNT=$(zfs list -H -t snapshot -o name | grep -c ^NIXBACKUPS/home@)
+
+    if [ "$BACKUP_COUNT" -lt "$LOCAL_COUNT" ]; then
+        echo "❌ Backup has fewer snapshots ($BACKUP_COUNT) than local ($LOCAL_COUNT)"
+    else
+        echo "✅ Backup has same or more snapshots than local ($LOCAL_COUNT vs $BACKUP_COUNT)"
+    fi
+
+    echo "🎲 Selecting a random file to restore"
+
+    RANDOM_FILE=$(find /home -type f -size -64k | shuf -n 1)
+    RESTORE_PATH="/tmp/restore-test"
+    RESTORE_FILE="$RESTORE_PATH${RANDOM_FILE#/home}"
+
+    mkdir -p "$(dirname "$RESTORE_FILE")"
+
+    echo "📥 Attempting to restore $RANDOM_FILE from backup"
+    cp "/mnt/NIXBACKUPS/home${RANDOM_FILE#/home}" "$RESTORE_FILE" 2>/dev/null
+
+    if [ -f "$RESTORE_FILE" ]; then
+        echo "✅ File restored successfully to $RESTORE_FILE"
+        rm -f "$RESTORE_FILE"
+    else
+        echo "❌ Failed to restore $RANDOM_FILE from backup"
+    fi
+
+    echo "📊 Generating backup health report..."
+
+    gum style \
+      --border normal \
+      --margin "1 2" \
+      --padding "1 2" \
+      --border-foreground 212 \
+      "🧾 Backup Report Summary" \
+      "• Oldest snapshot: $(zfs list -t snapshot -o name,creation -s creation | grep NIXBACKUPS/home | head -n1)" \
+      "• Snapshots on local: $LOCAL_COUNT" \
+      "• Snapshots on backup: $BACKUP_COUNT" \
+      "• Missing snapshots: $MISSING" \
+      "• Free space on local: $(zfs list -H -o available NIXROOT)" \
+      "• Free space on backup: $(zfs list -H -o available NIXBACKUPS)" \
+      "• Last test file restored: $(basename "$RANDOM_FILE")"
+
+    duf --only local,network,zfs
+
+
 
     echo "📝 Listing snapshots on backup after pruning:"
     zfs list -t snapshot NIXBACKUPS/home
