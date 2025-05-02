@@ -19,7 +19,7 @@
     ../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
     #../software/gis/qgis-stable.nix
-    ../software/gis/qgis-geospatialnix.nix
+    #../software/gis/qgis-geospatialnix.nix
     ../software/system/wine.nix
     # Enable power management
     ../software/system/power.nix
