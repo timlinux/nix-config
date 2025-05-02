@@ -11,7 +11,7 @@
     # and https://github.com/imincik/geospatial-nix.repo
     geospatial = {
       url = "github:imincik/geospatial-nix.repo/latest";
-      inputs.nixpkgs.follows = "nixpkgs"; # align nixpkgs for consistency
+      #inputs.nixpkgs.follows = "nixpkgs"; # align nixpkgs for consistency
     };
     # See https://github.com/nix-community/nixos-generators?tab=readme-ov-file#using-in-a-flake
     nixos-generators = {
