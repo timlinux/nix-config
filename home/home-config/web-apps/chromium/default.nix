@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    ./aistudio.nix
     ./bluesky.nix
     ./chat-gpt.nix
     ./drawdb.nix
