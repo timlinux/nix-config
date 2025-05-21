@@ -801,6 +801,9 @@ system_menu() {
             "💿️ Unmount ZFS USB disk" \
             "🧹 Clear disk space" \
             "🧹 Delete ZFS Snapshots" \
+            "📺️ List video cards" \
+            "⚙️ Glx Gears - Integrated" \
+            "⚙️ Glx Gears - Nvidia" \
             "💻️ Update firmware" \
             "❄️ Update flake lock" \
             "⚙️ Start syncthing" \
@@ -863,6 +866,21 @@ system_menu() {
         prompt_to_continue
         system_menu
         ;;
+    "📺️ List video cards")
+        lspci | grep VGA
+        prompt_to_continue
+        system_menu
+        ;;
+    "⚙️ Glx Gears - Integrated")
+        vblank_mode=0 glxgears
+        prompt_to_continue
+        system_menu
+        ;;
+    "⚙️ Glx Gears - Nvidia")
+        __NV_PRIME_RENDER_OFFLOAD=1 __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only __GL_SYNC_TO_VBLANK=0 glxgears
+        prompt_to_continue
+        system_menu
+        ;;        
     "💻️ Update firmware")
         sudo fwupdmgr refresh --force
         sudo fwupdmgr get-updates

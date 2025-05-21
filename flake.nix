@@ -169,6 +169,8 @@
       jeff = make-host "jeff"; # Jeff - running plasma
       atoll = make-host "atoll"; # Dorah's Laptop
       crater = make-host "crater"; # Eli's Laptop
+      island = make-host "island"; # Lova's Laptop
+
       test-gnome-full = make-host "test-gnome-full"; # Automated testbed - test gnome
       test-gnome-minimal = make-host "test-gnome-minimal"; # Automated testbed - test gnome
       test-kde6 = make-host "test-kde6"; # Automated testbed - test kde6

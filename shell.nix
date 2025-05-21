@@ -34,6 +34,8 @@ in
       pinnedPkgs.starfetch
       pinnedPkgs.octofetch
       pinnedPkgs.ntfy-sh
+      pinnedPkgs.mesa-demos
+      pinnedPkgs.pciutils
     ];
 
     # Now we can execute any commands within the virtual environment.
