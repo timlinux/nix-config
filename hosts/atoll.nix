@@ -15,7 +15,8 @@
     ../configuration/desktop-apps.nix
     ../software/system/zfs-encryption.nix
     #../software/gis/qgis-unstable.nix
-    ../software/gis/qgis-stable.nix
+    #../software/gis/qgis-stable.nix
+    ../software/gis/qgis-geospatialnix.nix
     ../software/system/locale-za-en.nix
     ../software/system/postgres.nix
     ../users/tim.nix
