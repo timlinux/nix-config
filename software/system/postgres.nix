@@ -6,7 +6,7 @@
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_16;
-    extraPlugins = [(pkgs.postgis.override {postgresql = pkgs.postgresql_16;})];
+    extensions = [(pkgs.postgis.override {postgresql = pkgs.postgresql_16;})];
     enableTCPIP = true;
     authentication = pkgs.lib.mkOverride 16 ''
       local all all trust
