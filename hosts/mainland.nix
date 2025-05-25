@@ -10,9 +10,9 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ../configuration/desktop-gnome-x11.nix
-    ../software/desktop-environments/gnome-desktop-remote-desktop.nix
+    #../software/desktop-environments/gnome-desktop-remote-desktop.nix
     ../configuration/desktop-apps.nix
-    #../software/system/locale-eu-en-madagascar.nix
+    ../software/system/locale-eu-en-madagascar.nix
     #../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
     ../software/gis/qgis-geospatialnix.nix
