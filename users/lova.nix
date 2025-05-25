@@ -78,11 +78,11 @@ in {
     # Set backup file extension - any config file collisions will be backed up
     backupFileExtension = ".bak2";
     users.${username} = {
-      home.stateVersion = "23.11";
+      home.stateVersion = "24.11";
       imports = [
         ../home
         # Not provisioned to all users...
-        ../home/home-config/web-apps/chromium/proton-mail.nix
+        #../home/home-config/web-apps/chromium/proton-mail.nix
       ];
       programs = {
         git = {
