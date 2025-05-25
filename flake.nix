@@ -169,7 +169,8 @@
       jeff = make-host "jeff"; # Jeff - running plasma
       atoll = make-host "atoll"; # Dorah's Laptop
       crater = make-host "crater"; # Eli's Laptop
-      island = make-host "island"; # Lova's Laptop
+      island = make-host "island"; # Selmas's Laptop
+      mainland = make-host "mainland"; # Lova's Laptop
 
       test-gnome-full = make-host "test-gnome-full"; # Automated testbed - test gnome
       test-gnome-minimal = make-host "test-gnome-minimal"; # Automated testbed - test gnome

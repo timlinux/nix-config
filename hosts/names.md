@@ -24,3 +24,4 @@ sinkhole | ||
 valley | Tim | Intel Nuc | Adguard |
 volcano | Marisa | Acer | Very old PC
 waterfall | Tim | Tuxedo PC | Desktop Workstation 
+mainland | Lova | Tuxedo Slimbook 16 | Laptop
