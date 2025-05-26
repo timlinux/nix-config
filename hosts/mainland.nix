@@ -26,7 +26,7 @@
     ../software/system/virt.nix
     ../software/system/printing.nix
     ../software/system/sanoid.nix
-    ../software/system/nvidia.nix
+    ../software/system/nvidia-lova.nix
     #../software/system/tuxedo.nix
     #../software/system/lima.nix
     ../software/desktop-apps/google-earth-pro.nix

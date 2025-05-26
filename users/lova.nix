@@ -64,10 +64,7 @@ in {
       "lpadmin"
       "i2c"
     ];
-    openssh.authorizedKeys.keys = [
-      (builtins.readFile ./public-keys/id_ed25519_lova1.pub)
-      (builtins.readFile ./public-keys/id_ed25519_lova2.pub)
-    ];
+    openssh.authorizedKeys.keys = [(builtins.readFile ./public-keys/id_ed25519_lova.pub)];
     packages = with pkgs; [
       popcorntime
       freetube
@@ -86,10 +83,10 @@ in {
       ];
       programs = {
         git = {
-          userName = "Lova";
+          userName = "Xpirix";
           userEmail = "lova@kartoza.com";
           extraConfig = {
-            github.user = "xpirix";
+            github.user = "Xpirix";
             gitlab.user = "lova@kartoza.com";
           };
           # rest of git is configured in ../home/git..
