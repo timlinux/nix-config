@@ -86,6 +86,40 @@ in {
           };
           # rest of git is configured in ../home/git..
         };
+        kitty = {
+          enable = true;
+          shellIntegration.enableFishIntegration = true;
+          extraConfig = ''
+            # Start maximized
+            map winmax toggle maximize_window
+            # Kartoza Kitty Theme
+            background_opacity 0.95
+            font_size 12
+            foreground #C3C7D1
+            background #0D181E
+            selection_foreground #C3C7D1
+            selection_background #4f5b66
+            url_color #3A9800
+            active_border_color #93B023
+            inactive_border_color #55828b
+            cursor #3A9800
+            cursor_text_color #C3C7D1
+            scrollback_lines 10000
+            hide_window_decorations no
+            tab_activity_symbol 🔔
+            tab_bar_style powerline
+            tab_powerline_style angled
+            tab_title_format '{title}'
+            tab_title_style 'bold'
+            tab_max_width '20%'
+            tab_max_width_auto_shrink no
+            tab_bar_background #395c6b
+            active_tab_background #93B023
+            tab_title_template "💻️ {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+            active_tab_title_template "⚙️ {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+            tab_font 'Hack, Monaco, "DejaVu Sans Mono", monospace'
+          '';
+        };
       };
     };
   };
