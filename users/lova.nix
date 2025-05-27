@@ -110,4 +110,15 @@ in {
     gsettings set org.gnome.desktop.background picture-uri file:///etc/QGIS_wallpaper.png
     gsettings set org.gnome.desktop.background picture-uri-dark file:///etc/QGIS_wallpaper.png
   '';
+
+  # Starship configuration
+
+  environment.etc."starship-qgis.toml" = {
+    mode = "0555";
+    source = ../dotfiles/starship-qgis.toml;
+  };
+
+  environment.variables = {
+    STARSHIP_CONFIG = lib.mkForce "/etc/starship-qgis.toml";
+  };
 }

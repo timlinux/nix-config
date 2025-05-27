@@ -20,11 +20,11 @@ $nodejs\
 $nim\
 $rust\
 $scala\
-[](fg:#55828b bg:#589632)\
+[](fg:#55828b bg:#EEE766)\
 $docker_context\
-[](fg:#589632 bg:#589632)\
+[](fg:#EEE766 bg:#ee7913)\
 $time\
-[ ](fg:#589632)\
+[ ](fg:#ee7913)\
 """
 
 # Disable the blank line at the start of the prompt
