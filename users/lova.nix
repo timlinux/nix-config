@@ -28,11 +28,6 @@ in {
   #  "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}"
   #] else [];
 
-  # These lines will be added to global bashrc
-  environment.interactiveShellInit = ''
-    echo "Hello from lova.nix"
-  '';
-
   # I tried just adding this in the fish module
   # but it doesn't work so we need to add it
   # for each user
@@ -94,4 +89,25 @@ in {
       };
     };
   };
+
+  # Set the background by default to QGIS branding
+  # Note that it will not override the setting if it already exists
+  # so only visible on new installs
+  environment.etc."QGIS_wallpaper.png" = {
+    mode = "0555";
+    source = ../resources/QGIS_wallpaper.png;
+  };
+  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.desktop.background]
+    picture-uri='file:///etc/QGIS_wallpaper.png'
+    picture-uri-dark='file:///etc/QGIS_wallpaper.png'
+  '';
+
+  # These lines will be added to global bashrc
+  environment.interactiveShellInit = ''
+    echo "Hello from lova.nix"
+    # Set manually like this (once for light theme, once for dark)
+    gsettings set org.gnome.desktop.background picture-uri file:///etc/QGIS_wallpaper.png
+    gsettings set org.gnome.desktop.background picture-uri-dark file:///etc/QGIS_wallpaper.png
+  '';
 }
