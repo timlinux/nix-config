@@ -35,6 +35,12 @@ in {
     starship init fish | source
   '';
 
+  nixpkgs.overlays = [
+    (self: super: {
+      spotx = import ../software/desktop-apps/spotx.nix;
+    })
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
@@ -63,6 +69,7 @@ in {
     packages = with pkgs; [
       popcorntime
       freetube
+      spotify
     ];
   };
 
