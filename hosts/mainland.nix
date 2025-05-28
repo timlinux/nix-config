@@ -26,7 +26,7 @@
     ../software/system/virt.nix
     ../software/system/printing.nix
     ../software/system/sanoid.nix
-    ../software/system/nvidia.nix
+    ../software/system/nvidia-lova.nix
     #../software/system/tuxedo.nix
     #../software/system/lima.nix
     ../software/desktop-apps/google-earth-pro.nix
@@ -97,4 +97,6 @@
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # nix.settings.sandbox = false;
 }

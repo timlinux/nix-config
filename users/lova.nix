@@ -28,17 +28,18 @@ in {
   #  "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}"
   #] else [];
 
-  # These lines will be added to global bashrc
-  environment.interactiveShellInit = ''
-    echo "Hello from lova.nix"
-  '';
-
   # I tried just adding this in the fish module
   # but it doesn't work so we need to add it
   # for each user
   programs.fish.interactiveShellInit = ''
     starship init fish | source
   '';
+
+  nixpkgs.overlays = [
+    (self: super: {
+      spotx = import ../software/desktop-apps/spotx.nix;
+    })
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
@@ -64,13 +65,11 @@ in {
       "lpadmin"
       "i2c"
     ];
-    openssh.authorizedKeys.keys = [
-      (builtins.readFile ./public-keys/id_ed25519_lova1.pub)
-      (builtins.readFile ./public-keys/id_ed25519_lova2.pub)
-    ];
+    openssh.authorizedKeys.keys = [(builtins.readFile ./public-keys/id_ed25519_lova.pub)];
     packages = with pkgs; [
       popcorntime
       freetube
+      spotify
     ];
   };
 
@@ -86,15 +85,81 @@ in {
       ];
       programs = {
         git = {
-          userName = "Lova";
+          userName = "Xpirix";
           userEmail = "lova@kartoza.com";
           extraConfig = {
-            github.user = "xpirix";
+            github.user = "Xpirix";
             gitlab.user = "lova@kartoza.com";
           };
           # rest of git is configured in ../home/git..
         };
+        kitty = {
+          enable = true;
+          shellIntegration.enableFishIntegration = true;
+          extraConfig = ''
+            # Start maximized
+            map winmax toggle maximize_window
+            # Kartoza Kitty Theme
+            background_opacity 0.95
+            font_size 12
+            foreground #C3C7D1
+            background #0D181E
+            selection_foreground #C3C7D1
+            selection_background #4f5b66
+            url_color #3A9800
+            active_border_color #93B023
+            inactive_border_color #55828b
+            cursor #3A9800
+            cursor_text_color #C3C7D1
+            scrollback_lines 10000
+            hide_window_decorations no
+            tab_activity_symbol 🔔
+            tab_bar_style powerline
+            tab_powerline_style angled
+            tab_title_format '{title}'
+            tab_title_style 'bold'
+            tab_max_width '20%'
+            tab_max_width_auto_shrink no
+            tab_bar_background #395c6b
+            active_tab_background #93B023
+            tab_title_template "💻️ {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+            active_tab_title_template "⚙️ {fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+            tab_font 'Hack, Monaco, "DejaVu Sans Mono", monospace'
+          '';
+        };
       };
     };
+  };
+
+  # Set the background by default to QGIS branding
+  # Note that it will not override the setting if it already exists
+  # so only visible on new installs
+  environment.etc."QGIS_wallpaper.png" = {
+    mode = "0555";
+    source = ../resources/QGIS_wallpaper.png;
+  };
+  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.desktop.background]
+    picture-uri='file:///etc/QGIS_wallpaper.png'
+    picture-uri-dark='file:///etc/QGIS_wallpaper.png'
+  '';
+
+  # These lines will be added to global bashrc
+  environment.interactiveShellInit = ''
+    echo "Hello from lova.nix"
+    # Set manually like this (once for light theme, once for dark)
+    gsettings set org.gnome.desktop.background picture-uri file:///etc/QGIS_wallpaper.png
+    gsettings set org.gnome.desktop.background picture-uri-dark file:///etc/QGIS_wallpaper.png
+  '';
+
+  # Starship configuration
+
+  environment.etc."starship-qgis.toml" = {
+    mode = "0555";
+    source = ../dotfiles/starship-qgis.toml;
+  };
+
+  environment.variables = {
+    STARSHIP_CONFIG = lib.mkForce "/etc/starship-qgis.toml";
   };
 }
