@@ -8,7 +8,7 @@
   iconName = "deepseek.svg";
   iconPath = "${config.home.homeDirectory}/.local/share/icons/${iconName}";
 in {
-  home.file."chat_gpt_image" = {
+  home.file."deepseek_image" = {
     source = ./${iconName};
     target = iconPath;
   };
@@ -26,7 +26,7 @@ in {
       # You can find out the value to use by running
       # xprop and then clicking on the app window
       # Then set the value below to whatever WM_CLASS(STRING) is
-      startupWMClass = "chatgpt.com";
+      startupWMClass = "deepseek.com";
     };
   in [chatGptApp];
 }
