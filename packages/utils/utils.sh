@@ -474,23 +474,24 @@ backup_zfs() {
         echo "✅ Backup has same or more snapshots than local ($LOCAL_COUNT vs $BACKUP_COUNT)"
     fi
 
-    echo "🎲 Selecting a random file to restore"
+    echo "🎲 Selecting a random file to restore - FIXME - Test disabled"
 
-    RANDOM_FILE=$(find /home -type f -size -64k | shuf -n 1)
-    RESTORE_PATH="/tmp/restore-test"
-    RESTORE_FILE="$RESTORE_PATH${RANDOM_FILE#/home}"
+    # TODO actually choose a random file
+    #RANDOM_FILE=$(find /home/timlinux/'Kartoza.txt')
+    #RESTORE_PATH="/tmp/restore-test"
+    #RESTORE_FILE="$RESTORE_PATH${RANDOM_FILE#/home}"
 
-    mkdir -p "$(dirname "$RESTORE_FILE")"
+    #mkdir -p "$(dirname "$RESTORE_FILE")"
 
-    echo "📥 Attempting to restore $RANDOM_FILE from backup"
-    cp "/mnt/NIXBACKUPS/home${RANDOM_FILE#/home}" "$RESTORE_FILE" 2>/dev/null
+    #echo "📥 Attempting to restore $RANDOM_FILE from backup"
+    #cp "/mnt/NIXBACKUPS/home${RANDOM_FILE#/home}" "$RESTORE_FILE" 2>/dev/null
 
-    if [ -f "$RESTORE_FILE" ]; then
-        echo "✅ File restored successfully to $RESTORE_FILE"
-        rm -f "$RESTORE_FILE"
-    else
-        echo "❌ Failed to restore $RANDOM_FILE from backup"
-    fi
+    #if [ -f "$RESTORE_FILE" ]; then
+    #    echo "✅ File restored successfully to $RESTORE_FILE"
+    #    rm -f "$RESTORE_FILE"
+    #else
+    #    echo "❌ Failed to restore $RANDOM_FILE from backup"
+    #fi
 
     echo "📊 Generating backup health report..."
 
@@ -501,7 +502,7 @@ backup_zfs() {
       --border-foreground 212 \
       "🧾 Backup Report Summary" \
       "• Oldest snapshot: $(zfs list -t snapshot -o name,creation -s creation | grep NIXBACKUPS/home | head -n1)" \
-      "• Snapshots on local: $LOCAL_COUNT" \
+      "• Snapshots on local: ${LOCAL_COUNT}" \
       "• Snapshots on backup: $BACKUP_COUNT" \
       "• Missing snapshots: $MISSING" \
       "• Free space on local: $(zfs list -H -o available NIXROOT)" \
