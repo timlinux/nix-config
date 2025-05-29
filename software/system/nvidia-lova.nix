@@ -56,7 +56,7 @@
       };
       # Make sure to use the correct Bus ID values for your system!
       # intelBusId = # for intel gpu
-      amdgpuBusId = "PCI:06:0:0";
+      amdgpuBusId = "PCI:07:0:0";
       nvidiaBusId = "PCI:01:0:0";
     };
   };
