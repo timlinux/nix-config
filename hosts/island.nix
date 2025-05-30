@@ -6,7 +6,7 @@
   modulesPath,
   ...
 }: {
-  # Lenovo Thinkpad P14s AMD Gen 1
+  # Selma's Tuxedo 15 Slimbook
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -15,12 +15,12 @@
     #../configuration/desktop-kde6.nix
     #../software/desktop-environments/pantheon-desktop.nix
     ../configuration/desktop-apps.nix
-    ../software/system/locale-eu-en-madagascar.nix
-    ../software/system/biometrics.nix
+    #../software/system/locale-eu-en-madagascar.nix
+    #../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
     #../software/gis/qgis-stable.nix
     ../software/gis/qgis-geospatialnix.nix
-    ../software/system/wine.nix
+    #../software/system/wine.nix
     # Enable power management
     ../software/system/power.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
@@ -54,6 +54,7 @@
     ../software/desktop-apps/google-earth-pro.nix
     ../users/tim.nix
     ../users/lova.nix
+    ../users/selma.nix
   ];
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "sd_mod"];

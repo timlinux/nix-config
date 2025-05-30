@@ -20,7 +20,6 @@
     ../software/desktop-apps/keepassxc.nix
     ../software/desktop-apps/uxplay.nix
     #../software/system/postgres.nix
-    ../software/developer/python.nix
     ../software/system/quickemu.nix
     ../software/desktop-apps/screen-control.nix # android screen sharint
   ];
