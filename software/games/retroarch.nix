@@ -4,12 +4,12 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    (retroarch.override {
+    (retroarch.overrideAttrs (old: {
       cores = with libretro; [
         genesis-plus-gx
         snes9x
         fuse
       ];
-    })
+    }))
   ];
 }

@@ -16,7 +16,6 @@
     #./conda.nix # not working
     ./dir-env.nix
     #./playwright.nix
-    ./python.nix
     #./rstudio.nix # Use nix-shell rather - see sawps project for an example
     #./zx-spectrum.nix
   ];

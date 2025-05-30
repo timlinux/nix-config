@@ -13,12 +13,16 @@
   #  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   #};
   # Add system wide packages
+  fonts.packages = [
+    pkgs.nerd-fonts._0xproto
+    pkgs.nerd-fonts.droid-sans-mono
+    # See fonts.nix - we add all nerd fonts there
+  ];
   environment.systemPackages = with pkgs; [
     wl-clipboard
     xdg-desktop-portal
     xdg-desktop-portal-gtk
     adw-gtk3
-    (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
     recursive
     amberol
     celluloid

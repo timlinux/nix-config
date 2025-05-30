@@ -16,7 +16,7 @@
     #../software/desktop-environments/pantheon-desktop.nix
     ../configuration/desktop-apps.nix
     ../software/system/locale-pt-en.nix
-    ../software/system/biometrics.nix
+    #../software/system/biometrics.nix
     ../software/system/zfs-encryption.nix
     #../software/gis/qgis-stable.nix
     ../software/gis/qgis-geospatialnix.nix

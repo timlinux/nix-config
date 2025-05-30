@@ -26,7 +26,7 @@
     google-chrome
     ungoogled-chromium
     inkscape-with-extensions
-    kdenlive
+    kdePackages.kdenlive
     krita
     libreoffice-fresh
     # For multilingual spell check in logseq, edit
