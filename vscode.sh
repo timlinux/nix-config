@@ -10,29 +10,29 @@ VSCODE_DIR=".vscode"
 LOG_FILE="vscode.log"
 
 REQUIRED_EXTENSIONS=(
-    mkhl.direnv@0.17.0
-    kamadorueda.alejandra@1.0.0
-    marp-team.marp-vscode@3.1.0
-    shd101wyy.markdown-preview-enhanced@0.8.15
-    GitHub.copilot-chat@0.26.7
-    rpinski.shebang-snippets@1.1.0
-    joffreykern.markdown-toc@1.4.0
-    pinage404.bash-extension-pack@2.0.0
-    spmeesseman.vscode-taskexplorer@2.13.2
-    pinage404.nix-extension-pack@3.0.0
-    mads-hartmann.bash-ide-vscode@1.43.0
-    foxundermoon.shell-format@7.2.5
-    jeff-hykin.better-shellscript-syntax@1.10.0
-    arrterian.nix-env-selector@1.0.12
-    timonwong.shellcheck@0.37.7
-    jnoortheen.nix-ide@0.4.16
-    bierner.markdown-mermaid@1.27.0
+    arrterian.nix-env-selector@1.1.0
     bbenoist.Nix@1.0.1
-    GitHub.copilot@1.250.0
-    rogalmic.bash-debug@0.3.9
+    bierner.markdown-mermaid@1.28.0
     formulahendry.code-runner@0.12.2
-    waderyan.gitblame@11.1.2
+    foxundermoon.shell-format@7.2.5
+    GitHub.copilot-chat@0.27.3
+    GitHub.copilot@1.335.0
+    jeff-hykin.better-shellscript-syntax@1.10.0
+    jnoortheen.nix-ide@0.4.18
+    joffreykern.markdown-toc@1.4.0
+    kamadorueda.alejandra@1.0.0
+    mads-hartmann.bash-ide-vscode@1.43.0
+    marp-team.marp-vscode@3.2.0
+    mkhl.direnv@0.17.0
     naumovs.color-highlight@2.8.0
+    pinage404.bash-extension-pack@2.0.0
+    pinage404.nix-extension-pack@3.0.0
+    rogalmic.bash-debug@0.3.9
+    rpinski.shebang-snippets@1.1.0
+    shd101wyy.markdown-preview-enhanced@0.8.18
+    spmeesseman.vscode-taskexplorer@2.13.2
+    timonwong.shellcheck@0.37.7
+    waderyan.gitblame@11.1.3
 )
 
 # ----------------------------------------------
