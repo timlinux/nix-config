@@ -23,5 +23,17 @@
       extraConfig.gtk-application-prefer-dark-theme = true;
     };
   };
-  home.sessionVariables.GTK_THEME = "Adwaita";
+
+  # Add adwaita-qt to system packages
+  home.packages = with pkgs; [
+    adwaita-qt
+    adwaita-qt6
+  ];
+
+  # Set environment variables for Qt5 and Qt6 to use Adwaita-Qt
+  home.sessionVariables = {
+    GTK_THEME = "Adwaita";
+    QT_QPA_PLATFORMTHEME = "adwaita";
+    QT_STYLE_OVERRIDE = "adwaita";
+  };
 }
