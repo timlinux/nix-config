@@ -10,8 +10,12 @@
   };
   # Make the device suspend when the power button is pressed
   services.logind = {
+    lidSwitch = "suspend";
+    lidSwitchDocked = "ignore";
     extraConfig = ''
       HandlePowerKey=suspend
+      HandleSwitchExternalPower=suspend;
+      HandleSwitchDocked=ignore;
     '';
   };
 }
