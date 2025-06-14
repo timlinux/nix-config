@@ -57,5 +57,6 @@
     zap #Java application for web penetration testing
     # The following is a Qt theme engine, which can be configured with kvantummanager
     libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5ct # Qt5 Configuration Tool
   ];
 }

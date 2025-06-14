@@ -33,7 +33,8 @@
   # Set environment variables for Qt5 and Qt6 to use Adwaita-Qt
   home.sessionVariables = {
     GTK_THEME = "Adwaita";
-    QT_QPA_PLATFORMTHEME = "adwaita";
-    QT_STYLE_OVERRIDE = "adwaita";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+    #QT_STYLE_OVERRIDE = "adwaita"; # Set this using the qt5ct tool rather than here
+    # See also gui-apps.nix for qt5ct
   };
 }
