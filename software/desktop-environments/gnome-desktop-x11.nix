@@ -44,6 +44,7 @@
   environment.systemPackages = with pkgs; [
     # See https://github.com/FedoraQt/QGnomePlatform#usage
     qgnomeplatform # make Qt apps look like Gtk if they do not specifiy their own theme
+    gnome-tweaks # for changing the theme
   ];
 
   programs.seahorse.enable = true;
