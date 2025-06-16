@@ -11,6 +11,6 @@
     # Hack for broken drag and drop in Qt apps - only works in wayland
     #QT_QPA_PLATFORM = "wayland";
     # Hack to make Qt apps run with a light qt theme
-    QT_STYLE_OVERRIDE = "adwaita";
-  };
+    #QT_STYLE_OVERRIDE = "adwaita";
+    # Use qt5ct to set the theme rather - see gui-apps.nix  };
 }

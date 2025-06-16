@@ -70,6 +70,7 @@ in {
     packages = with pkgs; [
       popcorntime
       freetube
+      warp-terminal
     ];
   };
 

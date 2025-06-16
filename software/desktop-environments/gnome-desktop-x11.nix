@@ -13,7 +13,10 @@
     # Hack for broken drag and drop in Qt apps (including QGIS) - only works in wayland
     # QT_QPA_PLATFORM = "wayland";
     # Hack to make Qt apps run with a light qt theme
-    QT_STYLE_OVERRIDE = "adwaita";
+    GTK_THEME = "Adwaita";
+    #QT_QPA_PLATFORMTHEME = "qt5ct";
+    #QT_STYLE_OVERRIDE = "adwaita"; # Set this using the qt5ct tool rather than here
+    # See also gui-apps.nix for qt5ct
   };
 
   # Set the background by default to Kartoza branding
@@ -41,6 +44,7 @@
   environment.systemPackages = with pkgs; [
     # See https://github.com/FedoraQt/QGnomePlatform#usage
     qgnomeplatform # make Qt apps look like Gtk if they do not specifiy their own theme
+    gnome-tweaks # for changing the theme
   ];
 
   programs.seahorse.enable = true;
