@@ -17,10 +17,12 @@
     #../software/desktop-environments/pantheon-desktop.nix
     ../configuration/desktop-apps.nix
     ../software/system/locale-pt-en.nix
-    #../software/system/biometrics.nix
+    ../software/system/biometrics.nix
+    ../software/system/yubikey.nix
     ../software/system/zfs-encryption.nix
     #../software/gis/qgis-stable.nix
     ../software/gis/qgis-geospatialnix.nix
+    ../software/gis/qgis-2.18.nix
     ../software/system/wine.nix
     # Enable power management
     ../software/system/power.nix
@@ -42,6 +44,7 @@
     # R&D Package for Wolfgang
     #../software/gis/gverify-sourcebuild.nix
     ../software/system/docker.nix
+    ../software/system/fwupd.nix
     #../software/system/podman.nix
     #../software/system/distrobox.nix
     #../software/system/tty-font.nix

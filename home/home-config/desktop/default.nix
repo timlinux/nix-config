@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./gtk
+    ./qt
     ./keybindings
     ./xdg
   ];

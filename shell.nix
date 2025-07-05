@@ -36,6 +36,7 @@ in
       pinnedPkgs.ntfy-sh
       pinnedPkgs.mesa-demos
       pinnedPkgs.pciutils
+      pinnedPkgs.fwupd
     ];
 
     # Now we can execute any commands within the virtual environment.
