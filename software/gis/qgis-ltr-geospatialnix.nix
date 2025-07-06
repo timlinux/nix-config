@@ -1,0 +1,44 @@
+{
+  config,
+  pkgs,
+  geospatial,
+  system,
+  ...
+}: let
+  appName = "QGIS LTR";
+
+  qgisLtr = geospatial.packages.${system}.qgis-ltr.override {
+    extraPythonPackages = ps: [
+      ps.pyqtwebengine
+      ps.jsonschema
+      ps.debugpy
+      ps.future
+      ps.psutil
+      ps.numpy
+      ps.requests
+      ps.matplotlib
+      ps.pandas
+      ps.geopandas
+      ps.plotly
+      ps.pyqtgraph
+      ps.rasterio
+      ps.sqlalchemy
+    ];
+  };
+
+  qgisLtrApp = pkgs.makeDesktopItem {
+    name = "qgis-ltr";
+    desktopName = appName;
+    genericName = "Geographic Information System";
+    exec = "${qgisLtr}/bin/qgis";
+    icon = "qgis";
+    categories = ["Science" "Geography"];
+    comment = "A Geographic Information System";
+    startupWMClass = "qgis";
+  };
+in {
+  environment.systemPackages = [
+    qgisLtr
+    qgisLtrApp
+  ];
+}

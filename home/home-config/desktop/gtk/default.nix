@@ -32,7 +32,7 @@
 
     # ── GTK3 SPECIFIC SETTINGS ─────────────────────────────────────────────────
     gtk3 = {
-      extraConfig.gtk-application-prefer-dark-theme = true; # Prefer dark mode for comfort.
+      extraConfig.gtk-application-prefer-dark-theme = false; # Prefer dark mode for comfort.
     };
   };
 

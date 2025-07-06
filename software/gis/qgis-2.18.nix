@@ -12,7 +12,7 @@
   # Get QGIS from the pinned nixpkgs
   qgis218 = pinnedPkgs.qgis;
 
-  qgisApp = pkgs.makeDesktopItem {
+  qgis218App = pkgs.makeDesktopItem {
     name = "qgis-2.18";
     desktopName = appName;
     genericName = "Geographic Information System";
@@ -25,6 +25,6 @@
 in {
   environment.systemPackages = [
     qgis218
-    qgisApp
+    qgis218App
   ];
 }
