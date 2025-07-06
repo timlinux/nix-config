@@ -15,7 +15,7 @@ REQUIRED_EXTENSIONS=(
     bierner.markdown-mermaid@1.28.0
     formulahendry.code-runner@0.12.2
     foxundermoon.shell-format@7.2.5
-    GitHub.copilot-chat@0.27.3
+    GitHub.copilot-chat@0.28.5
     GitHub.copilot@1.335.0
     jeff-hykin.better-shellscript-syntax@1.10.0
     jnoortheen.nix-ide@0.4.18
