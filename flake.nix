@@ -127,7 +127,9 @@
             x86_64-linux = "install-iso";
             aarch64-linux = "sd-aarch64-installer";
           }
-          .${system};
+          .${
+            system
+          };
       };
     };
 

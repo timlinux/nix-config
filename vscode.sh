@@ -10,7 +10,7 @@ VSCODE_DIR=".vscode"
 LOG_FILE="vscode.log"
 
 REQUIRED_EXTENSIONS=(
-    arrterian.nix-env-selector@1.1.0
+    #arrterian.nix-env-selector@1.1.0
     bbenoist.Nix@1.0.1
     bierner.markdown-mermaid@1.28.0
     formulahendry.code-runner@0.12.2

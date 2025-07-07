@@ -39,7 +39,7 @@
     # you can comment out these next line and uncomment the
     # unstable-apps entry above.
     #../software/gis/qgis-sourcebuild.nix
-    #../software/system/sound-noise-suppression-unstable.nix
+    #
     #../software/gis/tilemaker-sourcebuild.nix
     #../software/gis/whitebox-tools.nix
     #../software/gis/saga.nix
@@ -58,7 +58,16 @@
     ../software/desktop-apps/google-earth-pro.nix
     ../users/tim.nix
   ];
+  # This will add a second grub menu entry to boot into the latest kernel
+  specialisation = {
+    latest-kernel.configuration = {
+      imports = [../software/system/kernel-latest.nix];
+    };
 
+    experimental.configuration = {
+      imports = [../software/system/sound-noise-suppression-unstable.nix];
+    };
+  };
   boot.initrd.availableKernelModules = ["nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];

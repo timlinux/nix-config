@@ -15,6 +15,6 @@
   # Though it crashes
   # Needs more research to see how to integrate it with google meet etc.
   environment.systemPackages = with pkgs; [
-    unstable.deepfilternet
+    deepfilternet
   ];
 }
