@@ -8,14 +8,53 @@
 }: {
   # Lenovo Thinkpad P14s AMD Gen 1
 
+  # This will add a second grub menu entry to boot into the latest kernel
+  specialisation = {
+    latest-kernel.configuration = {
+      imports = [../software/system/kernel-latest.nix];
+    };
+
+    experimental.configuration = {
+      imports = [../software/system/sound-noise-suppression-unstable.nix];
+    };
+    # kde.configuration = {
+    #   # Add your customisations for the default specialisation here
+    #   # For example, enable a service only in the default specialisation:
+    #   # services.example.enable = true;
+    #   imports = [
+    #     ../configuration/desktop-kde6.nix
+    #   ];
+    # };
+    # cosmic.configuration = {
+    #   imports = [
+    #     ../software/desktop-environments/cosmic-desktop.nix
+    #   ];
+    # };
+    # pantheon.configuration = {
+    #   imports = [
+    #     ../software/desktop-environments/pantheon-desktop.nix
+    #   ];
+    # };
+    # gnome-with-remote-desktop.configuration = {
+    #   imports = [
+    #     ../configuration/desktop-gnome-x11.nix
+    #     ../software/desktop-environments/gnome-desktop-remote-desktop.nix
+    #   ];
+    # };
+    # gnome-on-wayland.configuration = {
+    #   imports = [
+    #     ../configuration/desktop-gnome-wayland.nix
+    #     #../software/desktop-environments/gnome-desktop-remote-desktop.nix
+    #   ];
+    #};
+  };
+
+  # For all specialisations, we want to use the same set of
+  # software packages, so we define them here.
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ../configuration/desktop-gnome-x11.nix
-    #../software/desktop-environments/gnome-desktop-remote-desktop.nix
-    #../software/desktop-environments/cosmic-desktop.nix
-    #../configuration/desktop-kde6.nix
-    #../software/desktop-environments/pantheon-desktop.nix
     ../configuration/desktop-apps.nix
+    ../configuration/desktop-gnome-x11.nix
     ../software/system/locale-pt-en.nix
     ../software/system/biometrics.nix
     ../software/system/yubikey.nix
@@ -58,16 +97,7 @@
     ../software/desktop-apps/google-earth-pro.nix
     ../users/tim.nix
   ];
-  # This will add a second grub menu entry to boot into the latest kernel
-  specialisation = {
-    latest-kernel.configuration = {
-      imports = [../software/system/kernel-latest.nix];
-    };
 
-    experimental.configuration = {
-      imports = [../software/system/sound-noise-suppression-unstable.nix];
-    };
-  };
   boot.initrd.availableKernelModules = ["nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
