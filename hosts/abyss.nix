@@ -6,7 +6,7 @@
   modulesPath,
   ...
 }: {
-  # Lenovo Thinkpad P14s AMD Gen 1
+  # Framework 16
 
   # This will add a second grub menu entry to boot into the latest kernel
   specialisation = {
@@ -114,6 +114,45 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
+  #################### TODO Refactor this into modules ####################
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+  services.zfs = {
+    autoScrub.enable = true;
+    autoSnapshot.enable = true; # optional, useful for home
+  };
+
+  services.fprintd.enable = true;
+
+
+  # enable Power Profiles Daemon for improved battery life
+  services.power-profiles-daemon.enable = true;
+
+  # platform and cpu options
+  #nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  #hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  # enable non-root access to keyboard firmware
+  hardware.keyboard.qmk.enable = true;
+
+  # enable bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
+
+
+  # configure lid and power button behavior
+  services.logind = {
+    powerKey = "hibernate";
+    powerKeyLongPress = "poweroff";
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "suspend";
+  };
+  
+  #################### END TODO Refactor this into modules ####################
+
+
+
   # Needs NixOS 24.05
   # Set up a dns proxy so that we can use AdGuard Home as a DNS server
   # and use our internal DNS server for some domains.
@@ -154,23 +193,25 @@
   # For revolt
   #networking.firewall.allowedTCPPorts = [80 443];
   #networking.firewall.allowedUDPPorts = [80 443];
+  boot.initrd.luks.devices."luks-b363c176-a43c-4b4b-9716-6af8a7a438e6".device = "/dev/disk/by-uuid/b363c176-a43c-4b4b-9716-6af8a7a438e6";
 
-  fileSystems."/" = {
-    device = "NIXROOT/root";
-    fsType = "zfs";
-  };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/453bb92e-2ff3-4dbb-b08d-d7b1115857db";
+      fsType = "ext4";
+    };
 
-  # If you installed using my zfs installer script, you will have a /nix
-  # too so uncomment this...
-  fileSystems."/nix" = {
-    device = "NIXROOT/nix";
-    fsType = "zfs";
-  };
+  boot.initrd.luks.devices."luks-3779484a-469e-486c-bf12-5e1f1c97a0a1".device = "/dev/disk/by-uuid/3779484a-469e-486c-bf12-5e1f1c97a0a1";
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/EA5C-D827";
-    fsType = "vfat";
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/467B-C9EF";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/3b238706-1365-4042-9a05-430cb1cdb774"; }
+    ];
+
 
   fileSystems."/home" = {
     device = "NIXROOT/home";
@@ -182,12 +223,12 @@
     device = "/dev/zvol/NIXROOT/atuin";
     fsType = "ext4";
   };
-  networking.hostName = "crest"; # Define your hostname.
+  networking.hostName = "abyss"; # Define your hostname.
   # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId
   # Generate using this:
   # head -c 8 /etc/machine-id
-  networking.hostId = "d13e0d41"; # needed for zfs
-  swapDevices = [];
+  networking.hostId = "f6f9db57"; # needed for zfs
+
 
   networking.extraHosts = ''
     10.100.0.236 valley

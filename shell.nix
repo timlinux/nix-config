@@ -19,6 +19,8 @@ in
     allowUnfree = true;
     buildInputs = [
       vscode
+      jq
+      git
       gum # UX for TUIs
       skate # Distributed key/value store
       mods # AI in your shell

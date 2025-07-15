@@ -59,6 +59,8 @@
           useGlobalPkgs = true;
           useUserPackages = true;
           extraSpecialArgs = specialArgs;
+          # Set backup file extension - any config file collisions will be backed up
+          backupFileExtension = ".bak3";
         };
       }
     ];

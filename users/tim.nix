@@ -85,8 +85,6 @@ in {
   };
 
   home-manager = {
-    # Set backup file extension - any config file collisions will be backed up
-    backupFileExtension = ".bak2";
     users.${username} = {
       home.stateVersion = "23.11";
       imports = [
