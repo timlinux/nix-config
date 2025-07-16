@@ -159,11 +159,12 @@
           ++ shared-modules
           ++ [./hosts/iso-gnome.nix];
       };
-      crest = make-host "crest";
       #  {
       #   plymouth = ./software/system/timos-plymouth.nix; # Correct path to the plymouth theme
       #   grub = ./software/system/timos-grub.nix; # Correct path to the grub theme
       # }; # Tim's p14s thinkpad - love this machine!
+      crest = make-host "crest"; # Deprecated
+      abyss = make-host "abyss"; # Tim Framework 16
       waterfall = make-host "waterfall"; # Tim Tuxedo desktop box
       valley = make-host "valley"; # Tim headless box
       delta = make-host "delta"; # Amy Laptop

@@ -12,13 +12,13 @@
             "top": 2,
             "left": 1,
             "right": 1
-        },
+        }
     },
     "display": {
         "separator": "",
-        "display.size.binaryPrefix": "si",
         "size": {
-            "ndigits": 0
+            "ndigits": 0,
+            "binaryPrefix": "si"
         },
         "percent": {
             "type": 2
@@ -26,8 +26,7 @@
         "bar": {
             "charElapsed": "",
             "charTotal": " "
-        },
-        "keyWidth": 6
+        }
     },
     "modules": [
         {

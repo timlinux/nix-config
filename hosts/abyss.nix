@@ -8,74 +8,18 @@
 }: {
   # Framework 16
 
-  # This will add a second grub menu entry to boot into the latest kernel
-  specialisation = {
-    gnome-x11-latest-kernel.configuration = {
-      imports = [
-        ../configuration/desktop-gnome-x11.nix
-        ../software/system/kernel-latest.nix
-      ];
-    };
-    gnome-x11-stable-kernel.configuration = {
-      imports = [
-        ../configuration/desktop-gnome-x11.nix
-      ];
-    };
-    gnome-x11-remote-desktop.configuration = {
-      imports = [
-        ../configuration/desktop-gnome-x11.nix
-        ../software/desktop-environments/gnome-desktop-remote-desktop.nix
-      ];
-    };
-    gnome-wayland-latest-kernel.configuration = {
-      imports = [
-        ../configuration/desktop-gnome-wayland.nix
-        ../software/system/kernel-latest.nix
-        #../software/desktop-environments/gnome-desktop-remote-desktop.nix
-      ];
-    };
-    gnome-wayland-stable-kernel.configuration = {
-      imports = [
-        ../configuration/desktop-gnome-wayland.nix
-        #../software/desktop-environments/gnome-desktop-remote-desktop.nix
-      ];
-    };
-    gnome-x11-noise-suppression.configuration = {
-      imports = [
-        ../configuration/desktop-gnome-x11.nix
-        ../software/system/sound-noise-suppression-unstable.nix
-      ];
-    };
-    # kde.configuration = {
-    #   imports = [
-    #     ../configuration/desktop-kde6.nix
-    #   ];
-    # };
-    # cosmic.configuration = {
-    #   imports = [
-    #     ../software/desktop-environments/cosmic-desktop.nix
-    #   ];
-    # };
-    # pantheon.configuration = {
-    #   imports = [
-    #     ../software/desktop-environments/pantheon-desktop.nix
-    #   ];
-    # };
-  };
-
-  # For all specialisations, we want to use the same set of
-  # software packages, so we define them here.
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    ../configuration/desktop-gnome-x11.nix
     ../configuration/desktop-apps.nix
     ../software/system/locale-pt-en.nix
     ../software/system/biometrics.nix
     ../software/system/yubikey.nix
     ../software/system/zfs-encryption.nix
-    ../software/gis/qgis-2.18.nix
-    ../software/gis/qgis-latest-geospatialnix.nix
-    ../software/gis/qgis-ltr-geospatialnix.nix
-    ../software/system/wine.nix
+    #../software/gis/qgis-2.18.nix
+    #../software/gis/qgis-latest-geospatialnix.nix
+    #../software/gis/qgis-ltr-geospatialnix.nix
+    #../software/system/wine.nix
     # Enable power management
     ../software/system/power.nix
     #../modules/unstable-apps.nix # qgis, keepasxc, vscode, uxplay
@@ -95,14 +39,14 @@
     #../software/gis/saga.nix
     # R&D Package for Wolfgang
     #../software/gis/gverify-sourcebuild.nix
-    ../software/system/docker.nix
+    #../software/system/docker.nix
     ../software/system/fwupd.nix
     #../software/system/podman.nix
     #../software/system/distrobox.nix
     #../software/system/tty-font.nix
     ../software/system/tailscale.nix
     ../software/system/virt.nix
-    ../software/system/printing.nix
+   # ../software/system/printing.nix
     ../software/system/sanoid.nix
     #../software/system/lima.nix
     ../software/desktop-apps/google-earth-pro.nix
@@ -213,16 +157,16 @@
     ];
 
 
-  fileSystems."/home" = {
-    device = "NIXROOT/home";
-    fsType = "zfs";
-  };
+  #fileSystems."/home" = {
+  #  device = "NIXROOT/home";
+  #  fsType = "zfs";
+  #};
   # Special mount point
   # See https://github.com/atuinsh/atuin/issues/952#issuecomment-1802376251
-  fileSystems."/home/timlinux/.local/share/atuin" = {
-    device = "/dev/zvol/NIXROOT/atuin";
-    fsType = "ext4";
-  };
+  #fileSystems."/home/timlinux/.local/share/atuin" = {
+  #  device = "/dev/zvol/NIXROOT/atuin";
+  #  fsType = "ext4";
+  #};
   networking.hostName = "abyss"; # Define your hostname.
   # See https://search.nixos.org/options?channel=unstable&show=networking.hostId&query=networking.hostId
   # Generate using this:
