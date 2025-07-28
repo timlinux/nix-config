@@ -17,6 +17,7 @@
     ../software/system/xbox1-controller.nix
     ../software/system/locale-pt-en.nix
     ../users/tim-headless.nix
+    ../users/james.nix
   ];
 
   boot.initrd.availableKernelModules = ["nvme" "ehci_pci" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
