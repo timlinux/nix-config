@@ -46,7 +46,7 @@
     #../software/system/tty-font.nix
     ../software/system/tailscale.nix
     ../software/system/virt.nix
-   # ../software/system/printing.nix
+    # ../software/system/printing.nix
     ../software/system/sanoid.nix
     #../software/system/lima.nix
     ../software/desktop-apps/google-earth-pro.nix
@@ -59,7 +59,7 @@
   boot.extraModulePackages = [];
 
   #################### TODO Refactor this into modules ####################
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = ["zfs"];
   boot.zfs.forceImportRoot = false;
   services.zfs = {
     autoScrub.enable = true;
@@ -67,7 +67,6 @@
   };
 
   services.fprintd.enable = true;
-
 
   # enable Power Profiles Daemon for improved battery life
   services.power-profiles-daemon.enable = true;
@@ -84,7 +83,6 @@
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
 
-
   # configure lid and power button behavior
   services.logind = {
     powerKey = "hibernate";
@@ -92,10 +90,8 @@
     lidSwitch = "suspend";
     lidSwitchExternalPower = "suspend";
   };
-  
+
   #################### END TODO Refactor this into modules ####################
-
-
 
   # Needs NixOS 24.05
   # Set up a dns proxy so that we can use AdGuard Home as a DNS server
@@ -139,23 +135,22 @@
   #networking.firewall.allowedUDPPorts = [80 443];
   boot.initrd.luks.devices."luks-b363c176-a43c-4b4b-9716-6af8a7a438e6".device = "/dev/disk/by-uuid/b363c176-a43c-4b4b-9716-6af8a7a438e6";
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/453bb92e-2ff3-4dbb-b08d-d7b1115857db";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/453bb92e-2ff3-4dbb-b08d-d7b1115857db";
+    fsType = "ext4";
+  };
 
   boot.initrd.luks.devices."luks-3779484a-469e-486c-bf12-5e1f1c97a0a1".device = "/dev/disk/by-uuid/3779484a-469e-486c-bf12-5e1f1c97a0a1";
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/467B-C9EF";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/467B-C9EF";
+    fsType = "vfat";
+    options = ["fmask=0077" "dmask=0077"];
+  };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/3b238706-1365-4042-9a05-430cb1cdb774"; }
-    ];
-
+  swapDevices = [
+    {device = "/dev/disk/by-uuid/3b238706-1365-4042-9a05-430cb1cdb774";}
+  ];
 
   #fileSystems."/home" = {
   #  device = "NIXROOT/home";
@@ -173,9 +168,9 @@
   # head -c 8 /etc/machine-id
   networking.hostId = "f6f9db57"; # needed for zfs
 
-
   networking.extraHosts = ''
     10.100.0.236 valley
+    192.168.0.2 valley-local
     10.100.0.234 waterfall
     192.168.0.2 valley-local
     192.168.0.1 router
