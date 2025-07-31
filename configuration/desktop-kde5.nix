@@ -10,4 +10,5 @@
     ../software/system/sound.nix
     ../software/desktop-environments/plasma-desktop.nix
   ];
+  networking.networkmanager.enable = true;
 }
