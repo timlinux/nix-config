@@ -11,7 +11,6 @@
   ];
   system.stateVersion = "23.11";
   systemd.coredump.enable = false;
-  nix.settings.experimental-features = ["nix-command" "flakes"];
   # Enable networking
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -29,4 +28,13 @@
     ../software/system/harden.nix
     ../software/system/ssh.nix
   ];
+  # Special settings for nix users who want to e.g. build the QGIS 
+  nix.settings = {
+    download-buffer-size = 500000000; # 500 MB
+    trusted-users = [ "root" "timlinux" "lova" "@wheel" "@trusted" ];
+    experimental-features = [ "flakes" "nix-command" ];
+    auto-optimise-store = true;
+    #allow-import-from-derivation = false;
+  };
+
 }

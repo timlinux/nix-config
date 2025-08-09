@@ -152,10 +152,12 @@
     {device = "/dev/disk/by-uuid/3b238706-1365-4042-9a05-430cb1cdb774";}
   ];
 
-  #fileSystems."/home" = {
-  #  device = "NIXROOT/home";
-  #  fsType = "zfs";
-  #};
+  fileSystems."/home" = {
+    device = "NIXROOT/home";
+    fsType = "zfs";
+    # ZFS encryption should be managed at the pool/dataset level, not here.
+    # See: https://nixos.wiki/wiki/ZFS#Encrypted_root_with_prompt
+  };
   # Special mount point
   # See https://github.com/atuinsh/atuin/issues/952#issuecomment-1802376251
   #fileSystems."/home/timlinux/.local/share/atuin" = {
