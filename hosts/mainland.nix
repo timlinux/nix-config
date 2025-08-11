@@ -102,7 +102,7 @@
 
   nix.settings = {
     download-buffer-size = 500000000; # 500 MB
-    trusted-users = ["root" "lova" "@wheel" "@trusted"];
+    trusted-users = ["lova" "@wheel" "@trusted"];
     experimental-features = ["flakes" "nix-command"];
     auto-optimise-store = true;
     # allow-import-from-derivation = false;
