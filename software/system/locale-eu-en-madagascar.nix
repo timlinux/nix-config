@@ -5,7 +5,7 @@
 }: {
   # Set your time zone.
   # See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time.timeZone = "Europe/Lisbon";
+  time.timeZone = "Indian/Antananarivo";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
