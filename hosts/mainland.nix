@@ -99,4 +99,12 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # nix.settings.sandbox = false;
+
+  nix.settings = {
+    download-buffer-size = 500000000; # 500 MB
+    trusted-users = ["lova" "@wheel" "@trusted"];
+    experimental-features = ["flakes" "nix-command"];
+    auto-optimise-store = true;
+    # allow-import-from-derivation = false;
+  };
 }
